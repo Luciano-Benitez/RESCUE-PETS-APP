@@ -1,7 +1,8 @@
 const express = require('express')
 const { addPet } = require('../controllers/addPet.js')
+const { filterTemperament } = require('../controllers/filterTemperament.js')
 const router = express.Router()
-const {petsIdShelter} = require('../controllers/petsidshelters.js')
+const {filterTemperament} = require('../controllers/filterTemperament.js')
 
 router.get('/pets/:idShelters', async (req,res)=>{
     const {idShelters} = req.params
@@ -13,5 +14,6 @@ router.get('/pets/:idShelters', async (req,res)=>{
 })
 
 router.post('/pets', addPet)
+router.get("/pets/:idTemperament", filterTemperament);
 
 module.exports = router

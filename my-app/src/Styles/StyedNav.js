@@ -7,7 +7,7 @@ export const StyleNavBar = styled.nav`
   position: fixed;
   z-index: 100;
   width: 100%;
-  height: 10%;
+  height: 16%;
   
   
  
@@ -18,7 +18,7 @@ export const StyleNavBar = styled.nav`
 
 export const Divmenu= styled.div`
 display: flex;
-padding-right:120px;
+padding-right:100px;
 float: right;
 font-size:  16px;
 text-decoration:none;

@@ -1,16 +1,18 @@
-// const {pets} = require('../db.js') //Requiero model pets para busqueda por id
+const {Pets,Shelter} = require('../db.js') 
 
 exports.petsIdShelter = async(idShelter)=>{
-    if(idShelter !== undefined){
-        let petsWithIdShelter = await pets.findAll({
-            where:{
-                ID_Shelter: idShelter
-            }
-        })
+        if(isNaN(idShelter)) return 'no string'
+        let petsWithIdShelter = await Pets.findAll()
+        // {
+        //     include:{
+        //         model : Shelter,{
+        //             where
+        //         }
+        //     }
+        // }
         if(petsWithIdShelter.length){
             return petsWithIdShelter
         }else{
             return 'no pets with this ID_Shelter'
         }
-    }
 }

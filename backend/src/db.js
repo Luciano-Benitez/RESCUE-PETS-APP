@@ -29,11 +29,12 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Pets, Shelter, Forms, FormType } = sequelize.models;
+const { Pets, Shelter, Forms, FormType, Species } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
+Species.hasMany(Pets, {foreignKey : 'id'})
 Shelter.hasMany(Pets, {foreignKey : 'id'})
 Pets.belongsTo(Shelter, {foreignKey:'id'})
 

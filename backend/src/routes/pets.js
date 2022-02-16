@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const getpetidshelter = require('../controllers/petsidshelters')
+const {petsIdShelter} = require('../controllers/petsidshelters.js')
 
-router.get('/pets/:idShelters', (req,res)=>{
-    const {idShelter} = req.params
-    if(getpetidshelter.petsIdShelter(idShelter)){
-        return res.status(200).json(getpetidshelter.petsIdShelter(idShelter))
+router.get('/pets/:idShelters', async (req,res)=>{
+    const {idShelters} = req.params
+    if(idShelters){
+        return res.status(200).json(await petsIdShelter(idShelters))
     }else{
         return res.status(400)
     }

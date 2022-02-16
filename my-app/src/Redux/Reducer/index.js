@@ -1,11 +1,11 @@
-import {  TEST} from "../Actions/index";
+import {TEST } from "../Actions/index";
 const initialState = {
  
  
 };
 
-export default function rooReducer(state = initialState, action) {
-    switch (action.type) {
+export default function rooReducer(state = initialState, {type, payload }) {
+    switch (type) {
       case TEST:
         return {
           ...state,
@@ -15,5 +15,5 @@ export default function rooReducer(state = initialState, action) {
         default:
             return state;
         }
-    }
+    };
     

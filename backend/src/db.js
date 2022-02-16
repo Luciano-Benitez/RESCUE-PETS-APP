@@ -34,6 +34,7 @@ const {Shelter} = sequelize.models;
 const {Forms} = sequelize.models;
 const {Formtype} = sequelize.models;
 const {Questions} = sequelize.models;
+const {Temperament} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);

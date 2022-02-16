@@ -2,8 +2,8 @@ const {DataTypes}=require('sequelize');
 
 module.exports = (sequelize) => {
 
-  sequelize.define('forms', {
-    name: {
+  sequelize.define('species', {
+    specie: {
       type: DataTypes.STRING,
       allowNull:false
   },

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import allColors from "./Corlos";
+import allColors from '../variables/Colors';
 
 export const StyleNavBar = styled.nav`
   background-color: ${allColors.colors[3]};
@@ -45,5 +45,3 @@ export const StyleLi= styled.li`
  
 
 `;
-
-

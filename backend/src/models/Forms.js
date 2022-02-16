@@ -1,11 +1,15 @@
-const {DataTypes}=require('sequelize');
+const { DataTypes }= require('sequelize');
 
 module.exports = (sequelize) => {
 
-  sequelize.define('forms', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull:false
-  },
-  });
+    sequelize.define('forms', {
+    formName: {
+        type: DataTypes.STRING,
+        allowNull:false
+    },
+    },
+    {
+        timestamps: false,
+    }
+    );
 };

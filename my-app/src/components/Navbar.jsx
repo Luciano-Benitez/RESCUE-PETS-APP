@@ -1,35 +1,29 @@
 import React, {Fragment} from "react";
-import Colors from "../variables/Corlos"
-import {Link } from "react-router-dom";
+// import Colors from "../variables/Corlos"
+import {Link} from "react-router-dom";
+import {StyleNavBar, StyleLi , Divmenu} from "../variables/Styles";
+
 export default function Navbar() {
-
-
     return (
-        <header >
-            <div  style={{
-        backgroundColor:'#23282E',
-        
-      }}>
+        <Fragment>
+            <header>
               
-            </div>
-            <nav >
-                <ul>
-                    <li>
-                        <Link to="/">Inicio</Link>
-                    </li>
-                    <li>
-                        <Link to="/">Soy Un Refugio</Link>
-                    </li>
-
-
-                    <li>
-                        <Link to="/nosotros">Nosotros</Link>
-                    </li>
-
-                   
-
-                 </ul>
-</nav>
-        </header>
+                    <StyleNavBar>
+                        <ul>
+                        <Divmenu>
+                            <StyleLi>
+                                <Link to="/">Inicio</Link>
+                            </StyleLi>
+                            <StyleLi>
+                                <Link to="/">Soy Un Refugio</Link>
+                            </StyleLi>
+                            <StyleLi>
+                                <Link to="/nosotros">Nosotros</Link>
+                            </StyleLi>
+                            </Divmenu>  </ul>
+                    </StyleNavBar>
+                
+            </header>
+        </Fragment>
     );
 }

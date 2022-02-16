@@ -32,7 +32,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const {Species } = sequelize.models;
 
-const { Pets}  =  sequelize.models;
+const {Pets}  =  sequelize.models;
 const {Shelter} = sequelize.models;
 const {Forms} = sequelize.models;
 const {Formtype} = sequelize.models;
@@ -40,7 +40,10 @@ const {Questions} = sequelize.models;
 const {Temperament} = sequelize.models;
 const {Users}=sequelize.models;
 const {Roles}=sequelize.models
-const {Countries, Cities} = sequelize.models;
+const {Vaccines}=sequelize.models
+const {Countries} = sequelize.models;
+const {Cities} = sequelize.models;
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -64,7 +67,15 @@ Forms.belongsToMany(Questions, {through : 'form_questions'})
 Questions.belongsToMany(Forms, {through : 'form_questions'})
 
 Countries.hasMany(Cities)
-Cities.belongsToMany(Countries)
+Cities.belongsTo(Countries)
+
+Forms.belongsToMany(Questions, {through : 'form_questions'})
+Questions.belongsToMany(Forms, {through : 'form_questions'})
+
+Vaccines.belongsToMany(Pets, {through: "petsvaccines", timestamps: false})
+Pets.belongsToMany(Vaccines, {through: "petsvaccines", timestamps: false})
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -32,6 +32,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Pets, Shelter} = sequelize.models;
 const {Forms} = sequelize.models;
 const {Formtype} = sequelize.models;
+const {Questions} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -41,6 +42,9 @@ Pets.belongsTo(Shelter, {foreignKey:'id'})
 
 Formtype.hasMany(Forms)
 Forms.belongsTo(Formtype)
+
+Forms.belongsToMany(Questions, {through : 'form_questions'})
+Questions.belongsToMany(Forms, {through : 'form_questions'})
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

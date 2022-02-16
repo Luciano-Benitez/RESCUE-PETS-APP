@@ -2,20 +2,20 @@ const { DataTypes }= require('sequelize');
 
 module.exports = (sequelize) => {
 
-    sequelize.define('mascotas', {
-    nombre: {
+    sequelize.define('pets', {
+    name: {
         type: DataTypes.STRING,
         allowNull:false
     },
-    esterelizacion: {
+    sterilization: {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },
-    peso: {
+    weight: {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
-    descripcion: {
+    description: {
         type: DataTypes.STRING(1000),
         allowNull: false,
     }

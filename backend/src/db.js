@@ -39,7 +39,9 @@ const {Formtype} = sequelize.models;
 const {Questions} = sequelize.models;
 const {Temperament} = sequelize.models;
 const {Users}=sequelize.models;
-const {Roles}=sequelize.models
+const {Roles}=sequelize.models;
+const {Vaccines}=sequelize.models;
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -59,8 +61,12 @@ Forms.belongsTo(Formtype)
 Users.belongsTo(Roles)
 Roles.hasMany(Users)
 
-Forms.belongsToMany(Questions, {through : 'form_questions'})
-Questions.belongsToMany(Forms, {through : 'form_questions'})
+// Forms.belongsToMany(Questions, {through : 'form_questions'})
+// Questions.belongsToMany(Forms, {through : 'form_questions'})
+
+Vaccines.belongsToMany(Pets, {through: "petsvaccines", timestamps: false})
+Pets.belongsToMany(Vaccines, {through: "petsvaccines", timestamps: false})
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -43,6 +43,7 @@ const {Roles}=sequelize.models
 const {Vaccines}=sequelize.models
 const {Countries} = sequelize.models;
 const {Cities} = sequelize.models;
+const {Permission} = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -71,6 +72,10 @@ Cities.belongsTo(Countries)
 
 Vaccines.belongsToMany(Pets, {through: "petsvaccines", timestamps: false})
 Pets.belongsToMany(Vaccines, {through: "petsvaccines", timestamps: false})
+
+Permission.belongsToMany(Roles,{through: 'Permission_Roles'});
+Roles.belongsToMany(Permission,{through: 'Permission_Roles'});
+
 
 
 

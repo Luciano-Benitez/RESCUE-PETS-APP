@@ -69,9 +69,6 @@ Questions.belongsToMany(Forms, {through : 'form_questions'})
 Countries.hasMany(Cities)
 Cities.belongsTo(Countries)
 
-Forms.belongsToMany(Questions, {through : 'form_questions'})
-Questions.belongsToMany(Forms, {through : 'form_questions'})
-
 Vaccines.belongsToMany(Pets, {through: "petsvaccines", timestamps: false})
 Pets.belongsToMany(Vaccines, {through: "petsvaccines", timestamps: false})
 

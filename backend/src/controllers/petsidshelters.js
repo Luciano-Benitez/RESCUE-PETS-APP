@@ -1,13 +1,15 @@
 const {Pets,Shelter} = require('../db.js') 
 
 exports.petsIdShelter = async(idShelter)=>{
+
         if(isNaN(idShelter)) return 'no string'
-        let petsWithIdShelter = await Shelter.findAll({
-            attributes : [],
+        let petsWithIdShelter = await Pets.findAll({
             where:{
-                id : idShelter
+                shelterId : idShelter
             },
-            include: Pets
+            include:{
+                model : Shelter
+            }
         })
         if(petsWithIdShelter.length){
             return petsWithIdShelter

@@ -1,12 +1,8 @@
 const {Forms, Questions} = require('../db.js')//Requiero  model adoption para hacerle post
 const {Formtype} = require('../db.js')
-exports.createForm = async (type,questions) => {
+exports.createForm = async (type,questions,idshelter) => {
     if(type && questions){
-        let q = await Questions.findOne({
-            where:{
-                id : questions
-            }
-        })
+        
         let ft = await Formtype.findOne({
             where:{
                 id : type
@@ -14,9 +10,19 @@ exports.createForm = async (type,questions) => {
         })
         let f = await Forms.create({
             name: ft.Type,
-            formtypeId: ft.id
+            formtypeId: ft.id,
+            shelterId : idshelter
         })
-        
-        f.addQuestions(q)
+        if(Array.isArray(questions)){
+            questions.map(async question => {
+                let q = await Questions.findOne({
+                    where:{
+                        id : question
+                    }
+                })
+                f.addQuestions(q)
+            })
+        }
+        return f
     }
 }

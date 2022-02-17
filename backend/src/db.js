@@ -93,11 +93,14 @@ Profiles.belongsTo(Users)
 PetStatus.hasMany(Pets)
 Pets.belongsTo(PetStatus)
 
-Countries.hasMany(Shelter)
-Shelter.belongsTo(Countries)
+// Countries.hasMany(Shelter) //En duda si va...
+// Shelter.belongsTo(Countries)
 
 Cities.hasMany(Shelter)
 Shelter.belongsTo(Cities)
+
+Users.hasOne(Shelter)
+Shelter.belongsTo(Users)
 
 
 

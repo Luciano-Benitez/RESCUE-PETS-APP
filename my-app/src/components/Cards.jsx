@@ -1,44 +1,39 @@
 import React, { Fragment } from "react";
-import {StyledCard , StyledCardContainer } from '../Styles/StyledCards.js';
-
+import {StyledCard , StyledCardContainer, ImgCard } from '../Styles/StyledCards.js';
+import Img from "../Icos/homeim1.svg"
 
 export default function Cards() {
   return (
     <Fragment>
     <br /> 
       <StyledCardContainer key={Math.random(5)}>
-   
-      <StyledCard>
-          <h1>Uno</h1>
+
+      <StyledCard> <h1>Lorem ipsum dolor sit amet consectetur</h1>
+      <ImgCard src={Img}  />
+        
           <br />
-          <img src="" className="img" />
           </StyledCard>
 
           <StyledCard>
-          <h1>Uno</h1>
+          <h1>Lorem ipsum dolor sit amet consectetur</h1>
           <br />
-          <img src="" className="img" />
+          <ImgCard src={Img}  />
           </StyledCard>
 
           <StyledCard>
-          <h1>Uno</h1>
+          <h1>Lorem ipsum dolor sit amet consectetur</h1>
           <br />
-          <img src="" className="img" />
+          <ImgCard src={Img}  />
           </StyledCard>
 
           <StyledCard>
-          <h1>Uno</h1>
+          <h1>Lorem ipsum dolor sit amet consectetur</h1>
           <br />
-          <img src="" className="img" />
+          <ImgCard src={Img}  />
           </StyledCard>
 
-          <StyledCard>
-          <h1>Uno</h1>
-          <br />
-          <img src="" className="img" />
-          </StyledCard>
-
-        </StyledCardContainer>
+         
+ </StyledCardContainer>
     </Fragment>
   );
 }

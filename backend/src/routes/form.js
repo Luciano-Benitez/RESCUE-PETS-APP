@@ -5,9 +5,9 @@ const {sendAdoption } = require('../controllers/sendAdoption.js')
 const {sendRequest} = require('../controllers/sendRequest.js')
 
 router.post('/createForm/', async (req,res)=>{
-    const {type,questions} = req.body
-    if(type && questions){
-        return res.status(201).json(await createForm(type,questions))
+    const {type,questions,idshelter} = req.body
+    if(type && questions && idshelter){
+        return res.status(201).json(await createForm(type,questions,idshelter))
     }else{
         return res.status(400)
     }

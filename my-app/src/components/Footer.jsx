@@ -11,7 +11,7 @@ export default function Footer() {
           <nav className="footer-menu">
             <Link to='/refugios'>Ver listado de Refugios</Link>
             <Link to='donaciones'>Donar</Link>
-            <Link to='/formAlerta'>Alertas</Link>
+            <Link to='/formAlerta'>Enviá una alerta</Link>
           </nav>
         </div>
         <div>

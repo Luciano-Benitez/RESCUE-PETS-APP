@@ -10,7 +10,7 @@ export default function Header() {
 
 <StyledHeaderContainer >
                 <StyledLeft>
-                    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <h2>Lorem ipsum dolor sectet.
                     </h2>
                     <Link to="/">
                         <button className="boton">Ver Menús</button>

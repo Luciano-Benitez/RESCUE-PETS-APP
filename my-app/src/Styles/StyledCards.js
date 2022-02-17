@@ -1,18 +1,13 @@
 import styled from "styled-components";
 import allColors from "../variables/Colors";
 
-export const StyledCard = styled.div `
-  height: 210px;
-  width: 190px;
-  background-color:  ${
-    allColors.colors[3]
-};
+export const StyledCard = styled.div`
+  height: 310px;
+  width: 285px;
+  background-color: ${allColors.colors[3]};
   border-radius: 4px;
   padding-top: 1em;
-  display: inline-flex;
   margin: 1%;
-  text-align: center;
-  align-items: center;
   transition: top ease 0.5s;
   cursor: pointer;
   text-decoration: none;
@@ -21,14 +16,19 @@ export const StyledCard = styled.div `
   border-radius: 10px;
   box-shadow: 0 0 15px #ddd;
   background: #fff;
-  
-
+  text-align: center;
 `;
 
-export const StyledCardContainer = styled.div `
- padding-top: 4em;
- text-align: center;
- height :100%;
- 
+export const StyledCardContainer = styled.div`
+  padding-top: 6em;
+  text-align: center;
+  height: 100%;
+  color: ${allColors.colors[8]};
+  display: flex;
+`;
+
+export const ImgCard = styled.img`
+ height :70%;
+
  
 `;

@@ -6,9 +6,7 @@ export const StyledFooter = styled.footer`
   bottom: 0;
   background-color: ${allColors.colors[0]};
   width: 100vw;
-  margin: 0 auto 0 auto;
-  border-top: 1px solid #e1e1e1;
-  margin-top: 2rem;
+  margin: 0;
   padding-top: 2rem;
 
   .flex-footer {
@@ -17,6 +15,7 @@ export const StyledFooter = styled.footer`
     display: flex;
     justify-content: center;
     gap: 12rem;
+    
 
   .titleFooter{
       color: ${allColors.colors[1]};
@@ -33,5 +32,7 @@ export const StyledFooter = styled.footer`
   text-align: center;
   margin-top: 2.5rem;
   color: ${allColors.colors[7]};
+  margin: 0;
+  padding: 15px;
 }
 `;

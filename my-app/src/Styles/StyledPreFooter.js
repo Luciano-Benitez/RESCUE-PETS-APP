@@ -13,7 +13,7 @@ background-image: url(../Icos/wave.svg);
 
 export const StyledCard = styled.div `
   height: 210px;
-  width: 190px;
+  width: 360px;
   background-color:  ${
     allColors.colors[3]
 };
@@ -29,8 +29,7 @@ export const StyledCard = styled.div `
   transition: ease-in 0.3s;
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 0 0 15px #ddd;
-  background: #fff;
+ 
   
 
 `;

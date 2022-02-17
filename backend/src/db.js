@@ -46,6 +46,7 @@ const {Cities} = sequelize.models;
 const {Permission} = sequelize.models;
 const {Adoptions} = sequelize.models;
 const {Requests} = sequelize.models;
+const {Profiles} = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -83,6 +84,9 @@ Adoptions.belongsTo(Forms)
 
 Forms.hasMany(Requests)
 Requests.belongsTo(Forms)
+
+Users.hasMany(Profiles)
+Profiles.belongsTo(Users)
 
 
 module.exports = {

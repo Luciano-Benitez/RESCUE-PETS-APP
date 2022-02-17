@@ -93,6 +93,12 @@ Profiles.belongsTo(Users)
 PetStatus.hasMany(Pets)
 Pets.belongsTo(PetStatus)
 
+Countries.hasMany(Shelter)
+Shelter.belongsTo(Countries)
+
+Cities.hasMany(Shelter)
+Shelter.belongsTo(Cities)
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

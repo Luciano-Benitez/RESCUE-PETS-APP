@@ -12,13 +12,11 @@ function App() {
   return (
     <BrowserRouter>
        <Navbar></Navbar>
-      <Header></Header>
-      <Home></Home>
+      {/* <Header></Header>
+      <Home></Home> */}
       
         <Routes>
-          <Route path="/" element={<Home/>}/>
-        </Routes>
-        <Routes>
+          <Route exact path="/" element={<Home/>}/>
           <Route path="/register" element={<FormShelter/>}/>
         </Routes>
      

@@ -31,7 +31,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 
 const {Species } = sequelize.models;
-
 const { Pets}  =  sequelize.models;
 const {Shelter} = sequelize.models;
 const {Forms} = sequelize.models;
@@ -46,6 +45,7 @@ const {Temperament} = sequelize.models;
 Species.hasMany(Pets)
 Shelter.hasMany(Pets)
 Pets.belongsTo(Shelter)
+Pets.belongsTo(Species)
 
 
 //Relation Temperament-Pets

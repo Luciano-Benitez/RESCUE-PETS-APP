@@ -13,7 +13,13 @@ export default function PreFooter() {
           </StyledCard>
 
           <StyledCard>
-          <h1>Uno</h1>
+          <h1>Dos</h1>
+          <br />
+          <img src="" className="img" />
+          </StyledCard>
+
+          <StyledCard>
+          <h1>Tres</h1>
           <br />
           <img src="" className="img" />
           </StyledCard>

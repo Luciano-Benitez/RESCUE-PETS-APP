@@ -47,6 +47,7 @@ const {Permission} = sequelize.models;
 const {Adoptions} = sequelize.models;
 const {Requests} = sequelize.models;
 const {Profiles} = sequelize.models;
+const {PetStatus} = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -88,6 +89,9 @@ Requests.belongsTo(Forms)
 
 Users.hasMany(Profiles)
 Profiles.belongsTo(Users)
+
+PetStatus.hasMany(Pets)
+Pets.belongsTo(PetStatus)
 
 
 module.exports = {

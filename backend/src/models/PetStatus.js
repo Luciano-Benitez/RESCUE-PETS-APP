@@ -2,7 +2,7 @@ const { DataTypes }= require('sequelize');
 
 module.exports = (sequelize) => {
 
-    sequelize.define('pet_status', {
+    sequelize.define('petStatus', {
     status: {
         type: DataTypes.TEXT,
         allowNull:false

@@ -31,12 +31,22 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 
 const {Species } = sequelize.models;
+
 const { Pets}  =  sequelize.models;
 const {Shelter} = sequelize.models;
 const {Forms} = sequelize.models;
 const {Formtype} = sequelize.models;
 const {Questions} = sequelize.models;
 const {Temperament} = sequelize.models;
+const {Users}=sequelize.models;
+const {Roles}=sequelize.models
+const {Vaccines}=sequelize.models
+const {Countries} = sequelize.models;
+const {Cities} = sequelize.models;
+const {Permission} = sequelize.models;
+const {Adoptions} = sequelize.models;
+const {Requests} = sequelize.models;
+const {Profiles} = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -54,6 +64,30 @@ Pets.belongsTo(Temperament)
 
 Formtype.hasMany(Forms)
 Forms.belongsTo(Formtype)
+
+Users.belongsTo(Roles)
+Roles.hasMany(Users)
+
+Forms.belongsToMany(Questions, {through : 'form_questions'})
+Questions.belongsToMany(Forms, {through : 'form_questions'})
+
+Countries.hasMany(Cities)
+Cities.belongsTo(Countries)
+
+Vaccines.belongsToMany(Pets, {through: "petsvaccines", timestamps: false})
+Pets.belongsToMany(Vaccines, {through: "petsvaccines", timestamps: false})
+
+Permission.belongsToMany(Roles,{through: 'Permission_Role'})
+Roles.belongsToMany(Permission,{through: 'Permission_Role'})
+
+Forms.hasMany(Adoptions)
+Adoptions.belongsTo(Forms)
+
+Forms.hasMany(Requests)
+Requests.belongsTo(Forms)
+
+Users.hasMany(Profiles)
+Profiles.belongsTo(Users)
 
 
 module.exports = {

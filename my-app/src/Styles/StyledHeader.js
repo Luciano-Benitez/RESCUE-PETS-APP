@@ -1,0 +1,42 @@
+import styled from "styled-components";
+import allColors from "../variables/Colors";
+
+
+export const StyledHeaderContainer = styled.div`
+  padding-top: 8em;
+  text-align: center;
+  width: 100%;
+  height :100%;
+  display: flex;
+  margin: 1em;
+ 
+ 
+`;
+
+
+export const StyledImg = styled.img`
+  
+  width: 95%;
+
+
+
+`;
+
+export const StyledLeft = styled.div`
+  margin: 8px;
+  width: 40%;
+  border-radius: 9px;
+  padding: 1em;
+  font-size: 30px;
+  color: ${allColors.colors[3]};
+`;
+
+export const StyledRight = styled.div`
+  margin: 8px;
+  width: 60%;
+
+  border-radius: 9px;
+  padding: 1em;
+  font-size: 30px;
+  color: beige;
+`;

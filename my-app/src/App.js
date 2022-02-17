@@ -6,11 +6,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FormShelter from "./components/FormShelter";
 import {Home} from "./components/Home"
+import Header from "./components/Header"
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar></Navbar>
+       <Navbar></Navbar>
+      <Header></Header>
+      <Home></Home>
       
         <Routes>
           <Route path="/" element={<Home/>}/>

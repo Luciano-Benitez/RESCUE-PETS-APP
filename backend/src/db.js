@@ -32,7 +32,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const {Species } = sequelize.models;
 
-const {Pets}  =  sequelize.models;
+const { Pets}  =  sequelize.models;
 const {Shelter} = sequelize.models;
 const {Forms} = sequelize.models;
 const {Formtype} = sequelize.models;
@@ -55,6 +55,7 @@ const {Profiles} = sequelize.models;
 Species.hasMany(Pets)
 Shelter.hasMany(Pets)
 Pets.belongsTo(Shelter)
+Pets.belongsTo(Species)
 
 
 //Relation Temperament-Pets

@@ -1,11 +1,15 @@
-const {DataTypes}=require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
   sequelize.define('species', {
     specie: {
       type: DataTypes.STRING,
-      allowNull:false
+      allowNull: false
+    },
   },
-  });
+    {
+      timestamps: false,
+    }
+  );
 };

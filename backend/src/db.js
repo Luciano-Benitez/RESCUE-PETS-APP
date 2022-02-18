@@ -118,8 +118,7 @@ Shelter.belongsTo(Users);
 Shelter.hasMany(Forms);
 Forms.belongsTo(Shelter);
 
-Formtype.hasMany(Forms)
-Forms.belongsTo(Formtype)
+
 
 
 

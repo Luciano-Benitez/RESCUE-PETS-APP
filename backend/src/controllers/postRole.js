@@ -1,15 +1,18 @@
 const { Roles } = require("../db");
 
-exports.postRole = async ({roleName}) => {
+/* exports.postRole =  */ const postRole= async(req, res/* {roleName} */) => {
     try{
-        if(roleName){
+        const {roleName} = req.body
+        
             let roleCreated = await Roles.create({
                 role : roleName,
             })
 
-            return roleCreated
-        }
+            res.status(200).json(roleCreated)
+        
     }catch(error){
         return error
     }    
-}
+};
+
+module.exports = postRole;

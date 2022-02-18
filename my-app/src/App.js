@@ -15,8 +15,6 @@ function App() {
   return (
     <BrowserRouter>
        <Navbar></Navbar>
-      <Home></Home>
-     
      
         <Routes>
           <Route path="/" element={<Home/>}/>
@@ -25,7 +23,6 @@ function App() {
           <Route path="/register" element={<FormShelter/>}/>
         </Routes>
 
-        <PreFooter/>
       <Footer />
     </BrowserRouter>
   );

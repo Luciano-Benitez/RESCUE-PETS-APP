@@ -10,11 +10,11 @@ export const StyledPreFooter = styled.div `
 `;
 
 export const StyledCard = styled.div `
-  height: 210px;
+  height: 250px;
   width: 388px;
   //background-color: #EAE9E9;
   border-radius: 4px;
-  padding-top: 1em;
+  padding: 2em;
   margin: 1%;
   text-align: center;
   align-items: center;
@@ -24,13 +24,19 @@ export const StyledCard = styled.div `
   transition: ease-in 0.3s;
   overflow: hidden;
   border-radius: 10px;
+  background-color: white;
+ 
+  
+  
   p {
     text-align: left;
-    padding: 9px;
+    padding: 7px;
     font-size: 12px;
+    
   }
 
   h1{
     color: #6F8AB7;
+    
   }
 `;

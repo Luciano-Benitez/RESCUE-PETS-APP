@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 // import Colors from "../variables/Corlos"
 import {Link} from "react-router-dom";
 import {StyleNavBar, StyleLi , Divmenu } from '../Styles/StyedNav';
-
+import { StyleInput} from '../Styles/StyledSearch'
 export default function Navbar() {
     return (
         <Fragment>
@@ -19,8 +19,9 @@ export default function Navbar() {
                             </StyleLi>
                             <StyleLi>
                                 <Link to="/nosotros">Sobre Nosotros</Link>
-                            </StyleLi>
-                            </Divmenu>  </ul>
+                            </StyleLi> <StyleInput name='Search' placeholder='Escriba elemento a buscar'></StyleInput>
+                            </Divmenu> 
+                            </ul>
                     </StyleNavBar>
                 
             </header>

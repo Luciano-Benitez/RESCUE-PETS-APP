@@ -9,7 +9,7 @@ export default function PreFooter() {
             <div className='ok'>
                 <StyledPreFooter>
                     <StyledCard>
-                        <h1>Uno</h1>
+                        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit</h1>
                         <br/>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus autem dolor inventore</p>
                         <br/>
@@ -21,7 +21,7 @@ export default function PreFooter() {
                     </StyledCard>
 
                     <StyledCard>
-                        <h1>Uno</h1>
+                        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit</h1>
                         <br/>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus autem dolor inventore</p>
                         <br/>
@@ -33,7 +33,7 @@ export default function PreFooter() {
                     </StyledCard>
 
                     <StyledCard>
-                        <h1>Uno</h1>
+                        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit</h1>
                         <br/>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus autem dolor inventore</p>
                         <br/>

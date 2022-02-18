@@ -1,34 +1,35 @@
-import React, { Fragment } from "react";
-import {StyledImg , StyledHeaderContainer, StyledLeft, StyledRight } from '../Styles/StyledHeader.js';
-import { Link} from "react-router-dom";
+import React, {Fragment} from "react";
+import {StyledImg, StyledHeaderContainer, StyledLeft, StyledRight} from '../Styles/StyledHeader.js';
+import {StyleButton} from '../Styles/StyledButtons.js';
+import {Link} from "react-router-dom";
 import HomeImage from "../Icos/homeim0.svg"
 
 
 export default function Header() {
-  return ( <Fragment>
+    return (
+        <Fragment>
 
 
-<StyledHeaderContainer >
+            <StyledHeaderContainer>
                 <StyledLeft>
                     <h2>Lorem ipsum dolor sectet.
                     </h2>
                     <Link to="/">
-                        <button className="boton">Ver Menús</button>
+                        <StyleButton>Refugios</StyleButton>
                     </Link>
                     <Link to="/contacto">
-                        <button className="boton">Contacto</button>
+                        <StyleButton>Mascotas</StyleButton>
                     </Link>
                 </StyledLeft>
 
                 <StyledRight>
-                    <StyledImg  src={HomeImage} />
-                 
-                
+                    <StyledImg src={HomeImage}/>
+
+
                 </StyledRight>
 
-                </StyledHeaderContainer >
+            </StyledHeaderContainer>
 
-    </Fragment>
+        </Fragment>
     );
-  }
-  
+}

@@ -122,8 +122,8 @@ Shelter.belongsTo(Users);
 Shelter.hasMany(Forms);
 Forms.belongsTo(Shelter);
 
-
-
+Adoptions.belongsTo(Pets)
+Pets.hasMany(Adoptions)
 
 
 

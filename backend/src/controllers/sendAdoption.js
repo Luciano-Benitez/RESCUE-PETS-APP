@@ -5,7 +5,8 @@ exports.sendAdoption = async (req,res) => {
         if(idform && idpet && answer){
             let adoptionCreated = await Adoptions.create({
                 answers : answer,
-                formId : idform
+                formId : idform,
+                petId : idpet
             })
 
             return res.status(201).json(adoptionCreated)

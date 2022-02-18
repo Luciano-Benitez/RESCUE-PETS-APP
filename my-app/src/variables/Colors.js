@@ -8,7 +8,8 @@ const allColors = {
         '#ACEDFF',
         '#CAE5FF',
         '#ddf4ff',
-        '#63ac44'
+        '#63ac44',
+        
     ]
 }
 

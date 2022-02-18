@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 // import Colors from "../variables/Corlos"
 import {Link} from "react-router-dom";
-import {StyleNavBar, StyleLi , Divmenu,Enlacesmenu } from '../Styles/StyedNav';
+import {StyleNavBar, StyleLi , Divmenu } from '../Styles/StyedNav';
 
 export default function Navbar() {
     return (

@@ -1,4 +1,5 @@
-const {Pets,Shelter} = require('../db.js') 
+const {Pets,Shelter,Age, Temperament,
+Species, PetStatus, Vaccines} = require('../db.js') 
 
 exports.petsIdShelter = async(idShelter)=>{
     try{
@@ -6,7 +7,8 @@ exports.petsIdShelter = async(idShelter)=>{
         let petsWithIdShelter = await Pets.findAll({
             where:{
                 shelterId : idShelter
-            }
+            },
+            include : [Age, Temperament, Vaccines, Species, PetStatus, Shelter]
         })
         if(petsWithIdShelter.length){
             return petsWithIdShelter

@@ -12,7 +12,7 @@ const FormShelter = () => {
     address: "",
     userName: "",
     password: "",
-    role: "shelter",
+    role: "1",
   });
 
   const handleChange = (e) => {

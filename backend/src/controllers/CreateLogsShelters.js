@@ -1,62 +1,20 @@
-const { Shelter, Users, Cities, Countries, Roles } = require("../db");
+const { Shelter, Users } = require("../db");
 const { Op } = require("sequelize");
 
 async function createShelter(req, res) {
     try {
-        const { name,/*  email, */ phoneNumber, description, /* country, */ city, address, /* user, */ /* password, */ /* role */ } = req.body;
+        const { name, phoneNumber, description, address, email, password, role } = req.body;
+
+        const User =  await Users.create({
+             email:  email,
+             password:  password,
+             roleId: role
+         });
 
         const createShelter = await Shelter.create({
-            name, address, phoneNumber, description, 
+            name, address, phoneNumber, description, userId : User.id 
         });
-
-    //    /*  const User = await Users.create({
-    //         where: {
-    //             email:  email
-    //             /* user: {
-    //                 [Op.in] : user
-    //             },
-    //             password: {
-    //                 [Op.in] : password
-    //             } */
-    //         }
-    //     });
-    //     User.map(e => {
-    //         createShelter.addUsers(e);
-    //     }); */
-
-        
-            // const citys = await Cities.create({
-            //     where: {    
-            //         city: {[Op.in]: city}
-            //     }
-            // });
-            //    citys.map(e => {
-            //     createShelter.addCities(citys);
-            // });
-            // console.log('citys: ', citys);
-        // const country1 = await Countries.findOrCreate({ //a consultar..
-        //     where: {
-        //         country: {
-        //             [Op.in] : country
-        //         }
-        //     }
-        // });
-        // country1.map(e => {
-        //     createShelter.addCountries(e);
-        // });
-
-        // const roles = await Roles.findOrCreate({
-        //     where: {
-        //         role: {
-        //             [Op.in] : role
-        //         }
-        //     }
-        // });
-        // roles.map(e => {
-        //     createShelter.addRoles(e)
-        // });
-        
-        console.log('createShelter: ', createShelter);
+       
         res.status(200).send(createShelter);
 
     } catch (error) {
@@ -82,6 +40,6 @@ const getAllShelters = async () => {
             }
         }]
     })
-}
+};
 
 module.exports = {createShelter, getAllShelters};

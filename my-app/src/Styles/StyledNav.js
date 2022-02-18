@@ -1,46 +1,58 @@
 import styled from "styled-components";
-import allColors from '../variables/Colors';
+import allColors from "../variables/Colors";
 
 export const StyleNavBar = styled.nav`
   background-color: ${allColors.colors[3]};
-  padding: 7px;
+  padding: 0px;
   position: fixed;
   z-index: 100;
   width: 100%;
   height: 16%;
-  margin: 0;
-  
  
-  
-`;
-
-
-export const Divmenu= styled.div`
-display: flex;
-padding-right:100px;
-float: right;
-font-size:  16px;
-text-decoration:none;
-font-weight: bold;
-margin: 13px;
-
-
- 
-
  
 `;
 
-export const StyleLi= styled.li`
-
-  margin: 0.6em;
- 
+export const Divmenu = styled.div`
   display: flex;
-  a {
-    color: white};
-    &:hover { 
-        a{
-        color: ${allColors.colors[2]}; }
-    }
+  padding-right: 6px;
+  float: right;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  margin:6px;
  
+
+`;
+
+export const StyleLi = styled.li`
+  margin: 1em;
+  display: flex;
+  width: 160px;
+  white-space: nowrap;
+  a {
+    color: white;
+   
+    display: flex;
+   
+  }
+     
+  
+  &.active {
+    color: white;
+    background-color: ${allColors.colors[8]};
+      padding:9px;
+      border-radius: 10px;
+     
+  } 
+  &:hover {
+    a {
+      color: ${allColors.colors[2]};
+     
+    }
+  }
+
+
+ 
+
 
 `;

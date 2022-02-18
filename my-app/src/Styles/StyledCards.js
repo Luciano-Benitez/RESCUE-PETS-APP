@@ -20,7 +20,7 @@ export const StyledCard = styled.div`
 `;
 
 export const StyledCardContainer = styled.div`
-  padding-top: 6em;
+  padding-top: 3em;
   text-align: center;
   height: 100%;
   color: ${allColors.colors[8]};

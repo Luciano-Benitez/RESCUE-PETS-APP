@@ -30,46 +30,43 @@ const FormShelter = () => {
           <legend>Tus Datos</legend>
 
           <div className="campo">
-            <label for="name">Nombre del Refugio: </label>
+            <label >Nombre del Refugio: </label>
             <input
-              id="name"
               onChange={handleChange}
               value={input.name}
               name="name"
               type="text"
               placeholder="Nombre"
-              required
             />
           </div>
 
           <div className="campo">
-            <label for="email">Mail: </label>
+            <label>Mail: </label>
             <input
-              id="email"
+              onChange={handleChange}
               value={input.email}
               name="email"
               type="email"
               placeholder="Mail"
-              required
             />
           </div>
 
           <div className="campo">
-            <label for="phoneNumber">Teléfono: </label>
+            <label>Teléfono: </label>
             <input
-              id="phoneNumber"
+              onChange={handleChange}
               name="phoneNumber"
               value={input.phoneNumber}
-              type="tel"
+              type='tel'
               placeholder="Teléfono"
               required
             />
           </div>
 
           <div class="campo">
-            <label for="description">Su Misión: </label>
+            <label>Su Misión: </label>
             <textarea
-              id="description"
+              onChange={handleChange}
               name="description"
               value={input.description}
               cols="30"
@@ -81,8 +78,8 @@ const FormShelter = () => {
         <fieldset>
           <legend>Localización</legend>
           <div class="campo">
-            <label for="pais">País: </label>
-            <select id="pais">
+            <label>País: </label>
+            <select>
               <option disabled selected>
                 -- Seleccione --
               </option>
@@ -96,7 +93,7 @@ const FormShelter = () => {
             </select>
           </div>
           <div class="campo">
-            <label for="ciudades">Ciudad: </label>
+            <label>Ciudad: </label>
             <input list="ciudades" name="ciudades" />
             <datalist id="ciudades">
               <option value="Buenos Aires" />
@@ -108,8 +105,8 @@ const FormShelter = () => {
             </datalist>
           </div>
           <div className="campo">
-            <label for="address">Dirección: </label>
-            <input id="address" type="text" placeholder="Dirección" />
+            <label>Dirección: </label>
+            <input type="text" placeholder="Dirección" />
           </div>
         </fieldset>
 
@@ -117,9 +114,8 @@ const FormShelter = () => {
           <legend>Información Extra</legend>
 
           <div className="campo">
-            <label for="UserName">Nombre Usuario: </label>
+            <label>Nombre Usuario: </label>
             <input
-              id="UserName"
               type="text"
               placeholder="Nombre de Usuario"
               required
@@ -127,9 +123,8 @@ const FormShelter = () => {
           </div>
 
           <div className="campo">
-            <label for="password">Contraseña: </label>
+            <label>Contraseña: </label>
             <input
-              id="password"
               type="password"
               placeholder="Nombre de Usuario"
               required

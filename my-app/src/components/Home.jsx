@@ -1,6 +1,7 @@
 import Filters from "./Filters"
 import Header from "./Header";
 import Cards from "./Cards";
+import PreFooter from "./PreFooter";
 
 export function Home(){
     return(
@@ -12,6 +13,7 @@ export function Home(){
             
             <Filters />
             <Cards></Cards>
+            <PreFooter/>
         </div>
     )
 }

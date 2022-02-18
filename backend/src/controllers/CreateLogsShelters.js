@@ -3,40 +3,37 @@ const { Op } = require("sequelize");
 
 async function createShelter(req, res) {
     try {
-        const { name, email, phoneNumber, description, country, city, address, user, password, role } = req.body;
+        const { name,/*  email, */ phoneNumber, description, /* country, */ city, address, /* user, */ /* password, */ /* role */ } = req.body;
 
         const createShelter = await Shelter.create({
             name, address, phoneNumber, description, 
         });
 
-        // const User = await Users.create({
-        //     where: {
-        //         email: {
-        //             [Op.in] : email
-        //         },
-        //         user: {
-        //             [Op.in] : user
-        //         },
-        //         password: {
-        //             [Op.in] : password
-        //         }
-        //     }
-        // });
-        // User.map(e => {
-        //     createShelter.addUsers(e);
-        // });
+    //    /*  const User = await Users.create({
+    //         where: {
+    //             email:  email
+    //             /* user: {
+    //                 [Op.in] : user
+    //             },
+    //             password: {
+    //                 [Op.in] : password
+    //             } */
+    //         }
+    //     });
+    //     User.map(e => {
+    //         createShelter.addUsers(e);
+    //     }); */
 
-        // for(let element of city ){
-        //     const cities = await Cities.create({
-        //         where: {    
-        //             city: {
-        //                 [Op.in] : city
-        //             }
-        //         }
-        //     });
-        //        await createShelter.addCities(cities);
-        // };
-
+        
+            // const citys = await Cities.create({
+            //     where: {    
+            //         city: {[Op.in]: city}
+            //     }
+            // });
+            //    citys.map(e => {
+            //     createShelter.addCities(citys);
+            // });
+            // console.log('citys: ', citys);
         // const country1 = await Countries.findOrCreate({ //a consultar..
         //     where: {
         //         country: {

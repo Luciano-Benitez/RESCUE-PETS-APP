@@ -15,7 +15,7 @@ export default function Navbar() {
                             <Link to="/" >Inicio</Link>
                             </StyleLi>
                             <StyleLi>
-                                <Link to="/">Soy Un Refugio</Link>
+                                <Link to="/Login">Soy Un Refugio</Link>
                             </StyleLi>
                             <StyleLi>
                                 <Link to="/nosotros">Sobre Nosotros</Link>

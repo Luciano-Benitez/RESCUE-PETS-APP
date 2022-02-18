@@ -27,17 +27,11 @@ const getAllShelters = async () => {
     return await Shelter.findAll({
         include: [{
             model: Cities,
-            attributes: ['city'],
-            through : {
-                attributes: [],
-            },
-            
-        }, {
+            attributes: ['city'] //Nota.- Coordinar para el atributo necesario
+         }, 
+         {
             model: Users,
-            attributes: ['user'],
-            through : {
-                attributes: [],
-            }
+            attributes: ['email'] //Nota.- Coordinar para el atributo necesario
         }]
     })
 }

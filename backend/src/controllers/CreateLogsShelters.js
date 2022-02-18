@@ -3,11 +3,20 @@ const { Op } = require("sequelize");
 
 async function createShelter(req, res) {
     try {
-        const { name,/*  email, */ phoneNumber, description, /* country, */ city, address, /* user, */ /* password, */ /* role */ } = req.body;
+        const { name,email, phoneNumber, description, /* country, */ city, address, user, password, /* role */ } = req.body;
 
         const createShelter = await Shelter.create({
             name, address, phoneNumber, description, 
         });
+
+        const User = await Users.create({
+            email:  email,
+            user: user,
+            password:  password
+        });
+    User.map(e => {
+        createShelter.addUsers(e);
+    }); 
 
     //    /*  const User = await Users.create({
     //         where: {

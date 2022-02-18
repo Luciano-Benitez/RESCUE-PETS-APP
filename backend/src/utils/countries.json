@@ -1,16 +1,9 @@
 {
-    "countries" : [
-        { "id": 5, "name": "Argentina" },
-        { "id": 123, "name": "Bolivia" },
-        { "id": 82, "name": "Colombia" },
-        { "id": 42, "name": "México" },
-        { "id": 89, "name": "Perú" }
-],
-    "countries2" : [
-    { "id": 1, "name": "Argentina" },
-    { "id": 2, "name": "Bolivia" },
-    { "id": 3, "name": "Colombia" },
-    { "id": 4, "name": "México" },
-    { "id": 5, "name": "Perú" }
-    ]
+  "countries": [
+    { "id": 5, "name": "Argentina" },
+    { "id": 123, "name": "Bolivia" },
+    { "id": 82, "name": "Colombia" },
+    { "id": 42, "name": "México" },
+    { "id": 89, "name": "Perú" }
+  ]
 }

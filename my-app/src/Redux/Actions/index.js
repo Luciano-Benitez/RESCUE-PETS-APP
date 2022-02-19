@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {GET_COUNTRIES, 
     GET_STATES, 
-    GET_CITIES} from './types.js'
+    GET_CITIES,
+    CLEAN_STATE_FORM} from './types.js'
 
 
 
@@ -30,4 +31,11 @@ export const getcities = (id) => {
             type: GET_CITIES, payload: json.data
         })
     } 
+}
+
+export const cleanStateForm = () => {
+    return {
+        type: CLEAN_STATE_FORM,
+        payload: []
+    }
 }

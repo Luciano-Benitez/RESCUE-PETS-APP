@@ -1,0 +1,649 @@
+{
+  "states": [
+    {
+      "id": 1699,
+      "id_country": 82,
+      "name": "Amazonas"
+    },
+    {
+      "id": 1700,
+      "id_country": 82,
+      "name": "Antioquia"
+    },
+    {
+      "id": 1701,
+      "id_country": 82,
+      "name": "Arauca"
+    },
+    {
+      "id": 1702,
+      "id_country": 82,
+      "name": "Atlántico"
+    },
+    {
+      "id": 1703,
+      "id_country": 82,
+      "name": "Caquetá"
+    },
+    {
+      "id": 1704,
+      "id_country": 82,
+      "name": "Cauca"
+    },
+    {
+      "id": 1705,
+      "id_country": 82,
+      "name": "César"
+    },
+    {
+      "id": 1706,
+      "id_country": 82,
+      "name": "Chocó"
+    },
+    {
+      "id": 1707,
+      "id_country": 82,
+      "name": "Córdoba"
+    },
+    {
+      "id": 1708,
+      "id_country": 82,
+      "name": "Guaviare"
+    },
+    {
+      "id": 1709,
+      "id_country": 82,
+      "name": "Guainía"
+    },
+    {
+      "id": 1710,
+      "id_country": 82,
+      "name": "Huila"
+    },
+    {
+      "id": 1711,
+      "id_country": 82,
+      "name": "La Guajira"
+    },
+    {
+      "id": 1712,
+      "id_country": 82,
+      "name": "Meta"
+    },
+    {
+      "id": 1713,
+      "id_country": 82,
+      "name": "Narino"
+    },
+    {
+      "id": 1714,
+      "id_country": 82,
+      "name": "Norte de Santander"
+    },
+    {
+      "id": 1715,
+      "id_country": 82,
+      "name": "Putumayo"
+    },
+    {
+      "id": 1716,
+      "id_country": 82,
+      "name": "Quindío"
+    },
+    {
+      "id": 1717,
+      "id_country": 82,
+      "name": "Risaralda"
+    },
+    {
+      "id": 1718,
+      "id_country": 82,
+      "name": "San Andrés y Providencia"
+    },
+    {
+      "id": 1719,
+      "id_country": 82,
+      "name": "Santander"
+    },
+    {
+      "id": 1720,
+      "id_country": 82,
+      "name": "Sucre"
+    },
+    {
+      "id": 1721,
+      "id_country": 82,
+      "name": "Tolima"
+    },
+    {
+      "id": 1722,
+      "id_country": 82,
+      "name": "Valle del Cauca"
+    },
+    {
+      "id": 1723,
+      "id_country": 82,
+      "name": "Vaupés"
+    },
+    {
+      "id": 1724,
+      "id_country": 82,
+      "name": "Vichada"
+    },
+    {
+      "id": 1725,
+      "id_country": 82,
+      "name": "Casanare"
+    },
+    {
+      "id": 1726,
+      "id_country": 82,
+      "name": "Cundinamarca"
+    },
+    {
+      "id": 1727,
+      "id_country": 82,
+      "name": "Distrito Capital"
+    },
+    {
+      "id": 1730,
+      "id_country": 82,
+      "name": "Caldas"
+    },
+    {
+      "id": 1731,
+      "id_country": 82,
+      "name": "Magdalena"
+    },
+    {
+      "id": 1733,
+      "id_country": 42,
+      "name": "Aguascalientes"
+    },
+    {
+      "id": 1734,
+      "id_country": 42,
+      "name": "Baja California"
+    },
+    {
+      "id": 1735,
+      "id_country": 42,
+      "name": "Baja California Sur"
+    },
+    {
+      "id": 1736,
+      "id_country": 42,
+      "name": "Campeche"
+    },
+    {
+      "id": 1737,
+      "id_country": 42,
+      "name": "Chiapas"
+    },
+    {
+      "id": 1738,
+      "id_country": 42,
+      "name": "Chihuahua"
+    },
+    {
+      "id": 1739,
+      "id_country": 42,
+      "name": "Coahuila de Zaragoza"
+    },
+    {
+      "id": 1740,
+      "id_country": 42,
+      "name": "Colima"
+    },
+    {
+      "id": 1741,
+      "id_country": 42,
+      "name": "Distrito Federal"
+    },
+    {
+      "id": 1742,
+      "id_country": 42,
+      "name": "Durango"
+    },
+    {
+      "id": 1743,
+      "id_country": 42,
+      "name": "Guanajuato"
+    },
+    {
+      "id": 1744,
+      "id_country": 42,
+      "name": "Guerrero"
+    },
+    {
+      "id": 1745,
+      "id_country": 42,
+      "name": "Hidalgo"
+    },
+    {
+      "id": 1746,
+      "id_country": 42,
+      "name": "Jalisco"
+    },
+    {
+      "id": 1747,
+      "id_country": 42,
+      "name": "México"
+    },
+    {
+      "id": 1748,
+      "id_country": 42,
+      "name": "Michoacán de Ocampo"
+    },
+    {
+      "id": 1749,
+      "id_country": 42,
+      "name": "Morelos"
+    },
+    {
+      "id": 1750,
+      "id_country": 42,
+      "name": "Nayarit"
+    },
+    {
+      "id": 1751,
+      "id_country": 42,
+      "name": "Nuevo León"
+    },
+    {
+      "id": 1752,
+      "id_country": 42,
+      "name": "Oaxaca"
+    },
+    {
+      "id": 1753,
+      "id_country": 42,
+      "name": "Puebla"
+    },
+    {
+      "id": 1754,
+      "id_country": 42,
+      "name": "Querétaro de Arteaga"
+    },
+    {
+      "id": 1755,
+      "id_country": 42,
+      "name": "Quintana Roo"
+    },
+    {
+      "id": 1756,
+      "id_country": 42,
+      "name": "San Luis Potosí"
+    },
+    {
+      "id": 1757,
+      "id_country": 42,
+      "name": "Sinaloa"
+    },
+    {
+      "id": 1758,
+      "id_country": 42,
+      "name": "Sonora"
+    },
+    {
+      "id": 1759,
+      "id_country": 42,
+      "name": "Tabasco"
+    },
+    {
+      "id": 1760,
+      "id_country": 42,
+      "name": "Tamaulipas"
+    },
+    {
+      "id": 1761,
+      "id_country": 42,
+      "name": "Tlaxcala"
+    },
+    {
+      "id": 1762,
+      "id_country": 42,
+      "name": "Veracruz-Llave"
+    },
+    {
+      "id": 1763,
+      "id_country": 42,
+      "name": "Yucatán"
+    },
+    {
+      "id": 1764,
+      "id_country": 42,
+      "name": "Zacatecas"
+    },
+    {
+      "id": 1777,
+      "id_country": 123,
+      "name": "Chuquisaca"
+    },
+    {
+      "id": 1778,
+      "id_country": 123,
+      "name": "Cochabamba"
+    },
+    {
+      "id": 1779,
+      "id_country": 123,
+      "name": "El Beni"
+    },
+    {
+      "id": 1780,
+      "id_country": 123,
+      "name": "La Paz"
+    },
+    {
+      "id": 1781,
+      "id_country": 123,
+      "name": "Oruro"
+    },
+    {
+      "id": 1782,
+      "id_country": 123,
+      "name": "Pando"
+    },
+    {
+      "id": 1783,
+      "id_country": 123,
+      "name": "Potosí"
+    },
+    {
+      "id": 1784,
+      "id_country": 123,
+      "name": "Santa Cruz"
+    },
+    {
+      "id": 1785,
+      "id_country": 123,
+      "name": "Tarija"
+    },
+    {
+      "id": 1818,
+      "id_country": 5,
+      "name": "Buenos Aires"
+    },
+    {
+      "id": 1819,
+      "id_country": 5,
+      "name": "Catamarca"
+    },
+    {
+      "id": 1820,
+      "id_country": 5,
+      "name": "Chaco"
+    },
+    {
+      "id": 1821,
+      "id_country": 5,
+      "name": "Chubut"
+    },
+    {
+      "id": 1822,
+      "id_country": 5,
+      "name": "Córdoba"
+    },
+    {
+      "id": 1823,
+      "id_country": 5,
+      "name": "Corrientes"
+    },
+    {
+      "id": 1824,
+      "id_country": 5,
+      "name": "Distrito Federal"
+    },
+    {
+      "id": 1825,
+      "id_country": 5,
+      "name": "Entre Ríos"
+    },
+    {
+      "id": 1826,
+      "id_country": 5,
+      "name": "Formosa"
+    },
+    {
+      "id": 1827,
+      "id_country": 5,
+      "name": "Jujuy"
+    },
+    {
+      "id": 1828,
+      "id_country": 5,
+      "name": "La Pampa"
+    },
+    {
+      "id": 1829,
+      "id_country": 5,
+      "name": "La Rioja"
+    },
+    {
+      "id": 1830,
+      "id_country": 5,
+      "name": "Mendoza"
+    },
+    {
+      "id": 1831,
+      "id_country": 5,
+      "name": "Misiones"
+    },
+    {
+      "id": 1832,
+      "id_country": 5,
+      "name": "Neuquén"
+    },
+    {
+      "id": 1833,
+      "id_country": 5,
+      "name": "Río Negro"
+    },
+    {
+      "id": 1834,
+      "id_country": 5,
+      "name": "Salta"
+    },
+    {
+      "id": 1835,
+      "id_country": 5,
+      "name": "San Juan"
+    },
+    {
+      "id": 1836,
+      "id_country": 5,
+      "name": "San Luis"
+    },
+    {
+      "id": 1837,
+      "id_country": 5,
+      "name": "Santa Cruz"
+    },
+    {
+      "id": 1838,
+      "id_country": 5,
+      "name": "Santa Fe"
+    },
+    {
+      "id": 1839,
+      "id_country": 5,
+      "name": "Santiago del Estero"
+    },
+    {
+      "id": 1840,
+      "id_country": 5,
+      "name": "Tierra del Fuego"
+    },
+    {
+      "id": 1841,
+      "id_country": 5,
+      "name": "Tucumán"
+    },
+    {
+      "id": 1930,
+      "id_country": 83,
+      "name": "Akureyri"
+    },
+    {
+      "id": 1931,
+      "id_country": 83,
+      "name": "Arnessysla"
+    },
+    {
+      "id": 1932,
+      "id_country": 83,
+      "name": "Austur-Bardastrandarsysla"
+    },
+    {
+      "id": 1933,
+      "id_country": 83,
+      "name": "Austur-Hunavatnssysla"
+    },
+    {
+      "id": 1934,
+      "id_country": 83,
+      "name": "Austur-Skaftafellssysla"
+    },
+    {
+      "id": 1935,
+      "id_country": 83,
+      "name": "Borgarfjardarsysla"
+    },
+    {
+      "id": 1936,
+      "id_country": 83,
+      "name": "Dalasysla"
+    },
+    {
+      "id": 1937,
+      "id_country": 83,
+      "name": "Eyjafjardarsysla"
+    },
+    {
+      "id": 1938,
+      "id_country": 83,
+      "name": "Gullbringusysla"
+    },
+    {
+      "id": 1939,
+      "id_country": 83,
+      "name": "Hafnarfjordur"
+    },
+    {
+      "id": 1943,
+      "id_country": 83,
+      "name": "Kjosarsysla"
+    },
+    {
+      "id": 1944,
+      "id_country": 83,
+      "name": "Kopavogur"
+    },
+    {
+      "id": 1945,
+      "id_country": 83,
+      "name": "Myrasysla"
+    },
+    {
+      "id": 1946,
+      "id_country": 83,
+      "name": "Neskaupstadur"
+    },
+    {
+      "id": 1947,
+      "id_country": 83,
+      "name": "Nordur-Isafjardarsysla"
+    },
+    {
+      "id": 1948,
+      "id_country": 83,
+      "name": "Nordur-Mulasysla"
+    },
+    {
+      "id": 1949,
+      "id_country": 83,
+      "name": "Nordur-Tingeyjarsysla"
+    },
+    {
+      "id": 1950,
+      "id_country": 83,
+      "name": "Olafsfjordur"
+    },
+    {
+      "id": 1951,
+      "id_country": 83,
+      "name": "Rangarvallasysla"
+    },
+    {
+      "id": 1952,
+      "id_country": 83,
+      "name": "Reykjavik"
+    },
+    {
+      "id": 1953,
+      "id_country": 83,
+      "name": "Saudarkrokur"
+    },
+    {
+      "id": 1954,
+      "id_country": 83,
+      "name": "Seydisfjordur"
+    },
+    {
+      "id": 1956,
+      "id_country": 83,
+      "name": "Skagafjardarsysla"
+    },
+    {
+      "id": 1957,
+      "id_country": 83,
+      "name": "Snafellsnes- og Hnappadalssysla"
+    },
+    {
+      "id": 1958,
+      "id_country": 83,
+      "name": "Strandasysla"
+    },
+    {
+      "id": 1959,
+      "id_country": 83,
+      "name": "Sudur-Mulasysla"
+    },
+    {
+      "id": 1960,
+      "id_country": 83,
+      "name": "Sudur-Tingeyjarsysla"
+    },
+    {
+      "id": 1961,
+      "id_country": 83,
+      "name": "Vestmannaeyjar"
+    },
+    {
+      "id": 1962,
+      "id_country": 83,
+      "name": "Vestur-Bardastrandarsysla"
+    },
+    {
+      "id": 1964,
+      "id_country": 83,
+      "name": "Vestur-Isafjardarsysla"
+    },
+    {
+      "id": 1965,
+      "id_country": 83,
+      "name": "Vestur-Skaftafellssysla"
+    },
+    {
+      "id": 2202,
+      "id_country": 82,
+      "name": "Bolivar"
+    },
+    {
+      "id": 2203,
+      "id_country": 82,
+      "name": "Boyacá"
+    }
+  ]
+}

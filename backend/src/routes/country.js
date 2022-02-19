@@ -1,19 +1,9 @@
-const {Countries } = require("../db");
 const express = require('express')
 const router = express.Router()
 
-const postCountry = require('../controllers/postCountry')
-
-router.post('/country',postCountry);
+const getCountry = require('../controllers/getCountry.js')
 
 
-router.get('/country', async (req,res)=>{
-    let allCountries = await Countries.findAll();
-    if (allCountries){
-        res.status(200).send(allCountries)
-    } else {
-        res.status(400).json('Sorry, there is no Countries')
-    }
-});
+router.get('/country', getCountry);
 
 module.exports = router

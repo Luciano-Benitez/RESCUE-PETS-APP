@@ -1,5 +1,6 @@
 const {Requests} = require('../db.js')//Requiero  model adoption para hacerle post
-exports.sendRequest = async (idform,answer) => {
+exports.sendRequest = async (req,res) => {
+    const {idform,answer} = req.body
     try{
         if(idform && answer){
             let requestCreated = await Requests.create({
@@ -7,9 +8,11 @@ exports.sendRequest = async (idform,answer) => {
                 formId : idform
             })
 
-            return requestCreated
+            return res.status(201).json(requestCreated)
+        }else{
+            return res.status(400).send('wrong data')
         }
     }catch(error){
-        return error
+        return res.status(500).send(error)
     }    
 }

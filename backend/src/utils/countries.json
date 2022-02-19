@@ -1,0 +1,9 @@
+{
+  "countries": [
+    { "id": 5, "name": "Argentina" },
+    { "id": 123, "name": "Bolivia" },
+    { "id": 82, "name": "Colombia" },
+    { "id": 42, "name": "México" },
+    { "id": 89, "name": "Perú" }
+  ]
+}

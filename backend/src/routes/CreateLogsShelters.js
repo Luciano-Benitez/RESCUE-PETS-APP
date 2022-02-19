@@ -16,9 +16,9 @@ router.get('/shelters', async (req,res) =>{
     const { name } = req.query
     let allShelters = await getAllShelters();
     if(name){
-        const sheltersByName = await getAllShelters();
+        let sheltersByName = await getAllShelters();
         let foundSheltersDB = sheltersByName.filter(el => el.name.toLowerCase().includes(name.toLocaleLowerCase()));
-        if(foundSheltersDB){
+        if(foundSheltersDB.length>0){
             res.status(200).send(foundSheltersDB);
         } else{
             res.status(400).json('Sorry, Shelter not found')
@@ -26,6 +26,19 @@ router.get('/shelters', async (req,res) =>{
     } else{
         res.status(200).send(allShelters);
     } 
-})
+});
+
+router.get("/shelters/:id", async (req, res) => {
+    const { id } = req.params;
+  
+    const AllShelter = await getAllShelters()
+    
+    if (id) {
+      let shelterId = AllShelter.filter((e) => e.id == id);
+      shelterId.length
+        ? res.status(200).json(shelterId[0])
+        : res.status(404).send("Shelter Not Found");
+    }
+  });
 
 module.exports = router;

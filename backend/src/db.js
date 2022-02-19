@@ -58,6 +58,7 @@ const { Requests } = sequelize.models;
 const { Profiles } = sequelize.models;
 const { PetStatus } = sequelize.models;
 const { Age } = sequelize.models;
+const { States } = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -84,8 +85,11 @@ Roles.hasMany(Users);
 Forms.belongsToMany(Questions, { through: "form_questions" });
 Questions.belongsToMany(Forms, { through: "form_questions" });
 
-Countries.hasMany(Cities);
-Cities.belongsTo(Countries);
+Countries.hasMany(States);
+States.belongsTo(Countries);
+
+States.hasMany(Cities);
+Cities.belongsTo(States);
 
 Vaccines.belongsToMany(Pets, { through: "petsvaccines", timestamps: false });
 Pets.belongsToMany(Vaccines, { through: "petsvaccines", timestamps: false });
@@ -118,9 +122,8 @@ Shelter.belongsTo(Users);
 Shelter.hasMany(Forms);
 Forms.belongsTo(Shelter);
 
-Formtype.hasMany(Forms)
-Forms.belongsTo(Formtype)
-
+Adoptions.belongsTo(Pets)
+Pets.hasMany(Adoptions)
 
 
 

@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const getState = require('../controllers/getCountry.js')
+const getState = require('../controllers/getState')
 
 
-router.get('/country', getState);
+router.get('/states', getState);
 
 module.exports = router

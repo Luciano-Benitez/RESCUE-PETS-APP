@@ -3,31 +3,47 @@ const { States } = require('../db')
 const states = require('../utils/states.json')
 
  const getState = async(req, res= response) =>{
-    const { id } = req.query
+    const { id, countryId } = req.query
 
-    let data = countries.countries
+    let data = states.states
 
     data.forEach(element => {
-        Countries.findOrCreate({
+        States.findOrCreate({
             where: {
-                id : `${element.id}`,
-                country: element.name
+                id : element.id,
+                state: element.name,
+                countryId: `${element.id_country}`
             }
         })
     });
 
-    const AllCountries = await Countries.findAll()
+    const AllStates = await States.findAll()
 
-    if (id) {
-        let countryID = AllCountries.filter((e) =>
-          e.id === id
-        );
-        countryID.length
-          ? res.status(200).send(countryID)
-          : res.status(404).send("country Not Found");
-      } else {
-        res.status(200).send(AllCountries);
-      }
+    try {
+        if (id) {
+            let stateID = AllStates.filter((e) =>
+              e.id == id
+            );
+            stateID.length
+              ? res.status(200).send(stateID)
+              : res.status(404).send("state Not Found");
+          } 
+          else if (countryId) {
+            let stateIDxcountry = AllStates.filter((e) =>
+              e.countryId === countryId
+            );
+            stateIDxcountry.length
+              ? res.status(200).send(stateIDxcountry)
+              : res.status(404).send("state Not Found");
+          } 
+        else {
+            res.status(200).send(AllStates);
+          }
+    } catch (error) {
+        console.log(error)
+    }
+
+    // mañana cambiar filter por find all where
     
 }
 

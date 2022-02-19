@@ -1,9 +1,15 @@
-import { GET_COUNTRIES, GET_STATES, GET_CITIES, CLEAN_STATE_FORM } from "../Actions/types";
+import {
+  GET_COUNTRIES,
+  GET_STATES,
+  GET_CITIES,
+  CLEAN_STATE_FORM,
+  POST_FORM_REGISTER,
+} from "../Actions/types";
 
 const initialState = {
   countries: [],
   states: [],
-  cities: []
+  cities: [],
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -25,13 +31,17 @@ export default function rooReducer(state = initialState, { type, payload }) {
         ...state,
         cities: payload,
       };
-      case CLEAN_STATE_FORM:
-        return {
-          ...state,
-          countries: payload,
-          states: payload,
-          cities: payload,
-        };
+    case CLEAN_STATE_FORM:
+      return {
+        ...state,
+        countries: payload,
+        states: payload,
+        cities: payload,
+      };
+    case POST_FORM_REGISTER:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

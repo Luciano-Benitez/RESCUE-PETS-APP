@@ -8,7 +8,6 @@ const {
   Species,
   PetStatus,
   Shelter,
-  Cities,
 } = require("../db");
 
 exports.getPets = async (req, res = response) => {
@@ -22,7 +21,7 @@ exports.getPets = async (req, res = response) => {
 
   const query = {
     include: [Age, Temperament, Vaccines, Species, PetStatus, Shelter],
-    where: where,
+    where: { [Op.and]: where },
   };
 
   try {

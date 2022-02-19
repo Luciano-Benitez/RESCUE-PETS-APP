@@ -1,5 +1,7 @@
 import axios from 'axios'
-import {GET_COUNTRIES, GET_STATES} from './types.js'
+import {GET_COUNTRIES, 
+    GET_STATES, 
+    GET_CITIES} from './types.js'
 
 
 
@@ -17,6 +19,15 @@ export const getStates = (id) => {
         let json = await axios(`http://localhost:3001/states?countryId=${id}`)
         return dispatch({
             type: GET_STATES, payload: json.data
+        })
+    } 
+}
+
+export const getcities = (id) => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/cities?stateId=${id}`)
+        return dispatch({
+            type: GET_CITIES, payload: json.data
         })
     } 
 }

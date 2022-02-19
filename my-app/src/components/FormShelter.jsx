@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { DivContainer, StyledButton } from "../Styles/StyledFormShelter";
 import { useSelector, useDispatch } from "react-redux";
 
-import {getCountries} from '../Redux/Actions/index.js'
+import {getCountries, getStates} from '../Redux/Actions/index.js'
 
 const FormShelter = () => {
 
   const allCountries = useSelector((state) => state.countries);
-  console.log(allCountries)
+  const statesXcountry = useSelector((state) => state.states);
 
   const dispatch = useDispatch();
 
@@ -21,6 +21,7 @@ const FormShelter = () => {
     phoneNumber: "",
     description: "",
     country: "",
+    state:"",
     city: "",
     address: "",
     userName: "",
@@ -36,11 +37,19 @@ const FormShelter = () => {
   };
 
   const handleSelectCountry = (e) =>{
-    console.log(e.target.value)
     setInput({
       ...input,
       country: e.target.value,
     });
+    dispatch(getStates(e.target.value))
+  }
+
+  const handleSelectState = (e) =>{
+    setInput({
+      ...input,
+      state: e.target.value,
+    });
+  
   }
 
   return (
@@ -115,13 +124,13 @@ const FormShelter = () => {
 
           <div className="campo">
             <label>Estado: </label>
-            <select >
+            <select onChange={handleSelectState}>
               <option disabled selected>
                 -- Seleccione --
               </option>
-              {allCountries?.map((el) => (
+              {statesXcountry?.map((el) => (
                 <option value={el.id} key={el.id} >
-                  {el.country}
+                  {el.state}
                 </option>
               ))}
             </select>

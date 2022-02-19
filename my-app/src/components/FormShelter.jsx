@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { DivContainer, StyledButton } from "../Styles/StyledFormShelter";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getCountries, getStates, getcities } from "../Redux/Actions/index.js";
+import {
+  getCountries,
+  getStates,
+  getcities,
+  cleanStateForm,
+} from "../Redux/Actions/index.js";
 
 const FormShelter = () => {
   const allCountries = useSelector((state) => state.countries);
@@ -13,6 +18,7 @@ const FormShelter = () => {
 
   useEffect(() => {
     dispatch(getCountries());
+    return () => dispatch(cleanStateForm());
   }, [dispatch]);
 
   const [input, setInput] = useState({
@@ -58,10 +64,28 @@ const FormShelter = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(input)
+    //dispatch(postPokemon(input));;
+    setInput({
+      name: "",
+      email: "",
+      phoneNumber: "",
+      description: "",
+      country: "",
+      state: "",
+      city: "",
+      address: "",
+      password: "",
+      role: "1",
+    });
+  };
+
   return (
     <DivContainer>
       <h2 className="text-center">Registro</h2>
-      <form className="formulario">
+      <form className="formulario" onSubmit={handleSubmit}>
         <fieldset>
           <legend>Tus Datos</legend>
 
@@ -157,27 +181,29 @@ const FormShelter = () => {
           </div>
           <div className="campo">
             <label>Dirección: </label>
-            <input 
+            <input
               onChange={handleChange}
-              type="text" 
+              type="text"
               placeholder="Dirección"
               value={input.address}
-              name='address' />
+              name="address"
+            />
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Contraseña</legend>
-    
+
           <div className="campo">
             <label>Contraseña: </label>
-            <input 
-            onChange={handleChange}
-            type="password" 
-            name='password'
-            value={input.password}
-            placeholder="Nombre de Usuario" 
-            required />
+            <input
+              onChange={handleChange}
+              type="password"
+              name="password"
+              value={input.password}
+              placeholder="Nombre de Usuario"
+              required
+            />
           </div>
         </fieldset>
         <StyledButton

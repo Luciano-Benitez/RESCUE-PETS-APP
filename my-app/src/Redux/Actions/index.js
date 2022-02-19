@@ -2,7 +2,8 @@ import axios from 'axios'
 import {GET_COUNTRIES, 
     GET_STATES, 
     GET_CITIES,
-    CLEAN_STATE_FORM} from './types.js'
+    CLEAN_STATE_FORM,
+    POST_FORM_REGISTER} from './types.js'
 
 
 

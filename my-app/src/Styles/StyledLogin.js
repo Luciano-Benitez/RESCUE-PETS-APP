@@ -1,17 +1,21 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import allColors from "../variables/Colors";
 
 export const Container = styled.div`
-position: absolute;
+position: relative;
 padding: 1%;
-left: 50%;
+/* left: 50%;
 top: 50%;
-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%); */
+align-self: center;
+justify-self: center;
 background-color:#f3f3f3;
 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 width: max-content;
 height: max-content;
+margin-top: 150px;
+margin-bottom: 60px;
 
 .header {
   text-align: center;
@@ -131,10 +135,13 @@ padding: 10px 18px;
     }
 `
 
-export const StyledPreFooter = styled.div`
-  text-align: center;
-  height: 100%;
-  background-image: url(../Icos/wave.svg);
+export const Center = styled.div`
+position: relative;
+min-height: calc(100vh - 170px);
+display: grid;
+`
 
-  display: flex;
+export const Waves = styled.svg`
+  background-image: url(../../src/Icos/wave.svg);
+  margin: 0 !important;
 `

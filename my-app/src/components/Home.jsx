@@ -4,6 +4,7 @@ import Cards from "./Cards";
 import PreFooter from "./PreFooter";
 import { StyleInput} from '../Styles/StyledSearch'
 import { Fragment } from "react";
+import Footer from "./Footer";
 
 export function Home(){
     return(
@@ -15,6 +16,7 @@ export function Home(){
             <Filters />
             <Cards></Cards>
             <PreFooter/>
+            <Footer />
             </Fragment>
     )
 }

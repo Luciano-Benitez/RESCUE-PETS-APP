@@ -65,7 +65,7 @@ const FormShelter = () => {
     });
   };
 
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input)
@@ -183,20 +183,22 @@ const FormShelter = () => {
           </div>
           <div className="campo">
             <label>Dirección: </label>
-            <input 
+            <input
               onChange={handleChange}
-              type="text" 
+              type="text"
               placeholder="Dirección"
               value={input.address}
-              name='address' />
+              name="address"
+            />
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Contraseña</legend>
-    
+
           <div className="campo">
             <label>Contraseña: </label>
+
             <input 
             onChange={handleChange}
             type="password" 
@@ -204,6 +206,16 @@ const FormShelter = () => {
             value={input.password}
             placeholder="Contraseña" 
             required />
+
+            <input
+              onChange={handleChange}
+              type="password"
+              name="password"
+              value={input.password}
+              placeholder="Nombre de Usuario"
+              required
+            />
+                
           </div>
         </fieldset>
         <StyleButton

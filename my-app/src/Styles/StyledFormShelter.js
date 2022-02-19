@@ -43,7 +43,7 @@ export const DivContainer = styled.div`
     border-top: 0px !important;
     border-left: 0px !important;
     border-right: 0px !important;
-    border-color: #6F8AB7 !important;
+    border-color:${allColors.colors[8]} !important;
     border-width: 3px !important;
     border-radius: 5px !important;
     cursor: pointer;
@@ -59,7 +59,7 @@ textarea{
     border-top: 0px !important;
     border-left: 0px !important;
     border-right: 0px !important;
-    border-color: #6F8AB7 !important;
+    border-color: ${allColors.colors[8]} !important;
     border-width: 3px !important;
     border-radius: 5px !important;
     cursor: pointer;
@@ -75,7 +75,7 @@ select{
     border-top: 0px !important;
     border-left: 0px !important;
     border-right: 0px !important;
-    border-color: #6F8AB7 !important;
+    border-color: ${allColors.colors[8]}  !important;
     border-width: 3px !important;
     border-radius: 5px !important;
     cursor: pointer;

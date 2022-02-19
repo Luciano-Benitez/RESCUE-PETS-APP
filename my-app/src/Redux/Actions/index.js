@@ -23,7 +23,9 @@ import {GET_COUNTRIES,
     GET_SHELTER_DETAIL,
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
-    GET_PETS_FOR_DASHBOARD
+    GET_PETS_FOR_DASHBOARD,
+    GET_FORM_ADOPTION,
+    POST_ADOPTION
     } from './types.js'
 
 
@@ -289,3 +291,21 @@ export const getPetsForDashboard = (route) => {
     }
 }
 
+export const getFormAdoption = (id,formtypeId) => {
+    return async function (dispatch) {
+        try {
+          const Adoption= await axios(`http://localhost:3001/formquestions/${id}?formtypeid=${formtypeId}`);
+          dispatch({ type: GET_FORM_ADOPTION, payload:Adoption.data });
+        } catch (error) {
+          console.log(error);
+        
+        }
+      };
+    } 
+
+export const sendAdoption=(payload)=>{
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/sendAdoption`, payload)
+        return response
+    } 
+    }

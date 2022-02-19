@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DivContainer, StyledButton } from "../Styles/StyledFormShelter";
+import { StyleButton } from "../Styles/StyledButtons";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -63,6 +64,7 @@ const FormShelter = () => {
       city: e.target.value,
     });
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -196,6 +198,15 @@ const FormShelter = () => {
 
           <div className="campo">
             <label>Contraseña: </label>
+
+            <input 
+            onChange={handleChange}
+            type="password" 
+            name='password'
+            value={input.password}
+            placeholder="Contraseña" 
+            required />
+
             <input
               onChange={handleChange}
               type="password"
@@ -204,13 +215,14 @@ const FormShelter = () => {
               placeholder="Nombre de Usuario"
               required
             />
+                
           </div>
         </fieldset>
-        <StyledButton
+        <StyleButton
           className="btn"
           type="submit"
           value="Registrarme"
-        ></StyledButton>
+        >Registrarme</StyleButton>
       </form>
       {/* <img src="https://www.pngmart.com/files/4/Golden-Retriever-Puppy-PNG-File.png" alt="imagen" /> */}
     </DivContainer>

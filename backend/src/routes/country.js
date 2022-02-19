@@ -9,20 +9,32 @@ router.post('/country',postCountry);
 
 
 router.get('/country', async (req,res)=>{
+    const { id } = req.query
 
     let data = countries.countries
 
     data.forEach(element => {
         Countries.findOrCreate({
             where: {
-                id : element.id,
+                id : `${element.id}`,
                 country: element.name
             }
         })
     });
+
     const AllCountries = await Countries.findAll()
 
-    res.status(200).send(AllCountries)
+    if (id) {
+        let countryID = AllCountries.filter((e) =>
+          e.id === id
+        );
+        countryID.length
+          ? res.status(200).send(countryID)
+          : res.status(404).send("country Not Found");
+      } else {
+        res.status(200).send(AllCountries);
+      }
+   
 });
 
 module.exports = router

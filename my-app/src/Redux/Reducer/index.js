@@ -4,12 +4,14 @@ import {
   GET_CITIES,
   CLEAN_STATE_FORM,
   POST_FORM_REGISTER,
+  GET_PETS_FILTER,
 } from "../Actions/types";
 
 const initialState = {
   countries: [],
   states: [],
   cities: [],
+  petsfilter: []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -41,6 +43,14 @@ export default function rooReducer(state = initialState, { type, payload }) {
       return {
         ...state,
       };
+
+    case GET_PETS_FILTER:
+      let petsbyfilter = payload.response.filter(e => e.shelter.cityId === payload.d)
+      console.log(petsbyfilter)  
+      return {
+        ...state,
+        petsfilter : petsbyfilter
+      }  
     default:
       return state;
   }

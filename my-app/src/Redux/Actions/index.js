@@ -3,7 +3,8 @@ import {GET_COUNTRIES,
     GET_STATES, 
     GET_CITIES,
     CLEAN_STATE_FORM,
-    POST_FORM_REGISTER} from './types.js'
+    POST_FORM_REGISTER,
+    GET_PETS_FILTER} from './types.js'
 
 
 
@@ -46,4 +47,17 @@ export const postShelter = (payload) => {
         let response = await axios.post(`http://localhost:3001/createShelter`, payload)
         return response
     } 
+}
+
+export const getPetsFilter = (id) => {
+    return async function (dispatch){
+        try{
+            let response = await fetch(`http://localhost:3001/pets`)
+            .then(response => response.json())
+            return dispatch({type:GET_PETS_FILTER,
+            payload: {response,d:Number(id)}})
+        }catch(error){
+
+        }
+    }
 }

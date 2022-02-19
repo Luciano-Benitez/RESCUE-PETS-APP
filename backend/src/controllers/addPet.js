@@ -2,11 +2,11 @@ const { response } = require('express')
 const { Pets } = require('../db')
 
  exports.addPet = async(req, res= response) =>{
-    const {name, sterilization,weight,description, speciesId, shelterId, temperamentId, ageId, petStatusId}= req.body
+    const {name, sterilization,weight,description, image, speciesId, shelterId, temperamentId, ageId, petStatusId}= req.body
 
     try {
         if(name, sterilization, weight, description){
-            const PetsCreated = await Pets.create({ name, sterilization, weight, description, speciesId, shelterId,temperamentId, ageId, petStatusId})            
+            const PetsCreated = await Pets.create({ name, sterilization, weight, description, image, speciesId, shelterId,temperamentId, ageId, petStatusId})            
             res.json({
                 ok:true,
                 PetsCreated

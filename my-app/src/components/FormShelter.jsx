@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { DivContainer, StyledButton } from "../Styles/StyledFormShelter";
 import { useSelector, useDispatch } from "react-redux";
 
-import {getCountries, getStates} from '../Redux/Actions/index.js'
+import { getCountries, getStates, getcities } from "../Redux/Actions/index.js";
 
 const FormShelter = () => {
-
   const allCountries = useSelector((state) => state.countries);
   const statesXcountry = useSelector((state) => state.states);
+  const citiesXstate = useSelector((state) => state.cities);
 
   const dispatch = useDispatch();
 
@@ -21,10 +21,9 @@ const FormShelter = () => {
     phoneNumber: "",
     description: "",
     country: "",
-    state:"",
+    state: "",
     city: "",
     address: "",
-    userName: "",
     password: "",
     role: "1",
   });
@@ -32,25 +31,32 @@ const FormShelter = () => {
   const handleChange = (e) => {
     setInput({
       ...input,
-      [e.target.name]:e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSelectCountry = (e) =>{
+  const handleSelectCountry = (e) => {
     setInput({
       ...input,
       country: e.target.value,
     });
-    dispatch(getStates(e.target.value))
-  }
+    dispatch(getStates(e.target.value));
+  };
 
-  const handleSelectState = (e) =>{
+  const handleSelectState = (e) => {
     setInput({
       ...input,
       state: e.target.value,
     });
-  
-  }
+    dispatch(getcities(e.target.value));
+  };
+
+  const handleSelectCity = (e) => {
+    setInput({
+      ...input,
+      city: e.target.value,
+    });
+  };
 
   return (
     <DivContainer>
@@ -60,7 +66,7 @@ const FormShelter = () => {
           <legend>Tus Datos</legend>
 
           <div className="campo">
-            <label >Nombre del Refugio: </label>
+            <label>Nombre del Refugio: </label>
             <input
               onChange={handleChange}
               value={input.name}
@@ -87,7 +93,7 @@ const FormShelter = () => {
               onChange={handleChange}
               name="phoneNumber"
               value={input.phoneNumber}
-              type='tel'
+              type="tel"
               placeholder="Teléfono"
               required
             />
@@ -115,7 +121,7 @@ const FormShelter = () => {
                 -- Seleccione --
               </option>
               {allCountries?.map((el) => (
-                <option value={el.id} key={el.id} >
+                <option value={el.id} key={el.id}>
                   {el.country}
                 </option>
               ))}
@@ -129,7 +135,7 @@ const FormShelter = () => {
                 -- Seleccione --
               </option>
               {statesXcountry?.map((el) => (
-                <option value={el.id} key={el.id} >
+                <option value={el.id} key={el.id}>
                   {el.state}
                 </option>
               ))}
@@ -138,41 +144,40 @@ const FormShelter = () => {
 
           <div className="campo">
             <label>Ciudad: </label>
-            <input list="ciudades" name="ciudades" />
-            <datalist id="ciudades">
-              <option value="Buenos Aires" />
-              <option value="Bogotá" />
-              <option value="Medellin" />
-              <option value="Caracas" />
-              <option value="Mexicali" />
-              <option value="Santa Cruz" />
-            </datalist>
+            <select id="ciudades" onChange={handleSelectCity}>
+              <option disabled selected>
+                -- Seleccione --
+              </option>
+              {citiesXstate?.map((el) => (
+                <option value={el.id} key={el.id}>
+                  {el.city}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="campo">
             <label>Dirección: </label>
-            <input type="text" placeholder="Dirección" />
+            <input 
+              onChange={handleChange}
+              type="text" 
+              placeholder="Dirección"
+              value={input.address}
+              name='address' />
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>Información Extra</legend>
-
-          <div className="campo">
-            <label>Nombre Usuario: </label>
-            <input
-              type="text"
-              placeholder="Nombre de Usuario"
-              required
-            />
-          </div>
-
+          <legend>Contraseña</legend>
+    
           <div className="campo">
             <label>Contraseña: </label>
-            <input
-              type="password"
-              placeholder="Nombre de Usuario"
-              required
-            />
+            <input 
+            onChange={handleChange}
+            type="password" 
+            name='password'
+            value={input.password}
+            placeholder="Nombre de Usuario" 
+            required />
           </div>
         </fieldset>
         <StyledButton

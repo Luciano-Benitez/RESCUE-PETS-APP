@@ -1,78 +1,81 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFormAdoption } from "../Redux/Actions/index";
+import { getFormAdoption, sendAdoption } from "../Redux/Actions/index";
+import Swal from 'sweetalert2';
+
+
+//estilos
+import {DivContainer} from '../Styles/StyledFormTransit'
 
 const FormAdoption = ({ id }) => {
   const dispatch = useDispatch();
+  const history = useNavigate()
   const form = useSelector((state) => state.formAdoption);
 
-  const [idquestion, setIdquestion] = useState([])
-  const [answer, setAnswer] = useState([])
   const [input, setInput] = useState([])
+
 
   useEffect(() => {
     if (form.length === 0) {
-      dispatch(getFormAdoption(id, 1));
-    }
-  }, []);
+      dispatch(getFormAdoption(id, 2))
+    } 
+
+  }, [])
+
 
   function handleChange(event) {
 
-    if(idquestion.length){
-      idquestion.map(e => {
-          if(e !== event.target.name){
-              setIdquestion([...idquestion, event.target.name])
-          }else{
-              let temp = idquestion.filter(e => e!==event.target.name)
-              setIdquestion(temp.concat(event.target.name))
-          }
-      })
-    }else {
-      setIdquestion([...idquestion, event.target.name])
+    if(input.length === 0){
+      setInput([...input,
+        {idquestion:Number(event.target.name),answer:event.target.value}
+      ])
+    }else{ 
+      input.map((e,index) => {
+        if(Number(e.idquestion) === Number(event.target.name)){
+            input[index].answer = event.target.value
+            return e
+        }else if(!input.find(e => Number(e.idquestion) === Number(event.target.name))){
+          setInput([...input,
+            {idquestion:Number(event.target.name),answer:event.target.value}
+          ])
+        }
+      })  
     }
-
-
-    if(answer.length){
-        answer[Number(event.target.name)-1] = event.target.value
-    }else {
-        if((Number(event.target.name)-1) === 0)setAnswer([...answer, event.target.value])
-        else  answer[Number(event.target.name)-1] = event.target.value
-    }
-    
-    setInput([...input, {idquestion: event.target.name, answer: event.target.value}])
   };
 
   function handleClick(event){
     event.preventDefault()
-    let ids = form[0].questions.map(e => e.id)
-
-    let final = []
-
-    for (let i = 0; i < ids.length; i++) {
-      let filtered = input.filter(el => el.idquestion == ids[i])
-      final.push(filtered[filtered.length-1])
+    let payload = {
+      idform: form[0].id,
+      answer: input
     }
-    console.log(input)
-    console.log(final)
+    dispatch(sendAdoption(payload))
+    Swal.fire('Genial!', 'Registro realizado correctamente', 'sucess');
+    setInput([]);
+
   }
 
   return (
-    <div>
-      <h1>Formulario de adopción</h1>
-      <form>
+    <DivContainer>
+      <h1>FORMULARIO DE ADOPCIÓN</h1>
+      <p>Estas a un paso de cambiar una vida</p>
+      <form className="formulario">
         {form[0] &&
           form[0].questions.map((e) => (
             <div key={e.id}>
               <label>{`${e.question}: `}</label>
-              <input 
+              <textarea
               name={e.id}
               onChange={(event)=>handleChange(event)}
+              cols="60"
+              rows="5"
+              required
               />
             </div>
           ))}
           <button onClick={handleClick}>Enviar Formulario</button>
       </form>
-    </div>
+    </DivContainer>
   );
 };
 

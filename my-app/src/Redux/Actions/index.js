@@ -3,9 +3,18 @@ import {GET_COUNTRIES,
     GET_STATES, 
     GET_CITIES,
     CLEAN_STATE_FORM,
+    GET_PETS,
     POST_FORM_REGISTER} from './types.js'
 
 
+    export const getPets = () => {
+        return async function (dispatch) {
+            let json = await axios(`http://localhost:3001/pets`)
+            return dispatch({
+                type: GET_PETS, payload: json.data
+            })
+        } 
+    }
 
 export const getCountries = () => {
     return async function (dispatch) {

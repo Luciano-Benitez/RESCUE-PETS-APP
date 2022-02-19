@@ -1,4 +1,5 @@
 const { response } = require("express");
+const { Op } = require("sequelize");
 const {
   Pets,
   Age,
@@ -10,10 +11,17 @@ const {
 } = require("../db");
 
 exports.getPets = async (req, res = response) => {
-  const searchPet = req.query || "";
+  const filters = req.query || "";
+
+  let where = [];
+
+  Object.entries(filters).forEach(([key, value]) => {
+    where.push({ [key]: value });
+  });
 
   const query = {
     include: [Age, Temperament, Vaccines, Species, PetStatus, Shelter],
+    where: { [Op.and]: where },
   };
 
   try {

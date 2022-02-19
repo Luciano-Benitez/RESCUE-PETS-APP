@@ -1,15 +1,33 @@
 import React from 'react'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {getCountries} from '../Redux/Actions/index'
 import { Container,SelectStyle } from '../Styles/StyledFilters'
 
 const Filters = () => {
+     const dispatch = useDispatch()
+
+     const countries = useSelector((state) => state.countries)
+
+     useEffect(()=>{
+          dispatch(getCountries())
+     },[dispatch])
+
+
+     const handleSubmitCountry = (event) => {
+          let ev = event.target.value
+          console.log(ev)
+          return ev
+     }
   return (
     <Container>
         {/* <label>Por País:</label> */}
-            <SelectStyle>
-                <option hidden >Países</option>
-                <option>Mock-up: Argentina</option>
-                <option>Mock-up: México</option>
-                <option>Mock-up: Colombia</option>
+            <SelectStyle onChange={e => handleSubmitCountry(e)}>
+                 <option hidden >Países</option>
+                 {countries.map(e => (
+                      <option key={e.id} value={e.id} >{e.country}</option>
+                 ))}
             </SelectStyle>
         {/* <label>Por Ciudades:</label> */}
            <SelectStyle>

@@ -1,0 +1,9 @@
+{
+    "roles":
+    [{
+       "role" : "Shelter" 
+    },
+    {
+        "role" : "Admin"
+    }]
+}

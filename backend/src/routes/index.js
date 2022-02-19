@@ -6,7 +6,7 @@ const form = require('./form.js');
 const roles = require('./roles')
 const createShelter = require('./CreateLogsShelters');
 const countries = require('./country')
-
+const cities = require('./cities')
 const auth= require('./auth')
 
 const states = require('./states')
@@ -20,6 +20,7 @@ router.use('/',countries)
 router.use('/',auth)
 
 router.use('/',states)
+router.use('/',cities)
 
 
 module.exports = router;

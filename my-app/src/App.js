@@ -26,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/register" element={<FormShelter/>}/>
         </Routes>
+        <Footer/>
     </BrowserRouter>
   );
 }

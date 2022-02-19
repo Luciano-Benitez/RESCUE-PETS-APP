@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_STATES, GET_CITIES } from "../Actions/types";
+import { GET_COUNTRIES, GET_STATES, GET_CITIES, CLEAN_STATE_FORM } from "../Actions/types";
 
 const initialState = {
   countries: [],
@@ -25,6 +25,13 @@ export default function rooReducer(state = initialState, { type, payload }) {
         ...state,
         cities: payload,
       };
+      case CLEAN_STATE_FORM:
+        return {
+          ...state,
+          countries: payload,
+          states: payload,
+          cities: payload,
+        };
     default:
       return state;
   }

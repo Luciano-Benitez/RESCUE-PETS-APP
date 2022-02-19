@@ -1,8 +1,9 @@
-import {GET_COUNTRIES} from "../Actions/types";
+import {GET_COUNTRIES, GET_STATES} from "../Actions/types";
 
 const initialState = {
  
-  countries : []
+  countries : [],
+  states: []
  
 };
 
@@ -12,6 +13,11 @@ export default function rooReducer(state = initialState, {type, payload }) {
         return {
           ...state,
           countries: payload
+        };
+        case GET_STATES:
+        return {
+          ...state,
+          states: payload
         };
 
         default:

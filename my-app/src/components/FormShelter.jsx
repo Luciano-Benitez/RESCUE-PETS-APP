@@ -1,7 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DivContainer, StyledButton } from "../Styles/StyledFormShelter";
+import { useSelector, useDispatch } from "react-redux";
+
+import {getCountries} from '../Redux/Actions/index.js'
 
 const FormShelter = () => {
+
+  const allCountries = useSelector((state) => state.countries);
+  console.log(allCountries)
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, [dispatch]);
+
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -21,6 +34,14 @@ const FormShelter = () => {
       [e.target.name]:e.target.value,
     });
   };
+
+  const handleSelectCountry = (e) =>{
+    console.log(e.target.value)
+    setInput({
+      ...input,
+      country: e.target.value,
+    });
+  }
 
   return (
     <DivContainer>
@@ -63,7 +84,7 @@ const FormShelter = () => {
             />
           </div>
 
-          <div class="campo">
+          <div className="campo">
             <label>Su Misión: </label>
             <textarea
               onChange={handleChange}
@@ -77,22 +98,36 @@ const FormShelter = () => {
 
         <fieldset>
           <legend>Localización</legend>
-          <div class="campo">
+
+          <div className="campo">
             <label>País: </label>
-            <select>
+            <select onChange={handleSelectCountry}>
               <option disabled selected>
                 -- Seleccione --
               </option>
-              <option value="MX">Mexico</option>
-              <option value="PR">Peru</option>
-              <option value="COL">Colombia</option>
-              <option value="BOL">Bolivia</option>
-              <option value="CHI">Chile</option>
-              <option value="ARG">Argentina</option>
-              <option value="VEN">Venezuela</option>
+              {allCountries?.map((el) => (
+                <option value={el.id} key={el.id} >
+                  {el.country}
+                </option>
+              ))}
             </select>
           </div>
-          <div class="campo">
+
+          <div className="campo">
+            <label>Estado: </label>
+            <select >
+              <option disabled selected>
+                -- Seleccione --
+              </option>
+              {allCountries?.map((el) => (
+                <option value={el.id} key={el.id} >
+                  {el.country}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="campo">
             <label>Ciudad: </label>
             <input list="ciudades" name="ciudades" />
             <datalist id="ciudades">
@@ -132,7 +167,7 @@ const FormShelter = () => {
           </div>
         </fieldset>
         <StyledButton
-          class="btn"
+          className="btn"
           type="submit"
           value="Registrarme"
         ></StyledButton>

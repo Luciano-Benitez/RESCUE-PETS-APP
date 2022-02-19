@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { DivContainer, StyledButton } from "../Styles/StyledFormShelter";
 import { StyleButton } from "../Styles/StyledButtons";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   getCountries,
   getStates,
   getcities,
   cleanStateForm,
+  postShelter
 } from "../Redux/Actions/index.js";
 
 const FormShelter = () => {
@@ -16,6 +18,7 @@ const FormShelter = () => {
   const citiesXstate = useSelector((state) => state.cities);
 
   const dispatch = useDispatch();
+  const history = useNavigate()
 
   useEffect(() => {
     dispatch(getCountries());
@@ -29,7 +32,7 @@ const FormShelter = () => {
     description: "",
     country: "",
     state: "",
-    city: "",
+    cityId: "",
     address: "",
     password: "",
     role: "1",
@@ -61,7 +64,7 @@ const FormShelter = () => {
   const handleSelectCity = (e) => {
     setInput({
       ...input,
-      city: e.target.value,
+      cityId: e.target.value,
     });
   };
 
@@ -69,7 +72,8 @@ const FormShelter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input)
-    //dispatch(postPokemon(input));;
+    dispatch(postShelter(input));;
+    alert('usuario creado con éxito')
     setInput({
       name: "",
       email: "",
@@ -77,11 +81,12 @@ const FormShelter = () => {
       description: "",
       country: "",
       state: "",
-      city: "",
+      cityId: "",
       address: "",
       password: "",
       role: "1",
     });
+    history('/Login')
   };
 
   return (
@@ -206,15 +211,6 @@ const FormShelter = () => {
             value={input.password}
             placeholder="Contraseña" 
             required />
-
-            <input
-              onChange={handleChange}
-              type="password"
-              name="password"
-              value={input.password}
-              placeholder="Nombre de Usuario"
-              required
-            />
                 
           </div>
         </fieldset>

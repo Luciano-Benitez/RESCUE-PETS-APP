@@ -2,7 +2,7 @@ import styled from "styled-components";
 import allColors from "../variables/Colors";
 
 export const StyledCard = styled.div`
-  height: 310px;
+  height: 330px;
   width: 285px;
   background-color: ${allColors.colors[3]};
   border-radius: 4px;
@@ -17,6 +17,20 @@ export const StyledCard = styled.div`
   box-shadow: 0 0 15px #ddd;
   background: #fff;
   text-align: center;
+  
+  &:hover {
+  top: -2px;
+  background-color:${allColors.colors[8]};
+  color: #ffffff;
+  text-decoration: none;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(0.89);
+ 
+
+}
 `;
 
 export const StyledCardContainer = styled.div`

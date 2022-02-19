@@ -1,40 +1,9 @@
-const {Countries } = require("../db");
 const express = require('express')
 const router = express.Router()
 
-const postCountry = require('../controllers/postCountry')
-const countries = require('../utils/countries.json')
-
-router.post('/country',postCountry);
+const getCountry = require('../controllers/getCountry.js')
 
 
-router.get('/country', async (req,res)=>{
-    const { id } = req.query
-
-    let data = countries.countries
-
-    data.forEach(element => {
-        Countries.findOrCreate({
-            where: {
-                id : `${element.id}`,
-                country: element.name
-            }
-        })
-    });
-
-    const AllCountries = await Countries.findAll()
-
-    if (id) {
-        let countryID = AllCountries.filter((e) =>
-          e.id === id
-        );
-        countryID.length
-          ? res.status(200).send(countryID)
-          : res.status(404).send("country Not Found");
-      } else {
-        res.status(200).send(AllCountries);
-      }
-   
-});
+router.get('/country', getCountry);
 
 module.exports = router

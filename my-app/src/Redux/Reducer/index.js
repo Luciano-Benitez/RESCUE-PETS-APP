@@ -34,7 +34,6 @@ export default function rooReducer(state = initialState, { type, payload }) {
     case CLEAN_STATE_FORM:
       return {
         ...state,
-        countries: payload,
         states: payload,
         cities: payload,
       };

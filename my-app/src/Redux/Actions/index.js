@@ -40,3 +40,10 @@ export const cleanStateForm = () => {
         payload: []
     }
 }
+
+export const postShelter = (payload) => {
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/createShelter`, payload)
+        return response
+    } 
+}

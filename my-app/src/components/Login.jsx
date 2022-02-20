@@ -33,7 +33,7 @@ const Login = () => {
                 </form>
                 <MiniText ><Link to='/Login'>¿Olvidó su contraseña?</Link> </MiniText>
                 <Button type="submit">Iniciar sesión</Button>
-                <MiniText >¿No tienes cuenta? <Link to='/Login'>Regístrate!</Link> </MiniText>
+                <MiniText >¿No tienes cuenta? <Link to='/register'>Regístrate!</Link> </MiniText>
                     
             </Container>
         </Center>

@@ -8,8 +8,6 @@ const {setPetStatus} = require('./helpers/petStatusData')
 const {setCountries} = require('./helpers/countryData')
 const {setStates} = require('./helpers/stateData')
 const {setCities} = require('./helpers/cityData')
-const {setPets} = require('./helpers/petsData')
-const {setShelters} = require('./helpers/shletersData')
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {

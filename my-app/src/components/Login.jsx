@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Button, Center, Waves } from '../Styles/StyledLogin'
-import Footer from './Footer'
+import { Container, Button, Center, MiniText, LinkStyle } from '../Styles/StyledLogin'
+
 
 
 
@@ -10,7 +10,7 @@ const Login = () => {
     <div>
         <Center>
             <Container>
-                <h1 className="header">Iniciar sesión</h1>
+                <h1 className="header1">Iniciar sesión</h1>
                 <div className='centerButtons'>
                     <button class="loginBtn loginBtn--facebook">
                     Continuar con Facebook
@@ -20,7 +20,7 @@ const Login = () => {
                     Continuar con Google
                     </button>
                 </div>
-                <h2 className="header">ó</h2>
+                <h2 className="header1">ó</h2>
                 <form>
                     <div class="input-parent">
                         <label>Correo electrónico</label>
@@ -31,13 +31,13 @@ const Login = () => {
                         <input type="password" id="password"></input>
                     </div>
                 </form>
+                <MiniText ><Link to='/Login'>¿Olvidó su contraseña?</Link> </MiniText>
                 <Button type="submit">Iniciar sesión</Button>
-                <Link to="/Login">
-                    <h2 className="header">¿Olvidó su contraseña?</h2>
-                </Link>
+                <MiniText >¿No tienes cuenta? <Link to='/Login'>Regístrate!</Link> </MiniText>
+                    
             </Container>
         </Center>
-        <Footer />
+
         
     </div>
 

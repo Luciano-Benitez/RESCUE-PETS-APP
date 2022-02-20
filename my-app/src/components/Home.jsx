@@ -14,7 +14,7 @@ export function Home() {
     const pets = useSelector((state) => state.petsfilter);
     const [idcity, setidcity] = useState('')
     const [estadoModal, cambiarEstadoModal] = useState(true);
-
+   
 
     useEffect(() => {
         if (!pets.length) {
@@ -25,9 +25,10 @@ export function Home() {
 
     return (<Fragment>
         <Header></Header>
-
-        <Modal setidcity={setidcity} estado={estadoModal} cambiarEstado={cambiarEstadoModal}/>
+      
+        
         <Filters idcity={idcity}/>
+        {estadoModal == true ? (<Modal setidcity={setidcity} estado={estadoModal} cambiarEstado={cambiarEstadoModal}/>) : ""}
             <Cards  pets={pets}></Cards>
             <PreFooter/>
             

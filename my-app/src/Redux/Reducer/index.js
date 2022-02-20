@@ -6,7 +6,8 @@ import {
   POST_FORM_REGISTER,
   GET_PETS_FILTER,
   GET_PETS,
-  GET_TEMPERAMENTS
+  GET_TEMPERAMENTS,
+  
 } from "../Actions/types";
 
 const initialState = {

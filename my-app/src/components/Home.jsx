@@ -11,7 +11,7 @@ import {getPets} from "../Redux/Actions";
 export function Home() {
 
     const dispatch = useDispatch();
-    const pets = useSelector((state) => state.pets);
+    const pets = useSelector((state) => state.petsfilter);
     const [idcity, setidcity] = useState('')
 
     useEffect(() => {

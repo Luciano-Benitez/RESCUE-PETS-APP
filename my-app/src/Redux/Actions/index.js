@@ -5,7 +5,9 @@ import {GET_COUNTRIES,
     CLEAN_STATE_FORM,
     GET_PETS,
     POST_FORM_REGISTER,
-    GET_PETS_FILTER} from './types.js'
+    GET_PETS_FILTER,
+    GET_TEMPERAMENTS
+    } from './types.js'
 
     
  
@@ -90,4 +92,14 @@ export const getPetsFilter = (link) => {
             return error
         }
     }
+}
+
+
+export const getTemperaments = () => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/temperaments`)
+        return dispatch({
+            type: GET_TEMPERAMENTS, payload: json.data
+        })
+    } 
 }

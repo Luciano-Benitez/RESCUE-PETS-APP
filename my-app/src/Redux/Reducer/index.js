@@ -6,6 +6,7 @@ import {
   POST_FORM_REGISTER,
   GET_PETS_FILTER,
   GET_PETS,
+  GET_TEMPERAMENTS
 } from "../Actions/types";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   cities: [],
   petsfilter: [], 
   pets: [],
+  temperaments: []
 
 };
 
@@ -57,6 +59,11 @@ export default function rooReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         petsfilter : payload
+      } 
+    case GET_TEMPERAMENTS:
+      return {
+        ...state,
+        temperaments : payload
       }  
     default:
       return state;

@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import allColors from "../variables/Colors";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
 position: relative;
@@ -17,8 +18,14 @@ height: max-content;
 margin-top: 150px;
 margin-bottom: 60px;
 
-.header {
+.header1 {
   text-align: center;
+}
+
+.visited {
+  a:visited {
+    text-decoration: none;
+  }
 }
 
 .loginBtn {
@@ -93,7 +100,7 @@ margin-bottom: 60px;
 
 label {
     display: block;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 8px;
     margin-bottom: 8px;
     
@@ -102,7 +109,7 @@ label {
 .input-parent input {
     padding: 10px 8px;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
     background: darkgray;
     border: none;
     /* color: #c7c7c7; */
@@ -119,7 +126,8 @@ padding: 10px 18px;
     background-color: ${allColors.colors[8]};
     border-radius: 5px;
     width: 100%;
-    margin-top: 5%;
+    margin-top: 8%;
+    margin-bottom: 2%;
     height: 40px;
     font-size: 17px;
     padding: 10px;
@@ -145,3 +153,15 @@ export const Waves = styled.svg`
   background-image: url(../../src/Icos/wave.svg);
   margin: 0 !important;
 `
+
+export const MiniText = styled.div`
+font-weight: bold;
+font-size: 12px;
+text-align: right;
+margin-top: 2%;
+a { color:purple; }
+a:visited { color: green; }
+a:hover { color:darkgray; }
+
+`
+

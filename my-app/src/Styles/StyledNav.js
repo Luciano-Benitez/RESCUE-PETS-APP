@@ -20,6 +20,7 @@ export const Divmenu = styled.div`
   text-decoration: none;
   font-weight: bold;
   margin:6px;
+  
  
 
 `;
@@ -37,20 +38,15 @@ export const StyleLi = styled.li`
   }
      
   
-  &.active {
-    color: white;
-    background-color: ${allColors.colors[8]};
-      padding:9px;
-      border-radius: 10px;
-     
-  } 
+ 
   &:hover {
     a {
       color: ${allColors.colors[2]};
      
     }
   }
-
+  
+ 
 
  
 

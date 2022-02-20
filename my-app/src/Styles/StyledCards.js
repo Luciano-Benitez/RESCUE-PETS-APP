@@ -34,7 +34,7 @@ export const StyledCard = styled.div`
 `;
 
 export const StyledCardContainer = styled.div`
-  padding-top: 3em;
+  padding-top: 1em;
   text-align: center;
   width: 100%;
   color: ${allColors.colors[8]};
@@ -43,7 +43,14 @@ export const StyledCardContainer = styled.div`
   
   h1{
     text-align: center !important;
-    padding: 12px;
+    padding: 3px;
+    
+  }
+  
+  p{
+    text-align: center !important;
+    color: ${allColors.colors[2]};
+    font-size: 12px;
     
   }
 `;

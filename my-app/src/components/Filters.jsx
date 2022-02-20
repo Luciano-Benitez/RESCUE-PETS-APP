@@ -8,6 +8,8 @@ import { Container,SelectStyle } from '../Styles/StyledFilters'
 const Filters = ({idcity}) => {
      const dispatch = useDispatch()
 
+     const [link, setLink] = useState(`http://localhost:3001/pets/${idcity}`)
+
      const countries = useSelector((state) => state.countries)
      const states = useSelector((state) => state.states)
      const cities = useSelector((state) => state.cities)
@@ -29,6 +31,13 @@ const Filters = ({idcity}) => {
      const handleSubmitCities = (event) => {
           console.log(event.target.value)
           dispatch(getPetsFilter(event.target.value))
+     }
+
+     const handleStatus = (event) => {
+          const query = `${link}?petStatusId=${event.target.value}`
+          setLink(query)
+          console.log(query)
+          dispatch(getPetsFilter(query))
      }
 
   return (
@@ -84,7 +93,7 @@ const Filters = ({idcity}) => {
                 <option>Mock-up: Temp 3</option>
            </SelectStyle>
         {/* <label>Status:</label> */}
-       <SelectStyle>
+       <SelectStyle onChange={(e)=>handleStatus(e)}>
                 <option hidden >Status</option>
                 <option>Mock-up: Sin adoptar </option>
                 <option>Mock-up: En proceso </option>

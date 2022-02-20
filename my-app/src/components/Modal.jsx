@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { StyledModal ,Styledselect } from "../Styles/StyledModal.js";
+import { StyleButton } from "../Styles/StyledButtons.js";
+
 
 
 import {
@@ -21,6 +24,7 @@ import {
 
     useEffect(() => {
         dispatch(getCountries());
+        
       }, [dispatch]);
 
       const handleSelectCountry = (e) => {
@@ -37,19 +41,19 @@ import {
         dispatch(getPetsFilter(paramLink))
       };
 
-      return (
-        <>
+      return ( 
+        <StyledModal>
 
         { estado &&
 
           <form>
               <h2>Elegí tu localización</h2>
-              <span>Así podremos mostrarte las mascotas en adopción cerca tuyo</span>
+              <span>Así podremos mostrarte las mascotas en adopción cerca tuyo</span><br/><br/>
 
               <div className="campo">
             <label>País: </label>
-            <select onChange={handleSelectCountry}>
-              <option disabled selected>
+            <Styledselect onChange={handleSelectCountry}>
+              <option disabled >
                 -- Seleccione --
               </option>
               {allCountries?.map((el) => (
@@ -57,12 +61,12 @@ import {
                   {el.country}
                 </option>
               ))}
-            </select>
+            </Styledselect><br/><br/><br/><br/>
           </div>
 
           <div className="campo">
             <label>Estado: </label>
-            <select onChange={handleSelectState}>
+            <Styledselect onChange={handleSelectState}>
               <option disabled selected>
                 -- Seleccione --
               </option>
@@ -71,12 +75,12 @@ import {
                   {el.state}
                 </option>
               ))}
-            </select>
+            </Styledselect><br/><br/><br/>
           </div>
 
           <div className="campo">
             <label>Ciudad: </label>
-            <select id="ciudades" onChange={handleSelectCity}>
+            <Styledselect id="ciudades" onChange={handleSelectCity}>
               <option disabled selected>
                 -- Seleccione --
               </option>
@@ -85,17 +89,16 @@ import {
                   {el.city}
                 </option>
               ))}
-            </select>
+           </Styledselect><br/><br/><br/>
           </div>
-
-          <button
+          <StyleButton
           value="Ver Mascotas"
           onClick={()=>cambiarEstado(!estado)}
-          >Ver Mascotas</button>
+          >Ver Mascotas</StyleButton>
           
           </form>
   }
-          </>
+  </StyledModal>
       )
   }
 

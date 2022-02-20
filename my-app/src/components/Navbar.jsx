@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 // import Colors from "../variables/Corlos"
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {StyleNavBar, StyleLi , Divmenu } from '../Styles/StyledNav';
 import { StyleInput} from '../Styles/StyledSearch'
 export default function Navbar() {
@@ -12,13 +12,13 @@ export default function Navbar() {
                         <ul>
                         <Divmenu>
                             <StyleLi>
-                            <Link to="/" >Inicio</Link>
+                            <NavLink activeClassName="active" to="/" >Inicio</ NavLink>
                             </StyleLi>
                             <StyleLi>
-                                <Link to="/Login">Soy Un Refugio</Link>
+                                <NavLink activeClassName="active" to="/Login">Soy Un Refugio</NavLink>
                             </StyleLi>
                             <StyleLi>
-                                <Link to="/nosotros">Sobre Nosotros</Link>
+                                <NavLink activeClassName="active" to="/nosotros">Sobre Nosotros</NavLink>
                             </StyleLi> <StyleInput name='Search' placeholder='Escriba elemento a buscar'></StyleInput>
                             </Divmenu> 
                             </ul>

@@ -16,7 +16,7 @@ import {GET_COUNTRIES,
         return async function (dispatch) {
             try {
             let json = await axios(`http://localhost:3001/pets`);
-            let size = json.data.length/4;
+            let size = json.data.length/2;
             let NewPets = function (myArray, Size){
                 var results = [];
                 while (myArray.length) {

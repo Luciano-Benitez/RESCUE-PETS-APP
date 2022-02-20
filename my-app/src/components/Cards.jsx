@@ -14,13 +14,15 @@ export default function Cards({pets}) {
             Math.random(5)
         }>
                     <h1>{p.name}</h1>
+                    
+                    {/* <p>{p.description}</p> */}
                     <ImgCard src={p.image}/>
 
                     <br/>
                 </StyledCard>
 
                 
-            </Fragment>)) : (<h1>Lo sentimos pero no contamos con Pets disponibles en BD para adoptar</h1>)
+            </Fragment>)) : (<h1>             Cargando datos</h1>)
         } </StyledCardContainer>
     </Fragment>);
 

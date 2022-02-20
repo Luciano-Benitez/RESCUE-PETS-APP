@@ -8,7 +8,7 @@ export default function Cards({pets}) {
         <StyledCardContainer key={
             Math.random(5)
         }> {
-            pets.length ? pets.map((p) => (<Fragment>
+            pets.length  ? pets.map((p) => (<Fragment>
 
                 <StyledCard key={
             Math.random(5)

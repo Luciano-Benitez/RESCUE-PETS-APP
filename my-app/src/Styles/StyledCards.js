@@ -2,7 +2,7 @@ import styled from "styled-components";
 import allColors from "../variables/Colors";
 
 export const StyledCard = styled.div`
-  height: 330px;
+  height: 330px ;
   width: 285px;
   background-color: ${allColors.colors[3]};
   border-radius: 4px;
@@ -36,9 +36,10 @@ export const StyledCard = styled.div`
 export const StyledCardContainer = styled.div`
   padding-top: 3em;
   text-align: center;
-  height: 100%;
+  width: 100%;
   color: ${allColors.colors[8]};
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
   
   h1{
     text-align: center !important;

@@ -19,7 +19,7 @@ conn.sync({ force: false }).then(() => {
     await setPetStatus();
     await setCountries();
     await setStates();
-    await setCities();
+    // await setCities();
 
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });

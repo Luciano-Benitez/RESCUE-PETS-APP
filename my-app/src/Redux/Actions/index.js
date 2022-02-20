@@ -79,10 +79,10 @@ export const postShelter = (payload) => {
     } 
 }
 
-export const getPetsFilter = (id) => {
+export const getPetsFilter = (link) => {
     return async function (dispatch){
         try{
-            let json = await axios(`http://localhost:3001/pets/${id}`)
+            let json = await axios(link)
             return dispatch({
                 type: GET_PETS_FILTER, payload: json.data
             })

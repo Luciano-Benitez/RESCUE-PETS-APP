@@ -9,7 +9,7 @@ import {
     getPetsFilter
   } from "../Redux/Actions/index.js";
   
-  const Modal = ({setidcity}) => {
+  const Modal = ({setidcity, estado, cambiarEstado}) => {
 
     const [params, setParams] = useState(`http://localhost:3001/pets/`)
 
@@ -38,6 +38,10 @@ import {
       };
 
       return (
+        <>
+
+        { estado &&
+
           <form>
               <h2>Elegí tu localización</h2>
               <span>Así podremos mostrarte las mascotas en adopción cerca tuyo</span>
@@ -85,9 +89,13 @@ import {
           </div>
 
           <button
-          type="submit"
-          value="Ver Mascotas">Ver Mascotas</button>
+          value="Ver Mascotas"
+          onClick={()=>cambiarEstado(!estado)}
+          >Ver Mascotas</button>
+          
           </form>
+  }
+          </>
       )
   }
 

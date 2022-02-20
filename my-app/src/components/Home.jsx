@@ -1,5 +1,5 @@
 
-
+import Modal from "./Modal";
 import Filters from "./Filters"
 import Header from "./Header";
 import Cards from "./Cards";
@@ -27,6 +27,7 @@ export function Home() {
         <Filters/>
             <Cards  pets={pets}></Cards>
             <PreFooter/>
+            <Modal/>
 
         </Fragment>)
 }

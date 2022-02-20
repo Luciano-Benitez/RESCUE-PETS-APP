@@ -18,13 +18,13 @@ function App() {
        <Navbar></Navbar>
      
         <Routes>
+
           <Route path="/" element={<Home/>}/>
-        </Routes>
-        <Routes>
+     
           <Route path="/Login" element={<Login/>}/>
-        </Routes>
-        <Routes>
+      
           <Route path="/register" element={<FormShelter/>}/>
+
         </Routes>
         <Footer/>
     </BrowserRouter>

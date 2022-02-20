@@ -5,13 +5,14 @@ import Header from "./Header";
 import Cards from "./Cards";
 import PreFooter from "./PreFooter";
 // import { StyleInput} from '../Styles/StyledSearch'
-import {Fragment, useEffect} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {getPets} from "../Redux/Actions";
 export function Home() {
 
     const dispatch = useDispatch();
     const pets = useSelector((state) => state.pets);
+    const [idcity, setidcity] = useState('')
 
     useEffect(() => {
         if (!pets.length) {
@@ -24,10 +25,10 @@ export function Home() {
         <Header></Header>
 
 
-        <Filters/>
+        <Filters idcity={idcity}/>
             <Cards  pets={pets}></Cards>
             <PreFooter/>
-            <Modal/>
+            <Modal setidcity={setidcity}/>
 
         </Fragment>)
 }

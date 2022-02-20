@@ -8,7 +8,7 @@ import {
     getcities,
   } from "../Redux/Actions/index.js";
   
-  const Modal = () => {
+  const Modal = ({setidcity}) => {
     const allCountries = useSelector((state) => state.countries);
     const statesXcountry = useSelector((state) => state.states);
     const citiesXstate = useSelector((state) => state.cities);

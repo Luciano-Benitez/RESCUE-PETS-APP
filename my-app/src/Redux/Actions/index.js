@@ -82,12 +82,12 @@ export const postShelter = (payload) => {
 export const getPetsFilter = (id) => {
     return async function (dispatch){
         try{
-            let response = await fetch(`http://localhost:3001/pets`)
-            .then(response => response.json())
-            return dispatch({type:GET_PETS_FILTER,
-            payload: {response,d:Number(id)}})
+            let json = await axios(`http://localhost:3001/pets/${id}`)
+            return dispatch({
+                type: GET_PETS_FILTER, payload: json.data
+            })
         }catch(error){
-
+            return error
         }
     }
 }

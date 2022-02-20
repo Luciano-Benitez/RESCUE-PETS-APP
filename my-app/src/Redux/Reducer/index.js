@@ -54,11 +54,9 @@ export default function rooReducer(state = initialState, { type, payload }) {
       };
 
     case GET_PETS_FILTER:
-      let petsbyfilter = payload.response.filter(e => e.shelter.cityId === payload.d)
-      console.log(petsbyfilter)  
       return {
         ...state,
-        petsfilter : petsbyfilter
+        petsfilter : payload
       }  
     default:
       return state;

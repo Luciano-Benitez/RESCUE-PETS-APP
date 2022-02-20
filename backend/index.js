@@ -5,6 +5,11 @@ const {setRoles} = require('./helpers/rolesData')
 const {setSpecies} = require('./helpers/speciesData')
 const {setAge} = require('./helpers/ageData')
 const {setPetStatus} = require('./helpers/petStatusData')
+const {setCountries} = require('./helpers/countryData')
+const {setStates} = require('./helpers/stateData')
+const {setCities} = require('./helpers/cityData')
+const {setPets} = require('./helpers/petsData')
+const {setShelters} = require('./helpers/shletersData')
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
@@ -15,6 +20,12 @@ conn.sync({ force: false }).then(() => {
     await setSpecies()
     await setAge()
     await setPetStatus()
+    await setCountries()
+    await setStates()
+    await setCities()
+    await setShelters()
+    await setPets()
+
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });

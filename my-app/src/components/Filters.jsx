@@ -2,13 +2,16 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getCountries} from '../Redux/Actions/index'
+import {getcities, getCountries, getPetsFilter, getStates} from '../Redux/Actions/index'
 import { Container,SelectStyle } from '../Styles/StyledFilters'
 
 const Filters = () => {
      const dispatch = useDispatch()
 
      const countries = useSelector((state) => state.countries)
+     const states = useSelector((state) => state.states)
+     const cities = useSelector((state) => state.cities)
+     const pets = useSelector((state) => state.petsfilter)
 
      useEffect(()=>{
           dispatch(getCountries())
@@ -16,10 +19,18 @@ const Filters = () => {
 
 
      const handleSubmitCountry = (event) => {
-          let ev = event.target.value
-          console.log(ev)
-          return ev
+          dispatch(getStates(event.target.value))
      }
+
+     const handleSubmitState = (event) => {
+          dispatch(getcities(event.target.value))
+     }
+
+     const handleSubmitCities = (event) => {
+          console.log(event.target.value)
+          dispatch(getPetsFilter(event.target.value))
+     }
+
   return (
     <Container>
         {/* <label>Por País:</label> */}
@@ -30,12 +41,20 @@ const Filters = () => {
                  ))}
             </SelectStyle>
         {/* <label>Por Ciudades:</label> */}
-           <SelectStyle>
-                <option hidden >Ciudades</option>
-                <option>Mock-up: Ejemplo 1</option>
-                <option>Mock-up: Ejemplo 2</option>
-                <option>Mock-up: Ejemplo 3</option>
+           <SelectStyle onChange={e => handleSubmitState(e)}>
+                <option hidden >Estados</option>
+                {states.map(e => (
+                     <option key={e.id} value={e.id} >{e.state}</option>
+                ))}
            </SelectStyle>
+
+           <SelectStyle onChange={e => handleSubmitCities(e)}>
+                <option hidden >Ciudades</option>
+                {cities.map(e => (
+                     <option key={e.id} value={e.id} >{e.city}</option>
+                ))}
+           </SelectStyle>
+
         {/* <label>Por Refugio:</label> */}
        <SelectStyle>
                 <option hidden >Refugios</option>

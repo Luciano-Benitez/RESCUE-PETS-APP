@@ -14,12 +14,29 @@ import {GET_COUNTRIES,
 
     export const getPets = () => {
         return async function (dispatch) {
-            let json = await axios(`http://localhost:3001/pets`)
-            return dispatch({
-                type: GET_PETS, payload: json.data
-            })
-        } 
+            try {
+            let json = await axios(`http://localhost:3001/pets`);
+            let size = json.data.length/4;
+            let NewPets = function (myArray, Size){
+                var results = [];
+                while (myArray.length) {
+                    results.push(myArray.splice(0, Size));
+                }
+                return results;
+            }
+           let newpets= NewPets(json.data, size);
+            console.log([newpets]  , "partido")
+            dispatch({type: GET_PETS, payload: newpets[0]}); // de momento solo muestra el primer array
+           // dispatch({type: GET_PETS, payload:json.data}); //Pets sin división
+            
+           
+            }
+        catch (error) {
+            console.log("ERROR NO DATA", error);
+        }
     }
+    };
+    
 
 export const getCountries = () => {
     return async function (dispatch) {

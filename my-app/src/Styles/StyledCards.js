@@ -39,10 +39,16 @@ export const StyledCardContainer = styled.div`
   height: 100%;
   color: ${allColors.colors[8]};
   display: flex;
+  
+  h1{
+    text-align: center !important;
+    padding: 12px;
+    
+  }
 `;
 
 export const ImgCard = styled.img`
- height :70%;
-
+ height :92%;
+image-orientation: flip;
  
 `;

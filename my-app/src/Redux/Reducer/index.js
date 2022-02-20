@@ -12,7 +12,9 @@ const initialState = {
   countries: [],
   states: [],
   cities: [],
-  petsfilter: []
+  petsfilter: [], 
+  pets: [],
+
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -32,7 +34,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
       case GET_PETS:
       return {
         ...state,
-        states: payload,
+        pets: payload,
       };
 
     case GET_CITIES:

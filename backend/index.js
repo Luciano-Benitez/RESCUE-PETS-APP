@@ -9,6 +9,7 @@ const {setCountries} = require('./helpers/countryData')
 const {setStates} = require('./helpers/stateData')
 const {setCities} = require('./helpers/cityData')
 
+
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
   

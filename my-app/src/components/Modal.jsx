@@ -6,9 +6,13 @@ import {
     getCountries,
     getStates,
     getcities,
+    getPetsFilter
   } from "../Redux/Actions/index.js";
   
   const Modal = ({setidcity}) => {
+
+    const [params, setParams] = useState(`http://localhost:3001/pets/`)
+
     const allCountries = useSelector((state) => state.countries);
     const statesXcountry = useSelector((state) => state.states);
     const citiesXstate = useSelector((state) => state.cities);
@@ -28,7 +32,9 @@ import {
       };
     
       const handleSelectCity = (e) => {
-        console.log(e.target.value)
+        setidcity(e.target.value)
+        const paramLink = `${params}${e.target.value}`
+        dispatch(getPetsFilter(paramLink))
       };
 
       return (

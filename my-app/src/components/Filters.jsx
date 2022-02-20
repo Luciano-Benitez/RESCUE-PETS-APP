@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getcities, getCountries, getPetsFilter, getStates} from '../Redux/Actions/index'
 import { Container,SelectStyle } from '../Styles/StyledFilters'
 
-const Filters = () => {
+const Filters = ({idcity}) => {
      const dispatch = useDispatch()
 
      const countries = useSelector((state) => state.countries)

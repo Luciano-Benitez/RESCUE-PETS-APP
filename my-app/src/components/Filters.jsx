@@ -15,13 +15,27 @@ const Filters = ({idcity}) => {
      const cities = useSelector((state) => state.cities)
      const pets = useSelector((state) => state.petsfilter)
      const temperaments = useSelector((state) => state.temperaments)
+     
+
+
+     let petsfiltered = pets.map(e => e.temperament.temperament)
+     let tempsFiltered = petsfiltered.filter((element, index) => {
+          return petsfiltered.indexOf(element) === index;
+     });
+
+     let petsfiltered2 = pets.map(e => e.age.age)
+     let ageFiltered = petsfiltered2.filter((element, index) => {
+          return petsfiltered2.indexOf(element) === index;
+     });
+
+
 
      useEffect(()=>{
           dispatch(getCountries())
      },[dispatch])
 
      useEffect(()=>{
-          dispatch(getTemperaments())
+          dispatch(getTemperaments(idcity))
      },[dispatch])
 
 
@@ -86,15 +100,15 @@ const Filters = ({idcity}) => {
           {/* <label>Por Edad:</label> */}
           <SelectStyle>
                     <option hidden >Rango Edad</option>
-                    <option>Mock-up: Rango 1 </option>
-                    <option>Mock-up: Rango 2</option>
-                    <option>Mock-up: Rango 3</option>
+                    {ageFiltered?.map(element => (
+                         <option key={element} value={element} >{element}</option>
+                    ))}
                </SelectStyle>
           {/* <label>Temperamento:</label> */}
           <SelectStyle>
                     <option hidden >Temperamento</option>
-                    {temperaments?.map(e => (
-                         <option key={e.id} value={e.id} >{e.temperament}</option>
+                    {tempsFiltered?.map(element => (
+                         <option key={element} value={element} >{element}</option>
                     ))}
                </SelectStyle>
           {/* <label>Status:</label> */}

@@ -95,9 +95,9 @@ export const getPetsFilter = (link) => {
 }
 
 
-export const getTemperaments = () => {
+export const getTemperaments = (idcity) => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/temperaments`)
+        let json = await axios(`http://localhost:3001/{idcity}`)
         return dispatch({
             type: GET_TEMPERAMENTS, payload: json.data
         })

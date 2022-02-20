@@ -25,9 +25,9 @@ import {GET_COUNTRIES,
                 return results;
             }
            let newpets= NewPets(json.data, size);
-            console.log([newpets]  , "partido")
+            console.log([newpets] , "Pets sin partir",json  , "partido")
             dispatch({type: GET_PETS, payload: newpets[0]}); // de momento solo muestra el primer array
-           // dispatch({type: GET_PETS, payload:json.data}); //Pets sin división
+          //dispatch({type: GET_PETS, payload:json.data}); //Pets sin división
             
            
             }

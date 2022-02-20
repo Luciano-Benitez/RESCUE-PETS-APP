@@ -25,7 +25,7 @@ export function Home() {
 
 
         <Filters/>
-            <Cards pets={pets}></Cards>
+            <Cards  pets={pets}></Cards>
             <PreFooter/>
 
         </Fragment>)

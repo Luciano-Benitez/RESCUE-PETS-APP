@@ -12,7 +12,7 @@ const Login = () => {
             <Container>
                 <h1 className="header1">Iniciar sesión</h1>
                 <div className='centerButtons'>
-                    <button class="loginBtn loginBtn--facebook">
+                    <button className="loginBtn loginBtn--facebook">
                     Continuar con Facebook
                     </button>
 
@@ -22,11 +22,11 @@ const Login = () => {
                 </div>
                 <h2 className="header1">ó</h2>
                 <form>
-                    <div class="input-parent">
+                    <div className="input-parent">
                         <label>Correo electrónico</label>
                         <input type="text" id="username"></input>
                     </div>
-                    <div class="input-parent">
+                    <div className="input-parent">
                         <label>Contraseña</label>
                         <input type="password" id="password"></input>
                     </div>

@@ -1,4 +1,5 @@
-[{
+[
+    {
         "id": 451016,
         "id_state": 1699,
         "name": "Abisinia"
@@ -7,13 +8,11 @@
         "id": 451245,
         "id_state": 1699,
         "name": "Alegría"
-    },
-    {
+    }, {
         "id": 451289,
         "id_state": 1699,
         "name": "Alianza"
-    },
-    {
+    }, {
         "id": 451305,
         "id_state": 1699,
         "name": "Alpena"

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getcities, getCountries, getPetsFilter, getSpecies, getStates, getTemperaments} from '../Redux/Actions/index'
+import {getcities, getCountries, getFilterShelters, getPetsFilter, getSpecies, getStates, getTemperaments} from '../Redux/Actions/index'
 import { Container,SelectStyle } from '../Styles/StyledFilters'
 
 const Filters = ({idcity}) => {
@@ -18,6 +18,7 @@ const Filters = ({idcity}) => {
      const city = useSelector((state) => state.cityId)
      const status=useSelector((state)=>state.status)
      const species = useSelector((state) => state.species)
+     const shelter = useSelector((state) => state.shelter)
      
      // shelterId: '',
      // speciesId: '',
@@ -51,6 +52,7 @@ const Filters = ({idcity}) => {
           })  
           dispatch(getPetsFilter(query))
           dispatch(getSpecies())
+          dispatch(getFilterShelters())
      },[input])
 
 
@@ -126,9 +128,9 @@ const Filters = ({idcity}) => {
           {/* <label>Por Refugio:</label> */}
           <SelectStyle name='shelterId' onChange={(e)=>handleSelect(e)}>
                     <option  hidden >Refugios</option>
-                    <option>Mock-up: Refugio 1</option>
-                    <option>Mock-up: Refugio 2</option>
-                    <option>Mock-up: Refugio 3</option>
+                    {shelter.map(e => (
+                       <option key={e.id} value={e.id} >{e.name}</option> 
+                    ))}
                </SelectStyle>
           {/* <label>Por Especie:</label> */}
           <SelectStyle name='speciesId' onChange={(e)=>handleSelect(e)}>

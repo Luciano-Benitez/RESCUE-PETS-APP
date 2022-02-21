@@ -11,7 +11,8 @@ import {GET_COUNTRIES,
     GET_AGES,
     GET_STATUS,
     GET_SEARCH_SHELTERS,
-    GET_SPECIES
+    GET_SPECIES,
+    GET_FILTER_SHELTERS
     } from './types.js'
 
     
@@ -136,5 +137,11 @@ export const getSearchShelters = (name) => {
 export const getSpecies = () => {
     return  {
             type: GET_SPECIES, payload: null
+        }
+}
+
+export const getFilterShelters = () => {
+    return  {
+            type: GET_FILTER_SHELTERS, payload: null
         }
 }

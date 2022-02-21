@@ -8,4 +8,4 @@ export const GET_PETS = 'GET_PETS'
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
 export const GET_ID_CITY = 'GET_ID_CITY'
 export const GET_AGES = 'GET_AGES'
-
+export const GET_STATUS='GET_STATUS'

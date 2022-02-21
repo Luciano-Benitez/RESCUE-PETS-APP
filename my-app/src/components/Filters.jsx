@@ -16,6 +16,8 @@ const Filters = ({idcity}) => {
      const temperaments = useSelector((state) => state.temperaments)
      const ages = useSelector((state) => state.ages)
      const city = useSelector((state) => state.cityId)
+     const status=useSelector((state)=>state.status)
+
      
      // shelterId: '',
      // speciesId: '',
@@ -145,9 +147,9 @@ const Filters = ({idcity}) => {
           {/* <label>Status:</label> */}
           <SelectStyle name='petStatusId' onChange={(e)=>handleStatus(e)}>
                     <option hidden >Status</option>
-                    <option>Mock-up: Sin adoptar </option>
-                    <option>Mock-up: En proceso </option>
-                    <option>Mock-up: Adoptado</option>
+                    {status?.map(element => (
+                         <option key={element.id} value={element.id} >{element.status}</option>
+                    ))}
                </SelectStyle>
      </Container>
      )

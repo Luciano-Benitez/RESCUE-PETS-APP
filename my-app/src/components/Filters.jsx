@@ -4,7 +4,8 @@ import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getcities, getCountries, getFilterShelters, getPetsFilter, getSpecies, getStates, getTemperaments} from '../Redux/Actions/index'
 import { Container,SelectStyle } from '../Styles/StyledFilters'
-import {StyleButton} from '../Styles/StyledButtons'
+import {StyleButton, StyleButtonMini, StyleButtonUbicacion} from '../Styles/StyledButtons'
+import {IoNavigateCircle} from "react-icons/io5";
 
 const Filters = ({idcity, cambiarEstado}) => {
      const dispatch = useDispatch()
@@ -110,9 +111,9 @@ const Filters = ({idcity, cambiarEstado}) => {
      console.log(input)
      return (
      <Container>
-          <StyleButton onClick={()=>cambiarEstado(true)}>
+        <StyleButtonUbicacion onClick={()=>cambiarEstado(true)}>  <IoNavigateCircle/>
                Cambiar ubicación
-          </StyleButton>
+          </StyleButtonUbicacion >
           {/* <label>Por País:</label> */}
                {/* <SelectStyle onChange={e => handleSubmitCountry(e)}>
                     <option hidden >Países</option>

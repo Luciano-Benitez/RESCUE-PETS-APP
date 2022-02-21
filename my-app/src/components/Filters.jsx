@@ -8,40 +8,30 @@ import { Container,SelectStyle } from '../Styles/StyledFilters'
 const Filters = ({idcity}) => {
      const dispatch = useDispatch()
 
-     const [link, setLink] = useState(`http://localhost:3001/pets/${idcity}`)
-
+     
      const countries = useSelector((state) => state.countries)
      const states = useSelector((state) => state.states)
      const cities = useSelector((state) => state.cities)
      const pets = useSelector((state) => state.petsfilter)
      const temperaments = useSelector((state) => state.temperaments)
      const ages = useSelector((state) => state.ages)
+     const city = useSelector((state) => state.cityId)
      const status=useSelector((state)=>state.status)
+
      
+     // shelterId: '',
+     // speciesId: '',
+     // ageId: '',
+     // temperamentId: '',
+     // petStatusId:''
 
 
-     let petsfiltered = pets.map(e => {
-          const objj = {
-               temperament: e.temperament.temperament,
-               id: e.temperament.id
-          }
-          return objj
-     })
 
-     let whatever = petsfiltered.filter((value, index, self) =>
-     index === self.findIndex((t) => (
-       t.place === value.place && t.name === value.name
-     ))
-   )
+     const [link, setLink] = useState(`http://localhost:3001/pets/${idcity}`)
 
-     let tempsFiltered = petsfiltered.filter((element, index) => {
-          return petsfiltered.indexOf(element) === index;
-     });
+     const [input, setInput] = useState({})
 
-     let petsfiltered2 = pets.map(e => e.age.age)
-     let ageFiltered = petsfiltered2.filter((element, index) => {
-          return petsfiltered2.indexOf(element) === index;
-     });
+
 
 
 
@@ -49,7 +39,23 @@ const Filters = ({idcity}) => {
           dispatch(getCountries())
      },[dispatch])
 
+     useEffect(()=>{
+          setLink(`http://localhost:3001/pets/${idcity}`)
+     },[idcity])
 
+     function handleSelect(e) {
+          setInput({
+               ...input,
+               [e.target.name]: e.target.value
+          })
+          // setLink(`http://localhost:3001/pets/${idcity}`)
+          let query = `${link}?`
+          Object.entries(input).forEach(([key,value])=> {
+               query = `${query}${[key]}=${[value]}&`
+          
+          })  
+
+          }
 
      const handleSubmitCountry = (event) => {
           dispatch(getStates(event.target.value))
@@ -66,12 +72,26 @@ const Filters = ({idcity}) => {
      }
 
      const handleStatus = (event) => {
-          const query = `${link}?petStatusId=${event.target.value}`
+          const query = `${link}?petStatusId=${event.target.value}&`
           setLink(query)
           console.log(query)
           dispatch(getPetsFilter(query))
      }
-
+     const handleTemperament = (event) => {
+          const query = `${link}?temperamentId=${event.target.value}&`
+          setLink(query)
+          console.log(query)
+          dispatch(getPetsFilter(query))
+          // setLink(`http://localhost:3001/pets/${city}`)
+     }
+     const handleAge = (event) => {
+          const query = `${link}?ageId=${event.target.value}&`
+          setLink(query)
+          console.log(query)
+          dispatch(getPetsFilter(query))
+          // setLink(`http://localhost:3001/pets/${city}`)
+     }
+     console.log(input)
      return (
      <Container>
           {/* <label>Por País:</label> */}
@@ -97,35 +117,35 @@ const Filters = ({idcity}) => {
                </SelectStyle>
 
           {/* <label>Por Refugio:</label> */}
-          <SelectStyle>
-                    <option hidden >Refugios</option>
+          <SelectStyle name='shelterId'>
+                    <option  hidden >Refugios</option>
                     <option>Mock-up: Refugio 1</option>
                     <option>Mock-up: Refugio 2</option>
                     <option>Mock-up: Refugio 3</option>
                </SelectStyle>
           {/* <label>Por Especie:</label> */}
-          <SelectStyle>
+          <SelectStyle name='speciesId'>
                     <option hidden >Especies</option>
                     <option>Mock-up: Perros</option>
                     <option>Mock-up: Gatos</option>
                     <option>Mock-up: Otros</option>
                </SelectStyle>
           {/* <label>Por Edad:</label> */}
-          <SelectStyle>
+          <SelectStyle name='ageId' onChange={e => handleAge(e)}>
                     <option hidden >Rango Edad</option>
                     {ages?.map(element => (
                          <option key={element.id} value={element.id} >{element.age}</option>
                     ))}
                </SelectStyle>
           {/* <label>Temperamento:</label> */}
-          <SelectStyle>
+          <SelectStyle name='temperamentId' onChange={(e)=>handleTemperament(e)}>
                     <option hidden >Temperamento</option>
                     {temperaments?.map(element => (
                          <option key={element.id} value={element.id} >{element.temperament}</option>
                     ))}
                </SelectStyle>
           {/* <label>Status:</label> */}
-          <SelectStyle onChange={(e)=>handleStatus(e)}>
+          <SelectStyle name='petStatusId' onChange={(e)=>handleStatus(e)}>
                     <option hidden >Status</option>
                     {status?.map(element => (
                          <option key={element.id} value={element.id} >{element.status}</option>

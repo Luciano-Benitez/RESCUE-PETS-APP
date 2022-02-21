@@ -36,6 +36,8 @@ export const StyleInputMin = styled.input`
   border-color: ${allColors.colors[8]};
   border-width: 3px;
   border-radius: 5px;
+  position: relative;
+  bottom: 12px;
   
   
 `;

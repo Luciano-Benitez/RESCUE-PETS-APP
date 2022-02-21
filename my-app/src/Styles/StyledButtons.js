@@ -51,6 +51,8 @@ export const StyleButtonMini2 = styled.button`
   border: 0;
   font-weight: bold;
   color : white;
+  position: relative;
+  bottom: 9px;
   cursor: pointer;
   a {
     color: white;

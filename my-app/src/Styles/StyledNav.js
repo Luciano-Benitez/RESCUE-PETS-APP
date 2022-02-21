@@ -7,7 +7,7 @@ export const StyleNavBar = styled.nav`
   position: fixed;
   z-index: 100;
   width: 100%;
-  height: 16%;
+  height: 14%;
 
  
 `;

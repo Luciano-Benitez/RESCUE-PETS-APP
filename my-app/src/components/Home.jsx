@@ -27,7 +27,7 @@ export function Home() {
         <Header></Header>
       
         
-        <Filters idcity={idcity}/>
+        <Filters idcity={idcity} cambiarEstado={cambiarEstadoModal}/>
         {estadoModal == true ? (<Modal setidcity={setidcity} estado={estadoModal} cambiarEstado={cambiarEstadoModal}/>) : ""}
             <Cards  pets={pets}></Cards>
             <PreFooter/>

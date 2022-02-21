@@ -1,66 +1,70 @@
-
-
 html {
-  box-sizing: border-box;
-  font-size: 62.5%;
-  
-  /* 1REM = 10px  */
- 
+    box-sizing: border-box;
+    font-size: 62.5%;
+
+    /* 1REM = 10px  */
+
 }
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 
 body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  margin: 0;
-  overflow-x: hidden;
- 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+
 }
 
 .ok {
-  
-  background-image: url(../src/Icos/wave.svg);
-  margin: 0 !important;
+
+    background-image: url('../src/Icos/wave.svg');
+    margin: 0 !important;
 
 }
 
 
-div{
-  margin: 0;
-  overflow-x: hidden;
+div {
+    margin: 0;
+    overflow-x: hidden;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-.active{
+.active {
+position: relative;
+  border-radius: 5px;
+  border: 0;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #63ac44;
+padding: 12px 20px 2px 20px;
+bottom: 12px;
   
-    color: white;
-    background-color: #63ac44;
-    border-radius: 10px;
-    padding: 2px 20px 2px 20px;
-    height: 120%;
-    text-align: center;
-   
-    
+
+}
+
+.active a {
+background-color: #63ac44;
+padding: 20px;
+border-width: 3px;
 }
 
 html {
     box-sizing: border-box;
     font-size: 62.5%;
     /* 1REM = 10px  */
-  }
-  *,
-  *:before,
-  *:after {
+}
+*,
+*:before,
+*:after {
     box-sizing: inherit;
-  }
-  
-
-
-  
+}

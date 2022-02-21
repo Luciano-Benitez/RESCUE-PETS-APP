@@ -9,9 +9,17 @@ import {GET_COUNTRIES,
     GET_PETS_FILTER,
     authLogin,
     authCheckingFinish} from './types.js'
+    GET_TEMPERAMENTS,
+    GET_ID_CITY, 
+    GET_AGES,
+    GET_STATUS,
+    GET_SEARCH_SHELTERS,
+    GET_SPECIES,
+    GET_FILTER_SHELTERS
+    } from './types.js'
+
 
     
- 
 
 
 
@@ -82,18 +90,19 @@ export const postShelter = (payload) => {
     } 
 }
 
-export const getPetsFilter = (id) => {
+export const getPetsFilter = (link) => {
     return async function (dispatch){
         try{
-            let response = await fetch(`http://localhost:3001/pets`)
-            .then(response => response.json())
-            return dispatch({type:GET_PETS_FILTER,
-            payload: {response,d:Number(id)}})
+            let json = await axios(link)
+            return dispatch({
+                type: GET_PETS_FILTER, payload: json.data
+            })
         }catch(error){
-
+            return error
         }
     }
 }
+
 
 export const startLogin= (email, password) =>{
     return async(dispatch)=>{
@@ -147,3 +156,50 @@ export const login= (user) =>({
     type: authLogin,
     payload: user
 })
+
+
+export const getTemperaments = () => {
+    return {
+        type: GET_TEMPERAMENTS, payload: null
+    }
+} 
+
+export const getCityId = (id) => {
+    return {
+        type: GET_ID_CITY, payload: id
+    }
+}
+
+export const getAges = () => {
+    return {
+        type: GET_AGES, payload: null
+    }
+} 
+
+export const getStatus=()=>{
+    return{
+      type:GET_STATUS, payload:null
+    }
+}
+
+export const getSearchShelters = (name) => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/searchShelter?name=` + name);
+        return dispatch({
+            type: GET_SEARCH_SHELTERS,
+            payload: json.data
+        })
+    } 
+};
+
+export const getSpecies = () => {
+    return  {
+            type: GET_SPECIES, payload: null
+        }
+}
+
+export const getFilterShelters = () => {
+    return  {
+            type: GET_FILTER_SHELTERS, payload: null
+        }
+

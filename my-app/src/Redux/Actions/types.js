@@ -11,7 +11,11 @@ export const authLogin = 'Login'
 export const authStartRegister = 'Start Register'
 export const authStartTokenRenew = 'Start token renew'
 export const authLogout = 'Logout'
-
-
-
+export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
+export const GET_ID_CITY = 'GET_ID_CITY'
+export const GET_AGES = 'GET_AGES'
+export const GET_STATUS='GET_STATUS'
+export const GET_SEARCH_SHELTERS = 'GET_SEARCH_SHELTERS'
+export const GET_SPECIES = 'GET_SPECIES'
+export const GET_FILTER_SHELTERS = 'GET_FILTER_SHELTERS'
 

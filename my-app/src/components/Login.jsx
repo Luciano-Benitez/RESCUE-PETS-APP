@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { startLogin } from '../Redux/Actions';
 import { Container, Button, Center, MiniText, LinkStyle } from '../Styles/StyledLogin'
+import { Container, Button, Center, MiniText, LinkStyle, Background, Cuadro } from '../Styles/StyledLogin'
+
 
 
 const Login = () => {
@@ -32,9 +34,9 @@ const Login = () => {
     
       };
   return (
-    <div>
+    <Background>
         <Center>
-            <Container>
+            <Container><Cuadro>
                 <h1 className="header1">Iniciar sesión</h1>
                 <div className='centerButtons'>
                     <button className="loginBtn loginBtn--facebook">
@@ -60,12 +62,12 @@ const Login = () => {
                 </form>
 
                 <MiniText >¿No tienes cuenta? <Link to='/register'>Regístrate!</Link> </MiniText>
-                    
+                </Cuadro>   
             </Container>
         </Center>
 
         
-    </div>
+    </Background>
 
   )
 }

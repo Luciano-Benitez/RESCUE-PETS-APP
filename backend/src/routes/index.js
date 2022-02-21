@@ -8,19 +8,21 @@ const createShelter = require('./CreateLogsShelters');
 const countries = require('./country')
 const cities = require('./cities')
 const auth= require('./auth')
-
+const temperaments = require('./temperaments')
 const states = require('./states')
+const Search = require('./Search');
 
 router.use('/',pets)
 router.use('/',form)
 router.use('/',createShelter)
 router.use('/',roles)
 router.use('/',countries)
+router.use('/',Search)
 
 router.use('/',auth)
 
 router.use('/',states)
 router.use('/',cities)
-
+router.use('/',temperaments)
 
 module.exports = router;

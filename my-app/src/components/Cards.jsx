@@ -6,7 +6,7 @@ export default function Cards({pets}) {
     return (<Fragment >
         <br/>
         <StyledCardContainer key={Math.random(5)}> {
-            pets.length  ? pets.map((p) => (<Fragment key={p.id} >
+            typeof(pets) !== 'string'? pets.map((p) => (<Fragment key={p.id} >
 
                 <StyledCard >
                     <h1>{p.name}</h1>
@@ -18,7 +18,7 @@ export default function Cards({pets}) {
                 </StyledCard>
 
                 
-            </Fragment>)) : (<h1>             Cargando datos</h1>)
+            </Fragment>)) : typeof(pets) === 'string'? (<h1>             {pets}</h1>): (<h1>             Cargando datos</h1>)
         } </StyledCardContainer>
     </Fragment>);
 

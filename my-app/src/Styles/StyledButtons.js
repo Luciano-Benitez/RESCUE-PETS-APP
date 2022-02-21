@@ -39,3 +39,25 @@ export const StyleButtonMini = styled.button`
     background-color: ${allColors.colors[2]};
   }
 `;
+
+
+export const StyleButtonMini2 = styled.button`
+  margin: 1em;
+  background-color: ${allColors.colors[8]};
+  border-radius: 5px;
+  height: 40px;
+  font-size: 17px;
+  padding: 10px;
+  border: 0;
+  font-weight: bold;
+  color : white;
+  position: relative;
+  bottom: 9px;
+  cursor: pointer;
+  a {
+    color: white;
+  }
+  &:hover {
+    background-color: ${allColors.colors[2]};
+  }
+`;

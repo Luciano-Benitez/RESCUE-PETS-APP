@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import FormShelter from "./components/FormShelter";
 import { Home } from "./components/Home";
 import Login from "./components/Login";
+import Shelters from './components/Shelters';
 
 import { useDispatch, useSelector } from "react-redux";
 import { startChecking } from "./Redux/Actions";
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <BrowserRouter>
+
       <Navbar />
       <Routes>
 
@@ -63,6 +65,7 @@ function App() {
 
 
       <Footer />
+
     </BrowserRouter>
   );
 }

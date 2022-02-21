@@ -3,6 +3,8 @@ import React, {Fragment} from "react";
 import { NavLink } from 'react-router-dom';
 import {StyleNavBar, StyleLi , Divmenu } from '../Styles/StyledNav';
 import { StyleInput} from '../Styles/StyledSearch'
+import Search from './Search';
+
 export default function Navbar() {
     return (
         <Fragment>
@@ -19,7 +21,9 @@ export default function Navbar() {
                             </StyleLi>
                             <StyleLi>
                                 <NavLink activeclassname="active" to="/nosotros">Sobre Nosotros</NavLink>
-                            </StyleLi> <StyleInput name='Search' placeholder='Escriba elemento a buscar'></StyleInput>
+                            </StyleLi>
+                            {/* <StyleInput name='Search' placeholder='Escriba elemento a buscar'></StyleInput> */}
+                                <Search/>
                             </Divmenu> 
                             </ul>
                     </StyleNavBar>

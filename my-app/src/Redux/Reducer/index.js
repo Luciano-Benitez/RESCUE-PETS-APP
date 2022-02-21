@@ -9,7 +9,8 @@ import {
   GET_TEMPERAMENTS,
   GET_ID_CITY,
   GET_AGES,
-  GET_STATUS
+  GET_STATUS,
+  GET_SEARCH_SHELTERS
   
 } from "../Actions/types";
 
@@ -111,6 +112,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
             ...state,
             status : filteredStatus
           }
+
+      case GET_SEARCH_SHELTERS:
+          return{
+            ...state,
+            Shelters: payload
+          };
 
     default:
       return state;

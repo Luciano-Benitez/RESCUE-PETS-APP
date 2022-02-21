@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import FormShelter from "./components/FormShelter";
 import {Home} from "./components/Home";
 import Login from "./components/Login";
+import Shelters from './components/Shelters';
 
 import PreFooter from "./components/PreFooter";
 
@@ -15,7 +16,7 @@ import PreFooter from "./components/PreFooter";
 function App() {
   return (
     <BrowserRouter>
-       <Navbar></Navbar>
+       <Navbar/>
      
         <Routes>
 
@@ -24,6 +25,8 @@ function App() {
           <Route path="/Login" element={<Login/>}/>
       
           <Route path="/register" element={<FormShelter/>}/>
+
+          <Route path="/Shelters" element={<Shelters/>}/>
 
         </Routes>
         <Footer/>

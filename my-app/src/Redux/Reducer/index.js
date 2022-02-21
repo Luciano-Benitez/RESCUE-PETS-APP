@@ -10,8 +10,8 @@ import {
   GET_ID_CITY,
   GET_AGES,
   GET_STATUS,
-  GET_SEARCH_SHELTERS
-  
+  GET_SEARCH_SHELTERS,
+  GET_SPECIES
 } from "../Actions/types";
 
 const initialState = {
@@ -119,6 +119,20 @@ export default function rooReducer(state = initialState, { type, payload }) {
             Shelters: payload
           };
 
+      case GET_SPECIES:
+        let filter = []
+
+        state.petsfilter.map(e =>{
+            if(!filter.length) return filter.push(e.species)
+            let ele = e.species.id
+            let obj = filter.find(s => s.id === ele)
+            if(!obj) return filter.push(e.species)
+        })
+
+        return{
+            ...state,
+          species : filter
+        } 
     default:
       return state;
   }

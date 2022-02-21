@@ -10,11 +10,11 @@ import {GET_COUNTRIES,
     GET_ID_CITY, 
     GET_AGES,
     GET_STATUS,
-    GET_SEARCH_SHELTERS
+    GET_SEARCH_SHELTERS,
+    GET_SPECIES
     } from './types.js'
 
     
- 
 
 
 
@@ -132,3 +132,9 @@ export const getSearchShelters = (name) => {
         })
     } 
 };
+
+export const getSpecies = () => {
+    return  {
+            type: GET_SPECIES, payload: null
+        }
+}

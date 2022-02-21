@@ -43,18 +43,24 @@ const Filters = ({idcity}) => {
           setLink(`http://localhost:3001/pets/${idcity}`)
      },[idcity])
 
-     function handleSelect(e) {
-          setInput({
-               ...input,
-               [e.target.name]: e.target.value
-          })
-          // setLink(`http://localhost:3001/pets/${idcity}`)
+     useEffect(()=>{
           let query = `${link}?`
           Object.entries(input).forEach(([key,value])=> {
                query = `${query}${[key]}=${[value]}&`
           
           })  
+          dispatch(getPetsFilter(query))
+     },[input])
 
+
+
+     function handleSelect(e) {
+          setInput( (input) => { return {
+               ...input,
+               [e.target.name]: e.target.value
+          }})
+          // setLink(`http://localhost:3001/pets/${idcity}`)
+          
           }
 
      const handleSubmitCountry = (event) => {
@@ -117,35 +123,36 @@ const Filters = ({idcity}) => {
                </SelectStyle>
 
           {/* <label>Por Refugio:</label> */}
-          <SelectStyle name='shelterId'>
+          <SelectStyle name='shelterId' onChange={(e)=>handleSelect(e)}>
                     <option  hidden >Refugios</option>
                     <option>Mock-up: Refugio 1</option>
                     <option>Mock-up: Refugio 2</option>
                     <option>Mock-up: Refugio 3</option>
                </SelectStyle>
           {/* <label>Por Especie:</label> */}
-          <SelectStyle name='speciesId'>
+          <SelectStyle name='speciesId' onChange={(e)=>handleSelect(e)}>
                     <option hidden >Especies</option>
                     <option>Mock-up: Perros</option>
                     <option>Mock-up: Gatos</option>
                     <option>Mock-up: Otros</option>
                </SelectStyle>
           {/* <label>Por Edad:</label> */}
-          <SelectStyle name='ageId' onChange={e => handleAge(e)}>
+          <SelectStyle name='ageId' onChange={e => handleSelect(e)}>
                     <option hidden >Rango Edad</option>
                     {ages?.map(element => (
                          <option key={element.id} value={element.id} >{element.age}</option>
                     ))}
                </SelectStyle>
           {/* <label>Temperamento:</label> */}
-          <SelectStyle name='temperamentId' onChange={(e)=>handleTemperament(e)}>
+          <SelectStyle name='temperamentId' onChange={(e)=>handleSelect(e)}>
                     <option hidden >Temperamento</option>
-                    {temperaments?.map(element => (
-                         <option key={element.id} value={element.id} >{element.temperament}</option>
-                    ))}
+                    {temperaments && temperaments?.map(element => (
+                         <option key={element.id} value={element.id} >{element.temperament}</option> 
+                    )) 
+                    }
                </SelectStyle>
           {/* <label>Status:</label> */}
-          <SelectStyle name='petStatusId' onChange={(e)=>handleStatus(e)}>
+          <SelectStyle name='petStatusId' onChange={(e)=>handleSelect(e)}>
                     <option hidden >Status</option>
                     {status?.map(element => (
                          <option key={element.id} value={element.id} >{element.status}</option>

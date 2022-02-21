@@ -15,6 +15,7 @@ const Filters = ({idcity}) => {
      const cities = useSelector((state) => state.cities)
      const pets = useSelector((state) => state.petsfilter)
      const temperaments = useSelector((state) => state.temperaments)
+     const ages = useSelector((state) => state.ages)
      
 
 
@@ -111,8 +112,8 @@ const Filters = ({idcity}) => {
           {/* <label>Por Edad:</label> */}
           <SelectStyle>
                     <option hidden >Rango Edad</option>
-                    {ageFiltered?.map(element => (
-                         <option key={element} value={element} >{element}</option>
+                    {ages?.map(element => (
+                         <option key={element.id} value={element.id} >{element.age}</option>
                     ))}
                </SelectStyle>
           {/* <label>Temperamento:</label> */}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { StyledModal ,Styledselect } from "../Styles/StyledModal.js";
 import { StyleButton } from "../Styles/StyledButtons.js";
-import { getTemperaments, getCityId } from "../Redux/Actions/index.js";
+import { getTemperaments, getCityId, getAges } from "../Redux/Actions/index.js";
 
 
 
@@ -41,6 +41,7 @@ import {
         const paramLink = `${params}${e.target.value}`
         await dispatch(getPetsFilter(paramLink))
         await dispatch(getTemperaments())
+        await dispatch(getAges())
         await dispatch(getCityId(e.target.value))
         
       };

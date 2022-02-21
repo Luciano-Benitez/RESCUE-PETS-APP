@@ -7,6 +7,7 @@ import {
   GET_PETS_FILTER,
   GET_PETS,
   GET_TEMPERAMENTS,
+  GET_ID_CITY
   
 } from "../Actions/types";
 
@@ -16,7 +17,8 @@ const initialState = {
   cities: [],
   petsfilter: [], 
   pets: [],
-  temperaments: []
+  temperaments: [],
+  cityId: []
 
 };
 
@@ -62,10 +64,25 @@ export default function rooReducer(state = initialState, { type, payload }) {
         petsfilter : payload
       } 
     case GET_TEMPERAMENTS:
+      let filteredTemperaments = []
+
+      state.petsfilter.map(el => {
+        if(!filteredTemperaments.length) return filteredTemperaments.push(el.temperament)
+        let temp = el.temperament.id
+        let obj = filteredTemperaments.find( temperamento => temperamento.id === temp )
+        if(!obj) return filteredTemperaments.push(el.temperament)
+      })
       return {
         ...state,
-        temperaments : payload
-      }  
+        temperaments : filteredTemperaments
+      } 
+      case GET_ID_CITY:
+        return {
+          ...state,
+          cityId : payload
+        } 
+
+
     default:
       return state;
   }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { StyledModal ,Styledselect } from "../Styles/StyledModal.js";
 import { StyleButton } from "../Styles/StyledButtons.js";
+import { getTemperaments, getCityId } from "../Redux/Actions/index.js";
 
 
 
@@ -35,10 +36,13 @@ import {
         dispatch(getcities(e.target.value));
       };
     
-      const handleSelectCity = (e) => {
+      const handleSelectCity = async (e) => {
         setidcity(e.target.value)
         const paramLink = `${params}${e.target.value}`
-        dispatch(getPetsFilter(paramLink))
+        await dispatch(getPetsFilter(paramLink))
+        await dispatch(getTemperaments())
+        await dispatch(getCityId(e.target.value))
+        
       };
 
       return ( 

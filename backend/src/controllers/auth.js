@@ -39,6 +39,7 @@ exports.loginUser = async(req, res= response) =>{
 
         res.json({
             ok: true,
+            id: User.id,
             email,
             token
         })
@@ -60,6 +61,8 @@ exports.revalidateToken= async(req, res= response) =>{
 
     res.json({
         ok: true,
+        id,
+        email,
         token
     })
 }

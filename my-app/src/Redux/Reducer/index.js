@@ -6,10 +6,13 @@ import {
   POST_FORM_REGISTER,
   GET_PETS_FILTER,
   GET_PETS,
+  authLogin,
+  authCheckingFinish,
 } from "../Actions/types";
 
 const initialState = {
   countries: [],
+  checking: true,
   states: [],
   cities: [],
   petsfilter: [], 
@@ -59,7 +62,21 @@ export default function rooReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         petsfilter : petsbyfilter
-      }  
+      }
+
+    case authLogin:
+      return{
+        ...state,
+        checking: false,
+        ...payload
+      }
+    
+    case authCheckingFinish:
+  
+      return {
+        ...state,
+        checking: false
+      }
     default:
       return state;
   }

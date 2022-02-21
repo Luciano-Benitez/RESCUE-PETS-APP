@@ -36,7 +36,10 @@ async function createShelter(req, res) {
         });
        
         res.status(201).send({
-            createShelter, 
+            ok: true,
+            createShelter,
+            id: User.id,
+            email: User.email,
             token
          });
 

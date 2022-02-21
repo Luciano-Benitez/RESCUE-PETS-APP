@@ -1,11 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { startLogin } from '../Redux/Actions';
 import { Container, Button, Center, MiniText, LinkStyle } from '../Styles/StyledLogin'
 
 
-
-
 const Login = () => {
+
+    const dispatch= useDispatch()
+
+    const [input, setInput] = useState({
+        email: '',
+        password: ''
+      });
+    
+      const handleChange = (e) => {
+        setInput({
+          ...input,
+          [e.target.name]: e.target.value,
+        });
+     
+      };  
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(startLogin(input.email, input.password))
+        setInput({
+          email: '',
+          password: ''
+        });
+    
+      };
   return (
     <div>
         <Center>
@@ -21,18 +46,19 @@ const Login = () => {
                     </button>
                 </div>
                 <h2 className="header1">ó</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="input-parent">
                         <label>Correo electrónico</label>
-                        <input type="text" id="username"></input>
+                        <input name="email" value={input.email} type="text" id="username" onChange={handleChange}></input>
                     </div>
                     <div className="input-parent">
                         <label>Contraseña</label>
-                        <input type="password" id="password"></input>
+                        <input name='password' value={input.password} type="password" id="password" onChange={handleChange}></input>
                     </div>
-                </form>
-                <MiniText ><Link to='/Login'>¿Olvidó su contraseña?</Link> </MiniText>
+                    <MiniText ><Link to='/'>¿Olvidó su contraseña?</Link> </MiniText>
                 <Button type="submit">Iniciar sesión</Button>
+                </form>
+
                 <MiniText >¿No tienes cuenta? <Link to='/register'>Regístrate!</Link> </MiniText>
                     
             </Container>

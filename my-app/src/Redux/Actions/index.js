@@ -1,11 +1,14 @@
 import axios from 'axios'
+import { fetchConToken, fetchSinToken } from '../../helpers/fetch.js';
 import {GET_COUNTRIES, 
     GET_STATES, 
     GET_CITIES,
     CLEAN_STATE_FORM,
     GET_PETS,
     POST_FORM_REGISTER,
-    GET_PETS_FILTER} from './types.js'
+    GET_PETS_FILTER,
+    authLogin,
+    authCheckingFinish} from './types.js'
 
     
  
@@ -91,3 +94,56 @@ export const getPetsFilter = (id) => {
         }
     }
 }
+
+export const startLogin= (email, password) =>{
+    return async(dispatch)=>{
+        const resp= await fetchSinToken('login',{email, password}, 'POST')
+        const body = await resp.json()
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime())
+            dispatch(login({id: body.id, email: body.email}))
+        }
+        else{
+            alert(body.msg)
+        }
+    }
+}
+
+export const startRegister= (name, phoneNumber, description, address, email, password ,cityId, role) =>{
+    return async(dispatch)=>{
+        const resp= await fetchSinToken('createShelter',{name, phoneNumber, description, address, email, password ,cityId, role}, 'POST')
+        const body = await resp.json()
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime())
+            dispatch(login({id: body.id, email: body.email}))
+        }
+        else{
+            alert(body.msg)
+        }
+    }
+}
+
+export const startChecking = ( ) =>{
+    return async(dispatch) =>{
+       
+        const resp= await fetchConToken('renew')
+        const body = await resp.json()
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime())
+            dispatch(login({id: body.id, email: body.email}))
+        }
+        else{
+            dispatch(checkingFinish())
+        }
+    }
+}
+
+const checkingFinish = () => ({type: authCheckingFinish})
+
+export const login= (user) =>({
+    type: authLogin,
+    payload: user
+})

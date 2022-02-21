@@ -37,17 +37,25 @@ a {
 }
 
 .active {
-
-  background-color: #63ac44;
+position: relative;
   border-radius: 5px;
-  padding: 2px 17px 3px;
-  margin-bottom: 15px;
   border: 0;
   font-weight: bold;
   color: white;
   cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #63ac44;
+padding: 12px 20px 2px 20px;
+bottom: 12px;
+  
 
+}
 
+.active a {
+background-color: #63ac44;
+padding: 20px;
+border-width: 3px;
 }
 
 html {

@@ -14,12 +14,13 @@ export const StyleNavBar = styled.nav`
 
 export const Divmenu = styled.div`
   display: flex;
-  padding-right: 2px;
+  padding-right: 1px;
   float: right;
   font-size: 15px;
   text-decoration: none;
   font-weight: bold;
   margin:0px;
+ 
   
  
 
@@ -28,6 +29,7 @@ export const Divmenu = styled.div`
 export const StyleLi = styled.li`
   margin: 1em;
   display: flex;
+  
   
   white-space: nowrap;
   a {

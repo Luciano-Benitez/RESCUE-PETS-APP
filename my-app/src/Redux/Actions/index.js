@@ -6,7 +6,8 @@ import {GET_COUNTRIES,
     GET_PETS,
     POST_FORM_REGISTER,
     GET_PETS_FILTER,
-    GET_TEMPERAMENTS
+    GET_TEMPERAMENTS,
+    GET_ID_CITY
     } from './types.js'
 
     
@@ -95,11 +96,14 @@ export const getPetsFilter = (link) => {
 }
 
 
-export const getTemperaments = (idcity) => {
-    return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/{idcity}`)
-        return dispatch({
-            type: GET_TEMPERAMENTS, payload: json.data
-        })
-    } 
-}
+export const getTemperaments = () => {
+    return {
+        type: GET_TEMPERAMENTS, payload: null
+    }
+} 
+
+export const getCityId = (id) => {
+    return {
+        type: GET_ID_CITY, payload: id
+    }
+} 

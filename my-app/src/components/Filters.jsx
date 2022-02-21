@@ -18,7 +18,20 @@ const Filters = ({idcity}) => {
      
 
 
-     let petsfiltered = pets.map(e => e.temperament.temperament)
+     let petsfiltered = pets.map(e => {
+          const objj = {
+               temperament: e.temperament.temperament,
+               id: e.temperament.id
+          }
+          return objj
+     })
+
+     let whatever = petsfiltered.filter((value, index, self) =>
+     index === self.findIndex((t) => (
+       t.place === value.place && t.name === value.name
+     ))
+   )
+
      let tempsFiltered = petsfiltered.filter((element, index) => {
           return petsfiltered.indexOf(element) === index;
      });
@@ -34,9 +47,6 @@ const Filters = ({idcity}) => {
           dispatch(getCountries())
      },[dispatch])
 
-     useEffect(()=>{
-          dispatch(getTemperaments(idcity))
-     },[dispatch])
 
 
      const handleSubmitCountry = (event) => {
@@ -50,6 +60,7 @@ const Filters = ({idcity}) => {
      const handleSubmitCities = (event) => {
           console.log(event.target.value)
           dispatch(getPetsFilter(event.target.value))
+
      }
 
      const handleStatus = (event) => {
@@ -107,8 +118,8 @@ const Filters = ({idcity}) => {
           {/* <label>Temperamento:</label> */}
           <SelectStyle>
                     <option hidden >Temperamento</option>
-                    {tempsFiltered?.map(element => (
-                         <option key={element} value={element} >{element}</option>
+                    {temperaments?.map(element => (
+                         <option key={element.id} value={element.id} >{element.temperament}</option>
                     ))}
                </SelectStyle>
           {/* <label>Status:</label> */}

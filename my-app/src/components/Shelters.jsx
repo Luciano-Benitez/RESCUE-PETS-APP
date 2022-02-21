@@ -13,11 +13,11 @@ export default function Shelters() {
          
             {
                 
-                allShelters?.map(e => {
+                typeof(allShelters) !== 'string' ? allShelters.map(e => {
                     return (
                         <CardShelter key={e.id} name={e.name} address={e.address} phonenumber={e.phoneNumber} /> 
                     )
-                }) 
+                }) : typeof(allShelters) === 'string' ? (<h1> {allShelters}</h1>) : (<h1>             Cargando datos</h1>)
             }
        </StyledCardContainer>  
         );

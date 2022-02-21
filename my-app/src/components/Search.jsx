@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import {getSearchShelters} from '../Redux/Actions';
 import { useDispatch } from "react-redux";
 import {IoAdd} from "react-icons/io5";
+import { StyleInputMin } from "../Styles/StyledSearch.js";
+import {StyleButton, StyleButtonMini2} from '../Styles/StyledButtons.js';
+
 
 export function SearchBar() {
 const dispatch = useDispatch();
@@ -23,8 +26,8 @@ const [name, setName] = React.useState();
     return (
     <div  >
         <form onSubmit={handleSubmit} >
-        <input  name='buscar' type='text' placeholder='Buscar' value={name} onChange={handleInputChange}/>
-        <button  type="submit"><IoAdd/></button>
+        < StyleInputMin   name='buscar' type='text' placeholder='Buscar' value={name} onChange={handleInputChange}/>
+        <StyleButtonMini2  type="submit"><IoAdd/></StyleButtonMini2>
         </form>
     </div>
     );

@@ -8,18 +8,18 @@ export const StyleNavBar = styled.nav`
   z-index: 100;
   width: 100%;
   height: 16%;
- 
+
  
 `;
 
 export const Divmenu = styled.div`
   display: flex;
-  padding-right: 6px;
+  padding-right: 2px;
   float: right;
-  font-size: 16px;
+  font-size: 15px;
   text-decoration: none;
   font-weight: bold;
-  margin:6px;
+  margin:0px;
   
  
 
@@ -28,7 +28,7 @@ export const Divmenu = styled.div`
 export const StyleLi = styled.li`
   margin: 1em;
   display: flex;
-  width: 160px;
+  
   white-space: nowrap;
   a {
     color: white;

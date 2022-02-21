@@ -9,6 +9,7 @@ import {GET_COUNTRIES,
     GET_TEMPERAMENTS,
     GET_ID_CITY, 
     GET_AGES,
+    GET_STATUS,
     } from './types.js'
 
     
@@ -114,3 +115,9 @@ export const getAges = () => {
         type: GET_AGES, payload: null
     }
 } 
+
+export const getStatus=()=>{
+    return{
+      type:GET_STATUS, payload:null
+    }
+}

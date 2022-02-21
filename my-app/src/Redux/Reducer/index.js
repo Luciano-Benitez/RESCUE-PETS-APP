@@ -29,8 +29,8 @@ const initialState = {
   cityId: [],
   ages: [],
   status:[],
-  shelter:[]
-
+  shelter:[],
+  Shelters:[]
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {

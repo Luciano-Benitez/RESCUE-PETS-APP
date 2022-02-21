@@ -12,7 +12,7 @@ async function searchShelters (req, res)  {
             }
         });
         console.log('searchShelter: ', searchShelter);
-        searchShelter ? 
+        searchShelter.length ? 
         res.status(200).json(searchShelter) :
         res.json({ ok: false, msg:'El refugio que busca no se encuentra,'});
     } catch (error) {

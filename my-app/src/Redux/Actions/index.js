@@ -10,6 +10,7 @@ import {GET_COUNTRIES,
     GET_ID_CITY, 
     GET_AGES,
     GET_STATUS,
+    GET_SEARCH_SHELTERS
     } from './types.js'
 
     
@@ -121,3 +122,13 @@ export const getStatus=()=>{
       type:GET_STATUS, payload:null
     }
 }
+
+export const getSearchShelters = (name) => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/searchShelter?name=` + name);
+        return dispatch({
+            type: GET_SEARCH_SHELTERS,
+            payload: json.data
+        })
+    } 
+};

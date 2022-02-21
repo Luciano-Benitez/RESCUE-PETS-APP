@@ -72,7 +72,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
     case GET_PETS_FILTER:
       return {
         ...state,
-        petsfilter : petsbyfilter
+        petsfilter : payload
       }
 
     case authLogin:
@@ -89,8 +89,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
         checking: false
       }
 
-        petsfilter : payload
-      } 
+
     case GET_TEMPERAMENTS:
       let filteredTemperaments = []
 

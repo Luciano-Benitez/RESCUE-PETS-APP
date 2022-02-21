@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { startLogin } from '../Redux/Actions';
-import { Container, Button, Center, MiniText, LinkStyle } from '../Styles/StyledLogin'
 import { Container, Button, Center, MiniText, LinkStyle, Background, Cuadro } from '../Styles/StyledLogin'
 
 

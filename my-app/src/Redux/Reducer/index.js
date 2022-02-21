@@ -11,7 +11,8 @@ import {
   GET_AGES,
   GET_STATUS,
   GET_SEARCH_SHELTERS,
-  GET_SPECIES
+  GET_SPECIES,
+  GET_FILTER_SHELTERS
 } from "../Actions/types";
 
 const initialState = {
@@ -23,7 +24,8 @@ const initialState = {
   temperaments: [],
   cityId: [],
   ages: [],
-  status:[]
+  status:[],
+  shelter:[]
 
 };
 
@@ -128,11 +130,24 @@ export default function rooReducer(state = initialState, { type, payload }) {
             let obj = filter.find(s => s.id === ele)
             if(!obj) return filter.push(e.species)
         })
-
         return{
             ...state,
           species : filter
         } 
+
+        case GET_FILTER_SHELTERS:
+        let filterShelter = []
+        state.petsfilter.map(e =>{
+            if(!filterShelter.length) return filterShelter.push(e.shelter)
+            let ele = e.shelter.id
+            let obj = filterShelter.find(s => s.id === ele)
+            if(!obj) return filterShelter.push(e.shelter)
+        })
+        return{
+          ...state,
+          shelter : filterShelter
+      } 
+
     default:
       return state;
   }

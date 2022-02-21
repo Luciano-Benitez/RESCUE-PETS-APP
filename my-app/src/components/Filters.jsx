@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getcities, getCountries, getPetsFilter, getStates, getTemperaments} from '../Redux/Actions/index'
+import {getcities, getCountries, getPetsFilter, getSpecies, getStates, getTemperaments} from '../Redux/Actions/index'
 import { Container,SelectStyle } from '../Styles/StyledFilters'
 
 const Filters = ({idcity}) => {
@@ -17,7 +17,7 @@ const Filters = ({idcity}) => {
      const ages = useSelector((state) => state.ages)
      const city = useSelector((state) => state.cityId)
      const status=useSelector((state)=>state.status)
-
+     const species = useSelector((state) => state.species)
      
      // shelterId: '',
      // speciesId: '',
@@ -50,6 +50,7 @@ const Filters = ({idcity}) => {
           
           })  
           dispatch(getPetsFilter(query))
+          dispatch(getSpecies())
      },[input])
 
 
@@ -132,9 +133,9 @@ const Filters = ({idcity}) => {
           {/* <label>Por Especie:</label> */}
           <SelectStyle name='speciesId' onChange={(e)=>handleSelect(e)}>
                     <option hidden >Especies</option>
-                    <option>Mock-up: Perros</option>
-                    <option>Mock-up: Gatos</option>
-                    <option>Mock-up: Otros</option>
+                    {species?.map(s =>(
+                         <option key={s.id} value={s.id}>{s.specie}</option>
+                    ))}
                </SelectStyle>
           {/* <label>Por Edad:</label> */}
           <SelectStyle name='ageId' onChange={e => handleSelect(e)}>

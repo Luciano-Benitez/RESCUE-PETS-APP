@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Button, Center, MiniText, LinkStyle } from '../Styles/StyledLogin'
+import { Container, Button, Center, MiniText, LinkStyle, Background, Cuadro } from '../Styles/StyledLogin'
 
 
 
 
 const Login = () => {
   return (
-    <div>
+    <Background>
         <Center>
-            <Container>
+            <Container><Cuadro>
                 <h1 className="header1">Iniciar sesión</h1>
                 <div className='centerButtons'>
                     <button className="loginBtn loginBtn--facebook">
@@ -34,12 +34,12 @@ const Login = () => {
                 <MiniText ><Link to='/Login'>¿Olvidó su contraseña?</Link> </MiniText>
                 <Button type="submit">Iniciar sesión</Button>
                 <MiniText >¿No tienes cuenta? <Link to='/register'>Regístrate!</Link> </MiniText>
-                    
+                </Cuadro>   
             </Container>
         </Center>
 
         
-    </div>
+    </Background>
 
   )
 }

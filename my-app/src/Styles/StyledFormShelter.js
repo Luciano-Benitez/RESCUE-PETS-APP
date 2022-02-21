@@ -1,16 +1,26 @@
 import styled from "styled-components";
 import allColors from "../variables/Colors";
+import Img from "../Icos/homeim2.svg"
 
 export const DivContainer = styled.div`
   //position: relative;
-  top: 11rem;
+  top: 15rem;
   width: 100%;
-  margin: 20px;;
+ 
   min-height: 83vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1rem;
+  padding-top: 7rem;
+  background-image: url(${Img});
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  background-position: 80% 75% ;
+  h2{
+  color: ${allColors.colors[8]};
+}
+
   .text-center {
     text-align: center;
     font-size: 3rem;
@@ -47,7 +57,9 @@ export const DivContainer = styled.div`
     border-width: 3px !important;
     border-radius: 5px !important;
     cursor: pointer;
+
 }
+
 
 textarea{
   width: 100%;
@@ -83,6 +95,7 @@ select{
 
 
     fieldset {
+      background-color: white;
       padding: 20px;
       margin-bottom: 2rem;
       min-width: 120%;

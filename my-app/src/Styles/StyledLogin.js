@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 import allColors from "../variables/Colors";
 import { Link } from "react-router-dom";
+import Img from "../Icos/homeim5.svg"
 
 export const Container = styled.div`
 position: relative;
@@ -10,13 +11,14 @@ top: 50%;
 transform: translate(-50%, -50%); */
 align-self: center;
 justify-self: center;
-background-color:#f3f3f3;
+background-color:white;
 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 width: max-content;
 height: max-content;
-margin-top: 150px;
+margin-top: 100px;
 margin-bottom: 60px;
+
 
 .header1 {
   text-align: center;
@@ -29,6 +31,7 @@ margin-bottom: 60px;
 }
 
 .loginBtn {
+  
   box-sizing: border-box;
   position: relative;
   /* width: 13em;  - apply for fixed size */
@@ -107,15 +110,21 @@ label {
 }
 
 .input-parent input {
-    padding: 10px 8px;
+
     width: 100%;
-    font-size: 14px;
-    background: darkgray;
-    border: none;
-    /* color: #c7c7c7; */
-    border-radius: 4px;
-    outline: none;
-    transition: all 0.2s ease;
+    height: 50px;
+    background: #ddf4ff !important;
+    color: gray !important;
+    padding-left: 5px !important;
+    margin-left: 10px !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-color:${allColors.colors[3]} !important;
+    border-width: 3px !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+
 }
 
 `
@@ -147,6 +156,7 @@ export const Center = styled.div`
 position: relative;
 min-height: calc(100vh - 170px);
 display: grid;
+
 `
 
 export const Waves = styled.svg`
@@ -165,3 +175,26 @@ a:hover { color:darkgray; }
 
 `
 
+export const Cuadro = styled.div`
+ 
+padding: 25px;
+`
+
+export const Background = styled.div`
+  //position: relative;
+  top:38rem;
+  width: 100%;
+ 
+  
+  align-items: center;
+  padding-top:  7rem;
+
+  background-image: url(${Img});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 11% 40% ;
+  h2{
+  color: ${allColors.colors[8]};
+}
+
+`

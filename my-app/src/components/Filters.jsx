@@ -51,19 +51,25 @@ const Filters = ({idcity}) => {
           
           })  
           dispatch(getPetsFilter(query))
-          dispatch(getSpecies())
-          dispatch(getFilterShelters())
+          // dispatch(getSpecies())
+          // dispatch(getFilterShelters())
      },[input])
 
 
 
      function handleSelect(e) {
-          setInput( (input) => { return {
-               ...input,
-               [e.target.name]: e.target.value
-          }})
+          if(isNaN(Number(e.target.value))){
+               let temp = input
+               delete temp[e.target.name]
+               console.log(temp)
+               setInput((input) => {return{...input}})
+          }else{
+               setInput( (input) => { return {
+                    ...input,
+                    [e.target.name]: e.target.value
+               }})
+          }
           // setLink(`http://localhost:3001/pets/${idcity}`)
-          
           }
 
      const handleSubmitCountry = (event) => {
@@ -134,14 +140,14 @@ const Filters = ({idcity}) => {
                </SelectStyle>
           {/* <label>Por Especie:</label> */}
           <SelectStyle name='speciesId' onChange={(e)=>handleSelect(e)}>
-                    <option hidden >Especies</option>
+                    <option value={"Especies"} >Especies</option>
                     {species?.map(s =>(
                          <option key={s.id} value={s.id}>{s.specie}</option>
                     ))}
                </SelectStyle>
           {/* <label>Por Edad:</label> */}
           <SelectStyle name='ageId' onChange={e => handleSelect(e)}>
-                    <option hidden >Rango Edad</option>
+                    <option value="Edad" >Rango Edad</option>
                     {ages?.map(element => (
                          <option key={element.id} value={element.id} >{element.age}</option>
                     ))}

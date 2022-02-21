@@ -37,8 +37,9 @@ function App() {
         <Route path="/" element={
 
           <Home />
+          
         } />
-
+         <Route path="/Shelters" element={<Shelters/>}/>
 
         <Route path="/login" element={
           <PublicRoute>

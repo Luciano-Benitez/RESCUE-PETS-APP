@@ -40,7 +40,8 @@ export const StyledCardContainer = styled.div`
   color: ${allColors.colors[8]};
   display: inline-flex;
   flex-wrap: wrap;
-  
+  align-items: center;
+  justify-content: space-around; 
   h1{
     text-align: center !important;
     padding: 3px;

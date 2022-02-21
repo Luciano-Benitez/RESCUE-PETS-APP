@@ -5,7 +5,7 @@ export const StyledPreFooter = styled.div `
   text-align: center;
   height: 100%;
   background-image: url(../Icos/wave.svg);
-
+  justify-content: space-around; 
   display: flex;
 `;
 

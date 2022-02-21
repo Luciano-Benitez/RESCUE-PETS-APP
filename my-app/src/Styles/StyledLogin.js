@@ -18,7 +18,7 @@ width: max-content;
 height: max-content;
 margin-top: 100px;
 margin-bottom: 60px;
-
+border-radius: 17px;
 
 .header1 {
   text-align: center;
@@ -183,9 +183,9 @@ padding: 25px;
 export const Background = styled.div`
   //position: relative;
   top:38rem;
-  width: 100%;
  
-  
+ 
+  border-radius: 20px;
   align-items: center;
   padding-top:  7rem;
 

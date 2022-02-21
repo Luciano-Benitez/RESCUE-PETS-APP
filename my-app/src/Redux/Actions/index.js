@@ -8,7 +8,7 @@ import {GET_COUNTRIES,
     POST_FORM_REGISTER,
     GET_PETS_FILTER,
     authLogin,
-    authCheckingFinish} from './types.js'
+    authCheckingFinish,
     GET_TEMPERAMENTS,
     GET_ID_CITY, 
     GET_AGES,
@@ -203,3 +203,4 @@ export const getFilterShelters = () => {
             type: GET_FILTER_SHELTERS, payload: null
         }
 
+}

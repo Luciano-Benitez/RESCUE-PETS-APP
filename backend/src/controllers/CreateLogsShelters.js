@@ -50,36 +50,8 @@ async function createShelter(req, res) {
 
     }
 
-    const salt = bcrypt.genSaltSync();
+  } 
 
-    const hash = bcrypt.hashSync(password, salt);
-
-    const User = await Users.create({
-      email: email,
-      password: hash,
-      roleId: role,
-    });
-
-    const token = await generateJWT(User.id, User.email);
-
-    const createShelter = await Shelter.create({
-      name,
-      address,
-      phoneNumber,
-      description,
-      userId: User.id,
-      cityId,
-    });
-
-    res.status(201).send({
-      createShelter,
-      token,
-    });
-  } catch (error) {
-    res.json("Error en el Catch.");
-    console.log(error);
-  }
-}
 
 const getAllShelters = async () => {
   return await Shelter.findAll({

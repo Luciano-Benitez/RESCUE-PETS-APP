@@ -11,15 +11,19 @@ const { setCities } = require("./helpers/cityData");
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
-  server.listen(3001, async () => {
-    await setTemperaments();
-    await setRoles();
-    await setSpecies();
-    await setAge();
-    await setPetStatus();
-    await setCountries();
-    await setStates();
-    // await setCities();
+
+  
+  server.listen(3001, async() => {
+    await setTemperaments()
+    await setRoles()
+    await setSpecies()
+    await setAge()
+    await setPetStatus()
+    //await setCountries()
+    //await setStates()
+    //await setCities()
+
+
 
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });

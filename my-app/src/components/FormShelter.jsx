@@ -3,13 +3,14 @@ import { DivContainer} from "../Styles/StyledFormShelter";
 import { StyleButton } from "../Styles/StyledButtons";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 import {
   getCountries,
   getStates,
   getcities,
   cleanStateForm,
-  postShelter
+  startRegister
 } from "../Redux/Actions/index.js";
 
 const FormShelter = () => {
@@ -72,8 +73,8 @@ const FormShelter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input)
-    dispatch(postShelter(input));;
-    alert('usuario creado con éxito')
+    dispatch(startRegister(input.name, input.phoneNumber, input.description, input.address, input.email, input.password ,input.cityId, input.role));;
+    Swal.fire('Genial!', 'Registro realizado correctamente', 'sucess');
     setInput({
       name: "",
       email: "",
@@ -86,7 +87,7 @@ const FormShelter = () => {
       password: "",
       role: "1",
     });
-    history('/Login')
+    history('/login')
   };
 
   return (

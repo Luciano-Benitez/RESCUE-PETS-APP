@@ -6,6 +6,8 @@ import {
   POST_FORM_REGISTER,
   GET_PETS_FILTER,
   GET_PETS,
+  authLogin,
+  authCheckingFinish,
   GET_TEMPERAMENTS,
   GET_ID_CITY,
   GET_AGES,
@@ -13,10 +15,12 @@ import {
   GET_SEARCH_SHELTERS,
   GET_SPECIES,
   GET_FILTER_SHELTERS
+
 } from "../Actions/types";
 
 const initialState = {
   countries: [],
+  checking: true,
   states: [],
   cities: [],
   petsfilter: [], 
@@ -68,6 +72,23 @@ export default function rooReducer(state = initialState, { type, payload }) {
     case GET_PETS_FILTER:
       return {
         ...state,
+        petsfilter : petsbyfilter
+      }
+
+    case authLogin:
+      return{
+        ...state,
+        checking: false,
+        ...payload
+      }
+    
+    case authCheckingFinish:
+  
+      return {
+        ...state,
+        checking: false
+      }
+
         petsfilter : payload
       } 
     case GET_TEMPERAMENTS:
@@ -147,6 +168,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
           ...state,
           shelter : filterShelter
       } 
+
 
     default:
       return state;

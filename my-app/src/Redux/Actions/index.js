@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { fetchConToken, fetchSinToken } from '../../helpers/fetch.js';
 import {GET_COUNTRIES, 
     GET_STATES, 
     GET_CITIES,
@@ -6,6 +7,8 @@ import {GET_COUNTRIES,
     GET_PETS,
     POST_FORM_REGISTER,
     GET_PETS_FILTER,
+    authLogin,
+    authCheckingFinish} from './types.js'
     GET_TEMPERAMENTS,
     GET_ID_CITY, 
     GET_AGES,
@@ -14,6 +17,7 @@ import {GET_COUNTRIES,
     GET_SPECIES,
     GET_FILTER_SHELTERS
     } from './types.js'
+
 
     
 
@@ -100,6 +104,60 @@ export const getPetsFilter = (link) => {
 }
 
 
+export const startLogin= (email, password) =>{
+    return async(dispatch)=>{
+        const resp= await fetchSinToken('login',{email, password}, 'POST')
+        const body = await resp.json()
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime())
+            dispatch(login({id: body.id, email: body.email}))
+        }
+        else{
+            alert(body.msg)
+        }
+    }
+}
+
+export const startRegister= (name, phoneNumber, description, address, email, password ,cityId, role) =>{
+    return async(dispatch)=>{
+        const resp= await fetchSinToken('createShelter',{name, phoneNumber, description, address, email, password ,cityId, role}, 'POST')
+        const body = await resp.json()
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime())
+            dispatch(login({id: body.id, email: body.email}))
+        }
+        else{
+            alert(body.msg)
+        }
+    }
+}
+
+export const startChecking = ( ) =>{
+    return async(dispatch) =>{
+       
+        const resp= await fetchConToken('renew')
+        const body = await resp.json()
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime())
+            dispatch(login({id: body.id, email: body.email}))
+        }
+        else{
+            dispatch(checkingFinish())
+        }
+    }
+}
+
+const checkingFinish = () => ({type: authCheckingFinish})
+
+export const login= (user) =>({
+    type: authLogin,
+    payload: user
+})
+
+
 export const getTemperaments = () => {
     return {
         type: GET_TEMPERAMENTS, payload: null
@@ -144,4 +202,4 @@ export const getFilterShelters = () => {
     return  {
             type: GET_FILTER_SHELTERS, payload: null
         }
-}
+

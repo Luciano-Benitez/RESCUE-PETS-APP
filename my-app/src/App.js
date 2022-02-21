@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './globalstyles.css';
 
@@ -6,30 +6,66 @@ import './globalstyles.css';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FormShelter from "./components/FormShelter";
-import {Home} from "./components/Home";
+import { Home } from "./components/Home";
 import Login from "./components/Login";
 import Shelters from './components/Shelters';
 
-import PreFooter from "./components/PreFooter";
+import { useDispatch, useSelector } from "react-redux";
+import { startChecking } from "./Redux/Actions";
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
+import { DashboardRoutes } from "./DashboardRoutes";
 
 
 function App() {
+
+  const dispatch = useDispatch()
+  
+
+  useEffect(() => {
+    dispatch(startChecking())
+  }, [dispatch])
+
+ 
+
   return (
     <BrowserRouter>
-       <Navbar/>
-     
-        <Routes>
 
-          <Route path="/" element={<Home/>}/>
-     
-          <Route path="/Login" element={<Login/>}/>
-      
-          <Route path="/register" element={<FormShelter/>}/>
+      <Navbar />
+      <Routes>
 
-          <Route path="/Shelters" element={<Shelters/>}/>
+        <Route path="/" element={
 
-        </Routes>
-        <Footer/>
+          <Home />
+        } />
+
+
+        <Route path="/login" element={
+          <PublicRoute>
+            <Login />
+
+          </PublicRoute>
+        } />
+
+        <Route path="/register" element={
+          <PublicRoute>
+            <FormShelter />
+
+          </PublicRoute>
+        } />
+
+
+        <Route path="/*" element={
+          <PrivateRoute >
+            <DashboardRoutes />
+          </PrivateRoute>
+        } />
+      </Routes>
+
+
+
+      <Footer />
+
     </BrowserRouter>
   );
 }

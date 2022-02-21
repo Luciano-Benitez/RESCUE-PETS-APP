@@ -4,8 +4,9 @@ import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getcities, getCountries, getFilterShelters, getPetsFilter, getSpecies, getStates, getTemperaments} from '../Redux/Actions/index'
 import { Container,SelectStyle } from '../Styles/StyledFilters'
+import {StyleButton} from '../Styles/StyledButtons'
 
-const Filters = ({idcity}) => {
+const Filters = ({idcity, cambiarEstado}) => {
      const dispatch = useDispatch()
 
      
@@ -109,27 +110,30 @@ const Filters = ({idcity}) => {
      console.log(input)
      return (
      <Container>
+          <StyleButton onClick={()=>cambiarEstado(true)}>
+               Cambiar ubicación
+          </StyleButton>
           {/* <label>Por País:</label> */}
-               <SelectStyle onChange={e => handleSubmitCountry(e)}>
+               {/* <SelectStyle onChange={e => handleSubmitCountry(e)}>
                     <option hidden >Países</option>
                     {countries.map(e => (
                          <option key={e.id} value={e.id} >{e.country}</option>
                     ))}
-               </SelectStyle>
+               </SelectStyle> */}
           {/* <label>Por Ciudades:</label> */}
-               <SelectStyle onChange={e => handleSubmitState(e)}>
+               {/* <SelectStyle onChange={e => handleSubmitState(e)}>
                     <option hidden >Estados</option>
                     {states.map(e => (
                          <option key={e.id} value={e.id} >{e.state}</option>
                     ))}
-               </SelectStyle>
+               </SelectStyle> */}
 
-               <SelectStyle onChange={e => handleSubmitCities(e)}>
+               {/* <SelectStyle onChange={e => handleSubmitCities(e)}>
                     <option hidden >Ciudades</option>
                     {cities.map(e => (
                          <option key={e.id} value={e.id} >{e.city}</option>
                     ))}
-               </SelectStyle>
+               </SelectStyle> */}
 
           {/* <label>Por Refugio:</label> */}
           <SelectStyle name='shelterId' onChange={(e)=>handleSelect(e)}>

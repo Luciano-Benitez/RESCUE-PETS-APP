@@ -60,7 +60,7 @@ import {
               <div className="campo">
             <label>País: </label>
             <Styledselect onChange={handleSelectCountry}>
-              <option disabled >
+              <option disabled selected>
                 -- Seleccione --
               </option>
               {allCountries?.map((el) => (

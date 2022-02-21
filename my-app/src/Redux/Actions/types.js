@@ -7,4 +7,5 @@ export const GET_PETS_FILTER = 'GET_PETS_FILTER'
 export const GET_PETS = 'GET_PETS'
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
 export const GET_ID_CITY = 'GET_ID_CITY'
+export const GET_AGES = 'GET_AGES'
 

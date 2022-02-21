@@ -7,7 +7,8 @@ import {GET_COUNTRIES,
     POST_FORM_REGISTER,
     GET_PETS_FILTER,
     GET_TEMPERAMENTS,
-    GET_ID_CITY
+    GET_ID_CITY, 
+    GET_AGES,
     } from './types.js'
 
     
@@ -105,5 +106,11 @@ export const getTemperaments = () => {
 export const getCityId = (id) => {
     return {
         type: GET_ID_CITY, payload: id
+    }
+}
+
+export const getAges = () => {
+    return {
+        type: GET_AGES, payload: null
     }
 } 

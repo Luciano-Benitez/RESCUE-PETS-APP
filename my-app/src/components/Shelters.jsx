@@ -2,14 +2,15 @@ import React from "react";
 import {useSelector} from 'react-redux';
 import CardShelter from './CardShelter';
 import { Link } from "react-router-dom";
+import {StyledCard, StyledCardContainer} from '../Styles/StyledCardShelter.js';
 
 export default function Shelters() {
 
     const allShelters = useSelector((state) => state.Shelters);
     console.log('estado: ', allShelters)
     return (
-        <div>   
-            <Link  to={'/'} ><button>Ir a Inicio</button></Link>
+        <StyledCardContainer> 
+         
             {
                 
                 allShelters?.map(e => {
@@ -18,6 +19,6 @@ export default function Shelters() {
                     )
                 }) 
             }
-        </div>
+       </StyledCardContainer>  
         );
 };

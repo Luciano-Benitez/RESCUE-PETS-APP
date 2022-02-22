@@ -214,5 +214,8 @@ export default function rooReducer(state = initialState, { type, payload }) {
           ...state,
           forms : payload
         } 
+
+        default:
+          return state;
       }
     }

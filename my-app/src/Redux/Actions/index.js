@@ -17,7 +17,6 @@ import {GET_COUNTRIES,
     GET_SPECIES,
     GET_FILTER_SHELTERS,
     GET_PET_ID,
-
     GET_ID_FROM_SHELTER_AND_CITY,
 
     } from './types.js'

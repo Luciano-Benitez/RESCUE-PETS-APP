@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const ShelterInfo = ({Data}) =>{
+const ShelterInfo = ({Data, pets}) =>{
 
 
     return (

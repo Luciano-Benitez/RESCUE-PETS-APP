@@ -18,7 +18,8 @@ import {GET_COUNTRIES,
     GET_FILTER_SHELTERS,
     GET_PET_ID,
     GET_ID_FROM_SHELTER_AND_CITY,
-    GET_SHELTER_DETAIL
+    GET_SHELTER_DETAIL,
+    GET_PETS_BY_SHELTER
     } from './types.js'
 
 
@@ -99,6 +100,18 @@ export const getPetId = (id) => {
         }
       };
     } 
+
+    export const getPetByShelter = (id) => {
+        return async function (dispatch) {
+            try {
+              const Details = await axios(`http://localhost:3001/petDetail?shelterId=${id}`);
+              dispatch({ type: GET_PETS_BY_SHELTER, payload: Details });
+            } catch (error) {
+              console.log(error);
+            
+            }
+          };
+        } 
 
 
 export const postShelter = (payload) => {

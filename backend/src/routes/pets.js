@@ -22,14 +22,28 @@ router.post("/postVaccines", postVaccines);
 router.get('/petDetail/:idPets',petsId )
 
 router.get("/petDetail", async (req, res) => {
+
+  const {shelterId} = req.query
+  let allPets = await getAllPetsinDB();
+
+  if (shelterId){
+    const filter = allPets.filter(e => e.shelterId == shelterId)
+
+    if (filter) {
+      res.status(200).send(filter)
+    } else{
+      res.status(400).json('Sorry, there is no pets is this shelter')
+    }
+  }
+  else {
+
+    if (allPets.length > 0) {
+      res.status(200).send(allPets);
+    } else {
+      res.status(400).json("Sorry,pet not found");
+    }
+  }
     
-    let allPets = await getAllPetsinDB();
-   
-      if (allPets.length > 0) {
-        res.status(200).send(allPets);
-      } else {
-        res.status(400).json("Sorry,pet not found");
-      }
    
   });
 

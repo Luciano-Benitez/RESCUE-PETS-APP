@@ -58,6 +58,7 @@ const { Profiles } = sequelize.models;
 const { PetStatus } = sequelize.models;
 const { Age } = sequelize.models;
 const { States } = sequelize.models;
+const { Genres } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -118,7 +119,6 @@ Forms.belongsTo(Shelter);
 
 Adoptions.belongsTo(Pets);
 Pets.hasMany(Adoptions);
-
 
 Genres.hasMany(Pets);
 Pets.belongsTo(Genres);

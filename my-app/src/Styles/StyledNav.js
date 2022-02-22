@@ -43,7 +43,7 @@ export const StyleLi = styled.li`
  
   &:hover {
     a {
-      color: ${allColors.colors[4]};
+      color: ${allColors.colors[7]};
      
     }
   }

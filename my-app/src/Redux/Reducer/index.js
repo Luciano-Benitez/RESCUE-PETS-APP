@@ -20,7 +20,9 @@ import {
   GET_SHELTER_DETAIL,
   GET_FILTER_SHELTERS,
   GET_PETS_BY_SHELTER,
-  GET_FORMTYPES
+  GET_FORMTYPES,
+  GET_PETS_BY_SHELTER,
+  GET_PETS_FOR_DASHBOARD
 } from "../Actions/types";
 
 const initialState = {
@@ -44,7 +46,8 @@ const initialState = {
   ShelterAndCityId: {},
   shelterDetail : {},
   petsByShelter: [],
-  formtypes: []
+  formtypes: [],
+  petsForDashboard: []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -201,8 +204,13 @@ export default function rooReducer(state = initialState, { type, payload }) {
       case GET_PETS_BY_SHELTER:
         return{
           ...state,
-          shelter : filterShelter
-      } 
+          petsByShelter: payload
+        }
+      case GET_PETS_FOR_DASHBOARD:
+        return {
+          ...state,
+          petsForDashboard: payload
+        }
 
       case GET_FORMS :
         return {
@@ -216,7 +224,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
           formtypes : payload
         }  
 
-    default:
-      return state;
-  }
-}
+        default:
+          return state;
+      }
+    }

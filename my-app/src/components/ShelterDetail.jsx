@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Routes, Route } from "react-router-dom";
-import { getShelterDetail, getPetsFilter } from "../Redux/Actions/index.js";
+import { getShelterDetail, getPetsFilter,getPetByShelter } from "../Redux/Actions/index.js";
 
 // componentes
 import ShelterInfo from "./ShelterInfo.jsx";
@@ -12,6 +12,7 @@ import FormTransit from "./FormTransit.jsx";
 import { StyledDiv } from "../Styles/StyledShelterDetails";
 
 const ShelterDetail = () => {
+
   let { id } = useParams();
   const dispatch = useDispatch();
   let Data = useSelector((state) => state.shelterDetail);
@@ -19,15 +20,19 @@ const ShelterDetail = () => {
 
   useEffect(() => {
     dispatch(getShelterDetail(id))
+    dispatch(getPetByShelter(id))
   }, [dispatch, id]);
 
-  useEffect(() => {
-    dispatch(getPetsFilter(`http://localhost:3001/pets/${cityId}?shelterId=${id}`));
-  }, [dispatch, cityId]);
+  // useEffect(() => {
+  //   //dispatch(getPetsFilter(`http://localhost:3001/pets/${cityId}?shelterId=${id}`));
+    
+  // }, [dispatch, cityId]);
 
-  const pets = useSelector((state) => state.petsfilter)
+  const pets = useSelector((state) => state.petsByShelter)
 
-console.log(pets)
+
+  //const pets = useSelector((state) => state.petsfilter)
+
   return (
     <StyledDiv>
       <ShelterDetailNav id={id} />

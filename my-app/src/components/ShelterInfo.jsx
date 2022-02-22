@@ -13,7 +13,13 @@ const ShelterInfo = ({Data, pets}) =>{
             <h1>Hola, soy la info del refugio</h1>
             <DivContenedor>
                 <FiltersInShelterDetails/>
-                <span>Soy las cards</span>
+                <div>
+                    {
+                        pets ? pets.map(e => (
+                            <h2>{e.name}</h2>
+                        )) : <h2>Loading...</h2>
+                    } 
+                </div>
             </DivContenedor>
             
         </div>

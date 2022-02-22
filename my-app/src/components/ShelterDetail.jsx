@@ -27,7 +27,7 @@ const ShelterDetail = () => {
 
   const pets = useSelector((state) => state.petsfilter)
 
-
+console.log(pets)
   return (
     <StyledDiv>
       <ShelterDetailNav id={id} />

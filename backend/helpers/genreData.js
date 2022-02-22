@@ -2,7 +2,7 @@ const {Genres} = require('../src/db')
 
 exports.setGenre =  () => {
 
-    const genreList = ['Female', 'Male']
+    const genreList = ['Hembra', 'Macho']
     try{
         genreList.forEach(async element => {
             await Genres.findOrCreate({

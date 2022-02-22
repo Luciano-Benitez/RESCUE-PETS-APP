@@ -19,7 +19,7 @@ height: max-content;
 margin-top: 100px;
 margin-bottom: 60px;
 border-radius: 17px;
-
+box-shadow: 0 0 15px #B8B9BA;
 .header1 {
   text-align: center;
 }

@@ -18,7 +18,7 @@ padding: 2px;
   opacity: 98%;
   text-transform: capitalize;
   border-radius: 6.5px;
-  box-shadow: 0 0 15px ${allColors.colors[0]};
+  box-shadow: 0 0 15px #B8B9BA;
 
   h2{
     color: ${allColors.colors[3]};

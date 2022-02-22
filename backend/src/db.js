@@ -58,6 +58,7 @@ const { Profiles } = sequelize.models;
 const { PetStatus } = sequelize.models;
 const { Age } = sequelize.models;
 const { States } = sequelize.models;
+const { Genres } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -107,9 +108,6 @@ Profiles.belongsTo(Users);
 PetStatus.hasMany(Pets);
 Pets.belongsTo(PetStatus);
 
-// Countries.hasMany(Shelter) //En duda si va...
-// Shelter.belongsTo(Countries)
-
 Cities.hasMany(Shelter);
 Shelter.belongsTo(Cities);
 
@@ -121,6 +119,9 @@ Forms.belongsTo(Shelter);
 
 Adoptions.belongsTo(Pets);
 Pets.hasMany(Adoptions);
+
+Genres.hasMany(Pets);
+Pets.belongsTo(Genres);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -17,7 +17,11 @@ import {GET_COUNTRIES,
     GET_SPECIES,
     GET_FILTER_SHELTERS,
     GET_FORMS,
-    GET_ADOPTIONS
+    GET_ADOPTIONS,
+    GET_PET_ID,
+    GET_ID_FROM_SHELTER_AND_CITY,
+    GET_SHELTER_DETAIL,
+    GET_PETS_BY_SHELTER
     } from './types.js'
 
 
@@ -82,6 +86,33 @@ export const cleanStateForm = () => {
         payload: []
     }
 }
+
+
+
+export const getPetId = (id) => {
+    return async function (dispatch) {
+        try {
+          const Details = await axios("http://localhost:3001/petDetail/" + id);
+          dispatch({ type: GET_PET_ID, payload: Details.data });
+        } catch (error) {
+          console.log(error);
+        
+        }
+      };
+    } 
+
+    export const getPetByShelter = (id) => {
+        return async function (dispatch) {
+            try {
+              const Details = await axios(`http://localhost:3001/petDetail?shelterId=${id}`);
+              dispatch({ type: GET_PETS_BY_SHELTER, payload: Details });
+            } catch (error) {
+              console.log(error);
+            
+            }
+          };
+        } 
+
 
 export const postShelter = (payload) => {
     return async function (dispatch) {
@@ -213,3 +244,23 @@ export const getForms = (userid,formtypeid) => {
         })
     }
 }
+
+export const getIdFromShelterAndCity = (userId) => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/sheltercityid/${userId}`);
+        return dispatch({
+            type: GET_ID_FROM_SHELTER_AND_CITY,
+            payload: json.data
+        })
+    } 
+};
+
+export const getShelterDetail = (id) => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/shelters/${id}`)
+        return dispatch({
+            type: GET_SHELTER_DETAIL, payload: json.data
+        })
+    } 
+}
+

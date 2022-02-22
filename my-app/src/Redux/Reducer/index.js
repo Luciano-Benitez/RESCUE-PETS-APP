@@ -15,7 +15,11 @@ import {
   GET_SEARCH_SHELTERS,
   GET_SPECIES,
   GET_FILTER_SHELTERS,
-  GET_FORMS
+  GET_FORMS,
+  GET_PET_ID,
+  GET_ID_FROM_SHELTER_AND_CITY,
+  GET_SHELTER_DETAIL,
+  GET_PETS_BY_SHELTER
 } from "../Actions/types";
 
 const initialState = {
@@ -23,7 +27,7 @@ const initialState = {
   checking: true,
   states: [],
   cities: [],
-  petsfilter: [], 
+  petsfilter: [],
   pets: [],
   temperaments: [],
   cityId: [],
@@ -31,7 +35,14 @@ const initialState = {
   status:[],
   shelter:[],
   Shelters:[],
-  forms:[]
+  forms:[],
+  status: [],
+  shelter: [],
+  Shelters: [],
+  petOne: [],
+  ShelterAndCityId: {},
+  shelterDetail : {},
+  petsByShelter: []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -48,10 +59,16 @@ export default function rooReducer(state = initialState, { type, payload }) {
         states: payload,
       };
 
-      case GET_PETS:
+    case GET_PETS:
       return {
         ...state,
         pets: payload,
+      };
+
+    case GET_PET_ID:
+      return {
+        ...state,
+        petOne: payload,
       };
 
     case GET_CITIES:
@@ -73,97 +90,113 @@ export default function rooReducer(state = initialState, { type, payload }) {
     case GET_PETS_FILTER:
       return {
         ...state,
-        petsfilter : payload
-      }
+        petsfilter: payload,
+      };
 
     case authLogin:
-      return{
+      return {
         ...state,
         checking: false,
-        ...payload
-      }
-    
+        ...payload,
+      };
+
     case authCheckingFinish:
-  
       return {
         ...state,
-        checking: false
-      }
-
+        checking: false,
+      };
 
     case GET_TEMPERAMENTS:
-      let filteredTemperaments = []
+      let filteredTemperaments = [];
 
-      state.petsfilter.map(el => {
-        if(!filteredTemperaments.length) return filteredTemperaments.push(el.temperament)
-        let temp = el.temperament.id
-        let obj = filteredTemperaments.find( temperamento => temperamento.id === temp )
-        if(!obj) return filteredTemperaments.push(el.temperament)
-      })
+      state.petsfilter.map((el) => {
+        if (!filteredTemperaments.length)
+          return filteredTemperaments.push(el.temperament);
+        let temp = el.temperament.id;
+        let obj = filteredTemperaments.find(
+          (temperamento) => temperamento.id === temp
+        );
+        if (!obj) return filteredTemperaments.push(el.temperament);
+      });
       return {
         ...state,
-        temperaments : filteredTemperaments
+        temperaments: filteredTemperaments,
+      };
+    case GET_AGES:
+      let filteredAges = [];
+
+      state.petsfilter.map((el) => {
+        if (!filteredAges.length) return filteredAges.push(el.age);
+        let temp = el.age.id;
+        let obj = filteredAges.find((age) => age.id === temp);
+        if (!obj) return filteredAges.push(el.age);
+      });
+      return {
+        ...state,
+        ages: filteredAges,
+      };
+    case GET_ID_CITY:
+      return {
+        ...state,
+        cityId: payload,
+      };
+    case GET_STATUS:
+      let filteredStatus = [];
+
+      state.petsfilter.map((el) => {
+        if (!filteredStatus.length) return filteredStatus.push(el.petStatus);
+        let ele = el.petStatus.id;
+        let obj = filteredStatus.find((sta) => sta.id === ele);
+        if (!obj) return filteredStatus.push(el.petStatus);
+      });
+      return {
+        ...state,
+        status: filteredStatus,
+      };
+
+    case GET_SEARCH_SHELTERS:
+      return {
+        ...state,
+        Shelters: payload,
+      };
+
+    case GET_SPECIES:
+      let filter = [];
+
+      state.petsfilter.map((e) => {
+        if (!filter.length) return filter.push(e.species);
+        let ele = e.species.id;
+        let obj = filter.find((s) => s.id === ele);
+        if (!obj) return filter.push(e.species);
+      });
+      return {
+        ...state,
+        species: filter,
+      };
+
+    case GET_FILTER_SHELTERS:
+      let filterShelter = [];
+      state.petsfilter.map((e) => {
+        if (!filterShelter.length) return filterShelter.push(e.shelter);
+        let ele = e.shelter.id;
+        let obj = filterShelter.find((s) => s.id === ele);
+        if (!obj) return filterShelter.push(e.shelter);
+      });
+      return {
+        ...state,
+        shelter: filterShelter,
+      };
+    case GET_ID_FROM_SHELTER_AND_CITY:
+      return {
+        ...state,
+        ShelterAndCityId: payload,
+      };
+    case GET_SHELTER_DETAIL:
+      return {
+        ...state,
+        shelterDetail: payload
       }
-      case GET_AGES:
-        let filteredAges = []
-  
-        state.petsfilter.map(el => {
-          if(!filteredAges.length) return filteredAges.push(el.age)
-          let temp = el.age.id
-          let obj = filteredAges.find( age => age.id === temp )
-          if(!obj) return filteredAges.push(el.age)
-        })
-        return {
-          ...state,
-          ages : filteredAges
-        }
-      case GET_ID_CITY:
-        return {
-          ...state,
-          cityId : payload
-        } 
-        case GET_STATUS:
-          let filteredStatus = []
-    
-          state.petsfilter.map(el => {
-            if(!filteredStatus.length) return filteredStatus.push(el.petStatus)
-            let ele = el.petStatus.id
-            let obj = filteredStatus.find( sta => sta.id === ele )
-            if(!obj) return filteredStatus.push(el.petStatus)
-          })
-          return {
-            ...state,
-            status : filteredStatus
-          }
-
-      case GET_SEARCH_SHELTERS:
-          return{
-            ...state,
-            Shelters: payload
-          };
-
-      case GET_SPECIES:
-        let filter = []
-
-        state.petsfilter.map(e =>{
-            if(!filter.length) return filter.push(e.species)
-            let ele = e.species.id
-            let obj = filter.find(s => s.id === ele)
-            if(!obj) return filter.push(e.species)
-        })
-        return{
-            ...state,
-          species : filter
-        } 
-
-        case GET_FILTER_SHELTERS:
-        let filterShelter = []
-        state.petsfilter.map(e =>{
-            if(!filterShelter.length) return filterShelter.push(e.shelter)
-            let ele = e.shelter.id
-            let obj = filterShelter.find(s => s.id === ele)
-            if(!obj) return filterShelter.push(e.shelter)
-        })
+      case GET_PETS_BY_SHELTER:
         return{
           ...state,
           shelter : filterShelter
@@ -174,7 +207,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
           ...state,
           forms : payload
         } 
-        
+
     default:
       return state;
   }

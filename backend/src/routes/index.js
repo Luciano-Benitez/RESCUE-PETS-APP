@@ -11,6 +11,7 @@ const auth= require('./auth')
 const temperaments = require('./temperaments')
 const states = require('./states')
 const Search = require('./Search');
+const ShelterAndCityId = require('./Shelter&CityId');
 
 router.use('/',pets)
 router.use('/',form)
@@ -24,5 +25,6 @@ router.use('/',auth)
 router.use('/',states)
 router.use('/',cities)
 router.use('/',temperaments)
+router.use('/',ShelterAndCityId)
 
 module.exports = router;

@@ -2,11 +2,13 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-    sequelize.define('genre', {
+    sequelize.define('genres', {
         genre: {
             type: DataTypes.STRING,
             allowNull: false
         },
+    },{
+        timestamps: false,
     });
 };
 

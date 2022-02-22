@@ -21,7 +21,8 @@ import {GET_COUNTRIES,
     GET_PET_ID,
     GET_ID_FROM_SHELTER_AND_CITY,
     GET_SHELTER_DETAIL,
-    GET_PETS_BY_SHELTER
+    GET_PETS_BY_SHELTER,
+    GET_PETS_FOR_DASHBOARD
     } from './types.js'
 
 
@@ -262,5 +263,19 @@ export const getShelterDetail = (id) => {
             type: GET_SHELTER_DETAIL, payload: json.data
         })
     } 
+}
+
+
+export const getPetsForDashboard = (route) => {
+    return async function (dispatch){
+        try{
+            let json = await axios(route)
+            return dispatch({
+                type: GET_PETS_FOR_DASHBOARD, payload: json.data
+            })
+        }catch(error){
+            return error
+        }
+    }
 }
 

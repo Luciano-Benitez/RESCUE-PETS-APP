@@ -5,6 +5,10 @@ import {getShelterDetail} from '../Redux/Actions/index.js'
 
 // componentes 
 import ShelterInfo from './ShelterInfo.jsx';
+import ShelterDetailNav from './ShelterDetailNav'
+
+// estilos
+import {StyledDiv} from '../Styles/StyledShelterDetails'
 
 const ShelterDetail = () =>{
 
@@ -21,9 +25,10 @@ const ShelterDetail = () =>{
     console.log(Data)
 
     return (
-        <>
+        <StyledDiv>
+            <ShelterDetailNav/>
             <ShelterInfo Data={Data}/>
-        </>
+        </StyledDiv>
     )
 }
 

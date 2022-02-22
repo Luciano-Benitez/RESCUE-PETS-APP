@@ -10,7 +10,8 @@
             "shelterId": 3,
             "temperamentId":8,
             "ageId":2,
-            "petStatusId":2
+            "petStatusId":2,
+            "genreId": 2
         },
         {
             "name":"Otto",
@@ -22,7 +23,8 @@
             "shelterId": 3,
             "temperamentId":3,
             "ageId":3,
-            "petStatusId":3
+            "petStatusId":3,
+            "genreId": 2
         },
         {
             "name":"Frany",
@@ -34,7 +36,8 @@
             "shelterId": 3,
             "temperamentId":1,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Hali",
@@ -46,7 +49,8 @@
             "shelterId": 3,
             "temperamentId":5,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Nuk",
@@ -58,7 +62,8 @@
             "shelterId": 3,
             "temperamentId":5,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Jayson",
@@ -70,7 +75,8 @@
             "shelterId": 4,
             "temperamentId":8,
             "ageId":2,
-            "petStatusId":2
+            "petStatusId":2,
+            "genreId": 2
         },
         {
             "name":"Thor",
@@ -82,7 +88,8 @@
             "shelterId": 4,
             "temperamentId":3,
             "ageId":3,
-            "petStatusId":3
+            "petStatusId":3,
+            "genreId": 2
         },
         {
             "name":"Kassio",
@@ -94,7 +101,8 @@
             "shelterId": 4,
             "temperamentId":1,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Kurt",
@@ -106,7 +114,8 @@
             "shelterId": 4,
             "temperamentId":5,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Loki",
@@ -118,7 +127,8 @@
             "shelterId": 4,
             "temperamentId":5,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Chester",
@@ -130,7 +140,8 @@
             "shelterId": 1,
             "temperamentId":8,
             "ageId":1,
-            "petStatusId":2
+            "petStatusId":2,
+            "genreId": 2
         },
         {
             "name":"Cooper",
@@ -142,7 +153,8 @@
             "shelterId": 1,
             "temperamentId":3,
             "ageId":3,
-            "petStatusId":3
+            "petStatusId":3,
+            "genreId": 2
         },
         {
             "name":"Darcy",
@@ -154,7 +166,8 @@
             "shelterId": 1,
             "temperamentId":1,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Vinni",
@@ -166,7 +179,8 @@
             "shelterId": 1,
             "temperamentId":5,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Wenke",
@@ -178,7 +192,8 @@
             "shelterId": 1,
             "temperamentId":5,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Neo",
@@ -190,7 +205,8 @@
             "shelterId": 2,
             "temperamentId":8,
             "ageId":2,
-            "petStatusId":2
+            "petStatusId":2,
+            "genreId": 2
         },
         {
             "name":"Nath",
@@ -202,7 +218,8 @@
             "shelterId": 2,
             "temperamentId":3,
             "ageId":3,
-            "petStatusId":3
+            "petStatusId":3,
+            "genreId": 1
         },
         {
             "name":"Enzzo",
@@ -214,7 +231,8 @@
             "shelterId": 2,
             "temperamentId":1,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Evan",
@@ -226,7 +244,8 @@
             "shelterId": 2,
             "temperamentId":5,
             "ageId":1,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Maxime",
@@ -238,7 +257,8 @@
             "shelterId": 2,
             "temperamentId":5,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Darwin",
@@ -250,7 +270,8 @@
             "shelterId": 5,
             "temperamentId":8,
             "ageId":2,
-            "petStatusId":2
+            "petStatusId":2,
+            "genreId": 2
         },
         {
             "name":"Lucas",
@@ -262,7 +283,8 @@
             "shelterId": 5,
             "temperamentId":3,
             "ageId":3,
-            "petStatusId":3
+            "petStatusId":3,
+            "genreId": 2
         },
         {
             "name":"Valan",
@@ -274,7 +296,8 @@
             "shelterId": 5,
             "temperamentId":1,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Morgan",
@@ -286,7 +309,8 @@
             "shelterId": 5,
             "temperamentId":5,
             "ageId":1,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Yoette",
@@ -298,7 +322,8 @@
             "shelterId": 5,
             "temperamentId":5,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Joale",
@@ -310,7 +335,8 @@
             "shelterId": 6,
             "temperamentId":8,
             "ageId":2,
-            "petStatusId":2
+            "petStatusId":2,
+            "genreId": 1
         },
         {
             "name":"Sirio",
@@ -322,7 +348,8 @@
             "shelterId": 6,
             "temperamentId":3,
             "ageId":3,
-            "petStatusId":3
+            "petStatusId":3,
+            "genreId": 2
         },
         {
             "name":"Hugo",
@@ -334,7 +361,8 @@
             "shelterId": 6,
             "temperamentId":1,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Rossi",
@@ -346,7 +374,8 @@
             "shelterId": 6,
             "temperamentId":5,
             "ageId":1,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Iker",
@@ -358,7 +387,8 @@
             "shelterId": 5,
             "temperamentId":6,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Gianni",
@@ -370,7 +400,8 @@
             "shelterId": 7,
             "temperamentId":8,
             "ageId":2,
-            "petStatusId":2
+            "petStatusId":2,
+            "genreId": 1
         },
         {
             "name":"Gary",
@@ -382,7 +413,8 @@
             "shelterId": 7,
             "temperamentId":3,
             "ageId":3,
-            "petStatusId":3
+            "petStatusId":3,
+            "genreId": 2
         },
         {
             "name":"Odin",
@@ -394,7 +426,8 @@
             "shelterId": 7,
             "temperamentId":1,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Frodo",
@@ -406,7 +439,8 @@
             "shelterId": 7,
             "temperamentId":5,
             "ageId":1,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Felix",
@@ -418,7 +452,8 @@
             "shelterId": 7,
             "temperamentId":6,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
 
         {
@@ -431,7 +466,8 @@
             "shelterId": 8,
             "temperamentId":8,
             "ageId":2,
-            "petStatusId":2
+            "petStatusId":2,
+            "genreId": 1
         },
         {
             "name":"Patch",
@@ -443,7 +479,8 @@
             "shelterId": 8,
             "temperamentId":3,
             "ageId":3,
-            "petStatusId":3
+            "petStatusId":3,
+            "genreId": 1
         },
         {
             "name":"Tino",
@@ -455,7 +492,8 @@
             "shelterId": 8,
             "temperamentId":1,
             "ageId":2,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 2
         },
         {
             "name":"Salomé",
@@ -467,7 +505,8 @@
             "shelterId": 8,
             "temperamentId":5,
             "ageId":1,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         },
         {
             "name":"Kara",
@@ -479,7 +518,8 @@
             "shelterId": 8,
             "temperamentId":6,
             "ageId":1,
-            "petStatusId":1
+            "petStatusId":1,
+            "genreId": 1
         }
     ]
 }

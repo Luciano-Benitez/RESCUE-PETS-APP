@@ -26,7 +26,7 @@ const ShelterDetail = () =>{
 
     return (
         <StyledDiv>
-            <ShelterDetailNav/>
+            <ShelterDetailNav id={id}/>
             <ShelterInfo Data={Data}/>
         </StyledDiv>
     )

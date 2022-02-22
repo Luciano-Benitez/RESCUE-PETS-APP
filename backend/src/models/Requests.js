@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
 
     sequelize.define('requests', {
     answers: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull:false
     },
     

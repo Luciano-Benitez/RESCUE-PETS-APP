@@ -16,6 +16,8 @@ import {GET_COUNTRIES,
     GET_SEARCH_SHELTERS,
     GET_SPECIES,
     GET_FILTER_SHELTERS,
+    GET_FORMS,
+    GET_ADOPTIONS,
     GET_PET_ID,
     GET_ID_FROM_SHELTER_AND_CITY,
     GET_SHELTER_DETAIL,
@@ -23,8 +25,6 @@ import {GET_COUNTRIES,
     GET_PETS_FOR_DASHBOARD
     } from './types.js'
 
-
-    
 
 
 
@@ -237,6 +237,14 @@ export const getFilterShelters = () => {
 
 }
 
+export const getForms = (userid,formtypeid) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/forms/${userid}?formtypeid=`+formtypeid)
+        return dispatch({
+            type: GET_FORMS, payload:json.data
+        })
+    }
+}
 
 export const getIdFromShelterAndCity = (userId) => {
     return async function (dispatch) {
@@ -257,6 +265,7 @@ export const getShelterDetail = (id) => {
     } 
 }
 
+
 export const getPetsForDashboard = (route) => {
     return async function (dispatch){
         try{
@@ -269,3 +278,4 @@ export const getPetsForDashboard = (route) => {
         }
     }
 }
+

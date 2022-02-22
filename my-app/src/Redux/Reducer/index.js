@@ -15,6 +15,7 @@ import {
   GET_SEARCH_SHELTERS,
   GET_SPECIES,
   GET_FILTER_SHELTERS,
+  GET_FORMS,
   GET_PET_ID,
   GET_ID_FROM_SHELTER_AND_CITY,
   GET_SHELTER_DETAIL,
@@ -32,6 +33,10 @@ const initialState = {
   temperaments: [],
   cityId: [],
   ages: [],
+  status:[],
+  shelter:[],
+  Shelters:[],
+  forms:[],
   status: [],
   shelter: [],
   Shelters: [],
@@ -203,7 +208,10 @@ export default function rooReducer(state = initialState, { type, payload }) {
           ...state,
           petsForDashboard: payload
         }
-    default:
-      return state;
-  }
-}
+
+      case GET_FORMS :
+        return {
+          ...state,
+          forms : payload
+        } 
+

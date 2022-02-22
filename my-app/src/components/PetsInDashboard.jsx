@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { getIdFromShelterAndCity } from '../Redux/Actions'
+import { getPetsForDashboard } from '../Redux/Actions'
 
 const PetsInDashboard = () => {
 
-    const idUser = useSelector(state => state.id)
-    console.log(idUser)
-    
     const dispatch = useDispatch()
 
+    const routeInfo = useSelector(state => state.ShelterAndCityId)
+    const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
+
     useEffect(()=>{
-    dispatch(getIdFromShelterAndCity(idUser))
-    },[dispatch])
-    
-    const shelterData = useSelector(state => state.ShelterAndCityId)
-    console.log(shelterData)
+      dispatch(getPetsForDashboard(route))
+      },[dispatch])
+
+    const petsFromShelter = useSelector( state => state.petsForDashboard )
 
   return (
     <Center>

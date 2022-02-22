@@ -15,7 +15,8 @@ import {GET_COUNTRIES,
     GET_STATUS,
     GET_SEARCH_SHELTERS,
     GET_SPECIES,
-    GET_FILTER_SHELTERS
+    GET_FILTER_SHELTERS,
+    GET_PET_ID,
     } from './types.js'
 
 
@@ -82,6 +83,21 @@ export const cleanStateForm = () => {
         payload: []
     }
 }
+
+
+
+export const getPetId = (id) => {
+    return async function (dispatch) {
+        try {
+          const Details = await axios("http://localhost:3001/petDetail/" + id);
+          dispatch({ type: GET_PET_ID, payload: Details.data });
+        } catch (error) {
+          console.log(error);
+        
+        }
+      };
+    } 
+
 
 export const postShelter = (payload) => {
     return async function (dispatch) {

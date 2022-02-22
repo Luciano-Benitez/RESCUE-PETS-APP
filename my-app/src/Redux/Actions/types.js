@@ -18,4 +18,6 @@ export const GET_STATUS='GET_STATUS'
 export const GET_SEARCH_SHELTERS = 'GET_SEARCH_SHELTERS'
 export const GET_SPECIES = 'GET_SPECIES'
 export const GET_FILTER_SHELTERS = 'GET_FILTER_SHELTERS'
+export const GET_PET_ID = 'GET_PET_ID'
+
 

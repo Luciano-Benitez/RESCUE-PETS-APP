@@ -14,8 +14,8 @@ import {
   GET_STATUS,
   GET_SEARCH_SHELTERS,
   GET_SPECIES,
-  GET_FILTER_SHELTERS
-
+  GET_FILTER_SHELTERS,
+  GET_FORMS
 } from "../Actions/types";
 
 const initialState = {
@@ -30,7 +30,8 @@ const initialState = {
   ages: [],
   status:[],
   shelter:[],
-  Shelters:[]
+  Shelters:[],
+  forms:[]
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -168,7 +169,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
           shelter : filterShelter
       } 
 
-
+      case GET_FORMS :
+        return {
+          ...state,
+          forms : payload
+        } 
+        
     default:
       return state;
   }

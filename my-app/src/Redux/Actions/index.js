@@ -15,11 +15,11 @@ import {GET_COUNTRIES,
     GET_STATUS,
     GET_SEARCH_SHELTERS,
     GET_SPECIES,
-    GET_FILTER_SHELTERS
+    GET_FILTER_SHELTERS,
+    GET_FORMS,
+    GET_ADOPTIONS
     } from './types.js'
 
-
-    
 
 
 
@@ -203,4 +203,13 @@ export const getFilterShelters = () => {
             type: GET_FILTER_SHELTERS, payload: null
         }
 
+}
+
+export const getForms = (userid,formtypeid) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/forms/${userid}?formtypeid=`+formtypeid)
+        return dispatch({
+            type: GET_FORMS, payload:json.data
+        })
+    }
 }

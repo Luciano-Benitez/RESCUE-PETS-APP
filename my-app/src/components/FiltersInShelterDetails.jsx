@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import {DivContainer} from '../Styles/StyledFormShelter'
+
+// estilos
+import {DivInputs, FormStyle} from '../Styles/StyledShelterDetails'
 
 function FiltersInShelterDetails() {
   const [name, setName] = useState("");
@@ -9,11 +11,11 @@ function FiltersInShelterDetails() {
   };
 
   return (
-      <DivContainer>
-    <form>
+      <div>
+    <FormStyle>
       <h3>Refina tu búsqueda</h3>
 
-      <div>
+      <DivInputs>
         <label>Busca por Mascota: </label>
         <input
           onChange={handleChange}
@@ -23,9 +25,22 @@ function FiltersInShelterDetails() {
           placeholder="Nombre"
         />
         <button>Buscar</button>
-      </div>
-    </form>
-    </DivContainer>
+      </DivInputs>
+
+      <DivInputs>
+        <label>Busca por Mascota: </label>
+        <input
+          onChange={handleChange}
+          value={name}
+          name="name"
+          type="text"
+          placeholder="Nombre"
+        />
+        <button>Buscar</button>
+      </DivInputs>
+
+    </FormStyle>
+    </div>
   );
 }
 

@@ -31,3 +31,23 @@ export const StyledLink = styled(Link)`
       font-weight: 700;
   }
 `;
+
+export const DivContenedor = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+`
+
+export const FormStyle = styled.form`
+  background-color: ${allColors.colors[3]};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const DivInputs = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  padding: 1rem;
+  border-bottom: 1px solid black;
+`

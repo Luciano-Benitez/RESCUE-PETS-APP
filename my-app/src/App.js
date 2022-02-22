@@ -66,7 +66,7 @@ function App() {
           </PublicRoute>
         } />
 
-<Route path="/shelters/:id" element={
+<Route path="/shelters/:id/*" element={
           <PublicRoute>
             <ShelterDetail />
 

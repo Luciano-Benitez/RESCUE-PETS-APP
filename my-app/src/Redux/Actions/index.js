@@ -106,7 +106,7 @@ export const getPetId = (id) => {
         return async function (dispatch) {
             try {
               const Details = await axios(`http://localhost:3001/petDetail?shelterId=${id}`);
-              dispatch({ type: GET_PETS_BY_SHELTER, payload: Details });
+              dispatch({ type: GET_PETS_BY_SHELTER, payload: Details.data });
             } catch (error) {
               console.log(error);
             

@@ -8,6 +8,7 @@ const { setPetStatus } = require("./helpers/petStatusData");
 const { setCountries } = require("./helpers/countryData");
 const { setStates } = require("./helpers/stateData");
 const { setCities } = require("./helpers/cityData");
+const { setGenre } = require("./helpers/genreData");
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
@@ -19,6 +20,7 @@ conn.sync({ force: false }).then(() => {
     await setSpecies()
     await setAge()
     await setPetStatus()
+    await setGenre()
     //await setCountries()
     //await setStates()
     //await setCities()

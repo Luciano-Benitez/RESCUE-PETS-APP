@@ -18,7 +18,7 @@ import {GET_COUNTRIES,
     GET_FILTER_SHELTERS,
     GET_PET_ID,
     GET_ID_FROM_SHELTER_AND_CITY,
-
+    GET_SHELTER_DETAIL
     } from './types.js'
 
 
@@ -233,3 +233,12 @@ export const getIdFromShelterAndCity = (userId) => {
         })
     } 
 };
+
+export const getShelterDetail = (id) => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/shelters/${id}`)
+        return dispatch({
+            type: GET_SHELTER_DETAIL, payload: json.data
+        })
+    } 
+}

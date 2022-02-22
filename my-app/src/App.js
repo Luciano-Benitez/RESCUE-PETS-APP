@@ -10,12 +10,14 @@ import { Home } from "./components/Home";
 import Login from "./components/Login";
 import Shelters from './components/Shelters';
 import Details from './components/Details';
+import ShelterDetail from './components/ShelterDetail';
 
 import { useDispatch, useSelector } from "react-redux";
 import { startChecking } from "./Redux/Actions";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { DashboardRoutes } from "./DashboardRoutes";
+
 
 
 function App() {
@@ -64,6 +66,12 @@ function App() {
           </PublicRoute>
         } />
 
+<Route path="/shelters/:id" element={
+          <PublicRoute>
+            <ShelterDetail />
+
+          </PublicRoute>
+        } />
 
 
         <Route path="/*" element={

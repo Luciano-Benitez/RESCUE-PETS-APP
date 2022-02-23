@@ -24,10 +24,9 @@ import {GET_COUNTRIES,
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
     GET_PETS_FOR_DASHBOARD,
-
+    GET_SHELTERS,
     GET_FORM_ADOPTION,
     POST_ADOPTION,
-
     POST_PETS
 
     } from './types.js'
@@ -271,7 +270,15 @@ export const getShelterDetail = (id) => {
     } 
 }
 
-
+export const getShelters = (id) => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/shelters`)
+        return dispatch({
+            type: GET_SHELTERS,
+            payload: json.data
+        })
+    } 
+}
 
 export const getFormtypes = ()=> {
     return async function(dispatch){

@@ -1,10 +1,12 @@
 const {Forms,Questions} = require('../db')
 
 exports.getFormQuestions = async(req,res)=>{
-    const {formid} = req.params
+    const {shelterid} = req.params
+    const {formtypeid} = req.query
     let formquestions = await Forms.findAll({
         where: {
-            id: formid
+            shelterId: shelterid,
+            formtypeId: formtypeid
         },
         include : {
             model: Questions,

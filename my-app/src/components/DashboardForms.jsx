@@ -17,13 +17,10 @@ export const DashboardForms= () => {
     }, [])
 
     const handleSubmitGetForm = (e) => {
-        if(e.target.value == formtypes[0].id)settypeform('adopción')
-        if(e.target.value == formtypes[1].id)settypeform('transito')
+        if(Number(e.target.value) === formtypes[0].id)settypeform('adopción')
+        if(Number(e.target.value) === formtypes[1].id)settypeform('transito')
         dispatch(getForms(iduser,e.target.value))
     }
-
-    
-    console.log(forms)
     return (
             <div>
                 <br></br>
@@ -50,27 +47,36 @@ export const DashboardForms= () => {
                             <th><h1>Id|</h1></th>
                             <th><h1>Respuestas|</h1></th>
                             <th><h1>Mascota Id|</h1></th>
-                            <th><h1>Estado|</h1></th>
+                            <th><h1>Acción|</h1></th>
                         </tr>
                         {typeof(forms) !== 'string'? forms.map(element => (
                             <tr key={element.id}>
                                 <td><h3>{element.id}</h3></td>
-                                <td>{element.answers.map(e => (<h3>{e.answerone}</h3>))}</td>
+                                <td><h3>{element.answers.map(e => Object.entries(e).map(entry => {
+                                     const [key,value] = entry
+                                     return(
+                                    (<h3>{key}:{value}</h3>))})
+                                )}</h3></td>
                                 <td><h3>{element.petId}</h3></td>
+                                <td>Ver</td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<h1>{forms}</h1>): (<h1>Cargando...</h1>)}
                 </table>):
-                typeform === "transito"?(<table>
+                typeform === "transito" ?(<table>
                     <tr>
                         <th><h1>Id|</h1></th>
                         <th><h1>Respuestas|</h1></th>
-                        <th><h1>Estado|</h1></th>
+                        <th><h1>Acción|</h1></th>
                     </tr>
                     {typeof(forms) !== 'string'? forms.map(element => (
                         <tr key={element.id}>
                             <td><h3>{element.id}</h3></td>
-                            <td>{element.answers.map(e => (<h3>{e.answerone}</h3>))}</td>
-                            <td><h3>{element.petId}</h3></td>
+                            <td><h3>{element.answers.map(e => Object.entries(e).map(entry => {
+                                     const [key,value] = entry
+                                     return(
+                                    (<h3>{key}:{value}</h3>))})
+                            )}</h3></td>
+                            <td><button>Ver</button></td>
                         </tr>
                     )):typeof(forms) === 'string' ? (<h1>{forms}</h1>): (<h1>Cargando...</h1>)}
             </table>):(<h1>Error</h1>)}

@@ -6,14 +6,13 @@ import {DivContenedor} from '../Styles/StyledShelterDetails'
 import {StyledCard, StyledCardContainer, ImgCard} from '../Styles/StyledCards.js';
 
 
-const ShelterInfo = ({Data, pets}) =>{
-
-
+const ShelterInfo = ({Data, pets, input, setInput}) =>{
+ 
     return (
         <div>
             <h1>Hola, soy la info del refugio</h1>
             <DivContenedor>
-                <FiltersInShelterDetails Data={Data}/>
+                <FiltersInShelterDetails input={input} setInput={setInput}/>
                 <div>
                 <StyledCardContainer key={Math.random(5)}>
                     {

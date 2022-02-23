@@ -1,4 +1,9 @@
-.DashboardForms {
+import styled from "styled-components";
+import allColors from "../variables/Colors";
+
+export const StyledDashboardForms = styled.div`
+
+
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 150px;
@@ -7,7 +12,7 @@
     flex-direction: column;
     gap: 10px;
     padding: 1rem;
-  }
+  
 
   button{
     width: 60px;
@@ -53,3 +58,4 @@
   form * {
     font-size: 18px;
   }
+  `;

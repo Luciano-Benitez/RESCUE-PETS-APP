@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {getForms, getFormtypes} from '../Redux/Actions/index'
-import './DashboardForms.css'
+//import './DashboardForms.css'
 import {AnswerFormView} from './AnswerFormView'
 import { Link } from 'react-router-dom'
+
+import { StyledDashboardForms } from '../Styles/StyledDashboardForms'
 
 export const DashboardForms= () => {
     const dispatch = useDispatch()
@@ -26,7 +28,7 @@ export const DashboardForms= () => {
     }
 
     return (
-            <div className='DashboardForms'>
+            <StyledDashboardForms>
 
                     <h1>Tabla de formularios de {typeform}</h1>
 
@@ -86,6 +88,6 @@ export const DashboardForms= () => {
                     </tbody>
             </table>):(<h1>Error</h1>)}
                 
-            </div>
+            </StyledDashboardForms>
     )
 }

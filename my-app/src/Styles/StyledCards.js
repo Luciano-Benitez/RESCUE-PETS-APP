@@ -17,6 +17,10 @@ export const StyledCard = styled.div`
   box-shadow: 0 0 15px #ddd;
   background: #fff;
   text-align: center;
+  text-decoration: none;
+  
+  align-self: start;
+
   
   &:hover {
   top: -2px;
@@ -42,6 +46,10 @@ export const StyledCardContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around; 
+  text-decoration: none;
+  a{
+    color:  ${allColors.colors[8]}
+  }
   h1{
     text-align: center !important;
     padding: 3px;

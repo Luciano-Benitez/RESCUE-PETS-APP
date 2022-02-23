@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditableRows = ({editFormData, handleEditFormChange, handleEditSelectorChange }) => {
+const EditableRows = ({editFormData, handleEditFormChange, handleCancelClick }) => {
   return (
     <tr>
         <td>
@@ -52,28 +52,28 @@ const EditableRows = ({editFormData, handleEditFormChange, handleEditSelectorCha
             ></input>
         </td>
         <td>
-            <select onChange={handleEditFormChange}>
+            <select name='speciesId' onChange={handleEditFormChange}>
                 <option hidden name='default' >Especie</option>
-                <option name='speciesId' value='1'>Gato</option>
-                <option name='speciesId' value='2'>Perro</option>
-                <option name='speciesId' value='3'>Pajaro</option>
-                <option name='speciesId' value='4'>Cerdo</option>
-                <option name='speciesId' value='5'>Otro</option>
+                <option value={1}>Gato</option>
+                <option value={2}>Perro</option>
+                <option value={3}>Pajaro</option>
+                <option value={4}>Cerdo</option>
+                <option value={5}>Otro</option>
             </select>
         </td>
         <td>
-            <select onChange={handleEditFormChange}>
+            <select name='temperament' onChange={handleEditFormChange}>
                 <option hidden name='default' >Temperamento</option>
-                <option name='temperament' value='1'>Activo</option>
-                <option name='temperament' value='2'>Divertido</option>
-                <option name='temperament' value='3'>Fiel</option>
-                <option name='temperament' value='4'>Independiente</option>
-                <option name='temperament' value='5'>Perezoso</option>
-                <option name='temperament' value='6'>Tranquilo</option>
-                <option name='temperament' value='7'>Amigable</option>
-                <option name='temperament' value='8'>Inteligente</option>
-                <option name='temperament' value='9'>Docil</option>
-                <option name='temperament' value='10'>Valiente</option>
+                <option value='1'>Activo</option>
+                <option value='2'>Divertido</option>
+                <option value='3'>Fiel</option>
+                <option value='4'>Independiente</option>
+                <option value='5'>Perezoso</option>
+                <option value='6'>Tranquilo</option>
+                <option value='7'>Amigable</option>
+                <option value='8'>Inteligente</option>
+                <option value='9'>Docil</option>
+                <option value='10'>Valiente</option>
             </select>
         </td>
         <td>
@@ -94,6 +94,7 @@ const EditableRows = ({editFormData, handleEditFormChange, handleEditSelectorCha
         </td>
         <td>
             <button type='submit' >Guardar</button>
+            <button type='button' onClick={handleCancelClick}>Cancelar</button>
         </td>
     </tr>
   )

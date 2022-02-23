@@ -45,6 +45,10 @@ const PetsInDashboard = () => {
 
       // const newFormData = {... editFormData}
       // newFormData[fieldName] = fieldValue;
+      console.log("flag event",event)
+      console.log(event.target)
+      console.log(event.target.name)
+      console.log(event.target.value)
       seteditFormData({
         ...editFormData,
         [event.target.name]: event.target.value
@@ -52,12 +56,11 @@ const PetsInDashboard = () => {
 
 
 
-    const [editPetId, seteditPetId] = useState(12)
+    const [editPetId, seteditPetId] = useState('')
 
     const handleEditClick = (event, data) => {
       event.preventDefault();
       seteditPetId(data.id)
-
       const formValues = {
         name: data.name,
         sterilization: data.sterilization,
@@ -69,13 +72,45 @@ const PetsInDashboard = () => {
         age: data.age,
         petStatus: data.petStatus
       }
-
       seteditFormData(formValues)
+    }
+
+    const handleEditedFormSubmit = (event) => {
+      event.preventDefault();
+      const editedPetInfo = {
+        id: editPetId,
+        name: editFormData.name,
+        sterilization: editFormData.sterilization,
+        weight: editFormData.weight,
+        description: editFormData.description,
+        image: editFormData.image,
+        speciesId: editFormData.speciesId,
+        temperament: editFormData.temperament,
+        age: editFormData.age,
+        petStatus: editFormData.petStatus
+      }
+      const newData = [...data];
+      const index = data.findIndex((pet) => pet.id === editPetId)
+      newData[index] = editedPetInfo
+      setData(newData);
+      seteditPetId(null);
+    }
+
+    const handleCancelClick = (event) => {
+      event.preventDefault();
+      seteditPetId(null);
+    }
+
+    const handleDeleteClick = (petId) => {
+      const newData = [...data];
+      const index = data.findIndex((pet) => pet.id === petId)
+      newData.splice(index, 1)
+      setData(newData)
 
     }
 
   return (
-    <form>
+    <form onSubmit={handleEditedFormSubmit}>
       <Center>
         <Table>
             <thead>
@@ -100,9 +135,14 @@ const PetsInDashboard = () => {
                     <EditableRows
                       editFormData={editFormData}
                       handleEditFormChange={handleEditFormChange}
+                      handleCancelClick={handleCancelClick}
                     />
                     ) : (
-                    <ReadOnlyRows data={data} handleEditClick={handleEditClick} />
+                    <ReadOnlyRows
+                    data={data}
+                    handleEditClick={handleEditClick}
+                    handleDeleteClick={handleDeleteClick}
+                    />
                     )}
                   </Fragment>
                 ) : <tr ><td>Loading</td></tr>

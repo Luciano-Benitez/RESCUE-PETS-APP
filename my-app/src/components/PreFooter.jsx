@@ -6,7 +6,8 @@ import {Link} from "react-router-dom";
 export default function PreFooter() {
     return (
         <Fragment>
-            <div className='ok'>
+            {/* <div className='ok'>  Fondo anterior*/}
+            
                 <StyledPreFooter>
                     <StyledCard>
                         <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit</h1>
@@ -45,7 +46,7 @@ export default function PreFooter() {
                     </StyledCard>
 
                 </StyledPreFooter>
-            </div>
+          
         </Fragment>
 
     )

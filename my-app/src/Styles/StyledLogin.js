@@ -22,6 +22,7 @@ border-radius: 17px;
 box-shadow: 0 0 15px #B8B9BA;
 .header1 {
   text-align: center;
+
 }
 
 .visited {
@@ -125,6 +126,9 @@ label {
     border-radius: 5px !important;
     cursor: pointer;
 
+}
+h1{
+  color:  ${allColors.colors[8]};
 }
 
 `

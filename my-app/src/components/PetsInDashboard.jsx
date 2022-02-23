@@ -1,7 +1,10 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState, Fragment} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPetsForDashboard } from '../Redux/Actions'
 import styled from 'styled-components';
+import ReadOnlyRows from './ReadOnlyRows';
+import EditableRows from './EditableRows';
+
 
 
 const PetsInDashboard = () => {
@@ -23,43 +26,91 @@ const PetsInDashboard = () => {
       }, [petsFromShelter])
       
 
+    const [editFormData, seteditFormData] = useState({
+      name: '',
+      sterilization: '',
+      weight: '',
+      description: '',
+      image: '',
+      speciesId: '',
+      temperament: '',
+      age: '',
+      petStatus: ''
+    })
+
+    const handleEditFormChange = (event) => {
+      event.preventDefault();
+      // const fieldName = event.target.getAttribute('name')
+      // const fieldValue = event.target.value
+
+      // const newFormData = {... editFormData}
+      // newFormData[fieldName] = fieldValue;
+      seteditFormData({
+        ...editFormData,
+        [event.target.name]: event.target.value
+      })}
+
+
+
+    const [editPetId, seteditPetId] = useState(12)
+
+    const handleEditClick = (event, data) => {
+      event.preventDefault();
+      seteditPetId(data.id)
+
+      const formValues = {
+        name: data.name,
+        sterilization: data.sterilization,
+        weight: data.weight,
+        description: data.description,
+        image: data.image,
+        speciesId: data.speciesId,
+        temperament: data.temperament,
+        age: data.age,
+        petStatus: data.petStatus
+      }
+
+      seteditFormData(formValues)
+
+    }
 
   return (
-    <Center>
-    <Table>
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Esterelization</th>
-            <th>Peso</th>
-            <th>Descripción</th>
-            <th>Imágenes</th>
-            <th>Especie</th>
-            <th>Temperamento</th>
-            <th>Edad</th>
-            <th>Estado</th>
-        </tr>
-        </thead>
-        <tbody>
-        {
-            data.length? data.map(el => 
-            <tr key={el.id}>
-            <td>{el.name}</td>
-            {el.sterilization? <td>True</td> : <td>False</td> }
-            <td>{el.weight}</td>
-            <td>{el.description}</td>
-            <td>{el.image}</td>
-            <td>{el.speciesId}</td>
-            <td>{el.temperament.temperament}</td>
-            <td>{el.age.age}</td>
-            <td>{el.petStatus.status}</td>
+    <form>
+      <Center>
+        <Table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Esterelization</th>
+                <th>Peso</th>
+                <th>Descripción</th>
+                <th>Imágenes</th>
+                <th>Especie</th>
+                <th>Temperamento</th>
+                <th>Edad</th>
+                <th>Estado</th>
+                <th>Acciones</th>
             </tr>
-            ) : <tr ><td>Loading</td></tr>
-        }
-        </tbody>
-    </Table>
-
-    </Center>
+            </thead>
+            <tbody>
+            {
+              data.length? data.map(data => 
+                <Fragment>
+                  {editPetId === data.id ? (
+                    <EditableRows
+                      editFormData={editFormData}
+                      handleEditFormChange={handleEditFormChange}
+                    />
+                    ) : (
+                    <ReadOnlyRows data={data} handleEditClick={handleEditClick} />
+                    )}
+                  </Fragment>
+                ) : <tr ><td>Loading</td></tr>
+              }
+            </tbody>
+        </Table>
+      </Center>
+    </form>
   )
 }
 
@@ -75,7 +126,7 @@ export const Table = styled.table`
 position: relative;
 align-self: center;
 justify-self: center;
-font-size: 14px;
+font-size: 10px;
 
 
 .app-container {
@@ -95,7 +146,7 @@ td {
 border: 1px solid #ffffff;
 text-align: left;
 padding: 8px;
-font-size: 16px;
+font-size: 12px;
 }
 
 th {

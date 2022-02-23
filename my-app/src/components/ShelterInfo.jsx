@@ -13,7 +13,7 @@ const ShelterInfo = ({Data, pets}) =>{
         <div>
             <h1>Hola, soy la info del refugio</h1>
             <DivContenedor>
-                <FiltersInShelterDetails/>
+                <FiltersInShelterDetails Data={Data}/>
                 <div>
                 <StyledCardContainer key={Math.random(5)}>
                     {

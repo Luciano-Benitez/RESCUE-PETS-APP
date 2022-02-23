@@ -48,24 +48,24 @@ const Details = () => {
             <h3>{Datos[0].name}</h3>
             
               <h1>{Datos[0].description}</h1>
-              <p>
-                <IoSparkles />  Weight:
-              </p>
-           <h1>{Datos[0].weight} </h1>
-              <p>
-                <IoHourglass /> Age:
-              </p>
+              <h2>
+                <IoSparkles /> Peso:  <span>{Datos[0].weight} 
+              </span></h2>
+           
+              <h2>
+                <IoHourglass /> Edad: <span>{Datos[0].age.age}
+              </span></h2>
              
-              <h1>{Datos[0].age.age}</h1>
-              <p> <IoBonfire/> Temperament :</p>
-              <h1>{Datos[0].temperament.temperament} </h1>
-              {/* <p> <IoFitness/>Vaccines :</p><h1>{Datos[0].vaccines} </h1> */}
+            
+              <h2> <IoBonfire/> Temperamento :<span> {Datos[0].temperament.temperament} </span></h2> 
               
-              <p><IoEgg />Especies :</p><h1> {Datos[0].species.specie} </h1>
+              {/* <h2> <IoFitness/>Vaccines :</span></h2><h1>{Datos[0].vaccines} </h1> */}
+              
+              <h2><IoEgg />Especie : <span> {Datos[0].species.specie}  </span></h2> 
           
-              <p>     <IoHeart />Estado :</p>
-              <h1>{Datos[0].petStatus.status} </h1>
-              <p><IoBusiness/> Refugio :</p><h1>{Datos[0].shelter.name} </h1>
+              <h2>     <IoHeart />Estado : <span> {Datos[0].petStatus.status}</span></h2>
+           
+              <h2><IoBusiness/> Refugio : <span> {Datos[0].shelter.name}</span></h2>
             </StyledDetailsRight>
           </>
         ) : (

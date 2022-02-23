@@ -240,13 +240,11 @@ export default function rooReducer(state = initialState, { type, payload }) {
             return {
               ...state,
             };
-
-        }
         
       case POST_PETS:
         return {
           ...state
-        };
+        }
 
         case GET_SHELTERS:
           return {

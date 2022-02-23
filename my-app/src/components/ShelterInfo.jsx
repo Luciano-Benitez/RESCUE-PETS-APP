@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import FiltersInShelterDetails from './FiltersInShelterDetails'
 
 // estilos
 import {DivContenedor} from '../Styles/StyledShelterDetails'
+import {StyledCard, StyledCardContainer, ImgCard} from '../Styles/StyledCards.js';
 
 
 const ShelterInfo = ({Data, pets}) =>{
@@ -14,11 +15,16 @@ const ShelterInfo = ({Data, pets}) =>{
             <DivContenedor>
                 <FiltersInShelterDetails/>
                 <div>
+                <StyledCardContainer key={Math.random(5)}>
                     {
-                        pets ? pets.map(e => (
-                            <h2>{e.name}</h2>
-                        )) : <h2>Loading...</h2>
+                        pets ? pets.map(e => (<Fragment key={e.id} >
+                            <StyledCard >
+                               <h1>{e.name}</h1>
+                               <ImgCard src={e.image}/>
+                            </StyledCard>
+                            </Fragment> )) : <h2>Loading...</h2>
                     } 
+                </StyledCardContainer>    
                 </div>
             </DivContenedor>
             

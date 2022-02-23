@@ -23,7 +23,8 @@ import {GET_COUNTRIES,
     GET_SHELTER_DETAIL,
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
-    GET_PETS_FOR_DASHBOARD
+    GET_PETS_FOR_DASHBOARD,
+    POST_PETS
     } from './types.js'
 
 
@@ -289,3 +290,9 @@ export const getPetsForDashboard = (route) => {
     }
 }
 
+export function postPets(payload) {
+    return async function(dispatch){
+        const post = await axios.post('http://localhost:3001/pets', payload);
+        return post;
+    }   
+};

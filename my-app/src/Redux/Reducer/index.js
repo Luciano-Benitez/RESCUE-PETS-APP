@@ -21,7 +21,8 @@ import {
   GET_FILTER_SHELTERS,
   GET_PETS_BY_SHELTER,
   GET_FORMTYPES,
-  GET_PETS_FOR_DASHBOARD
+  GET_PETS_FOR_DASHBOARD,
+  POST_PETS
 } from "../Actions/types";
 
 const initialState = {
@@ -221,9 +222,14 @@ export default function rooReducer(state = initialState, { type, payload }) {
         return {
           ...state,
           formtypes : payload
-        }  
+        }
+        
+      case POST_PETS:
+        return {
+          ...state
+        };
 
         default:
           return state;
       }
-    }
+    };

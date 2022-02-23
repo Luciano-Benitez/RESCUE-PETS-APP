@@ -3,10 +3,12 @@ import React, { useState } from "react";
 export const AnswerFormView = (element) => {
     const [form, setform] = useState()
     let array = []
-    form.element.answers.map(e => Object.entries(e).map(entry => {
-        const [key,value] = entry
-        array.push({key,value})
-    }))
+    if(form){
+        form.element.answers.map(e => Object.entries(e).map(entry => {
+            const [key,value] = entry
+            array.push({key,value})
+        }))
+    }
     const handleSetForm = ()=> {
         setform(element)
         console.log(form)

@@ -17,6 +17,6 @@ router.get('/forms/:userid', getForm)
 
 router.get('/formtypes', getFormtypes)
 
-router.get('/formquestions/:formid', getFormQuestions)
+router.get('/formquestions/:shelterid', getFormQuestions)
 
 module.exports = router

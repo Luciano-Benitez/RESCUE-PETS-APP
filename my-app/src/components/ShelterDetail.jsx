@@ -20,16 +20,18 @@ const ShelterDetail = () => {
 
   useEffect(() => {
     dispatch(getShelterDetail(id))
-    dispatch(getPetByShelter(id))
+    // dispatch(getPetByShelter(id))
   }, [dispatch, id]);
 
   useEffect(() => {
-    dispatch(getPetsFilter(`http://localhost:3001/pets/${cityId}?shelterId=${id}`));
+    if (cityId){
+      dispatch(getPetsFilter(`http://localhost:3001/pets/${cityId}?shelterId=${id}`));
+    }
     
   }, [dispatch, cityId]);
 
-  const pets = useSelector((state) => state.petsByShelter)
-  const pets2 = useSelector((state) => state.petsfilter)
+ // const pets2 = useSelector((state) => state.petsByShelter)
+  const pets = useSelector((state) => state.petsfilter)
 
   return (
     <StyledDiv>

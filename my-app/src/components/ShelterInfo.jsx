@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import FiltersInShelterDetails from "./FiltersInShelterDetails";
+import {Link} from 'react-router-dom'
 
 // estilos
 import { DivContenedor } from "../Styles/StyledShelterDetails";

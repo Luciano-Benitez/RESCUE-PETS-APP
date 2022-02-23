@@ -26,7 +26,7 @@ import {
   GET_SHELTERS,
   GET_FORM_ADOPTION,
   POST_ADOPTION,
-  POST_PETS
+  
 
 } from "../Actions/types";
 

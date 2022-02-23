@@ -94,7 +94,7 @@ function FiltersInShelterDetails({input, setInput}) {
 
         <DivInputs>
           <label>Rango de Edad: </label>
-          <select name='ageId'>
+          <select name='ageId' onChange={(e)=>handleSelect(e)}>
             <option disabled selected>
               -- Seleccione --
             </option>
@@ -106,8 +106,8 @@ function FiltersInShelterDetails({input, setInput}) {
         </DivInputs>
 
         <DivInputs>
-          <label>Rango de Edad: </label>
-          <select name='temperamentId'>
+          <label>Temperamento: </label>
+          <select name='temperamentId' onChange={(e)=>handleSelect(e)}>
             <option disabled selected>
               -- Seleccione --
             </option>

@@ -26,7 +26,7 @@ import {
   GET_SHELTERS,
   GET_FORM_ADOPTION,
   POST_ADOPTION,
-  
+  GETT_TEMPERAMENTS
 
 } from "../Actions/types";
 
@@ -38,6 +38,7 @@ const initialState = {
   petsfilter: [],
   pets: [],
   temperaments: [],
+  ttemperaments: [],
   cityId: [],
   ages: [],
   status:[],
@@ -251,6 +252,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
             ...state,
             Shelters: payload
           };
+
+        case GETT_TEMPERAMENTS:
+          return {
+            ...state,
+            ttemperaments: payload
+          }; 
 
         default:
           return state;

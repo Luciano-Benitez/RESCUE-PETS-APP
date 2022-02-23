@@ -27,7 +27,8 @@ import {GET_COUNTRIES,
     GET_SHELTERS,
     GET_FORM_ADOPTION,
     POST_ADOPTION,
-    POST_PETS
+    POST_PETS,
+    GETT_TEMPERAMENTS
 
     } from './types.js'
 
@@ -270,7 +271,7 @@ export const getShelterDetail = (id) => {
     } 
 }
 
-export const getShelters = () => {
+export const getShelters = (id) => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/shelters`)
         return dispatch({
@@ -328,4 +329,14 @@ export function postPets(payload) {
         return post;
     }   
 };
+
+export const gettTemperaments = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/temperaments`)
+        return dispatch({
+            type: GETT_TEMPERAMENTS,
+            payload: json.data
+        })
+    }
+}
 

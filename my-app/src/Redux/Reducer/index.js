@@ -35,7 +35,8 @@ import {
   GET_ALL_PET_STATUS,
   GET_ALL_AGES,
   GET_GENRES,
-  SEARCH_PET_BY_NAME
+  SEARCH_PET_BY_NAME,
+  DELETE_PET
 
 } from "../Actions/types";
 
@@ -333,8 +334,13 @@ export default function rooReducer(state = initialState, { type, payload }) {
           let filterbyname = state.petsfilter.filter(e => e.name === payload)
           return {
             ...state,
-            petsfilter: filterbyname
+            petsfilter: filterbyname  
           }
+          case DELETE_PET:
+            return {
+              ...state,
+            }
+        
         default:
           return state;
       }

@@ -39,7 +39,8 @@ import {
     GET_ALL_PET_STATUS,
     GET_ALL_AGES,
     GET_GENRES,
-    SEARCH_PET_BY_NAME
+    SEARCH_PET_BY_NAME,
+    DELETE_PET
     } from './types.js'
 
 
@@ -391,3 +392,11 @@ export const getGenres = ()=> {
     }
 }
 
+export const deletePet = (petId) => {
+    return async function (dispatch) {
+        const deletePet= await axios.delete(`http://localhost:3001/pets/${petId}`);
+        return dispatch({ type: DELETE_PET, payload:deletePet });
+        // console.log(deletePet)
+        // return deletePet
+    };
+} 

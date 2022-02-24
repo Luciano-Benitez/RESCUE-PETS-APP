@@ -25,7 +25,7 @@ const ReadOnlyRows = ({data, handleEditClick, handleDeleteClick}) => {
             <td>{data.genreId}</td>
             <td>
                 <button type='button' onClick={(event) => handleEditClick(event, data)}>Editar</button>
-                <button type='button' onClick={() => handleDeleteClick(data.id)}>Eliminar</button>
+                <button type='button' onClick={(event) => handleDeleteClick(event, data.id)}>Eliminar</button>
             </td>
         </tr>
     )

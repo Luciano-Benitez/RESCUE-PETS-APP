@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPetsForDashboard, getAllSpecies, gettTemperaments, getAllPetStatus, getAllAges, getGenres } from '../Redux/Actions'
+import { getPetsForDashboard, getAllSpecies, gettTemperaments, getAllPetStatus, getAllAges, getGenres, deletePet } from '../Redux/Actions'
 import styled from 'styled-components';
 import ReadOnlyRows from './ReadOnlyRows';
 import EditableRows from './EditableRows';
@@ -29,18 +29,24 @@ const PetsInDashboard = () => {
 
     const routeInfo = useSelector(state => state.ShelterAndCityId)
     const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
+    
+    const petsFromShelter = useSelector( state => state.petsForDashboard )
+    console.log("petsFromShelter -------------->", petsFromShelter)
+    
+    const [data, setData] = useState('')
 
-    useEffect( async()=>{
-      await dispatch(getPetsForDashboard(route))
-      },[dispatch])
-      const petsFromShelter = useSelector( state => state.petsForDashboard )
+    useEffect(()=>{
+        dispatch(getPetsForDashboard(route))
+      },[dispatch ])
 
-      const [data, setData] = useState('')
+
+
       
       useEffect(() => {
           setData(petsFromShelter)
       }, [petsFromShelter])
       
+
 
     const [editFormData, seteditFormData] = useState({
       name: '',
@@ -120,12 +126,14 @@ const PetsInDashboard = () => {
       seteditPetId(null);
     }
 
-    const handleDeleteClick = (petId) => {
-      const newData = [...data];
-      const index = data.findIndex((pet) => pet.id === petId)
-      newData.splice(index, 1)
-      setData(newData)
-
+    const handleDeleteClick = (event, petId) => {
+      event.preventDefault();
+      dispatch(deletePet(petId))
+      dispatch(getPetsForDashboard(route))
+      // const newData = [...data];
+      // const index = data.findIndex((pet) => pet.id === petId)
+      // newData.splice(index, 1)
+      // setData(newData)
     }
 
   return (

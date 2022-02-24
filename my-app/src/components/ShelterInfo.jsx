@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import FiltersInShelterDetails from "./FiltersInShelterDetails";
 import { Link } from "react-router-dom";
+import ShelterData from "./ShelterData";
 
 // estilos
 import { DivContenedor } from "../Styles/StyledShelterDetails";
@@ -85,6 +86,7 @@ const ShelterInfo = ({ Data, pets, input, setInput }) => {
   return (
     <div>
       <h1>Hola, soy la info del refugio</h1>
+      <ShelterData Data={Data}/>
       <div>
         <StyleButtonMini>Donate</StyleButtonMini>
       </div>

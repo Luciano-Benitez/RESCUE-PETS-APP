@@ -1,36 +1,42 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {getForms, getFormtypes} from '../Redux/Actions/index'
+import {getForms, getFormtypes, getPetsForDashboard} from '../Redux/Actions/index'
 //import './DashboardForms.css'
-import {AnswerFormView} from './AnswerFormView'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import { StyledDashboardForms } from '../Styles/StyledDashboardForms'
 
 export const DashboardForms= () => {
     const dispatch = useDispatch()
-    
+    const navigate = useNavigate()
     
     const iduser = useSelector((state) => state.id)
     const forms = useSelector((state) => state.forms)
     const formtypes = useSelector((state) => state.formtypes)
     const [typeform, settypeform] = useState('Adopción')
+    const pet = useSelector( state => state.petsForDashboard )
+    const routeInfo = useSelector(state => state.ShelterAndCityId)
+    const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
 
     useEffect(() => {
         dispatch(getFormtypes())
         dispatch(getForms(iduser,1))
+        dispatch(getPetsForDashboard(route))
     }, [])
 
     const handleSubmitGetForm = (e) => {
         settypeform(e.target[e.target.value-1].attributes.name.nodeValue)
         dispatch(getForms(iduser,e.target.value))
-        console.log(e.target[e.target.value-1].attributes.name.nodeValue)
+    }
+
+    const handleClick = ()=> {
+        navigate('/dashboard')
     }
 
     return (
             <StyledDashboardForms>
-
+                    <button onClick={handleClick}>{"<"}volver</button>
                     <h1>Tabla de formularios de {typeform}</h1>
 
                     <select name='opcion' onChange={e => handleSubmitGetForm(e)}>
@@ -55,6 +61,8 @@ export const DashboardForms= () => {
                                 <td>{element.id}</td>
                                 <td><Link to={`view/${element.id}/${formtypes[0].id}`}><button>Ver Formulario</button></Link></td>
                                 <td>{element.petId}</td>
+                                    {/* {pet.length ? <img src={`${pet.filter(e => e.id == element.petId? e: null)[0].image}`}
+                                width="100" height="100"/>:<h2>Cargando</h2>} */}
                                 <td><button>Accion1</button><button>Accion2</button></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}

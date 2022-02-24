@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import FiltersInShelterDetails from "./FiltersInShelterDetails";
 import { Link } from "react-router-dom";
+import ShelterData from "./ShelterData";
 
 // estilos
 import { DivContenedor } from "../Styles/StyledShelterDetails";
@@ -9,8 +10,9 @@ import {
   StyledCardContainer,
   ImgCard,
 } from "../Styles/StyledCards.js";
-import { StyleButton, StyleButtonMini } from "../Styles/StyledButtons";
+import { StyleButtonMini } from "../Styles/StyledButtons";
 import "../Styles/Styles.css";
+
 
 const ShelterInfo = ({ Data, pets, input, setInput }) => {
   const [currentPage, setcurrentPage] = useState(1);
@@ -81,18 +83,20 @@ const ShelterInfo = ({ Data, pets, input, setInput }) => {
   const handleLoadMore = () => {
     setitemsPerPage(itemsPerPage + 5);
   };
-
+  
   return (
     <div>
       <h1>Hola, soy la info del refugio</h1>
+      <ShelterData Data={Data}/>
       <div>
         <StyleButtonMini>Donate</StyleButtonMini>
+       
       </div>
       <DivContenedor>
         <FiltersInShelterDetails input={input} setInput={setInput} />
-
+        
         <div>
-          <StyledCardContainer key={Math.random(5)}>
+        <StyledCardContainer key={Math.random(5)}>
             {typeof pets !== "string" ? (
               currentItems?.map((p) => (
                 <Fragment key={p.id}>

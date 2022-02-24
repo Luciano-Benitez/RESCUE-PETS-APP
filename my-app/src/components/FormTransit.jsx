@@ -14,12 +14,12 @@ const FormTransit = ({ id }) => {
     }
   }, []);
 
-  const handleChange = (e) => {
-    // setInput({
-    //   ...input,
-    //   [e.target.name] : e.target.value
-    // })
-  }
+
+
+  function handleChange(event) {
+  //  if (Object.hasOwnProperty(`${event.target.value}`)) console.log(true)
+  //   else console.log(false)
+  };
 
   return (
     <div>
@@ -29,7 +29,9 @@ const FormTransit = ({ id }) => {
           form[0].questions.map((e) => (
             <div key={e.id}>
               <label>{`${e.question}: `}</label>
-              <textarea name='hola' cols="50" rows="3" onChange={handleChange(e)}/>
+              <input 
+              name={`Q${e.id}`}
+              onChange={(event)=>handleChange(event)}/>
             </div>
           ))}
       </form>

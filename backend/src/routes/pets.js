@@ -8,6 +8,7 @@ const { postVaccines } = require("../controllers/petsVaccines");
 const {petsId}= require("../controllers/petsId");
 const { getAllPetsinDB } = require("../controllers/getAllPetsinDB.js");
 const { deletePet } = require("../controllers/deletePet");
+const { editPet } = require("../controllers/editPets");
 
 
 router.get("/pets/:idCity", getPets);
@@ -49,6 +50,7 @@ router.get("/petDetail", async (req, res) => {
   });
 
   router.delete("/pets/:petId", deletePet);
+  router.put("/pets/:petId", editPet);
 
 
 

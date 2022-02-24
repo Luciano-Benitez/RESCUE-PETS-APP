@@ -23,7 +23,8 @@ import {GET_COUNTRIES,
     GET_SHELTER_DETAIL,
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
-    GET_PETS_FOR_DASHBOARD
+    GET_PETS_FOR_DASHBOARD,
+    GET_INDIVIDUAL_FORM
     } from './types.js'
 
 
@@ -289,3 +290,17 @@ export const getPetsForDashboard = (route) => {
     }
 }
 
+
+
+export const getIndividualForm = (shelterid,formtypeid,formid) => {
+    return async function (dispatch){
+        try{
+            let json = await axios(`http://localhost:3001/formquestions/${shelterid}?formtypeid=${formtypeid}`)
+            return dispatch({
+                type: GET_INDIVIDUAL_FORM, payload: {data: json.data, formid: formid}}
+            )
+        }catch(error){
+            return error
+        }
+    }
+}

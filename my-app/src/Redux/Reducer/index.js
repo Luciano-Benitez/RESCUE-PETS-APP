@@ -21,7 +21,8 @@ import {
   GET_FILTER_SHELTERS,
   GET_PETS_BY_SHELTER,
   GET_FORMTYPES,
-  GET_PETS_FOR_DASHBOARD
+  GET_PETS_FOR_DASHBOARD,
+  GET_INDIVIDUAL_FORM
 } from "../Actions/types";
 
 const initialState = {
@@ -46,7 +47,8 @@ const initialState = {
   shelterDetail : {},
   petsByShelter: [],
   formtypes: [],
-  petsForDashboard: []
+  petsForDashboard: [],
+  individualform: []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -223,7 +225,24 @@ export default function rooReducer(state = initialState, { type, payload }) {
           formtypes : payload
         }  
 
+      case GET_INDIVIDUAL_FORM :
+        let showranswers = state.forms.filter(e => Number(e.id) === Number(payload.formid))
+        showranswers = showranswers[0].answers
+        let showquestions = payload.data[0].questions
+        let questionANDanswer = []
+        showranswers.map(e => {
+             showquestions.map(q => {
+              if(e.idquestion === q.id){
+                questionANDanswer.push({question:q.question,answer:e.answer})
+              } 
+            })
+        })
+        
+        return {
+          ...state,
+          individualform : questionANDanswer
+        }  
         default:
           return state;
       }
-    }
+}

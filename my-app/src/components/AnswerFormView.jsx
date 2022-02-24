@@ -13,21 +13,13 @@ export const AnswerFormView = () => {
     const shelterid = cityandshelter.shelterId
 
     useEffect(()=>{
-        console.log('shelterid: '+shelterid)
-        console.log('formtypeid: '+formtypeid)
-        console.log('formid: '+formid)
         dispatch(getIndividualForm(shelterid,formtypeid,formid))
         console.log(detailform)
     },[])
 
-    const handleConsole = () => {
-        if(detailform) console.log(detailform)
-    }
-
     return (<>
     <br></br><br></br><br></br><br></br><br></br><br></br>
     <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-    <button onClick={handleConsole}>ver</button>
     {shelterid? <h1>
     Shelter ID: {shelterid}| FormType ID: {formtypeid} | FormID: {formid} </h1>: null}
     {detailform ? detailform.map(e => (
@@ -37,6 +29,8 @@ export const AnswerFormView = () => {
             <hr></hr>
         </div>
     )): <h1>Loading..</h1>}
+    <button>Aceptar ✔</button>
+    <button>Denegar ✘</button>
     </>
     )
 }

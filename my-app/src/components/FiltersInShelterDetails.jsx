@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getSpecies, getAges, getTemperaments} from '../Redux/Actions/index'
+import {getSpecies, getAges, getTemperaments, getGenres, searchPetByName} from '../Redux/Actions/index'
 
 // estilos
 import { DivInputs, FormStyle } from "../Styles/StyledShelterDetails";
 
-function FiltersInShelterDetails({input, setInput}) {
+function FiltersInShelterDetails({input, setInput, pets}) {
  
   
   const dispatch= useDispatch()
@@ -16,6 +16,7 @@ function FiltersInShelterDetails({input, setInput}) {
   const species = useSelector((state) => state.species)
   const ages = useSelector((state) => state.ages)
   const temperaments = useSelector((state) => state.temperaments)
+  const genres = useSelector((state)=>state.allGenres)
   
   useEffect(() => {
    if (species === undefined || species.length === 0 ) {
@@ -27,6 +28,9 @@ function FiltersInShelterDetails({input, setInput}) {
    if (temperaments === undefined || temperaments.length === 0 ) {
     dispatch(getTemperaments());
    }
+   if (genres === undefined || genres.length === 0 ) {
+    dispatch(getGenres());
+   }
       
   }, [species, temperaments, ages]);
 
@@ -34,6 +38,12 @@ function FiltersInShelterDetails({input, setInput}) {
   const handleChange = (e) => {
     setName(e.target.value);
   };
+
+  const handlefind = (e) => {
+    e.preventDefault()
+    dispatch(searchPetByName(name))
+  }
+
 
   function handleSelect(e) {
     if(isNaN(Number(e.target.value))){
@@ -47,6 +57,11 @@ function FiltersInShelterDetails({input, setInput}) {
               [e.target.name]: e.target.value
          }})
     }
+    }
+
+    function handleReset(e){
+      e.preventDefault()
+      window.location.reload()
     }
 
   return (
@@ -63,7 +78,7 @@ function FiltersInShelterDetails({input, setInput}) {
             type="text"
             placeholder="Nombre"
           />
-          <button>Buscar</button>
+          <button onClick={(e) => handlefind(e)}>Buscar</button>
         </DivInputs>
 
         <DivInputs>
@@ -81,13 +96,13 @@ function FiltersInShelterDetails({input, setInput}) {
 
         <DivInputs>
           <label>Género: </label>
-          <select name='genreId'>
+          <select name='genreId' onChange={(e)=>handleSelect(e)}>
             <option disabled selected>
               -- Seleccione --
             </option>
             <option value={"Generos"} >Todos</option>
-            {species?.map(s =>(
-                         <option key={s.id} value={s.id}>{s.specie}</option>
+            {genres?.map(s =>(
+                         <option key={s.id} value={s.id}>{s.genre}</option>
                     ))}
           </select>
         </DivInputs>
@@ -118,6 +133,7 @@ function FiltersInShelterDetails({input, setInput}) {
                     }
           </select>
         </DivInputs>
+        <button onClick={(e)=>handleReset(e)}>Resetear</button>
       </FormStyle>
     </div>
   );

@@ -89,7 +89,7 @@ const ShelterInfo = ({ Data, pets, input, setInput }) => {
         <StyleButtonMini>Donate</StyleButtonMini>
       </div>
       <DivContenedor>
-        <FiltersInShelterDetails input={input} setInput={setInput} />
+        <FiltersInShelterDetails input={input} setInput={setInput}/>
 
         <div>
           <StyledCardContainer key={Math.random(5)}>

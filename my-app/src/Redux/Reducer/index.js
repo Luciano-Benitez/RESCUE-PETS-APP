@@ -21,7 +21,8 @@ import {
   GET_FILTER_SHELTERS,
   GET_PETS_BY_SHELTER,
   GET_FORMTYPES,
-  GET_PETS_FOR_DASHBOARD
+  GET_PETS_FOR_DASHBOARD,
+  GET_PETS_SIMILAR,
 } from "../Actions/types";
 
 const initialState = {
@@ -34,19 +35,20 @@ const initialState = {
   temperaments: [],
   cityId: [],
   ages: [],
-  status:[],
-  shelter:[],
-  Shelters:[],
-  forms:[],
+  status: [],
+  shelter: [],
+  Shelters: [],
+  forms: [],
   status: [],
   shelter: [],
   Shelters: [],
   petOne: [],
   ShelterAndCityId: {},
-  shelterDetail : {},
+  shelterDetail: {},
   petsByShelter: [],
   formtypes: [],
-  petsForDashboard: []
+  petsForDashboard: [],
+  pets_similar: [],
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -108,6 +110,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         checking: false,
+      };
+
+    case GET_PETS_SIMILAR:
+      return {
+        ...state,
+        pets_similar: payload,
       };
 
     case GET_TEMPERAMENTS:
@@ -198,32 +206,32 @@ export default function rooReducer(state = initialState, { type, payload }) {
     case GET_SHELTER_DETAIL:
       return {
         ...state,
-        shelterDetail: payload
-      }
-      case GET_PETS_BY_SHELTER:
-        return{
-          ...state,
-          petsByShelter: payload
-        }
-      case GET_PETS_FOR_DASHBOARD:
-        return {
-          ...state,
-          petsForDashboard: payload
-        }
+        shelterDetail: payload,
+      };
+    case GET_PETS_BY_SHELTER:
+      return {
+        ...state,
+        petsByShelter: payload,
+      };
+    case GET_PETS_FOR_DASHBOARD:
+      return {
+        ...state,
+        petsForDashboard: payload,
+      };
 
-      case GET_FORMS :
-        return {
-          ...state,
-          forms : payload
-        }
-        
-      case GET_FORMTYPES :
-        return {
-          ...state,
-          formtypes : payload
-        }  
+    case GET_FORMS:
+      return {
+        ...state,
+        forms: payload,
+      };
 
-        default:
-          return state;
-      }
-    }
+    case GET_FORMTYPES:
+      return {
+        ...state,
+        formtypes: payload,
+      };
+
+    default:
+      return state;
+  }
+}

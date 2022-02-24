@@ -22,7 +22,16 @@ import {
   GET_PETS_BY_SHELTER,
   GET_FORMTYPES,
   GET_PETS_FOR_DASHBOARD,
-  GET_INDIVIDUAL_FORM
+  GET_INDIVIDUAL_FORM,
+  POST_PETS,
+  GET_SHELTERS,
+  GET_FORM_ADOPTION,
+  POST_ADOPTION,
+  GETT_TEMPERAMENTS,
+  GET_ALL_SPECIES,
+  GET_ALL_PET_STATUS,
+  GET_ALL_AGES,
+  GET_GENRES
 } from "../Actions/types";
 
 const initialState = {
@@ -33,6 +42,7 @@ const initialState = {
   petsfilter: [],
   pets: [],
   temperaments: [],
+  ttemperaments: [],
   cityId: [],
   ages: [],
   status:[],
@@ -48,7 +58,12 @@ const initialState = {
   petsByShelter: [],
   formtypes: [],
   petsForDashboard: [],
-  individualform: []
+  individualform: [],
+  formAdoption:[],
+  allspecies: [],
+  petStatus: [],
+  allAges: [],
+  allGenres: []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -223,7 +238,36 @@ export default function rooReducer(state = initialState, { type, payload }) {
         return {
           ...state,
           formtypes : payload
+
         }  
+        case GET_FORM_ADOPTION:
+          return {
+            ...state,
+           formAdoption: payload
+          }
+
+          case POST_ADOPTION:
+            return {
+              ...state,
+            };
+        
+      case POST_PETS:
+        return {
+          ...state
+        }
+
+        case GET_SHELTERS:
+          return {
+            ...state,
+            Shelters: payload
+          };
+
+        case GETT_TEMPERAMENTS:
+          return {
+            ...state,
+            ttemperaments: payload
+          }; 
+
 
       case GET_INDIVIDUAL_FORM :
         let showranswers = state.forms.filter(e => Number(e.id) === Number(payload.formid))
@@ -242,7 +286,31 @@ export default function rooReducer(state = initialState, { type, payload }) {
           ...state,
           individualform : questionANDanswer
         }  
+      
+          case GET_ALL_SPECIES:
+            return {
+              ...state,
+              allspecies: payload
+            };
+          
+            case GET_ALL_PET_STATUS:
+              return {
+                ...state,
+                petStatus: payload
+              };
+            
+            case GET_ALL_AGES:
+              return {
+                ...state,
+                allAges: payload
+              };
+        case GET_GENRES:
+          return {
+            ...state,
+            allGenres: payload
+          };      
         default:
           return state;
       }
-}
+    };
+

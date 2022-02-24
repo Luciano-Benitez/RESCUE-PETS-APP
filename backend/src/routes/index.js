@@ -12,6 +12,10 @@ const temperaments = require('./temperaments')
 const states = require('./states')
 const Search = require('./Search');
 const ShelterAndCityId = require('./Shelter&CityId');
+const Species = require('./Species');
+const PetStatus = require('./PetStatus');
+const Ages = require('./Ages');
+const Genres = require('./Genres');
 
 router.use('/',pets)
 router.use('/',form)
@@ -26,5 +30,9 @@ router.use('/',states)
 router.use('/',cities)
 router.use('/',temperaments)
 router.use('/',ShelterAndCityId)
+router.use('/',Species)
+router.use('/',PetStatus)
+router.use('/',Ages)
+router.use('/',Genres)
 
 module.exports = router;

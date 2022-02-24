@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import Shelters from './components/Shelters';
 import Details from './components/Details';
 import ShelterDetail from './components/ShelterDetail';
+import CreatePets  from "./components/CreatePets";
 
 import { useDispatch, useSelector } from "react-redux";
 import { startChecking } from "./Redux/Actions";
@@ -43,6 +44,8 @@ function App() {
           
         } />
          <Route path="/Shelters" element={<Shelters/>}/>
+
+         <Route path="/CreatePets" element={<CreatePets/>}/>
 
         <Route path="/login" element={
           <PublicRoute>

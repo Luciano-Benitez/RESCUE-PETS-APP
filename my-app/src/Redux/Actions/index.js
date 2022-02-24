@@ -24,7 +24,16 @@ import {GET_COUNTRIES,
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
     GET_PETS_FOR_DASHBOARD,
-    GET_INDIVIDUAL_FORM
+    GET_INDIVIDUAL_FORM,
+    GET_SHELTERS,
+    GET_FORM_ADOPTION,
+    POST_ADOPTION,
+    POST_PETS,
+    GETT_TEMPERAMENTS,
+    GET_ALL_SPECIES,
+    GET_ALL_PET_STATUS,
+    GET_ALL_AGES,
+    GET_GENRES
     } from './types.js'
 
 
@@ -266,7 +275,15 @@ export const getShelterDetail = (id) => {
     } 
 }
 
-
+export const getShelters = () => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/shelters`)
+        return dispatch({
+            type: GET_SHELTERS,
+            payload: json.data
+        })
+    } 
+}
 
 export const getFormtypes = ()=> {
     return async function(dispatch){
@@ -292,6 +309,7 @@ export const getPetsForDashboard = (route) => {
 
 
 
+
 export const getIndividualForm = (shelterid,formtypeid,formid) => {
     return async function (dispatch){
         try{
@@ -302,5 +320,82 @@ export const getIndividualForm = (shelterid,formtypeid,formid) => {
         }catch(error){
             return error
         }
+    }
+}
+export const getFormAdoption = (id,formtypeId) => {
+    return async function (dispatch) {
+        try {
+          const Adoption= await axios(`http://localhost:3001/formquestions/${id}?formtypeid=${formtypeId}`);
+          dispatch({ type: GET_FORM_ADOPTION, payload:Adoption.data });
+        } catch (error) {
+          console.log(error);
+        
+        }
+      };
+    } 
+
+export const sendAdoption=(payload)=>{
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/sendAdoption`, payload)
+        return response
+    } 
+    }
+
+export function postPets(payload) {
+    return async function(dispatch){
+        const post = await axios.post('http://localhost:3001/pets', payload);
+        return post;
+    }   
+};
+
+export const gettTemperaments = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/temperaments`)
+        return dispatch({
+            type: GETT_TEMPERAMENTS,
+            payload: json.data
+        })
+    }
+}
+
+export const getAllSpecies = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/species`)
+        return dispatch({
+            type: GET_ALL_SPECIES,
+            payload: json.data
+        })
+    }
+}
+
+
+export const getAllPetStatus = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/petstatus`)
+        return dispatch({
+            type: GET_ALL_PET_STATUS,
+            payload: json.data
+        })
+    }
+}
+
+export const getAllAges = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/ages`)
+        return dispatch({
+            type: GET_ALL_AGES,
+            payload: json.data
+        })
+    }
+}
+
+
+export const getGenres = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/genres`)
+        return dispatch({
+            type: GET_GENRES,
+            payload: json.data
+        })
     }
 }

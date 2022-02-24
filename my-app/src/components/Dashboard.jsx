@@ -21,7 +21,7 @@ export const Dashboard = () => {
     dispatch(getAllSpecies())
     dispatch(gettTemperaments())
     dispatch(getAllPetStatus())
-    // dispatch(getAllAges())
+    dispatch(getAllAges())
   }, [])
   
 

@@ -14,6 +14,7 @@ const Search = require('./Search');
 const ShelterAndCityId = require('./Shelter&CityId');
 const Species = require('./Species');
 const PetStatus = require('./PetStatus');
+const Ages = require('./Ages');
 
 router.use('/',pets)
 router.use('/',form)
@@ -30,5 +31,6 @@ router.use('/',temperaments)
 router.use('/',ShelterAndCityId)
 router.use('/',Species)
 router.use('/',PetStatus)
+router.use('/',Ages)
 
 module.exports = router;

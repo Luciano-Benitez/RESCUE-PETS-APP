@@ -3,6 +3,7 @@ const { PetStatus } = require('../db')
  async function getPetStatus (req, res) {
     try {   
         const gotPetStatus = await PetStatus.findAll();
+
         console.log(gotPetStatus)
         res.status(200).json(gotPetStatus);
         

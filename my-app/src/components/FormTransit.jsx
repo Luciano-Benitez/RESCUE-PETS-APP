@@ -6,7 +6,9 @@ const FormTransit = ({ id }) => {
   const dispatch = useDispatch();
   const form = useSelector((state) => state.formAdoption);
 
-  const [input, setInput] = useState({})
+  const [idquestion, setIdquestion] = useState([])
+  const [answer, setAnswer] = useState([])
+  const [input, setInput] = useState([])
 
   useEffect(() => {
     if (form.length === 0) {
@@ -14,12 +16,26 @@ const FormTransit = ({ id }) => {
     }
   }, []);
 
-
-
   function handleChange(event) {
-  //  if (Object.hasOwnProperty(`${event.target.value}`)) console.log(true)
-  //   else console.log(false)
+
+    if(idquestion){
+      idquestion.map(e => {
+          if(e !== event.target.name){
+              setIdquestion([...idquestion, event.target.name])
+          }else{
+              let temp = event.target.name
+            
+          }
+      })
+  }
+    setIdquestion([...idquestion, event.target.name])
+    setAnswer([...answer, event.target.value])
+    setInput([...input, {idquestion: event.target.name, answer: event.target.value}])
   };
+
+  function handleClick(event){
+    console.log(input)
+  }
 
   return (
     <div>
@@ -30,10 +46,12 @@ const FormTransit = ({ id }) => {
             <div key={e.id}>
               <label>{`${e.question}: `}</label>
               <input 
-              name={`Q${e.id}`}
-              onChange={(event)=>handleChange(event)}/>
+              name={e.id}
+              onChange={(event)=>handleChange(event)}
+              />
             </div>
           ))}
+          <button onClick={handleClick}>Enviar Formulario</button>
       </form>
     </div>
   );

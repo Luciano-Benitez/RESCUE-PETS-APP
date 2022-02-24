@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import {Link} from "react-router-dom"
-import { getIdFromShelterAndCity } from '../Redux/Actions'
+import { getIdFromShelterAndCity, getAllSpecies, gettTemperaments, getAllPetStatus, getAllAges } from '../Redux/Actions'
 
 export const Dashboard = () => {
 
   const idUser = useSelector(state => state.id)
+  const allSpecies = useSelector(state => state.allSpecies)
   console.log(idUser)
   
   const dispatch = useDispatch()
@@ -15,6 +16,15 @@ export const Dashboard = () => {
     console.log("flag idsuer --------->",idUser)
   dispatch(getIdFromShelterAndCity(idUser))
   },[])
+
+  useEffect(() => {
+    dispatch(getAllSpecies())
+    dispatch(gettTemperaments())
+    dispatch(getAllPetStatus())
+    // dispatch(getAllAges())
+  }, [])
+  
+
 
   return (
     <Center>

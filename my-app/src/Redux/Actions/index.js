@@ -28,8 +28,10 @@ import {GET_COUNTRIES,
     GET_FORM_ADOPTION,
     POST_ADOPTION,
     POST_PETS,
-    GETT_TEMPERAMENTS
-
+    GETT_TEMPERAMENTS,
+    GET_ALL_SPECIES,
+    GET_ALL_PET_STATUS,
+    GET_ALL_AGES
     } from './types.js'
 
 
@@ -340,3 +342,33 @@ export const gettTemperaments = ()=> {
     }
 }
 
+export const getAllSpecies = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/species`)
+        return dispatch({
+            type: GET_ALL_SPECIES,
+            payload: json.data
+        })
+    }
+}
+
+
+export const getAllPetStatus = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/petstatus`)
+        return dispatch({
+            type: GET_ALL_PET_STATUS,
+            payload: json.data
+        })
+    }
+}
+
+export const getAllAges = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/ages`)
+        return dispatch({
+            type: GET_ALL_AGES,
+            payload: json.data
+        })
+    }
+}

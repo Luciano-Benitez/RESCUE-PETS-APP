@@ -271,7 +271,7 @@ export const getShelterDetail = (id) => {
     } 
 }
 
-export const getShelters = (id) => {
+export const getShelters = () => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/shelters`)
         return dispatch({

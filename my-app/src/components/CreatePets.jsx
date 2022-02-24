@@ -6,7 +6,6 @@ import {postPets, getShelters, gettTemperaments,
        getAllSpecies, getAllAges, getAllPetStatus, getGenres} from '../Redux/Actions/index';
 
 export function CreatePets() {
-    const Pets = useSelector(state => state.Pets);//Borrar a este ...
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -52,19 +51,27 @@ export function CreatePets() {
         sterilization: '',
         weight: '',
         description: '',
+        image:'',
         speciesId: '',
         shelterId: '',
         temperamentId: '',
         ageId : '',
         petStatusId: '',
         genreId:'',
-        image:''
     });
+    console.log('Estado Local: ', state)
 
     const handleChanges = (e) => {
         setState({
             ...state,
             [e.target.name]: e.target.value
+        })
+    };
+
+    const handleSelectBoolean = (e) => {
+        setState({
+            ...state,
+            sterilization: e.target.value
         })
     };
 
@@ -110,11 +117,20 @@ export function CreatePets() {
         })
     };
 
+    const handleSelectImg = (e) => {
+        setState({
+            ...state,
+            image: e.target.value
+        })
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(postPets(state));
+        setState({name:'',sterilization:'',weight: '',description: '',image:'',speciesId:'',shelterId:'',
+                temperamentId:'',ageId:'',petStatusId:'',genreId:''})
         alert('¡La mascota fue creada con exito!');
-        navigate('/dashboard/pets');
+        // navigate('/dashboard/pets');
     };
 
     return (
@@ -124,8 +140,12 @@ export function CreatePets() {
                 <input type="text" name="name" value={state.name} onChange={handleChanges} />
             </label>
 
-            <label >Esterilización:
-                <input type="text" name="sterilization" value={state.sterilization} onChange={handleChanges} />
+            <label >Esterilizado/a:
+                <select onChange={handleSelectBoolean} >
+                    <option disabled selected>-- Seleccione --</option>
+                    <option name='true' value={true}>Si</option>
+                    <option name='false' value={false}>No</option>
+                </select>
             </label>
 
             <label >Peso:
@@ -140,7 +160,7 @@ export function CreatePets() {
                 <select onChange={handleSelectSpecies} >
                 <option disabled selected>-- Seleccione --</option>
                 {Allspecies?.map((e) => (
-                <option value={e.id} key={e.speciesId }>{e.specie}</option>
+                <option value={e.id} key={e.id }>{e.specie}</option>
               ))}
                 </select>
             </label>
@@ -189,7 +209,7 @@ export function CreatePets() {
               ))}
             </select>
             </label>
-            <input type='file' name='img' value={state.image} onChange={handleChanges}/>
+            <input type='file' name='img' value={state.image} onChange={handleSelectImg}/>
             <button type="submit">¡Crear Mascota!</button>
             </form>
         </div>

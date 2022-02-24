@@ -48,6 +48,7 @@ background-color: white;
   span {
     color: ${allColors.colors[2]};
     font-size: 13px !important;
+    
   }
 
   h1 {

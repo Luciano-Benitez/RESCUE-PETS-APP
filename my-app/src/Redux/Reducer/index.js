@@ -22,6 +22,9 @@ import {
   GET_PETS_BY_SHELTER,
   GET_FORMTYPES,
   GET_PETS_FOR_DASHBOARD,
+
+  GET_PETS_SIMILAR,
+
   GET_INDIVIDUAL_FORM,
   POST_PETS,
   GET_SHELTERS,
@@ -32,6 +35,7 @@ import {
   GET_ALL_PET_STATUS,
   GET_ALL_AGES,
   GET_GENRES
+
 } from "../Actions/types";
 
 const initialState = {
@@ -45,25 +49,29 @@ const initialState = {
   ttemperaments: [],
   cityId: [],
   ages: [],
-  status:[],
-  shelter:[],
-  Shelters:[],
-  forms:[],
+  status: [],
+  shelter: [],
+  Shelters: [],
+  forms: [],
   status: [],
   shelter: [],
   Shelters: [],
   petOne: [],
   ShelterAndCityId: {},
-  shelterDetail : {},
+  shelterDetail: {},
   petsByShelter: [],
   formtypes: [],
   petsForDashboard: [],
+
+  pets_similar: [],
+
   individualform: [],
   formAdoption:[],
   allspecies: [],
   petStatus: [],
   allAges: [],
   allGenres: []
+
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -125,6 +133,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         checking: false,
+      };
+
+    case GET_PETS_SIMILAR:
+      return {
+        ...state,
+        pets_similar: payload,
       };
 
     case GET_TEMPERAMENTS:
@@ -215,13 +229,17 @@ export default function rooReducer(state = initialState, { type, payload }) {
     case GET_SHELTER_DETAIL:
       return {
         ...state,
-        shelterDetail: payload
-      }
-      case GET_PETS_BY_SHELTER:
-        return{
-          ...state,
-          petsByShelter: payload
-        }
+
+        shelterDetail: payload,
+      };
+    case GET_PETS_BY_SHELTER:
+      return {
+        ...state,
+        petsByShelter: payload,
+      };
+    
+
+     
       case GET_PETS_FOR_DASHBOARD:
         return {
           ...state,
@@ -313,4 +331,5 @@ export default function rooReducer(state = initialState, { type, payload }) {
           return state;
       }
     };
+
 

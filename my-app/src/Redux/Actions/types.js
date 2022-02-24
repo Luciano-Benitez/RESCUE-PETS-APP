@@ -39,7 +39,7 @@ export const GET_ALL_SPECIES = 'GET_ALL_SPECIES'
 export const GET_ALL_PET_STATUS = 'GET_ALL_PET_STATUS'
 export const GET_ALL_AGES = 'GET_ALL_AGES'
 export const GET_GENRES = 'GET_GENRES'
-
+export const SEARCH_PET_BY_NAME = 'SEARCH_PET_BY_NAME'
 
 
 

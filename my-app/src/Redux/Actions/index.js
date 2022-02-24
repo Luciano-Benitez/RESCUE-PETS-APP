@@ -38,7 +38,8 @@ import {
     GET_ALL_SPECIES,
     GET_ALL_PET_STATUS,
     GET_ALL_AGES,
-    GET_GENRES
+    GET_GENRES,
+    SEARCH_PET_BY_NAME
     } from './types.js'
 
 
@@ -290,6 +291,10 @@ export const getPetsForDashboard = (route) => {
             return error;
         }
     };
+};
+
+export const searchPetByName = (payload) => {
+    return {type: SEARCH_PET_BY_NAME, payload: payload};
 };
 
 

@@ -26,7 +26,10 @@ import {
   GET_SHELTERS,
   GET_FORM_ADOPTION,
   POST_ADOPTION,
-  GETT_TEMPERAMENTS
+  GETT_TEMPERAMENTS,
+  GET_ALL_SPECIES,
+  GET_ALL_PET_STATUS,
+  GET_ALL_AGES
 
 } from "../Actions/types";
 
@@ -54,7 +57,10 @@ const initialState = {
   petsByShelter: [],
   formtypes: [],
   petsForDashboard: [],
-  formAdoption:[]
+  formAdoption:[],
+  allspecies: [],
+  petStatus: [],
+  allAges: []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -259,6 +265,23 @@ export default function rooReducer(state = initialState, { type, payload }) {
             ttemperaments: payload
           }; 
 
+          case GET_ALL_SPECIES:
+            return {
+              ...state,
+              allspecies: payload
+            };
+          
+            case GET_ALL_PET_STATUS:
+              return {
+                ...state,
+                petStatus: payload
+              };
+            
+            case GET_ALL_AGES:
+              return {
+                ...state,
+                allAges: payload
+              };
         default:
           return state;
       }

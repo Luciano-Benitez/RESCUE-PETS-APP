@@ -32,6 +32,9 @@ export const POST_ADOPTION='POST_ADOPTION'
 export const POST_PETS = 'POST_PETS'
 export const GET_SHELTERS = 'GET_SHELTERS'
 export const GETT_TEMPERAMENTS = 'GETT_TEMPERAMENTS'
+export const GET_ALL_SPECIES = 'GET_ALL_SPECIES'
+export const GET_ALL_PET_STATUS = 'GET_ALL_PET_STATUS'
+export const GET_ALL_AGES = 'GET_ALL_AGES'
 
 
 

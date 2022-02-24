@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPetsForDashboard, getAllSpecies, gettTemperaments, getAllPetStatus, getAllAges, getGenres, deletePet } from '../Redux/Actions'
+import { getPetsForDashboard, getAllSpecies, gettTemperaments, getAllPetStatus, getAllAges, getGenres, deletePet, editPet } from '../Redux/Actions'
 import styled from 'styled-components';
 import ReadOnlyRows from './ReadOnlyRows';
 import EditableRows from './EditableRows';
@@ -97,28 +97,32 @@ const PetsInDashboard = () => {
         genreId: data.genreId
       }
       seteditFormData(formValues)
+      
     }
 
     const handleEditedFormSubmit = (event) => {
       event.preventDefault();
-      const editedPetInfo = {
-        id: editPetId,
-        name: editFormData.name,
-        sterilization: editFormData.sterilization,
-        weight: editFormData.weight,
-        description: editFormData.description,
-        image: editFormData.image,
-        speciesId: editFormData.speciesId,
-        temperament: editFormData.temperament,
-        age: editFormData.age,
-        petStatus: editFormData.petStatus,
-        genreId: editFormData.genreId
-      }
-      const newData = [...data];
-      const index = data.findIndex((pet) => pet.id === editPetId)
-      newData[index] = editedPetInfo
-      setData(newData);
+      dispatch(editPet(editPetId, editFormData))
+      dispatch(getPetsForDashboard(route))
       seteditPetId(null);
+      // const editedPetInfo = {
+      //   id: editPetId,
+      //   name: editFormData.name,
+      //   sterilization: editFormData.sterilization,
+      //   weight: editFormData.weight,
+      //   description: editFormData.description,
+      //   image: editFormData.image,
+      //   speciesId: editFormData.speciesId,
+      //   temperament: editFormData.temperament,
+      //   age: editFormData.age,
+      //   petStatus: editFormData.petStatus,
+      //   genreId: editFormData.genreId
+      // }
+      // const newData = [...data];
+      // const index = data.findIndex((pet) => pet.id === editPetId)
+      // newData[index] = editedPetInfo
+      // setData(newData);
+      // seteditPetId(null);
     }
 
     const handleCancelClick = (event) => {

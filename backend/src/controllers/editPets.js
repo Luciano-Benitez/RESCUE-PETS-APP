@@ -3,20 +3,20 @@ const {Pets} = require('../db')
  async function editPet (req, res) {
     let {petId} = req.params;
     let {name, sterilization, weight, description, image, speciesId, temperamentId, ageId, petStatusId, genreId} = req.body;
-
+    console.log(req.body)
 
     try {   
         await Pets.update({
-            name: "Poppa",
-            sterilization: "false",
-            weight: 6,
-            description: "Gato que llora mucho",
-            image: "https://cdn2.thecatapi.com/images/b5j.jpg",
-            speciesId: 1,
-            temperamentId: 6,
-            ageId: 3,
-            petStatusId: 2,
-            genreId: 2
+            name: name,
+            sterilization: sterilization,
+            weight: weight,
+            description: description,
+            image: image,
+            speciesId: speciesId,
+            temperamentId: temperamentId,
+            ageId: ageId,
+            petStatusId: petStatusId,
+            genreId: genreId
         },
             {where: 
             {id: petId}

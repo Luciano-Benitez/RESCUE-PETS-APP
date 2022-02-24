@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPetsForDashboard, getAllSpecies, gettTemperaments, getAllPetStatus, getAllAges  } from '../Redux/Actions'
+import { getPetsForDashboard, getAllSpecies, gettTemperaments, getAllPetStatus, getAllAges, getGenres } from '../Redux/Actions'
 import styled from 'styled-components';
 import ReadOnlyRows from './ReadOnlyRows';
 import EditableRows from './EditableRows';
@@ -17,12 +17,14 @@ const PetsInDashboard = () => {
       dispatch(gettTemperaments())
       dispatch(getAllPetStatus())
       dispatch(getAllAges())
+      dispatch(getGenres())
     }, [])
     
     const allSpecies = useSelector(state => state.allspecies)
     const allTemperaments = useSelector(state => state.ttemperaments)
     const allPetStatus = useSelector(state => state.petStatus)
     const allAges = useSelector(state => state.allAges)
+    const allGenres = useSelector(state => state.allGenres)
 
 
     const routeInfo = useSelector(state => state.ShelterAndCityId)
@@ -104,7 +106,7 @@ const PetsInDashboard = () => {
         temperament: editFormData.temperament,
         age: editFormData.age,
         petStatus: editFormData.petStatus,
-        genreId: data.genreId
+        genreId: editFormData.genreId
       }
       const newData = [...data];
       const index = data.findIndex((pet) => pet.id === editPetId)
@@ -155,6 +157,7 @@ const PetsInDashboard = () => {
                       allTemperaments={allTemperaments}
                       allPetStatus={allPetStatus}
                       allAges={allAges}
+                      allGenres={allGenres}
                       editFormData={editFormData}
                       handleEditFormChange={handleEditFormChange}
                       handleCancelClick={handleCancelClick}

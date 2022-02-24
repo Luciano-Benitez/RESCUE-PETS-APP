@@ -261,12 +261,7 @@ export const getShelterDetail = (id) => {
     };
 };
 
-        let json = await axios(`http://localhost:3001/shelters/${id}`)
-        return dispatch({
-            type: GET_SHELTER_DETAIL, payload: json.data
-        })
-    } 
-}
+       
 
 export const getShelters = () => {
     return async function (dispatch) {
@@ -297,8 +292,6 @@ export const getPetsForDashboard = (route) => {
     };
 };
 
-    }
-}
 
 
 

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {getForms, getFormtypes, getPetsForDashboard} from '../Redux/Actions/index'
 //import './DashboardForms.css'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { StyledDashboardForms } from '../Styles/StyledDashboardForms'
 
@@ -21,9 +21,11 @@ export const DashboardForms= () => {
 
     useEffect(() => {
         dispatch(getFormtypes())
-        dispatch(getForms(iduser,1))
-        dispatch(getPetsForDashboard(route))
+        if(iduser)dispatch(getForms(iduser,1))
+        if(routeInfo)dispatch(getPetsForDashboard(route))
     }, [])
+
+    let filterimages = pet.map(e => {return {id:e.id,image:e.image}})
 
     const handleSubmitGetForm = (e) => {
         settypeform(e.target[e.target.value-1].attributes.name.nodeValue)
@@ -38,7 +40,7 @@ export const DashboardForms= () => {
             <StyledDashboardForms>
                     <button onClick={handleClick}>{"<"}volver</button>
                     <h1>Tabla de formularios de {typeform}</h1>
-
+                    
                     <select name='opcion' onChange={e => handleSubmitGetForm(e)}>
                         {typeof(formtypes) !== 'string'? formtypes.map(element => (
                             <option name={element.typeName} key={element.id} value={element.id}> {element.typeName}</option>
@@ -60,9 +62,13 @@ export const DashboardForms= () => {
                             <tr key={element.id}>
                                 <td>{element.id}</td>
                                 <td><Link to={`view/${element.id}/${formtypes[0].id}`}><button>Ver Formulario</button></Link></td>
-                                <td>{element.petId}</td>
-                                    {/* {pet.length ? <img src={`${pet.filter(e => e.id == element.petId? e: null)[0].image}`}
-                                width="100" height="100"/>:<h2>Cargando</h2>} */}
+                                <td>
+                                {filterimages ? filterimages.map(e => {
+                                    if(e.id === Number(element.petId))
+                                    {return (<div><h4>{element.petId}</h4><img src={`${e.image}`} width="100" height="100" /></div>)
+                                    }
+                                }): <h1>No lo obtiene</h1>}
+                                </td>
                                 <td><button>Accion1</button><button>Accion2</button></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}

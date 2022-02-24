@@ -15,8 +15,7 @@ export const DashboardForms= () => {
     const iduser = useSelector((state) => state.id)
     const forms = useSelector((state) => state.forms)
     const formtypes = useSelector((state) => state.formtypes)
-    const [typeform, settypeform] = useState('adopción')
-    
+    const [typeform, settypeform] = useState('Adopción')
 
     useEffect(() => {
         dispatch(getFormtypes())
@@ -24,9 +23,9 @@ export const DashboardForms= () => {
     }, [])
 
     const handleSubmitGetForm = (e) => {
-        if(Number(e.target.value) === formtypes[0].id)settypeform('adopción')
-        if(Number(e.target.value) === formtypes[1].id)settypeform('transito')
+        settypeform(e.target[e.target.value-1].attributes.name.nodeValue)
         dispatch(getForms(iduser,e.target.value))
+        console.log(e.target[e.target.value-1].attributes.name.nodeValue)
     }
 
     return (
@@ -34,15 +33,14 @@ export const DashboardForms= () => {
 
                     <h1>Tabla de formularios de {typeform}</h1>
 
-
                     <select name='opcion' onChange={e => handleSubmitGetForm(e)}>
                         {typeof(formtypes) !== 'string'? formtypes.map(element => (
-                            <option key={element.id} value={element.id}> {element.typeName}</option>
+                            <option name={element.typeName} key={element.id} value={element.id}> {element.typeName}</option>
                         )): 
                         typeof(formtypes) === 'string'? (<option>{formtypes}</option>): <option>Cargando...</option>}
                     </select>
                 
-                {typeform === "adopción" ? (<table>
+                {typeform === "Adopción" ? (<table>
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -55,19 +53,15 @@ export const DashboardForms= () => {
                         {typeof(forms) !== 'string'? forms.map(element => (
                             <tr key={element.id}>
                                 <td>{element.id}</td>
-                                <td>{element.answers.map(e => Object.entries(e).map(entry => {
-                                     const [key,value] = entry
-                                     return(
-                                    (<p>{key}:{value}</p>))})
-                                )}</td>
+                                <td><Link to={`view/${element.id}/${formtypes[0].id}`}><button>Ver Formulario</button></Link></td>
                                 <td>{element.petId}</td>
-                                <td><Link to={`view/${element.id}/${formtypes[0].id}`}><button>Ver</button></Link></td>
+                                <td><button>Accion1</button><button>Accion2</button></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                         </tbody>
                 </table>):
                 
-                typeform === "transito" ?(<table>
+                typeform === "Trnánsito" ?(<table>
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -79,12 +73,8 @@ export const DashboardForms= () => {
                         {typeof(forms) !== 'string'? forms.map(element => (
                             <tr key={element.id}>
                                 <td>{element.id}</td>
-                                <td>{element.answers.map(e => Object.entries(e).map(entry => {
-                                        const [key,value] = entry
-                                        return(
-                                        (<p>{key}:{value}</p>))})
-                                )}</td>
-                                <td><Link to={`view/${element.id}/${formtypes[1].id}`}><button>Ver</button></Link></td>
+                                <td><Link to={`view/${element.id}/${formtypes[1].id}`}><button>Ver Formulario</button></Link></td>
+                                <td><button>Accion1</button><button>Accion2</button></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                     </tbody>

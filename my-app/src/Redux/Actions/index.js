@@ -31,7 +31,8 @@ import {GET_COUNTRIES,
     GETT_TEMPERAMENTS,
     GET_ALL_SPECIES,
     GET_ALL_PET_STATUS,
-    GET_ALL_AGES
+    GET_ALL_AGES,
+    GET_GENRES
     } from './types.js'
 
 
@@ -368,6 +369,17 @@ export const getAllAges = ()=> {
         let json = await axios(`http://localhost:3001/ages`)
         return dispatch({
             type: GET_ALL_AGES,
+            payload: json.data
+        })
+    }
+}
+
+
+export const getGenres = ()=> {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/genres`)
+        return dispatch({
+            type: GET_GENRES,
             payload: json.data
         })
     }

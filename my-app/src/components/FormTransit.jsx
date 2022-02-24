@@ -12,7 +12,7 @@ const FormTransit = ({ id }) => {
 
   useEffect(() => {
     if (form.length === 0) {
-      dispatch(getFormAdoption(id, 2));
+      dispatch(getFormAdoption(id, 2))
     }
   }, []);
 
@@ -38,22 +38,13 @@ const FormTransit = ({ id }) => {
         if((Number(event.target.name)-1) === 0)setAnswer([...answer, event.target.value])
         else  answer[Number(event.target.name)-1] = event.target.value
     }
-    
-    setInput([...input, {idquestion: event.target.name, answer: event.target.value}])
   };
 
   function handleClick(event){
     event.preventDefault()
-    let ids = form[0].questions.map(e => e.id)
-
-    let final = []
-
-    for (let i = 0; i < ids.length; i++) {
-      let filtered = input.filter(el => el.idquestion == ids[i])
-      final.push(filtered[filtered.length-1])
-    }
-    console.log(input)
-    console.log(final)
+    console.log(idquestion)
+    console.log(answer)
+    
   }
 
   return (

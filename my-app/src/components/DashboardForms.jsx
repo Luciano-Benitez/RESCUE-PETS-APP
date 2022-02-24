@@ -14,14 +14,14 @@ export const DashboardForms= () => {
     const iduser = useSelector((state) => state.id)
     const forms = useSelector((state) => state.forms)
     const formtypes = useSelector((state) => state.formtypes)
-    const [typeform, settypeform] = useState('Adopción')
     const pet = useSelector( state => state.petsForDashboard )
     const routeInfo = useSelector(state => state.ShelterAndCityId)
     const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
+    const [typeform, settypeform] = useState('Adopción')
 
     useEffect(() => {
         dispatch(getFormtypes())
-        if(iduser)dispatch(getForms(iduser,1))
+        // if(iduser)dispatch(getForms(iduser,1))
         if(routeInfo)dispatch(getPetsForDashboard(route))
     }, [])
 
@@ -54,7 +54,7 @@ export const DashboardForms= () => {
                                 <th>Id</th>
                                 <th>Respuestas</th>
                                 <th>Mascota Id</th>
-                                <th>Acción</th>
+                                <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,7 +69,7 @@ export const DashboardForms= () => {
                                     }
                                 }): <h1>No lo obtiene</h1>}
                                 </td>
-                                <td><button>Accion1</button><button>Accion2</button></td>
+                                <td><h3>Por revisar</h3></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                         </tbody>
@@ -88,7 +88,7 @@ export const DashboardForms= () => {
                             <tr key={element.id}>
                                 <td>{element.id}</td>
                                 <td><Link to={`view/${element.id}/${formtypes[1].id}`}><button>Ver Formulario</button></Link></td>
-                                <td><button>Accion1</button><button>Accion2</button></td>
+                                <td>Por revisar</td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                     </tbody>

@@ -11,10 +11,12 @@ import { StyledDashboardForms } from '../Styles/StyledDashboardForms'
 export const DashboardForms= () => {
     const dispatch = useDispatch()
     
+    
     const iduser = useSelector((state) => state.id)
     const forms = useSelector((state) => state.forms)
     const formtypes = useSelector((state) => state.formtypes)
     const [typeform, settypeform] = useState('adopción')
+    
 
     useEffect(() => {
         dispatch(getFormtypes())
@@ -59,7 +61,7 @@ export const DashboardForms= () => {
                                     (<p>{key}:{value}</p>))})
                                 )}</td>
                                 <td>{element.petId}</td>
-                                <td><AnswerFormView element={element}/></td>
+                                <td><Link to={`view/${element.id}/${formtypes[0].id}`}><button>Ver</button></Link></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                         </tbody>
@@ -82,7 +84,7 @@ export const DashboardForms= () => {
                                         return(
                                         (<p>{key}:{value}</p>))})
                                 )}</td>
-                                <td><button>Ver</button></td>
+                                <td><Link to={`view/${element.id}/${formtypes[1].id}`}><button>Ver</button></Link></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                     </tbody>

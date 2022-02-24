@@ -22,7 +22,20 @@ import {
   GET_PETS_BY_SHELTER,
   GET_FORMTYPES,
   GET_PETS_FOR_DASHBOARD,
+
   GET_PETS_SIMILAR,
+
+  GET_INDIVIDUAL_FORM,
+  POST_PETS,
+  GET_SHELTERS,
+  GET_FORM_ADOPTION,
+  POST_ADOPTION,
+  GETT_TEMPERAMENTS,
+  GET_ALL_SPECIES,
+  GET_ALL_PET_STATUS,
+  GET_ALL_AGES,
+  GET_GENRES
+
 } from "../Actions/types";
 
 const initialState = {
@@ -33,6 +46,7 @@ const initialState = {
   petsfilter: [],
   pets: [],
   temperaments: [],
+  ttemperaments: [],
   cityId: [],
   ages: [],
   status: [],
@@ -48,7 +62,16 @@ const initialState = {
   petsByShelter: [],
   formtypes: [],
   petsForDashboard: [],
+
   pets_similar: [],
+
+  individualform: [],
+  formAdoption:[],
+  allspecies: [],
+  petStatus: [],
+  allAges: [],
+  allGenres: []
+
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -206,6 +229,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
     case GET_SHELTER_DETAIL:
       return {
         ...state,
+
         shelterDetail: payload,
       };
     case GET_PETS_BY_SHELTER:
@@ -213,25 +237,99 @@ export default function rooReducer(state = initialState, { type, payload }) {
         ...state,
         petsByShelter: payload,
       };
-    case GET_PETS_FOR_DASHBOARD:
-      return {
-        ...state,
-        petsForDashboard: payload,
-      };
+    
 
-    case GET_FORMS:
-      return {
-        ...state,
-        forms: payload,
-      };
+     
+      case GET_PETS_FOR_DASHBOARD:
+        return {
+          ...state,
+          petsForDashboard: payload
+        }
 
-    case GET_FORMTYPES:
-      return {
-        ...state,
-        formtypes: payload,
-      };
+      case GET_FORMS :
+        return {
+          ...state,
+          forms : payload
+        }
+        
+      case GET_FORMTYPES :
+        return {
+          ...state,
+          formtypes : payload
 
-    default:
-      return state;
-  }
-}
+        }  
+        case GET_FORM_ADOPTION:
+          return {
+            ...state,
+           formAdoption: payload
+          }
+
+          case POST_ADOPTION:
+            return {
+              ...state,
+            };
+        
+      case POST_PETS:
+        return {
+          ...state
+        }
+
+        case GET_SHELTERS:
+          return {
+            ...state,
+            Shelters: payload
+          };
+
+        case GETT_TEMPERAMENTS:
+          return {
+            ...state,
+            ttemperaments: payload
+          }; 
+
+
+      case GET_INDIVIDUAL_FORM :
+        let showranswers = state.forms.filter(e => Number(e.id) === Number(payload.formid))
+        showranswers = showranswers[0].answers
+        let showquestions = payload.data[0].questions
+        let questionANDanswer = []
+        showranswers.map(e => {
+             showquestions.map(q => {
+              if(e.idquestion === q.id){
+                questionANDanswer.push({question:q.question,answer:e.answer})
+              } 
+            })
+        })
+        
+        return {
+          ...state,
+          individualform : questionANDanswer
+        }  
+      
+          case GET_ALL_SPECIES:
+            return {
+              ...state,
+              allspecies: payload
+            };
+          
+            case GET_ALL_PET_STATUS:
+              return {
+                ...state,
+                petStatus: payload
+              };
+            
+            case GET_ALL_AGES:
+              return {
+                ...state,
+                allAges: payload
+              };
+        case GET_GENRES:
+          return {
+            ...state,
+            allGenres: payload
+          };      
+        default:
+          return state;
+      }
+    };
+
+

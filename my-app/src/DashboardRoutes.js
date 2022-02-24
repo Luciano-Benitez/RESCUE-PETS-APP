@@ -15,7 +15,7 @@ export const DashboardRoutes = () => {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route exact path="dashboard/forms" element={<DashboardForms/>}/>
                 <Route path="dashboard/pets" element={<PetsInDashboard/>} />
-                <Route path="dashboard/forms/views" element={<AnswerFormView/>}/>
+                <Route path="dashboard/forms/view/:formid/:formtypeid" element={<AnswerFormView/>}/>
             </Routes>
         </div>
         </div>

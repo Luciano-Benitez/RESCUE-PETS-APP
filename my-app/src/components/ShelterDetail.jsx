@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Routes, Route } from "react-router-dom";
 import { getShelterDetail, getPetsFilter,getPetByShelter } from "../Redux/Actions/index.js";
@@ -18,30 +18,38 @@ const ShelterDetail = () => {
   let Data = useSelector((state) => state.shelterDetail);
   let cityId= Data.cityId
 
+  const [input, setInput] = useState({})
+ 
+
+  const link = `http://localhost:3001/pets/${cityId}?shelterId=${id}`
+
   useEffect(() => {
     dispatch(getShelterDetail(id))
-    dispatch(getPetByShelter(id))
-  }, [dispatch, id]);
+  }, [, id]);
 
-  // useEffect(() => {
-  //   //dispatch(getPetsFilter(`http://localhost:3001/pets/${cityId}?shelterId=${id}`));
+  useEffect(() => {
+    if (cityId){
+      let query = `${link}&`
+          Object.entries(input).forEach(([key,value])=> {
+               query = `${query}${[key]}=${[value]}&`
+          
+          })  
+          dispatch(getPetsFilter(query))
+    }
     
-  // }, [dispatch, cityId]);
+  }, [cityId, input, dispatch]);
 
-  const pets = useSelector((state) => state.petsByShelter)
-
-
-  //const pets = useSelector((state) => state.petsfilter)
+  const pets = useSelector((state) => state.petsfilter)
 
   return (
     <StyledDiv>
-      <ShelterDetailNav id={id} />
+      <ShelterDetailNav id={id}  />
       <Routes>
-        <Route path="/" element={<ShelterInfo Data={Data} pets = {pets}/>} />
-        <Route path="/form" element={<FormTransit/>} />
+        <Route path="/" element={<ShelterInfo Data={Data} pets = {pets} input={input} setInput={setInput}/>} />
+        <Route path="/form" element={<FormTransit id={id}/>} />
       </Routes>
     </StyledDiv>
-  );
+  ); 
 };
 
 export default ShelterDetail;

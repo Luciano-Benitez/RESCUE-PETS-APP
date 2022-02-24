@@ -22,12 +22,20 @@ export const AnswerFormView = () => {
     const handleClick = ()=>{
         navigate('/dashboard/forms')
     }
+
+    const handleAllow = () => {
+        alert('Petición aceptada')
+    }
+
+    const handleDeny = () => {
+        alert('Petición denegada')
+    }
+
     return (<>
     <br></br><br></br><br></br><br></br><br></br><br></br>
     <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
     <button onClick={handleClick}>{"<"}volver</button>
-    {shelterid? <h1>
-    Shelter ID: {shelterid}| FormType ID: {formtypeid} | FormID: {formid} </h1>: null}
+    
     {detailform ? detailform.map(e => (
         <div>
             <h2>{e.question}</h2>
@@ -35,8 +43,8 @@ export const AnswerFormView = () => {
             <hr></hr>
         </div>
     )): <h1>Loading..</h1>}
-    <button>Aceptar ✔</button>
-    <button>Denegar ✘</button>
+    <button onClick={handleAllow}>Aceptar ✔</button>
+    <button onClick={handleDeny}>Denegar ✘</button>
     </>
     )
 }

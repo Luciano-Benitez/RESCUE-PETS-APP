@@ -37,7 +37,7 @@ import {
   GET_GENRES,
   SEARCH_PET_BY_NAME,
   DELETE_PET
-
+  
 } from "../Actions/types";
 
 const initialState = {
@@ -72,8 +72,8 @@ const initialState = {
   allspecies: [],
   petStatus: [],
   allAges: [],
-  allGenres: []
-
+  allGenres: [],
+  formstatus : []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -340,7 +340,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
             return {
               ...state,
             }
-        
+          
         default:
           return state;
       }

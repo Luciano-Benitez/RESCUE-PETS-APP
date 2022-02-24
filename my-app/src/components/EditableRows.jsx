@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditableRows = ({editFormData, handleEditFormChange, handleCancelClick, allSpecies, allTemperaments, allPetStatus, allAges}) => {
+const EditableRows = ({editFormData, handleEditFormChange, handleCancelClick, allSpecies, allTemperaments, allPetStatus, allAges, allGenres}) => {
     
     
   return (
@@ -92,8 +92,8 @@ const EditableRows = ({editFormData, handleEditFormChange, handleCancelClick, al
         <td>
         <select name='genreId' onChange={handleEditFormChange}>
                 <option hidden name='default' >Género</option>
-                {allPetStatus?.map(el => 
-                        <option key={el.id} value={el.id}>{el.status}</option>   
+                {allGenres?.map(el => 
+                        <option key={el.id} value={el.id}>{el.genre}</option>   
                     )
                 }
             </select>

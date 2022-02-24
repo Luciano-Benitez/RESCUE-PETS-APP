@@ -22,6 +22,9 @@ export const Dashboard = () => {
       <Container>
         <Link to='/dashboard/pets'>Take me to see Pets in Dashboard</Link>
       </Container>
+      <Container>
+        <Link to='/dashboard/forms'>Go to Answers Forms</Link>
+      </Container>
     </Center>
     
   )

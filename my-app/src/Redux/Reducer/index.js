@@ -22,6 +22,7 @@ import {
   GET_PETS_BY_SHELTER,
   GET_FORMTYPES,
   GET_PETS_FOR_DASHBOARD,
+  GET_INDIVIDUAL_FORM,
   POST_PETS,
   GET_SHELTERS,
   GET_FORM_ADOPTION,
@@ -31,7 +32,6 @@ import {
   GET_ALL_PET_STATUS,
   GET_ALL_AGES,
   GET_GENRES
-
 } from "../Actions/types";
 
 const initialState = {
@@ -58,6 +58,7 @@ const initialState = {
   petsByShelter: [],
   formtypes: [],
   petsForDashboard: [],
+  individualform: [],
   formAdoption:[],
   allspecies: [],
   petStatus: [],
@@ -267,6 +268,25 @@ export default function rooReducer(state = initialState, { type, payload }) {
             ttemperaments: payload
           }; 
 
+
+      case GET_INDIVIDUAL_FORM :
+        let showranswers = state.forms.filter(e => Number(e.id) === Number(payload.formid))
+        showranswers = showranswers[0].answers
+        let showquestions = payload.data[0].questions
+        let questionANDanswer = []
+        showranswers.map(e => {
+             showquestions.map(q => {
+              if(e.idquestion === q.id){
+                questionANDanswer.push({question:q.question,answer:e.answer})
+              } 
+            })
+        })
+        
+        return {
+          ...state,
+          individualform : questionANDanswer
+        }  
+      
           case GET_ALL_SPECIES:
             return {
               ...state,
@@ -293,3 +313,4 @@ export default function rooReducer(state = initialState, { type, payload }) {
           return state;
       }
     };
+

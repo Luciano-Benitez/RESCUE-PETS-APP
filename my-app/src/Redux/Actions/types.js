@@ -40,3 +40,5 @@ export const GET_GENRES = 'GET_GENRES'
 
 
 
+
+export const GET_INDIVIDUAL_FORM = 'GET_INDIVIDUAL_FORM'

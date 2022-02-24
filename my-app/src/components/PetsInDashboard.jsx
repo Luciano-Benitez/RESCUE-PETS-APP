@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPetsForDashboard } from '../Redux/Actions'
+import { getPetsForDashboard, getAllSpecies, gettTemperaments, getAllPetStatus, getAllAges  } from '../Redux/Actions'
 import styled from 'styled-components';
 import ReadOnlyRows from './ReadOnlyRows';
 import EditableRows from './EditableRows';
@@ -10,6 +10,20 @@ import EditableRows from './EditableRows';
 const PetsInDashboard = () => {
 
     const dispatch = useDispatch()
+
+    
+    useEffect(() => {
+      dispatch(getAllSpecies())
+      dispatch(gettTemperaments())
+      dispatch(getAllPetStatus())
+      dispatch(getAllAges())
+    }, [])
+    
+    const allSpecies = useSelector(state => state.allspecies)
+    const allTemperaments = useSelector(state => state.ttemperaments)
+    const allPetStatus = useSelector(state => state.petStatus)
+    const allAges = useSelector(state => state.allAges)
+
 
     const routeInfo = useSelector(state => state.ShelterAndCityId)
     const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
@@ -35,7 +49,8 @@ const PetsInDashboard = () => {
       speciesId: '',
       temperament: '',
       age: '',
-      petStatus: ''
+      petStatus: '',
+      genreId: ''
     })
 
     const handleEditFormChange = (event) => {
@@ -70,7 +85,8 @@ const PetsInDashboard = () => {
         speciesId: data.speciesId,
         temperament: data.temperament,
         age: data.age,
-        petStatus: data.petStatus
+        petStatus: data.petStatus,
+        genreId: data.genreId
       }
       seteditFormData(formValues)
     }
@@ -87,7 +103,8 @@ const PetsInDashboard = () => {
         speciesId: editFormData.speciesId,
         temperament: editFormData.temperament,
         age: editFormData.age,
-        petStatus: editFormData.petStatus
+        petStatus: editFormData.petStatus,
+        genreId: data.genreId
       }
       const newData = [...data];
       const index = data.findIndex((pet) => pet.id === editPetId)
@@ -124,6 +141,7 @@ const PetsInDashboard = () => {
                 <th>Temperamento</th>
                 <th>Edad</th>
                 <th>Estado</th>
+                <th>Género</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -133,6 +151,10 @@ const PetsInDashboard = () => {
                 <Fragment>
                   {editPetId === data.id ? (
                     <EditableRows
+                      allSpecies={allSpecies}
+                      allTemperaments={allTemperaments}
+                      allPetStatus={allPetStatus}
+                      allAges={allAges}
                       editFormData={editFormData}
                       handleEditFormChange={handleEditFormChange}
                       handleCancelClick={handleCancelClick}

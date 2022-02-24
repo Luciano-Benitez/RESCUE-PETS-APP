@@ -1,7 +1,8 @@
 import React from 'react'
 
+
 const ReadOnlyRows = ({data, handleEditClick, handleDeleteClick}) => {
-    console.log('flag handleEditClick',handleEditClick)
+    
     return (
         <tr key={data.id}>
             <td>{data.name}</td>
@@ -10,9 +11,18 @@ const ReadOnlyRows = ({data, handleEditClick, handleDeleteClick}) => {
             <td>{data.description}</td>
             <td>{data.image}</td>
             <td>{data.speciesId}</td>
-            <td>{data.temperament.temperament}</td>
-            <td>{data.age.age}</td>
-            <td>{data.petStatus.status}</td>
+            {data.temperament.temperament? 
+                <td>{data.temperament.temperament}</td> :
+                <td>{data.temperament}</td> 
+                // ? <td>Holi</td> : null
+            }
+            {data.age.age ? <td>{data.age.age}</td> :
+             <td>{data.age}</td>
+            }
+            {data.petStatus.status ? <td>{data.petStatus.status}</td> :
+            <td>{data.petStatus}</td>
+            }
+            <td>{data.genreId}</td>
             <td>
                 <button type='button' onClick={(event) => handleEditClick(event, data)}>Editar</button>
                 <button type='button' onClick={() => handleDeleteClick(data.id)}>Eliminar</button>

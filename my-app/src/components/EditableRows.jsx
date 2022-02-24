@@ -1,6 +1,8 @@
 import React from 'react'
 
-const EditableRows = ({editFormData, handleEditFormChange, handleCancelClick }) => {
+const EditableRows = ({editFormData, handleEditFormChange, handleCancelClick, allSpecies, allTemperaments, allPetStatus, allAges}) => {
+    
+    
   return (
     <tr>
         <td>
@@ -54,42 +56,46 @@ const EditableRows = ({editFormData, handleEditFormChange, handleCancelClick }) 
         <td>
             <select name='speciesId' onChange={handleEditFormChange}>
                 <option hidden name='default' >Especie</option>
-                <option value={1}>Gato</option>
-                <option value={2}>Perro</option>
-                <option value={3}>Pajaro</option>
-                <option value={4}>Cerdo</option>
-                <option value={5}>Otro</option>
+                    {allSpecies?.map(el => 
+                        <option key={el.id} value={el.id}>{el.specie}</option>   
+                    )
+                }
             </select>
         </td>
         <td>
             <select name='temperament' onChange={handleEditFormChange}>
                 <option hidden name='default' >Temperamento</option>
-                <option value='1'>Activo</option>
-                <option value='2'>Divertido</option>
-                <option value='3'>Fiel</option>
-                <option value='4'>Independiente</option>
-                <option value='5'>Perezoso</option>
-                <option value='6'>Tranquilo</option>
-                <option value='7'>Amigable</option>
-                <option value='8'>Inteligente</option>
-                <option value='9'>Docil</option>
-                <option value='10'>Valiente</option>
+                {allTemperaments?.map(el => 
+                        <option key={el.id} value={el.id}>{el.temperament}</option>   
+                    )
+                }
             </select>
         </td>
         <td>
-            <select onChange={handleEditFormChange}>
+            <select name='age' onChange={handleEditFormChange}>
                 <option hidden name='default' >Edad</option>
-                <option name='age' value='1'>Bebe</option>
-                <option name='age' value='2'>Joven</option>
-                <option name='age' value='3'>Adulto</option>
+                {allAges?.map(el => 
+                        <option key={el.id} value={el.id}>{el.age}</option>   
+                    )
+                }
             </select>
         </td>
         <td>
-            <select onChange={handleEditFormChange}>
+            <select name='petStatus' onChange={handleEditFormChange}>
                 <option hidden name='default' >Estado</option>
-                <option name='petStatus' value='1'>En adopcion</option>
-                <option name='petStatus' value='2'>Adoptado</option>
-                <option name='petStatus' value='3'>En tránsito</option>
+                {allPetStatus?.map(el => 
+                        <option key={el.id} value={el.id}>{el.status}</option>   
+                    )
+                }
+            </select>
+        </td>
+        <td>
+        <select name='genreId' onChange={handleEditFormChange}>
+                <option hidden name='default' >Género</option>
+                {allPetStatus?.map(el => 
+                        <option key={el.id} value={el.id}>{el.status}</option>   
+                    )
+                }
             </select>
         </td>
         <td>

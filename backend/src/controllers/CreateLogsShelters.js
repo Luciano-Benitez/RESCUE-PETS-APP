@@ -7,7 +7,7 @@ const { generateJWT } = require("../../helpers/jwt");
 async function createShelter(req, res) {
 
     try {
-        const { name, phoneNumber, description, address, email, password ,cityId,  role } = req.body;
+        const { name, phoneNumber, description, address, email, password ,cityId,  role, img } = req.body;
       
 
         const errors= validationResult(req)
@@ -33,7 +33,7 @@ async function createShelter(req, res) {
          const token = await generateJWT(User.id, User.email)
 
         const createShelter = await Shelter.create({
-            name, address, phoneNumber, description, userId : User.id , cityId
+            name, address, phoneNumber, description, userId : User.id , cityId, img
         });
        
         res.status(201).send({

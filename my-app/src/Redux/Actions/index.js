@@ -181,7 +181,7 @@ export const startLogin = (email, password) => {
     };
 };
 
-export const startRegister = (name, phoneNumber, description, address, email, password, cityId, role) => {
+export const startRegister = (name, phoneNumber, description, address, email, password, cityId, role, img) => {
     return async (dispatch) => {
         const resp = await fetchSinToken("createShelter", {
             name,
@@ -191,7 +191,8 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
             email,
             password,
             cityId,
-            role
+            role,
+            img
         }, "POST");
         const body = await resp.json();
         if (body.ok) {

@@ -37,6 +37,7 @@ const FormShelter = () => {
     address: "",
     password: "",
     role: "1",
+    img: 'https://steemitimages.com/DQmXJdsFf745a1hDWJsG1chhy1tHUMc7MZPkzdLAVyEDP3G/image.png'
   });
 
   const handleChange = (e) => {
@@ -73,7 +74,7 @@ const FormShelter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input)
-    dispatch(startRegister(input.name, input.phoneNumber, input.description, input.address, input.email, input.password ,input.cityId, input.role));;
+    dispatch(startRegister(input.name, input.phoneNumber, input.description, input.address, input.email, input.password ,input.cityId, input.role, input.img));;
     Swal.fire('Genial!', 'Registro realizado correctamente', 'sucess');
     setInput({
       name: "",
@@ -86,6 +87,7 @@ const FormShelter = () => {
       address: "",
       password: "",
       role: "1",
+      img:''
     });
     history('/login')
   };

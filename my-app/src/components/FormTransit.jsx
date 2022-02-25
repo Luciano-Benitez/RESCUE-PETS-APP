@@ -27,7 +27,7 @@ const FormTransit = ({ id }) => {
 
     if(input.length === 0){
       setInput([...input,
-        {idquestion:event.target.name,answer:event.target.value}
+        {idquestion:Number(event.target.name),answer:event.target.value}
       ])
     }else{ 
       input.map((e,index) => {
@@ -36,7 +36,7 @@ const FormTransit = ({ id }) => {
             return e
         }else if(!input.find(e => Number(e.idquestion) === Number(event.target.name))){
           setInput([...input,
-            {idquestion:event.target.name,answer:event.target.value}
+            {idquestion:Number(event.target.name),answer:event.target.value}
           ])
         }
       })  

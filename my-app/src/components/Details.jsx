@@ -42,7 +42,6 @@ const Details = () => {
       dispatch(getPetsSimilar(Datos, pets));
     }
    
-   
     if (!id) {
       dispatch(getPetId(id2));
      

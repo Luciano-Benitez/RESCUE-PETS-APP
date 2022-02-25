@@ -102,10 +102,10 @@ export const getPetsSimilar = (idShelter, datafilters ) => {
     return  function (dispatch) {
         try {
             OnePet= OnePet[0];
-            
+           
             console.log("ENVIADOS POR ACTION ",idShelter, datafilters , "TOMADO DESDE STORE" , datafilters2 ,OnePet )
             if (idShelter == undefined )  {   
-               resul = datafilters2.filter((el) => el.shelterId === idShelter[0].shelterId && el.name != OnePet.shelterId);
+               resul = datafilters2.filter((el) => el.shelterId === idShelter[0].shelterId || el.species.id === idShelter[0].species.id  || el.ageId === idShelter[0]. ageId && el.name != OnePet.name);
                resul = resul.splice(0,6);
             }    
             else {

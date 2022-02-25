@@ -61,11 +61,14 @@ function App() {
           </PublicRoute>
         } />
 
+<Route path='/details/:id'  element={
+  <PublicRoute>
+            <Details  />
+          </PublicRoute>} />
 
 <Route path="/details/:id" element={
           <PublicRoute>
             <Details />
-
           </PublicRoute>
         } />
 

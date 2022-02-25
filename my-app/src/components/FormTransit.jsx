@@ -6,45 +6,41 @@ const FormTransit = ({ id }) => {
   const dispatch = useDispatch();
   const form = useSelector((state) => state.formAdoption);
 
-  const [idquestion, setIdquestion] = useState([])
-  const [answer, setAnswer] = useState([])
   const [input, setInput] = useState([])
+
 
   useEffect(() => {
     if (form.length === 0) {
       dispatch(getFormAdoption(id, 2))
-    }
+    } 
   }, []);
+
 
   function handleChange(event) {
 
-    if(idquestion.length){
-      idquestion.map(e => {
-          if(e !== event.target.name){
-              setIdquestion([...idquestion, event.target.name])
-          }else{
-              let temp = idquestion.filter(e => e!==event.target.name)
-              setIdquestion(temp.concat(event.target.name))
-          }
-      })
-    }else {
-      setIdquestion([...idquestion, event.target.name])
-    }
-
-
-    if(answer.length){
-        answer[Number(event.target.name)-1] = event.target.value
-    }else {
-        if((Number(event.target.name)-1) === 0)setAnswer([...answer, event.target.value])
-        else  answer[Number(event.target.name)-1] = event.target.value
+    if(input.length === 0){
+      setInput([...input,
+        {idquestion:event.target.name,answer:event.target.value}
+      ])
+    }else{ 
+      input.map((e,index) => {
+        if(Number(e.idquestion) === Number(event.target.name)){
+            input[index].answer = event.target.value
+            return e
+        }else if(!input.find(e => Number(e.idquestion) === Number(event.target.name))){
+          setInput([...input,
+            {idquestion:event.target.name,answer:event.target.value}
+          ])
+        }
+      })  
     }
   };
 
   function handleClick(event){
     event.preventDefault()
-    console.log(idquestion)
-    console.log(answer)
     
+
+    console.log(input)
   }
 
   return (
@@ -55,7 +51,7 @@ const FormTransit = ({ id }) => {
           form[0].questions.map((e) => (
             <div key={e.id}>
               <label>{`${e.question}: `}</label>
-              <input 
+              <input
               name={e.id}
               onChange={(event)=>handleChange(event)}
               />

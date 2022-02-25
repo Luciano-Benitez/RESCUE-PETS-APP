@@ -51,9 +51,11 @@ const FormTransit = ({ id }) => {
           form[0].questions.map((e) => (
             <div key={e.id}>
               <label>{`${e.question}: `}</label>
-              <input
+              <textarea
               name={e.id}
               onChange={(event)=>handleChange(event)}
+              cols="40"
+              rows="5"
               />
             </div>
           ))}

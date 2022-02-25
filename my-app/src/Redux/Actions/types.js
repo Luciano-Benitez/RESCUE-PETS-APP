@@ -42,7 +42,7 @@ export const GET_GENRES = 'GET_GENRES'
 export const SEARCH_PET_BY_NAME = 'SEARCH_PET_BY_NAME'
 export const DELETE_PET = 'DELETE_PET'
 export const EDIT_PET = 'EDIT_PET'
-
+export const POST_REQUEST_TRANSIT = 'POST_REQUEST_TRANSIT'
 
 
 

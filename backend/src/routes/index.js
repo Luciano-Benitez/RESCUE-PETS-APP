@@ -16,7 +16,7 @@ const Species = require('./Species');
 const PetStatus = require('./PetStatus');
 const Ages = require('./Ages');
 const Genres = require('./Genres');
-
+const questions = require('./questions') 
 router.use('/',pets)
 router.use('/',form)
 router.use('/',createShelter)
@@ -34,5 +34,5 @@ router.use('/',Species)
 router.use('/',PetStatus)
 router.use('/',Ages)
 router.use('/',Genres)
-
+router.use('/',questions)
 module.exports = router;

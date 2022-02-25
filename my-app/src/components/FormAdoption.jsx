@@ -17,7 +17,7 @@ const FormAdoption = ({ id }) => {
 
   useEffect(() => {
     if (form.length === 0) {
-      dispatch(getFormAdoption(id, 2))
+      dispatch(getFormAdoption(id, 1))
     } 
 
   }, [])

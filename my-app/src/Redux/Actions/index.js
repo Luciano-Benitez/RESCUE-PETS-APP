@@ -28,7 +28,7 @@ import {
     GET_PETS_FOR_DASHBOARD,
 
     GET_PETS_SIMILAR,
-    
+    GET_ALL_QUESTIONS,
     DELETE_ANSWERFORM,
     GET_INDIVIDUAL_FORM,
     GET_SHELTERS,
@@ -436,4 +436,11 @@ export const postRequestTransit = (payload) => {
         return response;
     };
 };
+
+export const getAllQuestions = () => {
+    return async function (dispatch){
+        let json = await axios('')
+        return dispatch({type: GET_ALL_QUESTIONS,payload: json.data})
+    }
+}
 

@@ -15,7 +15,7 @@ export function SimilarPets(props) {
   const Datos = useSelector((state) => state.petOne);
   const dispatch = useDispatch();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!Datos ) {
       dispatch(getPetsSimilar(Datos, petsfilter));
     }

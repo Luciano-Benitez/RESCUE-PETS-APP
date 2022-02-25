@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from '../Store/index';
 import {fetchConToken, fetchSinToken} from "../../helpers/fetch.js";
 import {
     GET_COUNTRIES,
@@ -92,20 +93,29 @@ export const cleanStateForm = () => {
     return {type: CLEAN_STATE_FORM, payload: []};
 };
 
-export const getPetsSimilar = (idShelter, data ) => {
-  
-    return async function (dispatch) {
+export const getPetsSimilar = (idShelter, datafilters ) => {
+    let resul;
+    let datafilters2 = store.getState().petsfilter;
+    let OnePet = store.getState().petOne;
+    return  function (dispatch) {
         try {
-            let resul;
-            if (data == undefined) {
-                return;
-            } else {
-            resul = data.filter((el) => el.shelterId === idShelter[0].shelterId && el.name != idShelter[0].name);
+            OnePet= OnePet[0];
+            
+            console.log("ENVIADOS POR ACTION ",idShelter, datafilters , "TOMADO DESDE STORE" , datafilters2 ,OnePet )
+            if (idShelter == undefined )  {   
+               resul = datafilters2.filter((el) => el.shelterId === idShelter[0].shelterId && el.name != OnePet.shelterId);
+               resul = resul.splice(0,6);
+            }    
+            else {
+            resul = datafilters.filter((el) => el.shelterId === idShelter[0].shelterId && el.name != idShelter[0].name);
             resul = resul.splice(0,6);
-            } dispatch({type: GET_PETS_SIMILAR, payload: resul});
+            } 
+            dispatch({type: GET_PETS_SIMILAR, payload: resul});
             console.log("todo", idShelter, resul, " sin el mosmo resul");
 
         } catch (error) {
+           
+           
             console.log(error);
         }
     };

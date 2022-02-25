@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect} from "react";
+import React, { Fragment, useState, useLayoutEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate  } from "react-router-dom";
 
@@ -27,18 +27,21 @@ import {
 const Details = () => {
   
   
-  const pets = useSelector((state) => state.petsfilter);
+  
   const dispatch = useDispatch();
+  
+  const pets = useSelector((state) => state.petsfilter);
   const Datos = useSelector((state) => state.petOne);
   let { id } = useParams();
   let id2 = window.location.pathname;
   id2 = id2.replace("/details/", "");
 
   
-  useEffect(() => {
-    if (pets) {
+  useLayoutEffect(() => {
+    if (pets && Datos ) {
       dispatch(getPetsSimilar(Datos, pets));
     }
+   
    
     if (!id) {
       dispatch(getPetId(id2));

@@ -6,6 +6,7 @@ const {sendRequest} = require('../controllers/sendRequest.js')
 const {getForm} = require('../controllers/getForm.js')
 const {getFormtypes} = require('../controllers/getFormtypes.js')
 const {getFormQuestions} = require('../controllers/getFormQuestions.js')
+const { deleteAnswerAdoption } = require('../controllers/deleteAnswerAdoption.js')
 
 router.post('/createForm/', createForm)
 
@@ -18,5 +19,7 @@ router.get('/forms/:userid', getForm)
 router.get('/formtypes', getFormtypes)
 
 router.get('/formquestions/:shelterid', getFormQuestions)
+
+router.delete('/deleteAnswerForm/:type', deleteAnswerAdoption)
 
 module.exports = router

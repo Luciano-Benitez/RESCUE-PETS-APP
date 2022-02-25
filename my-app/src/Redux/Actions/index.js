@@ -29,7 +29,7 @@ import {
 
     GET_PETS_SIMILAR,
     
-   
+    DELETE_ANSWERFORM,
     GET_INDIVIDUAL_FORM,
     GET_SHELTERS,
     GET_FORM_ADOPTION,
@@ -419,5 +419,12 @@ export const editPet = (petId, payload) => {
         // console.log(editPet)
         // return editPet
     };
+}
+
+export const deleteAnswerForm = (formid,type) => {
+    return async function(dispatch){
+        await axios.delete(`http://localhost:3001/deleteAnswerForm/${type}?formid=${formid}`)
+        return dispatch({type: DELETE_ANSWERFORM})
+    }
 }
 

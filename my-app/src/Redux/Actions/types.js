@@ -46,5 +46,5 @@ export const EDIT_PET = 'EDIT_PET'
 
 
 
-
+export const DELETE_ANSWERFORM = 'DELETE_ANSWERFORM'
 export const GET_INDIVIDUAL_FORM = 'GET_INDIVIDUAL_FORM'

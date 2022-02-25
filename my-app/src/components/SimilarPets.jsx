@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from "react";
-
+import React, { Fragment, useEffect , useLayoutEffect} from "react";
+import { getPetsSimilar } from '../Redux/Actions/index.js';
 import {
   StyledCard,
   StyledCardContainer,
@@ -10,7 +10,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 export function SimilarPets(props) {
+  const petsfilter = useSelector((state) => state.petsfilter);
   const pets = useSelector((state) => state.pets_similar);
+  const Datos = useSelector((state) => state.petOne);
+  const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    if (!Datos ) {
+      dispatch(getPetsSimilar(Datos, petsfilter));
+    }
+  }, [dispatch]);
+
 
   if (pets) {
     return (
@@ -18,7 +28,7 @@ export function SimilarPets(props) {
         {/* <StyledInfo ><h1>Más recomendaciones para ti </h1></StyledInfo  > */}
         <StyledCardContainer>
           {pets.map((e) => (
-            <Link to={`/details/${e.id}`}>
+            <Link to={`/details/${e.id}`} key={e.id}>
               <StyledCard key={e.id}>
                 {" "}
                 <h1>{e.name} </h1>

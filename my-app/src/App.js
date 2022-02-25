@@ -45,7 +45,7 @@ function App() {
         } />
          <Route path="/Shelters" element={<Shelters/>}/>
 
-         <Route path="/CreatePets" element={<CreatePets/>}/>
+         <Route path="/dashboard/CreatePets" element={<CreatePets/>}/>
 
         <Route path="/login" element={
           <PublicRoute>

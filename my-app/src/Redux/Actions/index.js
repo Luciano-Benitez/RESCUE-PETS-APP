@@ -105,11 +105,11 @@ export const getPetsSimilar = (idShelter, datafilters ) => {
            
             console.log("ENVIADOS POR ACTION ",idShelter, datafilters , "TOMADO DESDE STORE" , datafilters2 ,OnePet )
             if (idShelter == undefined )  {   
-               resul = datafilters2.filter((el) => el.shelterId === idShelter[0].shelterId || el.species.id === idShelter[0].species.id  || el.ageId === idShelter[0]. ageId && el.name != OnePet.name);
+               resul = datafilters2.filter((el) => el.shelterId === idShelter[0].shelterId || el.species.id === idShelter[0].species.id  || el.ageId === idShelter[0]. ageId && (el.name != OnePet.name));
                resul = resul.splice(0,6);
             }    
             else {
-            resul = datafilters.filter((el) => el.shelterId === idShelter[0].shelterId && el.name != idShelter[0].name);
+            resul = datafilters.filter((el) => el.shelterId === idShelter[0].shelterId && (el.name != idShelter[0].name));
             resul = resul.splice(0,6);
             } 
             dispatch({type: GET_PETS_SIMILAR, payload: resul});

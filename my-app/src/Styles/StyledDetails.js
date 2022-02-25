@@ -43,7 +43,7 @@ background-color: white;
   border-radius: 12px;
   h2 {
     color: ${allColors.colors[8]};
-    font-size: 21px !important;
+    font-size: 18px !important;
   }
   span {
     color: ${allColors.colors[2]};

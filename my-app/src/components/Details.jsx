@@ -13,16 +13,15 @@ import { getPetId } from "../Redux/Actions/index.js";
 import { useParams } from "react-router";
 import SimilarPets from "./SimilarPets.jsx";
 import { getPetsSimilar } from '../Redux/Actions/index.js';
-import {
-  IoHeart,
-  IoEgg,
-  IoPaw,
-  IoHourglass,
-  IoSparkles,
-  IoFitness,
-  IoBonfire,
-  IoBusiness,
-} from "react-icons/io5";
+
+
+import Espe from "../Icos/espe.png" 
+import Tempe from "../Icos/star.png" 
+import Edad from "../Icos/edad.png" 
+import Ref from "../Icos/ref.png" 
+import Salud from "../Icos/health.png" 
+import Peso from "../Icos/star.png" 
+
 
 const Details = () => {
   
@@ -70,40 +69,40 @@ const Details = () => {
             </StyledDetailsLeft>
             <StyledDetailsRight>
            
-              <h3>{Datos[0].name}</h3>
+              <h3> {Datos[0].name}</h3>
 
-              <h1>{Datos[0].description}</h1>
+              <h1> {Datos[0].description}</h1>
               <h2>
-                <IoSparkles />
+              <img src={Peso} className="icos"/>
                 Peso:
-                <span>{Datos[0].weight} </span> 
+                <span> {Datos[0].weight} </span> 
               </h2>
 
               <h2>
-                <IoHourglass />
+              <img src={Edad} className="icos"/>
                 Edad:
-                <span>{Datos[0].age.age} </span>
+                <span> {Datos[0].age.age} </span>
               </h2>
 
               <h2>
-                <IoBonfire />
+              <img src={Tempe} className="icos"/>
                 Temperamento :<span> {Datos[0].temperament.temperament} </span>
               </h2>
 
               {/* <h2> <IoFitness/>Vaccines :</span></h2><h1>{Datos[0].vaccines} </h1> */}
 
               <h2>
-                <IoEgg />
+                <img src={Espe} className="icos"/>
                 Especie :<span> {Datos[0].species.specie} </span>
               </h2>
 
               <h2>
-                <IoHeart />
+              <img src={Salud} className="icos"/>
                 Estado :<span> {Datos[0].petStatus.status}</span>
               </h2>
 
               <h2>
-                <IoBusiness />
+              <img src={Ref} className="icos"/>
                 Refugio :<span> {Datos[0].shelter.name} </span>
               </h2>
             </StyledDetailsRight>

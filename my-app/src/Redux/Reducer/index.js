@@ -24,7 +24,7 @@ import {
   GET_PETS_FOR_DASHBOARD,
 
   GET_PETS_SIMILAR,
-
+  GET_ALL_QUESTIONS,
   GET_INDIVIDUAL_FORM,
   POST_PETS,
   GET_SHELTERS,
@@ -67,7 +67,7 @@ const initialState = {
   petsForDashboard: [],
 
   pets_similar: [],
-
+  allQuestions: [],
   individualform: [],
   formAdoption:[],
   allspecies: [],
@@ -351,6 +351,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
               ...state,
               forms : state.forms
             }
+
+          case GET_ALL_QUESTIONS:
+            return {
+              ...state,
+              allQuestions : payload
+            }  
         default:
           return state;
       }

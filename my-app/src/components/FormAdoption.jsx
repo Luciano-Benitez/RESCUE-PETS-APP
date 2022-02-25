@@ -47,7 +47,8 @@ const FormAdoption = ({ id }) => {
     event.preventDefault()
     let payload = {
       idform: form[0].id,
-      answer: input
+      answer: input,
+      idpet: petId
     }
     dispatch(sendAdoption(payload))
     Swal.fire('Genial!', 'Registro realizado correctamente', 'sucess');

@@ -4,6 +4,7 @@ import { getPetsForDashboard, getAllSpecies, gettTemperaments, getAllPetStatus, 
 import styled from 'styled-components';
 import ReadOnlyRows from './ReadOnlyRows';
 import EditableRows from './EditableRows';
+import { Link } from 'react-router-dom';
 
 
 
@@ -141,57 +142,67 @@ const PetsInDashboard = () => {
     }
 
   return (
-    <form onSubmit={handleEditedFormSubmit}>
-      <Center>
-        <Table>
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Esterelization</th>
-                <th>Peso</th>
-                <th>Descripción</th>
-                <th>Imágenes</th>
-                <th>Especie</th>
-                <th>Temperamento</th>
-                <th>Edad</th>
-                <th>Estado</th>
-                <th>Género</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-              data.length? data.map(data => 
-                <Fragment>
-                  {editPetId === data.id ? (
-                    <EditableRows
-                      allSpecies={allSpecies}
-                      allTemperaments={allTemperaments}
-                      allPetStatus={allPetStatus}
-                      allAges={allAges}
-                      allGenres={allGenres}
-                      editFormData={editFormData}
-                      handleEditFormChange={handleEditFormChange}
-                      handleCancelClick={handleCancelClick}
-                    />
-                    ) : (
-                    <ReadOnlyRows
-                    data={data}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                    />
-                    )}
-                  </Fragment>
-                ) : <tr ><td>Loading</td></tr>
-              }
-            </tbody>
-        </Table>
-      </Center>
-    </form>
+    <Center>
+      <Link to='/dashboard/CreatePets'>
+      <Button>Crear nueva Mascota</Button>
+      </Link>  
+        <CenterChild>
+      <form onSubmit={handleEditedFormSubmit}>
+          <Table>
+              <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Esterelization</th>
+                  <th>Peso</th>
+                  <th>Descripción</th>
+                  <th>Imágenes</th>
+                  <th>Especie</th>
+                  <th>Temperamento</th>
+                  <th>Edad</th>
+                  <th>Estado</th>
+                  <th>Género</th>
+                  <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              {
+                data.length? data.map(data => 
+                  <Fragment>
+                    {editPetId === data.id ? (
+                      <EditableRows
+                        allSpecies={allSpecies}
+                        allTemperaments={allTemperaments}
+                        allPetStatus={allPetStatus}
+                        allAges={allAges}
+                        allGenres={allGenres}
+                        editFormData={editFormData}
+                        handleEditFormChange={handleEditFormChange}
+                        handleCancelClick={handleCancelClick}
+                        />
+                        ) : (
+                          <ReadOnlyRows
+                          data={data}
+                          handleEditClick={handleEditClick}
+                          handleDeleteClick={handleDeleteClick}
+                          />
+                          )}
+                    </Fragment>
+                  ) : <tr ><td>Loading</td></tr>
+                }
+              </tbody>
+          </Table>
+      </form>
+          <Link to='/dashboard/pets/adopted'>
+      <Button2>Dar seguimiento a Mascotas adoptadas</Button2>
+      </Link>  
+          </CenterChild>
+    </Center>
   )
 }
 
 export default PetsInDashboard
+
+
 
 export const Center = styled.div`
 position: relative;
@@ -199,12 +210,43 @@ min-height: calc(100vh - 170px);
 display: grid;
 `
 
-export const Table = styled.table`
+export const CenterChild = styled.div`
 position: relative;
-align-self: center;
+/* align-self: center; */
 justify-self: center;
 font-size: 10px;
+`
 
+export const Button = styled.button`
+position: absolute; 
+top: 32%;
+right: 16.5%;
+/* align-self: center;
+justify-self: center; */
+font-size: 14px;
+
+&:hover {
+        cursor: pointer;;
+    }
+`
+
+export const Button2 = styled.button`
+margin-top: 1.5%;
+position: absolute; 
+right: 0;
+/* align-self: center; */
+justify-self: right;
+font-size: 14px;
+
+&:hover {
+        cursor: pointer;;
+    }
+`
+
+
+
+
+export const Table = styled.table`
 
 .app-container {
 display: flex;

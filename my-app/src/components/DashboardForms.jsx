@@ -32,7 +32,7 @@ export const DashboardForms= () => {
     let filterimages = pet.map(e => {return {id:e.id,image:e.image}})
 
     const handleSubmitGetForm = (e) => {
-        settypeform(e.target[e.target.value-1].attributes.name.nodeValue)
+        settypeform(e.target[e.target.value].attributes.name.nodeValue)
         dispatch(getForms(iduser,e.target.value))
     }
 
@@ -63,6 +63,9 @@ export const DashboardForms= () => {
                     <h1>Tabla de formularios de {typeform}</h1>
                     
                     <select name='opcion' onChange={e => handleSubmitGetForm(e)}>
+                        <option disabled selected>
+                            -- Seleccione --
+                        </option>
                         {typeof(formtypes) !== 'string'? formtypes.map(element => (
                             <option name={element.typeName} key={element.id} value={element.id}> {element.typeName}</option>
                         )): 

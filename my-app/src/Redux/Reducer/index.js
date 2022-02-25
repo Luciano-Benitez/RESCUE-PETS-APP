@@ -36,8 +36,8 @@ import {
   GET_ALL_AGES,
   GET_GENRES,
   SEARCH_PET_BY_NAME,
-  DELETE_PET
-  
+  DELETE_PET,
+  DELETE_ANSWERFORM
 } from "../Actions/types";
 
 const initialState = {
@@ -340,7 +340,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
             return {
               ...state,
             }
-          
+
+          case DELETE_ANSWERFORM:
+            return {
+              ...state,
+              forms : state.forms
+            }
         default:
           return state;
       }

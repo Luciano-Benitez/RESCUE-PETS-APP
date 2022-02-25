@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {getForms, getFormtypes, getPetsForDashboard} from '../Redux/Actions/index'
+import {deleteAnswerForm, getForms, getFormtypes, getPetsForDashboard} from '../Redux/Actions/index'
 //import './DashboardForms.css'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -17,12 +17,16 @@ export const DashboardForms= () => {
     const pet = useSelector( state => state.petsForDashboard )
     const routeInfo = useSelector(state => state.ShelterAndCityId)
     const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
-    const [typeform, settypeform] = useState('Adopción')
+    const [typeform, settypeform] = useState()
 
     useEffect(() => {
         dispatch(getFormtypes())
         // if(iduser)dispatch(getForms(iduser,1))
         if(routeInfo)dispatch(getPetsForDashboard(route))
+        // if(typeof(forms) !== 'string'){
+        //     if(forms[0].form.formtypeId === 1) settypeform('Adopción')
+        //     else settypeform('Trnánsito')
+        // }
     }, [])
 
     let filterimages = pet.map(e => {return {id:e.id,image:e.image}})
@@ -35,6 +39,23 @@ export const DashboardForms= () => {
     const handleClick = ()=> {
         navigate('/dashboard')
     }
+
+    const handleDeleteAdoption = (e) => {
+        dispatch(deleteAnswerForm(Number(e),'adoption'))
+        dispatch(getForms(iduser,1))
+    }
+
+    const handleDeleteRequest = (e) => {
+        dispatch(deleteAnswerForm(Number(e),'request'))
+        dispatch(getForms(iduser,2))
+    }
+
+    useEffect(() => {
+        if(forms.length && typeof(forms) !== 'string' && !typeform){
+            let temp = forms[0].form.formtypeId === 1 ? 'Adopción' : forms[0].form.formtypeId === 2 ? 'Trnánsito' : 'otro'
+            settypeform(temp)
+        }
+    },[typeform])
 
     return (
             <StyledDashboardForms>
@@ -55,6 +76,7 @@ export const DashboardForms= () => {
                                 <th>Respuestas</th>
                                 <th>Mascota Id</th>
                                 <th>Estado</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,7 +91,8 @@ export const DashboardForms= () => {
                                     }
                                 }): <h1>No lo obtiene</h1>}
                                 </td>
-                                <td><h3>Por revisar</h3></td>
+                                <td><h4>Por revisar</h4></td>
+                                <td><button onClick={() => handleDeleteAdoption(element.id)}>✘</button></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                         </tbody>
@@ -80,6 +103,7 @@ export const DashboardForms= () => {
                         <tr>
                             <th>Id</th>
                             <th>Respuestas</th>
+                            <th>Estado</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -88,7 +112,8 @@ export const DashboardForms= () => {
                             <tr key={element.id}>
                                 <td>{element.id}</td>
                                 <td><Link to={`view/${element.id}/${formtypes[1].id}`}><button>Ver Formulario</button></Link></td>
-                                <td>Por revisar</td>
+                                <td><h4>Por revisar</h4></td>
+                                <td><button onClick={() => handleDeleteRequest(element.id)}>✘</button></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                     </tbody>

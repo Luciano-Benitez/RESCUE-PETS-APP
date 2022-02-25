@@ -42,7 +42,8 @@ import {
     GET_GENRES,
     SEARCH_PET_BY_NAME,
     DELETE_PET,
-    EDIT_PET
+    EDIT_PET,
+    POST_REQUEST_TRANSIT
     } from './types.js'
 
 
@@ -427,4 +428,11 @@ export const deleteAnswerForm = (formid,type) => {
         return dispatch({type: DELETE_ANSWERFORM})
     }
 }
+
+export const postRequestTransit = (payload) => {
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/sendRequest`, payload);
+        return response;
+    };
+};
 

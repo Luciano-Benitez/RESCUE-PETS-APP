@@ -37,7 +37,8 @@ import {
   GET_GENRES,
   SEARCH_PET_BY_NAME,
   DELETE_PET,
-  DELETE_ANSWERFORM
+  DELETE_ANSWERFORM,
+  POST_REQUEST_TRANSIT
 } from "../Actions/types";
 
 const initialState = {
@@ -117,6 +118,10 @@ export default function rooReducer(state = initialState, { type, payload }) {
       return {
         ...state,
       };
+      case POST_REQUEST_TRANSIT:
+        return {
+          ...state,
+        };
 
     case GET_PETS_FILTER:
       return {

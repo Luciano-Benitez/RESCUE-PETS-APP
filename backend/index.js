@@ -11,6 +11,7 @@ const { setCities } = require("./helpers/cityData");
 const { setGenre } = require("./helpers/genreData");
 const { setQuestions } = require("./helpers/questionData");
 const { setFormType } = require("./helpers/formTypeData");
+const { followUpStatus } = require("./helpers/followUpStatus");
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
@@ -25,6 +26,7 @@ conn.sync({ force: false }).then(() => {
     await setGenre()
     await setQuestions()
     await setFormType()
+    await followUpStatus()
     //await setCountries()
     //await setStates()
     //await setCities()

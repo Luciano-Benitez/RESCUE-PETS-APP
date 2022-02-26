@@ -59,6 +59,7 @@ const { PetStatus } = sequelize.models;
 const { Age } = sequelize.models;
 const { States } = sequelize.models;
 const { Genres } = sequelize.models;
+const { FollowUpStatus } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);

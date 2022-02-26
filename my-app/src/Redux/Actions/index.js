@@ -26,7 +26,7 @@ import {
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
     GET_PETS_FOR_DASHBOARD,
-
+    POST_CREATE_FORM,
     GET_PETS_SIMILAR,
     GET_ALL_QUESTIONS,
     DELETE_ANSWERFORM,
@@ -439,8 +439,14 @@ export const postRequestTransit = (payload) => {
 
 export const getAllQuestions = () => {
     return async function (dispatch){
-        let json = await axios('')
+        let json = await axios('http://localhost:3001/getAllQuestions')
         return dispatch({type: GET_ALL_QUESTIONS,payload: json.data})
     }
 }
 
+export const postCreateForm = (form) => {
+    return async function(dispatch){
+        let json = await axios.post('http://localhost:3001/createForm',form)
+        return json
+    }
+}

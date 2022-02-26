@@ -8,19 +8,46 @@ import PreFooter from "./PreFooter";
 import {Fragment, useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {getPets} from "../Redux/Actions";
+
 export function Home() {
+
 
     const dispatch = useDispatch();
     const pets = useSelector((state) => state.petsfilter);
     const [idcity, setidcity] = useState('')
     const [estadoModal, cambiarEstadoModal] = useState(true);
-   
+    const city=useSelector((state)=>state.cities);
+    const state=useSelector((state)=>state.states);
+    const country=useSelector((state)=>state.countries)
+
+    useEffect(()=>{
+
+      if(window.localStorage.getItem("modal")) 
+    
+      {
+        if(city.length && state.length && country.length)
+        {   window.localStorage.setItem("modal", false);
+           cambiarEstadoModal(!window.localStorage.getItem('modal'))}
+    
+         window.localStorage.setItem("modal", true);
+      }
+      else{
+        window.localStorage.setItem("modal", true);
+      }
+     
+    },[])
+
+
 
     useEffect(() => {
         if (!pets.length) {
             dispatch(getPets());
         }
+        
     }, [dispatch]);
+
+    
+
 
 
     return (<Fragment>
@@ -28,7 +55,7 @@ export function Home() {
       
         
         <Filters idcity={idcity} cambiarEstado={cambiarEstadoModal}/>
-        {estadoModal == true ? (<Modal setidcity={setidcity} estado={estadoModal} cambiarEstado={cambiarEstadoModal}/>) : ""}
+        {estadoModal == true ? (<Modal modal={true} setidcity={setidcity} estado={estadoModal} cambiarEstado={cambiarEstadoModal}/>) : ""}
             <Cards  pets={pets}></Cards>
             <PreFooter/>
             

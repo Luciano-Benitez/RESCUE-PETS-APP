@@ -4,7 +4,7 @@ import { StyleButton } from "../Styles/StyledButtons";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Axios from 'axios'
+import axios from 'axios'
 
 
 import {
@@ -13,7 +13,9 @@ import {
   getcities,
   cleanStateForm,
   startRegister,
+  uploadImageCloud
 } from "../Redux/Actions/index.js";
+
 
 const FormShelter = () => {
   const allCountries = useSelector((state) => state.countries);
@@ -47,11 +49,12 @@ const FormShelter = () => {
     formData.append("file", e.target.files[0])
     formData.append("upload_preset", "rescuePetsUpload")
 
-    Axios.post("https://api.cloudinary.com/v1_1/dtb4lcidq/upload", formData)
-    .then((response) => setInput({
+    let link = await dispatch(uploadImageCloud(formData))
+    setInput({
       ...input,
-      img: response.data.secure_url
-    }))
+      img:link
+    })
+  
   }
 
   const handleChange = (e) => {
@@ -114,6 +117,7 @@ const FormShelter = () => {
       img: "",
     });
     history("/login");
+
   };
 
   return (
@@ -180,9 +184,9 @@ const FormShelter = () => {
                 placeholder="Sube tu imagen aquí"
                 onChange={(e)=>{uploadImage(e)}}
               />
-              <text style={{textAlign:"center"}}>
+              <p style={{textAlign:"center"}}>
                 Formatos aceptados: JPG, JPEG, PNG, SVG 
-              </text>
+              </p>
             </div>
           </div>
         </fieldset>

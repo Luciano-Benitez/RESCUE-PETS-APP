@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { getAuth, signInWithPopup, signOut } from 'firebase/auth'
 import { googleAuthProvider } from '../../firebase/firebase-Config'
 import { fetchConToken, fetchSinToken } from '../../helpers/fetch.js';
+import {cloudynary} from '../../helpers/cloudinary.js'
 import store from '../Store/index';
 import {
     GET_COUNTRIES,
@@ -51,6 +52,7 @@ import {
     EDIT_PET,
     POST_REQUEST_TRANSIT
     } from './types.js'
+import { async } from '@firebase/util';
 
 
 
@@ -541,5 +543,14 @@ export const editPet = (petId, payload) => {
         // console.log(editPet)
         // return editPet
     };
+}
+
+export const uploadImageCloud = (formData) => {
+    return async (dispatch) => {
+        const resp = await cloudynary(formData);
+        const body = await resp.data.secure_url
+        return body
+    };
+    
 }
 

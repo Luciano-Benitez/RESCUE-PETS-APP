@@ -9,6 +9,7 @@ const {petsId}= require("../controllers/petsId");
 const { getAllPetsinDB } = require("../controllers/getAllPetsinDB.js");
 const { deletePet } = require("../controllers/deletePet");
 const { editPet } = require("../controllers/editPets");
+const { getAllPetAdopted } = require("../controllers/getAllPetsAdopted.js");
 
 
 router.get("/pets/:idCity", getPets);
@@ -45,16 +46,19 @@ router.get("/petDetail", async (req, res) => {
       res.status(400).json("Sorry,pet not found");
     }
   }
-    
+
    
   });
+
+
+
+  
 
   router.delete("/pets/:petId", deletePet);
   router.put("/pets/:petId", editPet);
 
-
-
-
+ 
+  router.get("/petAdopted/:id", getAllPetAdopted)
 
   
 module.exports = router;

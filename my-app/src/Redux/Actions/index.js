@@ -534,3 +534,12 @@ export const deletePet = (petId) => {
     };
 } 
 
+export const editPet = (petId, payload) => {
+    return async function (dispatch) {
+        const editPet= await axios.put(`http://localhost:3001/pets/${petId}`, payload );
+        // return dispatch({ type: EDIT_PET, payload:editPet });
+        // console.log(editPet)
+        // return editPet
+    };
+}
+

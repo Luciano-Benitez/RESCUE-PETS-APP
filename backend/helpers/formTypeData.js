@@ -2,7 +2,7 @@ const {Formtype} = require('../src/db')
 
 exports.setFormType =  () => {
 
-    const formTypeList = ['Adopción', 'Trnánsito', 'Rescate']
+    const formTypeList = ['Adopción', 'Tránsito', 'Rescate']
     try{
         formTypeList.forEach(async element => {
             await Formtype.findOrCreate({

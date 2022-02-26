@@ -137,6 +137,11 @@ FollowUp.belongsTo(Adoptions);
 Requests.hasMany(FollowUp);
 FollowUp.belongsTo(Requests);
 
+Shelter.hasMany(FollowUp);
+FollowUp.belongsTo(Shelter);
+
+Pets.hasOne(FollowUp);
+FollowUp.belongsTo(Pets);
 
 
 module.exports = {

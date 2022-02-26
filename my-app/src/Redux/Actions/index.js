@@ -524,3 +524,13 @@ export const postCreateForm = (form) => {
         return json
     }
 }
+
+export const deletePet = (petId) => {
+    return async function (dispatch) {
+        const deletePet= await axios.delete(`http://localhost:3001/pets/${petId}`);
+        return dispatch({ type: DELETE_PET, payload:deletePet });
+        // console.log(deletePet)
+        // return deletePet
+    };
+} 
+

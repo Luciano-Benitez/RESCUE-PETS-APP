@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { startLogin } from '../Redux/Actions';
+import { startGoogleLogin, startLogin } from '../Redux/Actions';
 import { Container, Button, Center, MiniText, LinkStyle, Background, Cuadro } from '../Styles/StyledLogin'
 
 
@@ -32,6 +32,10 @@ const Login = () => {
         });
     
       };
+
+      const handleGoogleLogin = () => {
+        dispatch(startGoogleLogin())
+      }
   return (
     <Background>
         <Center>
@@ -42,7 +46,7 @@ const Login = () => {
                     Continuar con Facebook
                     </button>
 
-                    <button class="loginBtn loginBtn--google">
+                    <button onClick={handleGoogleLogin} class="loginBtn loginBtn--google">
                     Continuar con Google
                     </button>
                 </div>

@@ -12,6 +12,8 @@ const temperaments = require('./temperaments')
 const states = require('./states')
 const Search = require('./Search');
 const ShelterAndCityId = require('./Shelter&CityId');
+const Shelter = require('./Shelter');
+
 const Species = require('./Species');
 const PetStatus = require('./PetStatus');
 const Ages = require('./Ages');
@@ -31,6 +33,8 @@ router.use('/',states)
 router.use('/',cities)
 router.use('/',temperaments)
 router.use('/',ShelterAndCityId)
+router.use('/',Shelter)
+
 router.use('/',Species)
 router.use('/',PetStatus)
 router.use('/',Ages)

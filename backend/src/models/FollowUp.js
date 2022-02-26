@@ -4,15 +4,15 @@ module.exports = (sequelize) => {
     sequelize.define ('followUp',{
         followUpDate1: {
             type:  DataTypes.DATE,
-            allowNull: false
+            allowNull: true
         },
         followUpDate2: {
             type:  DataTypes.DATE,
-            allowNull: false
+            allowNull: true
         },
         followUpDate3: {
             type:  DataTypes.DATE,
-            allowNull: false
+            allowNull: true
         },
         
     },{timestamps: false})

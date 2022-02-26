@@ -1,4 +1,7 @@
 import axios from 'axios'
+import Swal from 'sweetalert2';
+import { getAuth, signInWithPopup, signOut } from 'firebase/auth'
+import { googleAuthProvider } from '../../firebase/firebase-Config'
 import { fetchConToken, fetchSinToken } from '../../helpers/fetch.js';
 import {GET_COUNTRIES, 
     GET_STATES, 
@@ -23,7 +26,10 @@ import {GET_COUNTRIES,
     GET_SHELTER_DETAIL,
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
-    GET_PETS_FOR_DASHBOARD
+    GET_PETS_FOR_DASHBOARD,
+    authLogout,
+    GET_DETAIL_SHELTER,
+    UPDATE_SHELTER
     } from './types.js'
 
 
@@ -184,11 +190,20 @@ export const startChecking = ( ) =>{
 
 const checkingFinish = () => ({type: authCheckingFinish})
 
+export const startGoogleLogin = () => {
+    return (dispatch) => {
+      const auth = getAuth()
+      signInWithPopup(auth, googleAuthProvider)
+        .then(({ user }) => {
+          dispatch(login())
+        })
+    }
+  }
+
 export const login= (user) =>({
     type: authLogin,
     payload: user
 })
-
 
 export const getTemperaments = () => {
     return {
@@ -289,3 +304,71 @@ export const getPetsForDashboard = (route) => {
     }
 }
 
+export const startLogout= () =>{
+    
+    return async(dispatch)=>{
+        localStorage.clear()
+        const auth = getAuth()
+        await signOut(auth)
+        dispatch(logout())
+    }
+}
+
+export const getShelterById= (id) =>{
+    return async(dispatch) =>{
+        const ShelterDetail =  await fetchConToken( `Shelter/${id}`)
+        const body = await ShelterDetail.json()
+        if(body.ok){
+            dispatch({type: GET_DETAIL_SHELTER, payload: {name: body.name, address: body.address, phoneNumber: body.phoneNumber, description: body.description}})
+        }      
+    }
+      
+}
+
+export const shelterStartUpdate = ( shelter ) => {
+    return async(dispatch) => {
+        console.log('shelter',shelter)
+        try {
+            const resp = await fetchConToken(`Shelter/${shelter.id}`, shelter, 'PUT' );
+            const body = await resp.json();
+
+            if ( body.ok ) {
+                dispatch( getShelterById( shelter.id ) );
+                Swal.fire('Genial', 'Informacion actualizada', 'success')
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+export const passwordUpdate = (data) => {
+    return async(dispatch) => {
+        console.log('data',data)
+        try {
+            const resp = await fetchConToken(`changepassword`, data, 'PUT' );
+            const body = await resp.json();
+
+            if ( body.ok ) {
+                Swal.fire('Genial', 'Contraseña Actualizada, por favor inicie sesion nuevamente', 'success')
+                dispatch( logout() );
+                
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+
+const logout = () => ({type: authLogout})

@@ -34,7 +34,7 @@ function App() {
   return (
     <BrowserRouter>
 
-      <Navbar />
+     
       <Routes>
 
         <Route path="/" element={
@@ -46,6 +46,7 @@ function App() {
 
         <Route path="/login" element={
           <PublicRoute>
+            <Navbar/>
             <Login />
 
           </PublicRoute>
@@ -53,6 +54,7 @@ function App() {
 
         <Route path="/register" element={
           <PublicRoute>
+            <Navbar/>
             <FormShelter />
 
           </PublicRoute>
@@ -61,6 +63,7 @@ function App() {
 
 <Route path="/details/:id" element={
           <PublicRoute>
+            <Navbar/>
             <Details />
 
           </PublicRoute>
@@ -68,6 +71,7 @@ function App() {
 
 <Route path="/shelters/:id/*" element={
           <PublicRoute>
+            <Navbar/>
             <ShelterDetail />
 
           </PublicRoute>

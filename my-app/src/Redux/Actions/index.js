@@ -43,9 +43,9 @@ import {
     SEARCH_PET_BY_NAME,
     DELETE_PET,
     EDIT_PET,
-    POST_REQUEST_TRANSIT
+    POST_REQUEST_TRANSIT,
+    GET_FORM_BY_SHELTER
     } from './types.js'
-
 
 
 export const getPets = () => {
@@ -447,6 +447,20 @@ export const getAllQuestions = () => {
 export const postCreateForm = (form) => {
     return async function(dispatch){
         let json = await axios.post('http://localhost:3001/createForm',form)
+        return json
+    }
+}
+
+export const getFormByShelter = (shelterid,formtypeid) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/getFormByShelter/${shelterid}?formtypeid=${formtypeid}`)
+        return dispatch({type:GET_FORM_BY_SHELTER, payload:json.data})
+    }
+}
+
+export const editForm = (formid,formtypeid,questions) => {
+    return async function(dispatch){
+        let json = await axios.put(`http://localhost:3001/editForm/${formid}?formtypeid=${formtypeid}`,questions)
         return json
     }
 }

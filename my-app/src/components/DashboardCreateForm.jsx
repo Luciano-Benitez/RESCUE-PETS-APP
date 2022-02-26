@@ -3,13 +3,14 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { StyledDashboardForms } from '../Styles/StyledDashboardForms'
-import { getAllQuestions, getFormtypes, postCreateForm } from '../Redux/Actions/index'
+import { editForm, getAllQuestions, getFormByShelter, getFormtypes, postCreateForm } from '../Redux/Actions/index'
 import { useState } from "react"
 
 export const DashboardCreateForm = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const existingform = useSelector((state) => state.formbyshelter)
     const shelterid = useSelector(state => state.ShelterAndCityId)
     const questions = useSelector((state) => state.allQuestions)
     const formtypes = useSelector((state) => state.formtypes)
@@ -21,14 +22,19 @@ export const DashboardCreateForm = () => {
         dispatch(getFormtypes())
         dispatch(getAllQuestions())
         setform({idshelter: shelterid.shelterId,type:Number(type), questions: question})
-    }, [type,question])
+    }, [type,question]) 
     
+    useEffect(()=> {
+        if(type){dispatch(getFormByShelter(shelterid.shelterId,Number(type)))}
+        setquestion([])
+    },[type])
 
     const handleClick = ()=>{
         navigate('/dashboard')
     }
 
     let titleFormType = type ? formtypes.find(e => Number(e.id) === Number(type)).typeName : 'No seleccionado'
+    let questionexistingform = existingform.length ? existingform[0].questions.map(e => e.id) : []
     
     const handleSubmitChange = (e) => {
            if(e.target[e.target.value].attributes.name.nodeValue === formtypes[0].typeName){
@@ -37,7 +43,7 @@ export const DashboardCreateForm = () => {
             }if(e.target[e.target.value].attributes.name.nodeValue === formtypes[1].typeName){
                 settype(e.target.value)
             }
-        setform({idshelter: shelterid.shelterId,type:Number(type), questions: question})  
+            dispatch(getFormByShelter(shelterid.shelterId,Number(type)))        
     }
 
     const handleSubmitQuestion = (e) => {
@@ -58,19 +64,31 @@ export const DashboardCreateForm = () => {
     }
 
     const handleSubmitFormCreated = () => {
-        if(!type || question.length === 0){
+        if(!type || question.length === 0 || existingform.length){
             alert('deben llenarse los campos')
         }else{
             dispatch(postCreateForm(form))
             setquestion([])
+            alert('creado con exito')
         } 
     }
 
+    const handleClickShow = () => {
+        if(type && existingform.length)setquestion(questionexistingform)
+        else setquestion([])
+    }
+
+    const handleClickEdit = () => {
+        if(form.type && form.questions.length){
+            dispatch(editForm(Number(existingform[0].id),Number(form.type),{questions : form.questions}))
+        }
+        alert('editado con exito')
+    }
 
     return (
         <StyledDashboardForms>
             <button onClick={handleClick}>{'<'}Volver</button>
-            <h1>Crear formulario</h1>
+            <h1>{existingform.length ? 'Edita formulario': 'Crea formulario'}</h1>
             <div>
                 <div>
                     <select name='type' onChange={(e) => handleSubmitChange(e)}>
@@ -96,7 +114,10 @@ export const DashboardCreateForm = () => {
                     <button onClick={(e) => handleClickDelete(e)} value='all'>Delete ✘</button>
                     <br></br>
                     <br></br>
-                    <button onClick={() => handleSubmitFormCreated()}>Crear</button>
+                    <button onClick={() => handleClickShow()}>Mostrar</button> 
+                    <br></br>
+                    <br></br>
+                    {existingform.length ? <button onClick={() => handleClickEdit()}>Editar</button> : <button onClick={() => handleSubmitFormCreated()}>Crear</button>}   
                 </div>
                 <br></br>
                 <br></br>
@@ -109,13 +130,13 @@ export const DashboardCreateForm = () => {
                             <th>Acción</th>
                         </tr>
                         <tbody>
-                            {question.length > 0? question.map(e => (
+                            { question.length > 0? question.map(e => (
                                 <tr key={e}>
                                     <td>{questions.filter(q => q.id === Number(e))[0].id}</td>
                                     <td>{questions.filter(q => q.id === Number(e))[0].question}</td>
                                     <td><button onClick={() => handleClickDelete(e)}>✘</button></td>
                                 </tr>
-                            )):null}
+                            )): null}
                         </tbody>
                     </table>
                 </div>

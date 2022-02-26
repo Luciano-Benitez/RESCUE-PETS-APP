@@ -23,6 +23,8 @@ import {
   GET_FORMTYPES,
   GET_PETS_FOR_DASHBOARD,
   GET_FORM_BY_SHELTER,
+  authLogout,
+  GET_DETAIL_SHELTER,
   GET_PETS_SIMILAR,
   GET_ALL_QUESTIONS,
   GET_INDIVIDUAL_FORM,
@@ -66,6 +68,7 @@ const initialState = {
   formtypes: [],
   petsForDashboard: [],
   formbyshelter : [],
+  shelterProfile: {},
   pets_similar: [],
   allQuestions: [],
   individualform: [],
@@ -263,8 +266,28 @@ export default function rooReducer(state = initialState, { type, payload }) {
         return {
           ...state,
           formtypes : payload
-
         }  
+      
+      case authLogout: 
+      return {
+        ...state,
+        checking : false,
+        id: null,
+        email: null,
+        formtypes: [],
+       petsForDashboard: []
+       ,ShelterAndCityId : [],
+       shelterProfile: {}
+      }
+
+      case GET_DETAIL_SHELTER:
+        
+        return{
+          ...state,
+          shelterProfile: payload
+        }
+
+          
         case GET_FORM_ADOPTION:
           return {
             ...state,

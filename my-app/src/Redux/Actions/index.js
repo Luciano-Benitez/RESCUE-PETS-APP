@@ -1,6 +1,10 @@
-import axios from "axios";
+import axios from 'axios'
+import Swal from 'sweetalert2';
+import { getAuth, signInWithPopup, signOut } from 'firebase/auth'
+import { googleAuthProvider } from '../../firebase/firebase-Config'
+import { fetchConToken, fetchSinToken } from '../../helpers/fetch.js';
+import {cloudynary} from '../../helpers/cloudinary.js'
 import store from '../Store/index';
-import {fetchConToken, fetchSinToken} from "../../helpers/fetch.js";
 import {
     GET_COUNTRIES,
     GET_STATES,
@@ -26,6 +30,9 @@ import {
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
     GET_PETS_FOR_DASHBOARD,
+    authLogout,
+    GET_DETAIL_SHELTER,
+    UPDATE_SHELTER,
     POST_CREATE_FORM,
     GET_PETS_SIMILAR,
     GET_ALL_QUESTIONS,
@@ -46,6 +53,7 @@ import {
     POST_REQUEST_TRANSIT,
     GET_FORM_BY_SHELTER
     } from './types.js'
+import { async } from '@firebase/util';
 
 
 export const getPets = () => {
@@ -205,23 +213,6 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
     };
 };
 
-export const startChecking = () => {
-    return async (dispatch) => {
-        const resp = await fetchConToken("renew");
-        const body = await resp.json();
-        if (body.ok) {
-            localStorage.setItem("token", body.token);
-            localStorage.setItem("token-init-date", new Date().getTime());
-            dispatch(login({id: body.id, email: body.email}));
-        } else {
-            dispatch(checkingFinish());
-        }
-    };
-};
-
-const checkingFinish = () => ({type: authCheckingFinish});
-
-export const login = (user) => ({type: authLogin, payload: user});
 
 export const getTemperaments = () => {
     return {type: GET_TEMPERAMENTS, payload: null};
@@ -311,10 +302,6 @@ export const searchPetByName = (payload) => {
     return {type: SEARCH_PET_BY_NAME, payload: payload};
 };
 
-
-
-
-
 export const getIndividualForm = (shelterid,formtypeid,formid) => {
     return async function (dispatch){
         try{
@@ -346,12 +333,47 @@ export const sendAdoption=(payload)=>{
     } 
     }
 
+
+
+export const startChecking = ( ) =>{
+    return async(dispatch) =>{
+       
+        const resp= await fetchConToken('renew')
+        const body = await resp.json()
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime())
+            dispatch(login({id: body.id, email: body.email}))
+        }
+        else{
+            dispatch(checkingFinish())
+        }
+    }
+}
+
+const checkingFinish = () => ({type: authCheckingFinish})
+
+export const startGoogleLogin = () => {
+    return (dispatch) => {
+      const auth = getAuth()
+      signInWithPopup(auth, googleAuthProvider)
+        .then(({ user }) => {
+          dispatch(login())
+        })
+    }
+  }
+
+export const login= (user) =>({
+    type: authLogin,
+    payload: user
+})
+
 export function postPets(payload) {
     return async function(dispatch){
         const post = await axios.post('http://localhost:3001/pets', payload);
         return post;
     }   
-};
+}
 
 export const gettTemperaments = ()=> {
     return async function(dispatch){
@@ -405,23 +427,7 @@ export const getGenres = ()=> {
     }
 }
 
-export const deletePet = (petId) => {
-    return async function (dispatch) {
-        const deletePet= await axios.delete(`http://localhost:3001/pets/${petId}`);
-        return dispatch({ type: DELETE_PET, payload:deletePet });
-        // console.log(deletePet)
-        // return deletePet
-    };
-} 
 
-export const editPet = (petId, payload) => {
-    return async function (dispatch) {
-        const editPet= await axios.put(`http://localhost:3001/pets/${petId}`, payload );
-        // return dispatch({ type: EDIT_PET, payload:editPet });
-        // console.log(editPet)
-        // return editPet
-    };
-}
 
 export const deleteAnswerForm = (formid,type) => {
     return async function(dispatch){
@@ -444,12 +450,83 @@ export const getAllQuestions = () => {
     }
 }
 
+export const startLogout= () =>{
+    
+    return async(dispatch)=>{
+        localStorage.clear()
+        const auth = getAuth()
+        await signOut(auth)
+        dispatch(logout())
+    }
+}
+
+export const getShelterById= (id) =>{
+    return async(dispatch) =>{
+        const ShelterDetail =  await fetchConToken( `Shelter/${id}`)
+        const body = await ShelterDetail.json()
+        if(body.ok){
+            dispatch({type: GET_DETAIL_SHELTER, payload: {name: body.name, address: body.address, phoneNumber: body.phoneNumber, description: body.description}})
+        }      
+    }
+      
+}
+
+export const shelterStartUpdate = ( shelter ) => {
+    return async(dispatch) => {
+        console.log('shelter',shelter)
+        try {
+            const resp = await fetchConToken(`Shelter/${shelter.id}`, shelter, 'PUT' );
+            const body = await resp.json();
+
+            if ( body.ok ) {
+                dispatch( getShelterById( shelter.id ) );
+                Swal.fire('Genial', 'Informacion actualizada', 'success')
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+export const passwordUpdate = (data) => {
+    return async(dispatch) => {
+        console.log('data',data)
+        try {
+            const resp = await fetchConToken(`changepassword`, data, 'PUT' );
+            const body = await resp.json();
+
+            if ( body.ok ) {
+                Swal.fire('Genial', 'Contraseña Actualizada, por favor inicie sesion nuevamente', 'success')
+                dispatch( logout() );
+                
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+
+const logout = () => ({type: authLogout})
+
+
 export const postCreateForm = (form) => {
-    return async function(dispatch){
+    return async function(_dispatch){
         let json = await axios.post('http://localhost:3001/createForm',form)
         return json
     }
 }
+
 
 export const getFormByShelter = (shelterid,formtypeid) => {
     return async function(dispatch){
@@ -464,3 +541,32 @@ export const editForm = (formid,formtypeid,questions) => {
         return json
     }
 }
+
+export const deletePet = (petId) => {
+    return async function (dispatch) {
+        const deletePet= await axios.delete(`http://localhost:3001/pets/${petId}`);
+        return dispatch({ type: DELETE_PET, payload:deletePet });
+        // console.log(deletePet)
+        // return deletePet
+    };
+} 
+
+export const editPet = (petId, payload) => {
+    return async function (dispatch) {
+        const editPet= await axios.put(`http://localhost:3001/pets/${petId}`, payload );
+        // return dispatch({ type: EDIT_PET, payload:editPet });
+        // console.log(editPet)
+        // return editPet
+    };
+}
+
+export const uploadImageCloud = (formData) => {
+    return async (dispatch) => {
+        const resp = await cloudynary(formData);
+        const body = await resp.data.secure_url
+        return body
+    };
+    
+}
+
+

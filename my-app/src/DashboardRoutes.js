@@ -3,6 +3,7 @@ import { Routes, Route} from "react-router-dom";
 import { AnswerFormView } from './components/AnswerFormView';
 import { ChangePassword } from './components/ChangePassword';
 import { Dashboard } from './components/Dashboard';
+import { DashboardCreateForm } from './components/DashboardCreateForm';
 import { DashboardForms } from './components/DashboardForms';
 import NavbarDashboard from './components/NavbarDashboard';
 import PetsInDashboard from './components/PetsInDashboard'
@@ -22,6 +23,8 @@ export const DashboardRoutes = () => {
                 <Route path="dashboard/forms/views" element={<AnswerFormView/>}/>
                 <Route path="dashboard/profile" element={<ShelterProfile/>}/>
                 <Route path="dashboard/config" element={<ChangePassword/>}/>
+                <Route path="dashboard/forms/view/:formid/:formtypeid" element={<AnswerFormView/>}/>
+                <Route path="dashboard/createForm" element={<DashboardCreateForm/>}/>
             </Routes>
         </div>
         </div>

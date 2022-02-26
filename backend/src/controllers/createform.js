@@ -3,12 +3,19 @@ const {Formtype} = require('../db.js')
 exports.createForm = async (req,res) => {
     const {type,questions,idshelter} = req.body
     try{
-        if(type && questions){   
+        if(type && questions && idshelter){  
             let ft = await Formtype.findOne({
                 where:{
                     id : type
                 }
             })
+            let findformifexist = await Forms.findOne({
+                where: {
+                    shelterId : idshelter,
+                    formtypeId : ft.id
+                }
+            })
+            if(findformifexist) return res.status(200).send('already exists') 
             let f = await Forms.create({
                 formName: ft.typeName,
                 formtypeId: ft.id,
@@ -24,7 +31,7 @@ exports.createForm = async (req,res) => {
                     f.addQuestions(q)
                 })
             }
-            return res.status(201).json(f)    
+            return res.status(201).send(f)    
         }else{
             return res.status(400).send('wrong data')
         }

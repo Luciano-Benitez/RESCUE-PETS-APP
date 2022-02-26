@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { DivContainer} from "../Styles/StyledFormShelter";
+import { DivContainer } from "../Styles/StyledFormShelter";
 import { StyleButton } from "../Styles/StyledButtons";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
+
 
 import {
   getCountries,
   getStates,
   getcities,
   cleanStateForm,
-  startRegister
+  startRegister,
 } from "../Redux/Actions/index.js";
 
 const FormShelter = () => {
@@ -19,7 +20,7 @@ const FormShelter = () => {
   const citiesXstate = useSelector((state) => state.cities);
 
   const dispatch = useDispatch();
-  const history = useNavigate()
+  const history = useNavigate();
 
   useEffect(() => {
     dispatch(getCountries());
@@ -37,6 +38,7 @@ const FormShelter = () => {
     address: "",
     password: "",
     role: "1",
+    img: "https://steemitimages.com/DQmXJdsFf745a1hDWJsG1chhy1tHUMc7MZPkzdLAVyEDP3G/image.png",
   });
 
   const handleChange = (e) => {
@@ -69,12 +71,23 @@ const FormShelter = () => {
     });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input)
-    dispatch(startRegister(input.name, input.phoneNumber, input.description, input.address, input.email, input.password ,input.cityId, input.role));;
-    Swal.fire('Genial!', 'Registro realizado correctamente', 'sucess');
+    console.log(input);
+    dispatch(
+      startRegister(
+        input.name,
+        input.phoneNumber,
+        input.description,
+        input.address,
+        input.email,
+        input.password,
+        input.cityId,
+        input.role,
+        input.img
+      )
+    );
+    Swal.fire("Genial!", "Registro realizado correctamente", "sucess");
     setInput({
       name: "",
       email: "",
@@ -86,8 +99,9 @@ const FormShelter = () => {
       address: "",
       password: "",
       role: "1",
+      img: "",
     });
-    history('/login')
+    history("/login");
   };
 
   return (
@@ -100,6 +114,7 @@ const FormShelter = () => {
           <div className="campo">
             <label>Nombre del Refugio: </label>
             <input
+              className="inputForm"
               onChange={handleChange}
               value={input.name}
               name="name"
@@ -111,6 +126,7 @@ const FormShelter = () => {
           <div className="campo">
             <label>Mail: </label>
             <input
+              className="inputForm"
               onChange={handleChange}
               value={input.email}
               name="email"
@@ -122,6 +138,7 @@ const FormShelter = () => {
           <div className="campo">
             <label>Teléfono: </label>
             <input
+              className="inputForm"
               onChange={handleChange}
               name="phoneNumber"
               value={input.phoneNumber}
@@ -140,6 +157,20 @@ const FormShelter = () => {
               cols="30"
               rows="10"
             ></textarea>
+          </div>
+
+          <div className="campo">
+            <label>Logo</label>
+            <div className="file">
+              <input
+                name="file"
+                type="file"
+                placeholder="Sube tu imagen aquí"
+              />
+              <text style={{textAlign:"center"}}>
+                Formatos aceptados: JPG, JPEG, PNG, SVG 
+              </text>
+            </div>
           </div>
         </fieldset>
 
@@ -190,6 +221,7 @@ const FormShelter = () => {
           <div className="campo">
             <label>Dirección: </label>
             <input
+              className="inputForm"
               onChange={handleChange}
               type="text"
               placeholder="Dirección"
@@ -205,21 +237,20 @@ const FormShelter = () => {
           <div className="campo">
             <label>Contraseña: </label>
 
-            <input 
-            onChange={handleChange}
-            type="password" 
-            name='password'
-            value={input.password}
-            placeholder="Contraseña" 
-            required />
-                
+            <input
+              className="inputForm"
+              onChange={handleChange}
+              type="password"
+              name="password"
+              value={input.password}
+              placeholder="Contraseña"
+              required
+            />
           </div>
         </fieldset>
-        <StyleButton
-          className="btn"
-          type="submit"
-          value="Registrarme"
-        >Registrarme</StyleButton>
+        <StyleButton className="btn" type="submit" value="Registrarme">
+          Registrarme
+        </StyleButton>
       </form>
       {/* <img src="https://www.pngmart.com/files/4/Golden-Retriever-Puppy-PNG-File.png" alt="imagen" /> */}
     </DivContainer>

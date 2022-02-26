@@ -7,6 +7,7 @@ import { getIdFromShelterAndCity } from '../Redux/Actions'
 export const Dashboard = () => {
 
   const idUser = useSelector(state => state.id)
+
   console.log(idUser)
   
   const dispatch = useDispatch()
@@ -18,8 +19,15 @@ export const Dashboard = () => {
 
   return (
     <Center>
+      <br/>
       <Container>
-        <Link to='/dashboard/pets'>Take me to see Pets in Bashboard</Link>
+        <Link to='/dashboard/pets'>Take me to see Pets in Dashboard</Link>
+      </Container>
+      <Container>
+        <Link to='/dashboard/forms'>Go to Answers Forms</Link>
+      </Container>
+      <Container>
+        <Link to='/dashboard/createForm'>Go to create Forms</Link>
       </Container>
     </Center>
     

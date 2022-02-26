@@ -52,6 +52,11 @@ bottom: 12px;
 
 }
 
+.icos {
+    width: 8%;
+    padding-right: 5px;
+}
+
 .active a {
 background-color: #63ac44;
 padding: 20px;

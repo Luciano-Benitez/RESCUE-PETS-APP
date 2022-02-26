@@ -26,12 +26,19 @@ exports.getForm = async(req,res)=>{
                 let adoptionsAnswers = await Adoptions.findAll({
                     where:{
                         formId : formid
+                    },
+                    include: {
+                        model : Forms,
+                        attributes : ['formtypeId']
                     }
                 })
                 if(adoptionsAnswers.length) return res.status(200).json(adoptionsAnswers)
                 let requestsAnswers = await Requests.findAll({
                     where:{
                         formId : formid
+                    },include: {
+                        model : Forms,
+                        attributes : ['formtypeId']
                     }
                 })
                 if(requestsAnswers.length) return res.status(200).json(requestsAnswers)

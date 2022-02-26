@@ -23,7 +23,23 @@ import {
   GET_FORMTYPES,
   GET_PETS_FOR_DASHBOARD,
   authLogout,
-  GET_DETAIL_SHELTER
+  GET_DETAIL_SHELTER,
+  GET_PETS_SIMILAR,
+  GET_ALL_QUESTIONS,
+  GET_INDIVIDUAL_FORM,
+  POST_PETS,
+  GET_SHELTERS,
+  GET_FORM_ADOPTION,
+  POST_ADOPTION,
+  GETT_TEMPERAMENTS,
+  GET_ALL_SPECIES,
+  GET_ALL_PET_STATUS,
+  GET_ALL_AGES,
+  GET_GENRES,
+  SEARCH_PET_BY_NAME,
+  DELETE_PET,
+  DELETE_ANSWERFORM,
+  POST_REQUEST_TRANSIT
 } from "../Actions/types";
 
 const initialState = {
@@ -34,22 +50,32 @@ const initialState = {
   petsfilter: [],
   pets: [],
   temperaments: [],
+  ttemperaments: [],
   cityId: [],
   ages: [],
-  status:[],
-  shelter:[],
-  Shelters:[],
-  forms:[],
+  status: [],
+  shelter: [],
+  Shelters: [],
+  forms: [],
   status: [],
   shelter: [],
   Shelters: [],
   petOne: [],
   ShelterAndCityId: {},
-  shelterDetail : {},
+  shelterDetail: {},
   petsByShelter: [],
   formtypes: [],
   petsForDashboard: [],
-  shelterProfile: {}
+  shelterProfile: {},
+  pets_similar: [],
+  allQuestions: [],
+  individualform: [],
+  formAdoption:[],
+  allspecies: [],
+  petStatus: [],
+  allAges: [],
+  allGenres: [],
+  formstatus : []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -93,6 +119,10 @@ export default function rooReducer(state = initialState, { type, payload }) {
       return {
         ...state,
       };
+      case POST_REQUEST_TRANSIT:
+        return {
+          ...state,
+        };
 
     case GET_PETS_FILTER:
       return {
@@ -111,6 +141,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         checking: false,
+      };
+
+    case GET_PETS_SIMILAR:
+      return {
+        ...state,
+        pets_similar: payload,
       };
 
     case GET_TEMPERAMENTS:
@@ -201,13 +237,17 @@ export default function rooReducer(state = initialState, { type, payload }) {
     case GET_SHELTER_DETAIL:
       return {
         ...state,
-        shelterDetail: payload
-      }
-      case GET_PETS_BY_SHELTER:
-        return{
-          ...state,
-          petsByShelter: payload
-        }
+
+        shelterDetail: payload,
+      };
+    case GET_PETS_BY_SHELTER:
+      return {
+        ...state,
+        petsByShelter: payload,
+      };
+    
+
+     
       case GET_PETS_FOR_DASHBOARD:
         return {
           ...state,
@@ -245,7 +285,102 @@ export default function rooReducer(state = initialState, { type, payload }) {
           shelterProfile: payload
         }
 
+          
+        case GET_FORM_ADOPTION:
+          return {
+            ...state,
+           formAdoption: payload
+          }
+
+          case POST_ADOPTION:
+            return {
+              ...state,
+            };
+        
+      case POST_PETS:
+        return {
+          ...state
+        }
+
+        case GET_SHELTERS:
+          return {
+            ...state,
+            Shelters: payload
+          };
+
+        case GETT_TEMPERAMENTS:
+          return {
+            ...state,
+            ttemperaments: payload
+          }; 
+
+
+      case GET_INDIVIDUAL_FORM :
+        let showranswers = state.forms.filter(e => Number(e.id) === Number(payload.formid))
+        showranswers = showranswers[0].answers
+        let showquestions = payload.data[0].questions
+        let questionANDanswer = []
+        showranswers.map(e => {
+             showquestions.map(q => {
+              if(e.idquestion === q.id){
+                questionANDanswer.push({question:q.question,answer:e.answer})
+              } 
+            })
+        })
+        
+        return {
+          ...state,
+          individualform : questionANDanswer
+        }  
+      
+          case GET_ALL_SPECIES:
+            return {
+              ...state,
+              allspecies: payload
+            };
+          
+            case GET_ALL_PET_STATUS:
+              return {
+                ...state,
+                petStatus: payload
+              };
+            
+            case GET_ALL_AGES:
+              return {
+                ...state,
+                allAges: payload
+              };
+        case GET_GENRES:
+          return {
+            ...state,
+            allGenres: payload
+          };    
+          
+        case SEARCH_PET_BY_NAME:
+          let filterbyname = state.petsfilter.filter(e => e.name === payload)
+          return {
+            ...state,
+            petsfilter: filterbyname  
+          }
+          case DELETE_PET:
+            return {
+              ...state,
+            }
+
+          case DELETE_ANSWERFORM:
+            return {
+              ...state,
+              forms : state.forms
+            }
+
+          case GET_ALL_QUESTIONS:
+            return {
+              ...state,
+              allQuestions : payload
+            }  
         default:
           return state;
       }
-    }
+    };
+
+

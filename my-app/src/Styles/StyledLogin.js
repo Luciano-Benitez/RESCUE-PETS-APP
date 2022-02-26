@@ -112,7 +112,7 @@ label {
 
 .input-parent input {
 
-    width: 100%;
+    width: 96%;
     height: 50px;
     background: #ddf4ff !important;
     color: gray !important;

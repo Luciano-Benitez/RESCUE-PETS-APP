@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import {StyledCard, StyledCardContainer, ImgCard} from '../Styles/StyledCards.js';
 import {Link} from "react-router-dom";
+
 //import Img from "../Icos/homeim1.svg"
 
 export default function Cards({pets}) {
@@ -22,6 +23,9 @@ export default function Cards({pets}) {
                 
             </Fragment>)) : typeof(pets) === 'string'? (<h1>             {pets}</h1>): (<h1>             Cargando datos</h1>)
         } </StyledCardContainer>
+
+
+       
     </Fragment>);
 
 

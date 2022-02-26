@@ -60,6 +60,14 @@ const FormTransit = ({ id }) => {
       <h1>FORMULARIO DE TRÁNSITO</h1>
       <p>Estas a un paso de cambiar una vida</p>
       <form className="formulario">
+        <div>
+          <label htmlFor="">Nombre obligatorio</label>
+          <input type="text" />
+        </div>
+        <div>
+          <label htmlFor="">mail obligatorio</label>
+          <input type="text" />
+        </div>
         {form[0] &&
           form[0].questions.map((e) => (
             <div key={e.id}>

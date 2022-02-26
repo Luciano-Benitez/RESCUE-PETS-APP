@@ -50,10 +50,10 @@ import {
     SEARCH_PET_BY_NAME,
     DELETE_PET,
     EDIT_PET,
-    POST_REQUEST_TRANSIT
+    POST_REQUEST_TRANSIT,
+    GET_FORM_BY_SHELTER
     } from './types.js'
 import { async } from '@firebase/util';
-
 
 
 export const getPets = () => {
@@ -527,6 +527,21 @@ export const postCreateForm = (form) => {
     }
 }
 
+
+export const getFormByShelter = (shelterid,formtypeid) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/getFormByShelter/${shelterid}?formtypeid=${formtypeid}`)
+        return dispatch({type:GET_FORM_BY_SHELTER, payload:json.data})
+    }
+}
+
+export const editForm = (formid,formtypeid,questions) => {
+    return async function(dispatch){
+        let json = await axios.put(`http://localhost:3001/editForm/${formid}?formtypeid=${formtypeid}`,questions)
+        return json
+    }
+}
+
 export const deletePet = (petId) => {
     return async function (dispatch) {
         const deletePet= await axios.delete(`http://localhost:3001/pets/${petId}`);
@@ -553,4 +568,5 @@ export const uploadImageCloud = (formData) => {
     };
     
 }
+
 

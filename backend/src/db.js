@@ -59,6 +59,7 @@ const { PetStatus } = sequelize.models;
 const { Age } = sequelize.models;
 const { States } = sequelize.models;
 const { Genres } = sequelize.models;
+const { FollowUp } = sequelize.models;
 const { FollowUpStatus } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -123,6 +124,19 @@ Pets.hasMany(Adoptions);
 
 Genres.hasMany(Pets);
 Pets.belongsTo(Genres);
+
+FollowUpStatus.hasMany(FollowUp);
+FollowUp.belongsTo(FollowUpStatus);
+
+Profiles.hasMany(FollowUp);
+FollowUp.belongsTo(Profiles);
+
+Adoptions.hasMany(FollowUp);
+FollowUp.belongsTo(Adoptions);
+
+Requests.hasMany(FollowUp);
+FollowUp.belongsTo(Requests);
+
 
 
 module.exports = {

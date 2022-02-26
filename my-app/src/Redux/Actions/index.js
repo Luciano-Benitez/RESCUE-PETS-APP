@@ -570,3 +570,9 @@ export const uploadImageCloud = (formData) => {
 }
 
 
+export const addFollowUp = (payload) => {
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/addFollowUp`, payload);
+        return response;
+    };
+};

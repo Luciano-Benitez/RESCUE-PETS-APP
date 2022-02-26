@@ -4,7 +4,6 @@ import { getAuth, signInWithPopup, signOut } from 'firebase/auth'
 import { googleAuthProvider } from '../../firebase/firebase-Config'
 import { fetchConToken, fetchSinToken } from '../../helpers/fetch.js';
 import store from '../Store/index';
-import {fetchConToken, fetchSinToken} from "../../helpers/fetch.js";
 import {
     GET_COUNTRIES,
     GET_STATES,
@@ -212,23 +211,6 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
     };
 };
 
-export const startChecking = () => {
-    return async (dispatch) => {
-        const resp = await fetchConToken("renew");
-        const body = await resp.json();
-        if (body.ok) {
-            localStorage.setItem("token", body.token);
-            localStorage.setItem("token-init-date", new Date().getTime());
-            dispatch(login({id: body.id, email: body.email}));
-        } else {
-            dispatch(checkingFinish());
-        }
-    };
-};
-
-const checkingFinish = () => ({type: authCheckingFinish});
-
-export const login = (user) => ({type: authLogin, payload: user});
 
 export const getTemperaments = () => {
     return {type: GET_TEMPERAMENTS, payload: null};
@@ -350,35 +332,6 @@ export const sendAdoption=(payload)=>{
     }
 
 
-export const startLogin= (email, password) =>{
-    return async(dispatch)=>{
-        const resp= await fetchSinToken('login',{email, password}, 'POST')
-        const body = await resp.json()
-        if(body.ok){
-            localStorage.setItem('token',body.token)
-            localStorage.setItem('token-init-date', new Date().getTime())
-            dispatch(login({id: body.id, email: body.email}))
-        }
-        else{
-            alert(body.msg)
-        }
-    }
-}
-
-export const startRegister= (name, phoneNumber, description, address, email, password ,cityId, role) =>{
-    return async(dispatch)=>{
-        const resp= await fetchSinToken('createShelter',{name, phoneNumber, description, address, email, password ,cityId, role}, 'POST')
-        const body = await resp.json()
-        if(body.ok){
-            localStorage.setItem('token',body.token)
-            localStorage.setItem('token-init-date', new Date().getTime())
-            dispatch(login({id: body.id, email: body.email}))
-        }
-        else{
-            alert(body.msg)
-        }
-    }
-}
 
 export const startChecking = ( ) =>{
     return async(dispatch) =>{
@@ -413,39 +366,6 @@ export const login= (user) =>({
     payload: user
 })
 
-export const getTemperaments = () => {
-    return {
-        type: GET_TEMPERAMENTS, payload: null
-    }
-} 
-
-export const getCityId = (id) => {
-    return {
-        type: GET_ID_CITY, payload: id
-    }
-}
-
-export const getAges = () => {
-    return {
-        type: GET_AGES, payload: null
-    }
-} 
-
-export const getStatus=()=>{
-    return{
-      type:GET_STATUS, payload:null
-    }
-}
-
-export const getSearchShelters = (name) => {
-    return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/searchShelter?name=` + name);
-        return dispatch({
-            type: GET_SEARCH_SHELTERS,
-            payload: json.data
-        })
-    }
-}
 export function postPets(payload) {
     return async function(dispatch){
         const post = await axios.post('http://localhost:3001/pets', payload);

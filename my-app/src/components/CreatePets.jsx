@@ -10,6 +10,29 @@ export function CreatePets() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
+    const [image, setImage] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const uploadImage = async (e) => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'ImagesPets');
+        setLoading(true);
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/pi-pets/image/upload',
+            {
+                method: 'POST',
+                body: data,
+            }
+        )
+        const file = await res.json();
+        // console.log(res);
+        setImage(file.securre_url);
+        console.log(file.securre_url)
+        setLoading(false);
+    };
+    
     useEffect(() => {
       dispatch(getAllSpecies());
     }, [dispatch]);
@@ -209,7 +232,11 @@ export function CreatePets() {
               ))}
             </select>
             </label>
-            <input type='file' name='img' value={state.image} onChange={handleSelectImg}/>
+            <>
+            <input type='file' name='file' value={state.image} placeholder='Inserte Imagen'
+                    onChange={uploadImage,  handleSelectImg}/>
+                    {loading ? (<h3>Cargando Imagenes... </h3>) : (<img src={image} style={{width:'300px'}} />)}
+            </>
             <button type="submit">¡Crear Mascota!</button>
             </form>
         </div>

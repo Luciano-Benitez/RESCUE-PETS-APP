@@ -4,6 +4,7 @@ import { StyleButton } from "../Styles/StyledButtons";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Axios from 'axios'
 
 
 import {
@@ -38,8 +39,20 @@ const FormShelter = () => {
     address: "",
     password: "",
     role: "1",
-    img: "https://steemitimages.com/DQmXJdsFf745a1hDWJsG1chhy1tHUMc7MZPkzdLAVyEDP3G/image.png",
+    img: "http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
   });
+
+  const uploadImage = async (e) => {
+    const formData = new FormData()
+    formData.append("file", e.target.files[0])
+    formData.append("upload_preset", "rescuePetsUpload")
+
+    Axios.post("https://api.cloudinary.com/v1_1/dtb4lcidq/upload", formData)
+    .then((response) => setInput({
+      ...input,
+      img: response.data.secure_url
+    }))
+  }
 
   const handleChange = (e) => {
     setInput({
@@ -73,7 +86,6 @@ const FormShelter = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
     dispatch(
       startRegister(
         input.name,
@@ -166,6 +178,7 @@ const FormShelter = () => {
                 name="file"
                 type="file"
                 placeholder="Sube tu imagen aquí"
+                onChange={(e)=>{uploadImage(e)}}
               />
               <text style={{textAlign:"center"}}>
                 Formatos aceptados: JPG, JPEG, PNG, SVG 

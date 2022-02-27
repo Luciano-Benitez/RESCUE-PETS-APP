@@ -69,3 +69,9 @@ export const ImgCard = styled.img`
 image-orientation: flip;
  
 `;
+
+export const ImgCardFlag = styled.img`
+ height :10%;
+image-orientation: flip;
+ 
+`;

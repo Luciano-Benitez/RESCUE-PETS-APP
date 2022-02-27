@@ -584,7 +584,7 @@ export const addFollowUp = (payload) => {
 export const getFollowUpsFromShelter = (shelterId) => {
     return async function (dispatch) {
         const followUps= await axios.get(`http://localhost:3001/getFollowUps/${shelterId}`);
-        return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps });
+        return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps.data });
     };
 }
 

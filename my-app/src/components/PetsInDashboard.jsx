@@ -69,10 +69,10 @@ const PetsInDashboard = () => {
 
       // const newFormData = {... editFormData}
       // newFormData[fieldName] = fieldValue;
-      console.log("flag event",event)
-      console.log(event.target)
-      console.log(event.target.name)
-      console.log(event.target.value)
+      // console.log("flag event",event)
+      // console.log(event.target)
+      // console.log(event.target.name)
+      // console.log(event.target.value)
       seteditFormData({
         ...editFormData,
         [event.target.name]: event.target.value

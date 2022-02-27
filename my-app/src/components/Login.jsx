@@ -60,7 +60,7 @@ const Login = () => {
                         <label>Contraseña</label>
                         <input name='password' value={input.password} type="password" id="password" onChange={handleChange}></input>
                     </div>
-                    <MiniText ><Link to='/'>¿Olvidó su contraseña?</Link> </MiniText>
+                    <MiniText ><Link to='/forgotpassword'>¿Olvidó su contraseña?</Link> </MiniText>
                 <Button type="submit">Iniciar sesión</Button>
                 </form>
 

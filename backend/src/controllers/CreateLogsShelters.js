@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const { generateJWT } = require("../../helpers/jwt");
 var sequelize = require("sequelize");
-
+const { transporter } = require("../utils/configNodemailer");
 async function createShelter(req, res) {
 
     try {
@@ -28,14 +28,25 @@ async function createShelter(req, res) {
         const User =  await Users.create({
              email: email,
              password : hash,
+             isVerified: false,
              roleId: role
          });
+
 
          const token = await generateJWT(User.id, User.email)
 
         const createShelter = await Shelter.create({
             name, address, phoneNumber, description, userId : User.id , cityId, img
         });
+
+        const urlConfirm = `${process.env.APIGATEWAY_URL}/confirm/${token}`
+
+        await transporter.sendMail({
+          from: process.env.EMAIL,
+          to: User.email,
+          subject: "Por favor confirme su cuenta",
+          html: `<p>Por favor confirme su cuenta <a href="${urlConfirm}">Confirmar</a></p>`
+        })
        
         res.status(201).send({
             ok: true,

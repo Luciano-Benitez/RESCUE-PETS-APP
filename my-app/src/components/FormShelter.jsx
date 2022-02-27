@@ -116,8 +116,7 @@ const FormShelter = () => {
       role: "1",
       img: "",
     });
-    history("/login");
-
+    history("/reviewemail");
   };
 
   return (

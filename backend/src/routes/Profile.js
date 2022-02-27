@@ -8,6 +8,6 @@ const {
 
 router.post("/ProfileUser",CreateProfileUser);
 
-router.get('/profiles', getAllProfiles)
+router.get('/profiles/:id', getAllProfiles)
 
 module.exports = router

@@ -1,6 +1,6 @@
 const {Requests} = require('../db.js')//Requiero  model adoption para hacerle post
 exports.sendRequest = async (req,res) => {
-    const {idform,answer} = req.body
+    const {idform,answer, profileId} = req.body
     try{
         if(idform && answer){
             let requestCreated = await Requests.create({

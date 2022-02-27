@@ -25,7 +25,7 @@ const ShelterDetail = () => {
 
   useEffect(() => {
     dispatch(getShelterDetail(id))
-  }, [, id]);
+  }, [id]);
 
   useEffect(() => {
     if (cityId){
@@ -40,7 +40,7 @@ const ShelterDetail = () => {
   }, [cityId, input, dispatch]);
 
   const pets = useSelector((state) => state.petsfilter)
-
+  
   return (
     <StyledDiv>
       <ShelterDetailNav id={id}  />

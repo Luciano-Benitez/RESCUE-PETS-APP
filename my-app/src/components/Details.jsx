@@ -12,6 +12,7 @@ import {
 import { getPetId } from "../Redux/Actions/index.js";
 import { useParams } from "react-router";
 import SimilarPets from "./SimilarPets.jsx";
+import FormAdoption from "./FormAdoption.jsx";
 
 import { getPetsSimilar } from "../Redux/Actions/index.js";
 
@@ -99,6 +100,10 @@ const Details = () => {
           <h1>Sin Datos</h1>
         )}{" "}
       </StyledDetails>
+
+      <div>
+        <FormAdoption Datos={Datos}/>
+      </div>
 
       {Datos.length ? <SimilarPets /> : ""}
     </Fragment>

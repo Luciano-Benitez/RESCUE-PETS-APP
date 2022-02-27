@@ -5,7 +5,7 @@ const { generateJWT } = require("../../helpers/jwt");
 const jwt = require('jsonwebtoken')
 const { response } = require("express");
 const { transporter } = require("../utils/configNodemailer");
-const { getMaxListeners } = require("../app");
+
 
 
 exports.loginUser = async(req, res= response) =>{

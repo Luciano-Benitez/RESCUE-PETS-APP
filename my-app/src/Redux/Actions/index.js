@@ -654,4 +654,11 @@ export const resetPassword = (token, password) =>{
     };
 }
 
+export const findOrCreateProfileUser = (payload) => {
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/ProfileUser`, payload);
+        let body = await response.data
+        return body;
+    };
+};
 

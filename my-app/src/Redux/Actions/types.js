@@ -35,7 +35,7 @@ export const UPDATE_SHELTER = 'UPDATE_SHELTER'
 
 
 export const GET_PETS_SIMILAR = 'GET_PETS_SIMILAR'
-
+export const CHECK_FORM = 'CHECK_FORM'
 export const GET_FORM_ADOPTION='GET_FORM_ADOPTION'
 export const POST_ADOPTION='POST_ADOPTION'
 export const POST_PETS = 'POST_PETS'

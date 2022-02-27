@@ -51,7 +51,8 @@ import {
     DELETE_PET,
     EDIT_PET,
     POST_REQUEST_TRANSIT,
-    GET_FORM_BY_SHELTER
+    GET_FORM_BY_SHELTER,
+    CHECK_FORM
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -588,5 +589,12 @@ export const sendEmailRejected = (payload) => {
     return async function(dispatch){
         let json = await axios.post('http://localhost:3001/nodemailer/sendEmailRejected',payload)
         return json
+    }
+}
+
+export const checkForm = (shelterid) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/checkForm/${shelterid}`)
+        return dispatch({type:CHECK_FORM, payload:json.data})
     }
 }

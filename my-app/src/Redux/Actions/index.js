@@ -586,6 +586,7 @@ export const getFollowUpsFromShelter = (shelterId) => {
         const followUps= await axios.get(`http://localhost:3001/getFollowUps/${shelterId}`);
         return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps });
     };
+}
 
 export const sendEmailAccepted = (payload) => {
     return async function(dispatch){

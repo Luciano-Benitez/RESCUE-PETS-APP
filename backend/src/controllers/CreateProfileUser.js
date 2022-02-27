@@ -34,12 +34,32 @@ async function CreateProfileUser(req, res) {
   } 
 
 
-const getAllProfiles = async () => {
-  return await Profiles.findAll({
+const getAllProfiles = async (req, res) => {
+    
+    const {id} = req.params
+
+  let all = await Profiles.findAll({
       include:{
           model: Users
       }
      });
+
+     if(id) {
+         let profileId = await Profiles.findAll({
+             where:{
+                 id: id
+             },
+             include:{
+                 model: Users
+             }
+         })
+         res.status(200).json(profileId[0])
+     } 
+     else {
+        res.status(200).json(all)
+     }
+
+
   };
 
 module.exports = { CreateProfileUser, getAllProfiles };

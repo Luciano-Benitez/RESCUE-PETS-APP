@@ -1,4 +1,4 @@
-const {FollowUp, FollowUpStatus, Profiles, Pets } = require('../db')
+const {FollowUp, FollowUpStatus, Profiles, Pets, Users } = require('../db')
 // const {Adoptions, Requests, Shelter} = require('../db')
 
  async function getFollowUpsFromShelter (req, res) {
@@ -9,7 +9,7 @@ const {FollowUp, FollowUpStatus, Profiles, Pets } = require('../db')
             where: {
                 shelterId : shelterId
             },
-            include: [FollowUpStatus, Profiles, Pets], 
+            include: [FollowUpStatus, Profiles, Pets, Users], 
         });
         res.status(200).json(allFollowUps);
         

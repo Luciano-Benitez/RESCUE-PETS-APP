@@ -5,7 +5,8 @@ exports.sendRequest = async (req,res) => {
         if(idform && answer){
             let requestCreated = await Requests.create({
                 answers : answer,
-                formId : idform
+                formId : idform,
+                profileId: profileId
             })
 
             return res.status(201).json(requestCreated)

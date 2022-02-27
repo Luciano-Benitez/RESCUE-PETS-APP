@@ -131,6 +131,9 @@ FollowUp.belongsTo(FollowUpStatus);
 Profiles.hasMany(FollowUp);
 FollowUp.belongsTo(Profiles);
 
+Users.hasMany(FollowUp);
+FollowUp.belongsTo(Users);
+
 Adoptions.hasMany(FollowUp);
 FollowUp.belongsTo(Adoptions);
 
@@ -143,6 +146,22 @@ FollowUp.belongsTo(Shelter);
 Pets.hasOne(FollowUp);
 FollowUp.belongsTo(Pets);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Profiles.hasOne(Adoptions)
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

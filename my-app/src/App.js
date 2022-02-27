@@ -18,6 +18,10 @@ import { startChecking } from "./Redux/Actions";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { DashboardRoutes } from "./DashboardRoutes";
+import { ForgotPassword } from "./components/ForgotPassword";
+import { ResetPassword } from "./components/ResetPassword";
+import { ConfirmedAccount } from "./components/ConfirmedAccount";
+import { ReviewEmail } from "./components/ReviewEmail";
 
 
 
@@ -77,6 +81,34 @@ function App() {
           <PublicRoute>
             <Navbar/>
             <Details />
+          </PublicRoute>
+        } />
+
+<Route path="/forgotpassword" element={
+          <PublicRoute>
+            <Navbar/>
+            <ForgotPassword/>
+          </PublicRoute>
+        } />
+
+<Route path="/resetpassword/:token" element={
+          <PublicRoute>
+            <Navbar/>
+            <ResetPassword/>
+          </PublicRoute>
+        } />
+
+<Route path="/confirmaccount" element={
+          <PublicRoute>
+            <Navbar/>
+            <ConfirmedAccount/>
+          </PublicRoute>
+        } />
+
+<Route path="/reviewemail" element={
+          <PublicRoute>
+            <Navbar/>
+            <ReviewEmail/>
           </PublicRoute>
         } />
 

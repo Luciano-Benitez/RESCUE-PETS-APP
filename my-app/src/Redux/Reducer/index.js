@@ -43,7 +43,11 @@ import {
   POST_REQUEST_TRANSIT,
   GET_FOLLOW_UPS_FROM_SHELTER,
   CHECK_FORM,
-  MODAL_DASHBOARD
+
+  MODAL_DASHBOARD,
+  GET_PROFILE,
+  GET_FOLLOW_UPS_STATUSES
+
 } from "../Actions/types";
 
 const initialState = {
@@ -83,7 +87,12 @@ const initialState = {
   formstatus : [],
   followUps : [],
   checkForm : [],
+
   modaldashboard:"icos",
+
+  profileForSend : [],
+  followUpStatuses: []
+
 
 };
 
@@ -331,6 +340,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
 
       case GET_INDIVIDUAL_FORM :
         let showranswers = state.forms.filter(e => Number(e.id) === Number(payload.formid))
+        let profileid = showranswers[0].profileId
         showranswers = showranswers[0].answers
         let showquestions = payload.data[0].questions
         let questionANDanswer = []
@@ -344,7 +354,7 @@ export default function rooReducer(state = initialState, { type, payload }) {
         
         return {
           ...state,
-          individualform : questionANDanswer
+          individualform : [profileid,questionANDanswer]
         }  
       
           case GET_ALL_SPECIES:
@@ -415,7 +425,17 @@ export default function rooReducer(state = initialState, { type, payload }) {
               ...state,
               checkForm : payload
             }  
-
+          
+          case GET_PROFILE:
+            return{
+              ...state,
+              profileForSend : payload
+            }
+          case GET_FOLLOW_UPS_STATUSES:
+            return{
+              ...state,
+              followUpStatuses : payload
+            }
         default:
           return state;
       }

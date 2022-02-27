@@ -25,6 +25,22 @@ export const DivContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
+    .inputForm {
+    width: 46rem;
+    height: 40px;
+    background: #ddf4ff !important;
+    color: gray !important;
+    padding-left: 5px !important;
+    margin-left: 10px !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-color:${allColors.colors[8]} !important;
+    border-width: 3px !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+    }
+
     textarea {
       background: #ddf4ff !important;
       color: gray !important;

@@ -54,7 +54,12 @@ import {
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
     CHECK_FORM,
+
     MODAL_DASHBOARD
+
+    GET_PROFILE,
+    GET_FOLLOW_UPS_STATUSES,
+
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -73,7 +78,7 @@ export const getPets = () => {
             };
             let newpets = NewPets(json.data, size);
             console.log([newpets], "Pets sin partir", json, "partido");
-            dispatch({type: GET_PETS, payload: newpets[0]});
+            dispatch({ type: GET_PETS, payload: newpets[0] });
             // de momento solo muestra el primer array
             // dispatch({type: GET_PETS, payload:json.data}); //Pets sin división
         } catch (error) {
@@ -85,51 +90,51 @@ export const getPets = () => {
 export const getCountries = () => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/country`);
-        return dispatch({type: GET_COUNTRIES, payload: json.data});
+        return dispatch({ type: GET_COUNTRIES, payload: json.data });
     };
 };
 
 export const getStates = (id) => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/states?countryId=${id}`);
-        return dispatch({type: GET_STATES, payload: json.data});
+        return dispatch({ type: GET_STATES, payload: json.data });
     };
 };
 
 export const getcities = (id) => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/cities?stateId=${id}`);
-        return dispatch({type: GET_CITIES, payload: json.data});
+        return dispatch({ type: GET_CITIES, payload: json.data });
     };
 };
 
 export const cleanStateForm = () => {
-    return {type: CLEAN_STATE_FORM, payload: []};
+    return { type: CLEAN_STATE_FORM, payload: [] };
 };
 
-export const getPetsSimilar = (idShelter, datafilters ) => {
+export const getPetsSimilar = (idShelter, datafilters) => {
     let resul;
     let datafilters2 = store.getState().petsfilter;
     let OnePet = store.getState().petOne;
-    return  function (dispatch) {
+    return function (dispatch) {
         try {
-            OnePet= OnePet[0];
-           
-            console.log("ENVIADOS POR ACTION ",idShelter, datafilters , "TOMADO DESDE STORE" , datafilters2 ,OnePet )
-            if (idShelter == undefined )  {   
-               resul = datafilters2.filter((el) => el.shelterId === idShelter[0].shelterId || el.species.id === idShelter[0].species.id  || el.ageId === idShelter[0]. ageId && (el.name != OnePet.name));
-               resul = resul.splice(0,6);
-            }    
+            OnePet = OnePet[0];
+
+            console.log("ENVIADOS POR ACTION ", idShelter, datafilters, "TOMADO DESDE STORE", datafilters2, OnePet)
+            if (idShelter == undefined) {
+                resul = datafilters2.filter((el) => el.shelterId === idShelter[0].shelterId || el.species.id === idShelter[0].species.id || el.ageId === idShelter[0].ageId && (el.name != OnePet.name));
+                resul = resul.splice(0, 6);
+            }
             else {
-            resul = datafilters.filter((el) => el.shelterId === idShelter[0].shelterId && (el.name != idShelter[0].name));
-            resul = resul.splice(0,6);
-            } 
-            dispatch({type: GET_PETS_SIMILAR, payload: resul});
+                resul = datafilters.filter((el) => el.shelterId === idShelter[0].shelterId && (el.name != idShelter[0].name));
+                resul = resul.splice(0, 6);
+            }
+            dispatch({ type: GET_PETS_SIMILAR, payload: resul });
             console.log("todo", idShelter, resul, " sin el mosmo resul");
 
         } catch (error) {
-           
-           
+
+
             console.log(error);
         }
     };
@@ -139,7 +144,7 @@ export const getPetId = (id) => {
     return async function (dispatch) {
         try {
             const Details = await axios("http://localhost:3001/petDetail/" + id);
-            dispatch({type: GET_PET_ID, payload: Details.data});
+            dispatch({ type: GET_PET_ID, payload: Details.data });
         } catch (error) {
             console.log(error);
         }
@@ -150,7 +155,7 @@ export const getPetByShelter = (id) => {
     return async function (dispatch) {
         try {
             const Details = await axios(`http://localhost:3001/petDetail?shelterId=${id}`);
-            dispatch({type: GET_PETS_BY_SHELTER, payload: Details.data});
+            dispatch({ type: GET_PETS_BY_SHELTER, payload: Details.data });
         } catch (error) {
             console.log(error);
         }
@@ -168,7 +173,7 @@ export const getPetsFilter = (link) => {
     return async function (dispatch) {
         try {
             let json = await axios(link);
-            return dispatch({type: GET_PETS_FILTER, payload: json.data});
+            return dispatch({ type: GET_PETS_FILTER, payload: json.data });
         } catch (error) {
             return error;
         }
@@ -185,7 +190,7 @@ export const startLogin = (email, password) => {
         if (body.ok) {
             localStorage.setItem("token", body.token);
             localStorage.setItem("token-init-date", new Date().getTime());
-            dispatch(login({id: body.id, email: body.email}));
+            dispatch(login({ id: body.id, email: body.email }));
         } else {
             alert(body.msg);
         }
@@ -206,11 +211,7 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
             img
         }, "POST");
         const body = await resp.json();
-        if (body.ok) {
-            localStorage.setItem("token", body.token);
-            localStorage.setItem("token-init-date", new Date().getTime());
-            dispatch(login({id: body.id, email: body.email}));
-        } else {
+        if (!body.ok) {
             alert(body.msg);
         }
     };
@@ -218,47 +219,47 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
 
 
 export const getTemperaments = () => {
-    return {type: GET_TEMPERAMENTS, payload: null};
+    return { type: GET_TEMPERAMENTS, payload: null };
 };
 
 export const getCityId = (id) => {
-    return {type: GET_ID_CITY, payload: id};
+    return { type: GET_ID_CITY, payload: id };
 };
 
 export const getAges = () => {
-    return {type: GET_AGES, payload: null};
+    return { type: GET_AGES, payload: null };
 };
 
 export const getStatus = () => {
-    return {type: GET_STATUS, payload: null};
+    return { type: GET_STATUS, payload: null };
 };
 
 export const getSearchShelters = (name) => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/searchShelter?name=` + name);
-        return dispatch({type: GET_SEARCH_SHELTERS, payload: json.data});
+        return dispatch({ type: GET_SEARCH_SHELTERS, payload: json.data });
     };
 };
 
 export const getSpecies = () => {
-    return {type: GET_SPECIES, payload: null};
+    return { type: GET_SPECIES, payload: null };
 };
 
 export const getFilterShelters = () => {
-    return {type: GET_FILTER_SHELTERS, payload: null};
+    return { type: GET_FILTER_SHELTERS, payload: null };
 };
 
 export const getForms = (userid, formtypeid) => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/forms/${userid}?formtypeid=` + formtypeid);
-        return dispatch({type: GET_FORMS, payload: json.data});
+        return dispatch({ type: GET_FORMS, payload: json.data });
     };
 };
 
 export const getIdFromShelterAndCity = (userId) => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/sheltercityid/${userId}`);
-        return dispatch({type: GET_ID_FROM_SHELTER_AND_CITY, payload: json.data});
+        return dispatch({ type: GET_ID_FROM_SHELTER_AND_CITY, payload: json.data });
     };
 };
 
@@ -266,11 +267,11 @@ export const getShelterDetail = (id) => {
     return async function (dispatch) {
 
         let json = await axios(`http://localhost:3001/shelters/${id}`);
-        return dispatch({type: GET_SHELTER_DETAIL, payload: json.data});
+        return dispatch({ type: GET_SHELTER_DETAIL, payload: json.data });
     };
 };
 
-       
+
 
 export const getShelters = () => {
     return async function (dispatch) {
@@ -279,14 +280,14 @@ export const getShelters = () => {
             type: GET_SHELTERS,
             payload: json.data
         })
-    } 
+    }
 }
 
 
 export const getFormtypes = () => {
     return async function (dispatch) {
         let json = await axios(`http://localhost:3001/formtypes`);
-        return dispatch({type: GET_FORMTYPES, payload: json.data});
+        return dispatch({ type: GET_FORMTYPES, payload: json.data });
     };
 };
 
@@ -294,7 +295,7 @@ export const getPetsForDashboard = (route) => {
     return async function (dispatch) {
         try {
             let json = await axios(route);
-            return dispatch({type: GET_PETS_FOR_DASHBOARD, payload: json.data});
+            return dispatch({ type: GET_PETS_FOR_DASHBOARD, payload: json.data });
         } catch (error) {
             return error;
         }
@@ -302,84 +303,85 @@ export const getPetsForDashboard = (route) => {
 };
 
 export const searchPetByName = (payload) => {
-    return {type: SEARCH_PET_BY_NAME, payload: payload};
+    return { type: SEARCH_PET_BY_NAME, payload: payload };
 };
 
-export const getIndividualForm = (shelterid,formtypeid,formid) => {
-    return async function (dispatch){
-        try{
+export const getIndividualForm = (shelterid, formtypeid, formid) => {
+    return async function (dispatch) {
+        try {
             let json = await axios(`http://localhost:3001/formquestions/${shelterid}?formtypeid=${formtypeid}`)
             return dispatch({
-                type: GET_INDIVIDUAL_FORM, payload: {data: json.data, formid: formid}}
+                type: GET_INDIVIDUAL_FORM, payload: { data: json.data, formid: formid }
+            }
             )
-        }catch(error){
+        } catch (error) {
             return error
         }
     }
 }
-export const getFormAdoption = (id,formtypeId) => {
+export const getFormAdoption = (id, formtypeId) => {
     return async function (dispatch) {
         try {
-          const Adoption= await axios(`http://localhost:3001/formquestions/${id}?formtypeid=${formtypeId}`);
-          dispatch({ type: GET_FORM_ADOPTION, payload:Adoption.data });
+            const Adoption = await axios(`http://localhost:3001/formquestions/${id}?formtypeid=${formtypeId}`);
+            dispatch({ type: GET_FORM_ADOPTION, payload: Adoption.data });
         } catch (error) {
-          console.log(error);
-        
-        }
-      };
-    } 
+            console.log(error);
 
-export const sendAdoption=(payload)=>{
+        }
+    };
+}
+
+export const sendAdoption = (payload) => {
     return async function (dispatch) {
         let response = await axios.post(`http://localhost:3001/sendAdoption`, payload)
         return response
-    } 
     }
+}
 
 
 
-export const startChecking = ( ) =>{
-    return async(dispatch) =>{
-       
-        const resp= await fetchConToken('renew')
+export const startChecking = () => {
+    return async (dispatch) => {
+
+        const resp = await fetchConToken('renew')
         const body = await resp.json()
-        if(body.ok){
-            localStorage.setItem('token',body.token)
+        if (body.ok) {
+            localStorage.setItem('token', body.token)
             localStorage.setItem('token-init-date', new Date().getTime())
-            dispatch(login({id: body.id, email: body.email}))
+            dispatch(login({ id: body.id, email: body.email }))
         }
-        else{
+        else {
             dispatch(checkingFinish())
         }
     }
 }
 
-const checkingFinish = () => ({type: authCheckingFinish})
+const checkingFinish = () => ({ type: authCheckingFinish })
 
 export const startGoogleLogin = () => {
     return (dispatch) => {
-      const auth = getAuth()
-      signInWithPopup(auth, googleAuthProvider)
-        .then(({ user }) => {
-          dispatch(login())
-        })
+        const auth = getAuth()
+        signInWithPopup(auth, googleAuthProvider)
+            .then(({ user }) => {
+                dispatch(login())
+            })
     }
-  }
+}
 
-export const login= (user) =>({
+export const login = (user) => ({
     type: authLogin,
     payload: user
 })
 
 export function postPets(payload) {
-    return async function(dispatch){
+    return async function (dispatch) {
         const post = await axios.post('http://localhost:3001/pets', payload);
         return post;
-    }   
+    }
 }
 
-export const gettTemperaments = ()=> {
-    return async function(dispatch){
+export const gettTemperaments = () => {
+    return async function (dispatch) {
         let json = await axios(`http://localhost:3001/temperaments`)
         return dispatch({
             type: GETT_TEMPERAMENTS,
@@ -388,8 +390,8 @@ export const gettTemperaments = ()=> {
     }
 }
 
-export const getAllSpecies = ()=> {
-    return async function(dispatch){
+export const getAllSpecies = () => {
+    return async function (dispatch) {
         let json = await axios(`http://localhost:3001/species`)
         return dispatch({
             type: GET_ALL_SPECIES,
@@ -399,8 +401,8 @@ export const getAllSpecies = ()=> {
 }
 
 
-export const getAllPetStatus = ()=> {
-    return async function(dispatch){
+export const getAllPetStatus = () => {
+    return async function (dispatch) {
         let json = await axios(`http://localhost:3001/petstatus`)
         return dispatch({
             type: GET_ALL_PET_STATUS,
@@ -409,8 +411,8 @@ export const getAllPetStatus = ()=> {
     }
 }
 
-export const getAllAges = ()=> {
-    return async function(dispatch){
+export const getAllAges = () => {
+    return async function (dispatch) {
         let json = await axios(`http://localhost:3001/ages`)
         return dispatch({
             type: GET_ALL_AGES,
@@ -420,8 +422,8 @@ export const getAllAges = ()=> {
 }
 
 
-export const getGenres = ()=> {
-    return async function(dispatch){
+export const getGenres = () => {
+    return async function (dispatch) {
         let json = await axios(`http://localhost:3001/genres`)
         return dispatch({
             type: GET_GENRES,
@@ -432,10 +434,10 @@ export const getGenres = ()=> {
 
 
 
-export const deleteAnswerForm = (formid,type) => {
-    return async function(dispatch){
+export const deleteAnswerForm = (formid, type) => {
+    return async function (dispatch) {
         await axios.delete(`http://localhost:3001/deleteAnswerForm/${type}?formid=${formid}`)
-        return dispatch({type: DELETE_ANSWERFORM})
+        return dispatch({ type: DELETE_ANSWERFORM })
     }
 }
 
@@ -447,15 +449,15 @@ export const postRequestTransit = (payload) => {
 };
 
 export const getAllQuestions = () => {
-    return async function (dispatch){
+    return async function (dispatch) {
         let json = await axios('http://localhost:3001/getAllQuestions')
-        return dispatch({type: GET_ALL_QUESTIONS,payload: json.data})
+        return dispatch({ type: GET_ALL_QUESTIONS, payload: json.data })
     }
 }
 
-export const startLogout= () =>{
-    
-    return async(dispatch)=>{
+export const startLogout = () => {
+
+    return async (dispatch) => {
         localStorage.clear()
         const auth = getAuth()
         await signOut(auth)
@@ -463,26 +465,26 @@ export const startLogout= () =>{
     }
 }
 
-export const getShelterById= (id) =>{
-    return async(dispatch) =>{
-        const ShelterDetail =  await fetchConToken( `Shelter/${id}`)
+export const getShelterById = (id) => {
+    return async (dispatch) => {
+        const ShelterDetail = await fetchConToken(`Shelter/${id}`)
         const body = await ShelterDetail.json()
-        if(body.ok){
-            dispatch({type: GET_DETAIL_SHELTER, payload: {name: body.name, address: body.address, phoneNumber: body.phoneNumber, description: body.description}})
-        }      
+        if (body.ok) {
+            dispatch({ type: GET_DETAIL_SHELTER, payload: { name: body.name, address: body.address, phoneNumber: body.phoneNumber, description: body.description } })
+        }
     }
-      
+
 }
 
-export const shelterStartUpdate = ( shelter ) => {
-    return async(dispatch) => {
-        console.log('shelter',shelter)
+export const shelterStartUpdate = (shelter) => {
+    return async (dispatch) => {
+        console.log('shelter', shelter)
         try {
-            const resp = await fetchConToken(`Shelter/${shelter.id}`, shelter, 'PUT' );
+            const resp = await fetchConToken(`Shelter/${shelter.id}`, shelter, 'PUT');
             const body = await resp.json();
 
-            if ( body.ok ) {
-                dispatch( getShelterById( shelter.id ) );
+            if (body.ok) {
+                dispatch(getShelterById(shelter.id));
                 Swal.fire('Genial', 'Informacion actualizada', 'success')
             } else {
                 Swal.fire('Error', body.msg, 'error');
@@ -497,16 +499,16 @@ export const shelterStartUpdate = ( shelter ) => {
 }
 
 export const passwordUpdate = (data) => {
-    return async(dispatch) => {
-        console.log('data',data)
+    return async (dispatch) => {
+
         try {
-            const resp = await fetchConToken(`changepassword`, data, 'PUT' );
+            const resp = await fetchConToken(`changepassword`, data, 'PUT');
             const body = await resp.json();
 
-            if ( body.ok ) {
+            if (body.ok) {
                 Swal.fire('Genial', 'Contraseña Actualizada, por favor inicie sesion nuevamente', 'success')
-                dispatch( logout() );
-                
+                dispatch(logout());
+
             } else {
                 Swal.fire('Error', body.msg, 'error');
             }
@@ -520,12 +522,12 @@ export const passwordUpdate = (data) => {
 }
 
 
-const logout = () => ({type: authLogout})
+const logout = () => ({ type: authLogout })
 
 
 export const postCreateForm = (form) => {
-    return async function(_dispatch){
-        let json = await axios.post('http://localhost:3001/createForm',form)
+    return async function (_dispatch) {
+        let json = await axios.post('http://localhost:3001/createForm', form)
         return json
     }
 }
@@ -547,21 +549,22 @@ export const editForm = (formid,formtypeid,questions) => {
 
 export const deletePet = (petId) => {
     return async function (dispatch) {
-        const deletePet= await axios.delete(`http://localhost:3001/pets/${petId}`);
-        return dispatch({ type: DELETE_PET, payload:deletePet });
+        const deletePet = await axios.delete(`http://localhost:3001/pets/${petId}`);
+        return dispatch({ type: DELETE_PET, payload: deletePet });
         // console.log(deletePet)
         // return deletePet
     };
-} 
+}
 
 export const editPet = (petId, payload) => {
     return async function (dispatch) {
-        const editPet= await axios.put(`http://localhost:3001/pets/${petId}`, payload );
+        const editPet = await axios.put(`http://localhost:3001/pets/${petId}`, payload);
         // return dispatch({ type: EDIT_PET, payload:editPet });
         // console.log(editPet)
         // return editPet
     };
 }
+
 
 export const uploadImageCloud = (formData) => {
     return async (dispatch) => {
@@ -585,7 +588,7 @@ export const addFollowUp = (payload) => {
 export const getFollowUpsFromShelter = (shelterId) => {
     return async function (dispatch) {
         const followUps= await axios.get(`http://localhost:3001/getFollowUps/${shelterId}`);
-        return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps });
+        return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps.data });
     };
 }
 
@@ -630,6 +633,67 @@ export const checkForm = (shelterid) => {
 
 
 
+
 export const ModalDashboardOpen = (modal) => {
     return {type: MODAL_DASHBOARD, payload: modal};
 };
+
+export const getProfile = (profileId) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/profiles/${profileId}`)
+        return dispatch({type:GET_PROFILE, payload: json.data})
+    }
+}
+
+export const StartRestorePassword =  (email) => {
+    return async (dispatch) => {
+
+        try {
+            const resp = await fetchSinToken(`forgotpassword/?email=${email}`);
+            const body= await resp.json()
+            
+            if (body.ok) {
+                Swal.fire('Restaurar Contraseña', 'Revise su email, le hemos enviado un enlace para restablecer su contraseña', 'info')
+            } else {
+               
+                Swal.fire('Error', body.msg, 'error')
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+};
+
+export const resetPassword = (token, password) =>{
+    return async (dispatch) => {
+        const resp = await fetchSinToken("resetpassword", {
+            token,
+            password
+        }, "PUT");
+        const body = await resp.json();
+        if (body.ok) {
+            Swal.fire('Contraseña restaurada', 'Ya puede iniciar sesión con su nueva contraseña', 'sucess')
+        } else {
+            Swal.fire('Error', 'El enlace ya no es valido, confirme que sea el link que ha recibido por correo', 'error')
+        }
+    };
+}
+
+export const getFollowUpStatuses = () => {
+    return async function (dispatch) {
+        const followUpStatuses= await axios.get(`http://localhost:3001/followUpStatuses`);
+        return dispatch({ type: GET_FOLLOW_UPS_STATUSES, payload: followUpStatuses.data });
+    };
+}
+
+export const findOrCreateProfileUser = (payload) => {
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/ProfileUser`, payload);
+        let body = await response.data
+        return body;
+    };
+};
+

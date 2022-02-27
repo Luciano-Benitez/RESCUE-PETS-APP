@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import { getFollowUpsFromShelter } from '../Redux/Actions'
 
 const FollowUP = () => {
@@ -19,7 +19,83 @@ const FollowUP = () => {
   }, [])
   
 
-  
+  const allFollowUps = useSelector(state => state.followUps)
+  // console.log("allFollowUps---------------->", allFollowUps)
+
+  const [data, setData] = useState('')
+
+  useEffect(() => {
+    setData(allFollowUps)
+  }, [allFollowUps])
+
+  const [editFormData, seteditFormData] = useState({
+    followUpStatusId: '',
+    followUpDate1: '',
+    followUpDate2: '',
+    followUpDate3: '',
+  })
+
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+    // const fieldName = event.target.getAttribute('name')
+    // const fieldValue = event.target.value
+
+    // const newFormData = {... editFormData}
+    // newFormData[fieldName] = fieldValue;
+    // console.log("flag event",event)
+    // console.log(event.target)
+    // console.log(event.target.name)
+    // console.log(event.target.value)
+    seteditFormData({
+      ...editFormData,
+      [event.target.name]: event.target.value
+    })}
+
+    const [editFollowUpId, setEditFollowUpId] = useState('')
+
+    const handleEditedFormSubmit = (event) => {
+      event.preventDefault();
+      // dispatch(editPet(editPetId, editFormData))
+
+      // dispatch(getPetsForDashboard(route))
+      dispatch(getFollowUpsFromShelter(shelterId))
+      setEditFollowUpId(null);
+      // const editedPetInfo = {
+      //   id: editPetId,
+      //   name: editFormData.name,
+      //   sterilization: editFormData.sterilization,
+      //   weight: editFormData.weight,
+      //   description: editFormData.description,
+      //   image: editFormData.image,
+      //   speciesId: editFormData.speciesId,
+      //   temperament: editFormData.temperament,
+      //   age: editFormData.age,
+      //   petStatus: editFormData.petStatus,
+      //   genreId: editFormData.genreId
+      // }
+      // const newData = [...data];
+      // const index = data.findIndex((pet) => pet.id === editPetId)
+      // newData[index] = editedPetInfo
+      // setData(newData);
+      // seteditPetId(null);
+    }
+
+    const handleCancelClick = (event) => {
+      event.preventDefault();
+      setEditFollowUpId(null);
+    }
+
+    const handleDeleteClick = (event, petId) => {
+      event.preventDefault();
+      // dispatch(deletePet(petId))
+
+      // dispatch(getPetsForDashboard(route))
+      dispatch(getFollowUpsFromShelter(shelterId))
+      // const newData = [...data];
+      // const index = data.findIndex((pet) => pet.id === petId)
+      // newData.splice(index, 1)
+      // setData(newData)
+    }
 
   return (
     <Center>
@@ -32,6 +108,7 @@ const FollowUP = () => {
                   <th>Estado de seguimiento</th>
                   <th>Nombre de la Mascota</th>
                   <th>Nombre del Adoptante</th>
+                  <th>E-mail del Adoptante</th>
                   <th>Fecha de seguimiento 1</th>
                   <th>Fecha de seguimiento 2</th>
                   <th>Fecha de seguimiento 3</th>

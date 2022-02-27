@@ -53,7 +53,8 @@ import {
     POST_REQUEST_TRANSIT,
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
-    CHECK_FORM
+    CHECK_FORM,
+    GET_PROFILE
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -608,4 +609,11 @@ export const checkForm = (shelterid) => {
         return dispatch({type:CHECK_FORM, payload:json.data})
     }
 
+}
+
+export const getProfile = (profileId) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/profiles/${profileId}`)
+        return dispatch({type:GET_PROFILE, payload: json.data})
+    }
 }

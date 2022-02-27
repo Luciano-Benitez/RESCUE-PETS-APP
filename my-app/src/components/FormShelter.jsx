@@ -4,6 +4,7 @@ import { StyleButton } from "../Styles/StyledButtons";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from 'axios'
 
 
 import {
@@ -12,7 +13,9 @@ import {
   getcities,
   cleanStateForm,
   startRegister,
+  uploadImageCloud
 } from "../Redux/Actions/index.js";
+
 
 const FormShelter = () => {
   const allCountries = useSelector((state) => state.countries);
@@ -38,8 +41,21 @@ const FormShelter = () => {
     address: "",
     password: "",
     role: "1",
-    img: "https://steemitimages.com/DQmXJdsFf745a1hDWJsG1chhy1tHUMc7MZPkzdLAVyEDP3G/image.png",
+    img: "http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
   });
+
+  const uploadImage = async (e) => {
+    const formData = new FormData()
+    formData.append("file", e.target.files[0])
+    formData.append("upload_preset", "rescuePetsUpload")
+
+    let link = await dispatch(uploadImageCloud(formData))
+    setInput({
+      ...input,
+      img:link
+    })
+  
+  }
 
   const handleChange = (e) => {
     setInput({
@@ -165,10 +181,11 @@ const FormShelter = () => {
                 name="file"
                 type="file"
                 placeholder="Sube tu imagen aquí"
+                onChange={(e)=>{uploadImage(e)}}
               />
-              <text style={{textAlign:"center"}}>
+              <p style={{textAlign:"center"}}>
                 Formatos aceptados: JPG, JPEG, PNG, SVG 
-              </text>
+              </p>
             </div>
           </div>
         </fieldset>

@@ -82,7 +82,7 @@ const ShelterInfo = ({ Data, pets, input, setInput }) => {
   const handleLoadMore = () => {
     setitemsPerPage(itemsPerPage + 5);
   };
-
+ 
   return (
     <div>
       <h1>Hola, soy la info del refugio</h1>

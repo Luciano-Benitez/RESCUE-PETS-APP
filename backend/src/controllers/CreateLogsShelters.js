@@ -1,10 +1,10 @@
-const { Shelter, Users, Cities, Countries, Roles } = require("../db");
+const { Shelter, Users, Cities, Countries, Roles, States } = require("../db");
 const { Op } = require("sequelize");
 const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const { generateJWT } = require("../../helpers/jwt");
+var sequelize = require("sequelize");
 const { transporter } = require("../utils/configNodemailer");
-
 async function createShelter(req, res) {
 
     try {
@@ -66,18 +66,15 @@ async function createShelter(req, res) {
 
 
 const getAllShelters = async () => {
-  return await Shelter.findAll({
-    include: [
-      {
+  return await Shelter.findAll({  
+    include: {
         model: Cities,
-        attributes: ["city"], //Nota.- Coordinar para el atributo necesario
-      },
-      {
-        model: Users,
-        attributes: ["email"], //Nota.- Coordinar para el atributo necesario
-      },
-    ],
-  });
-};
+        include: {
+            model: States,
+            include: Countries
+        }
+      }
+     });
+  };
 
 module.exports = { createShelter, getAllShelters };

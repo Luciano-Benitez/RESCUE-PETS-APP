@@ -20,6 +20,9 @@ const Ages = require('./Ages');
 const Genres = require('./Genres');
 const questions = require('./questions') 
 const nodemailer = require('./nodemailer') 
+const FollowUp = require('./FollowUp') 
+const Profile = require('./Profile')
+
 router.use('/',pets)
 router.use('/',form)
 router.use('/',createShelter)
@@ -41,4 +44,7 @@ router.use('/',Ages)
 router.use('/',Genres)
 router.use('/',questions)
 router.use('/',nodemailer)
+router.use('/',FollowUp)
+router.use('/',Profile)
+
 module.exports = router;

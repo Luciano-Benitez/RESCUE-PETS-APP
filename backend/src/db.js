@@ -131,6 +131,9 @@ FollowUp.belongsTo(FollowUpStatus);
 Profiles.hasMany(FollowUp);
 FollowUp.belongsTo(Profiles);
 
+Users.hasMany(FollowUp);
+FollowUp.belongsTo(Users);
+
 Adoptions.hasMany(FollowUp);
 FollowUp.belongsTo(Adoptions);
 

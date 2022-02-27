@@ -1,6 +1,5 @@
-const {FollowUp, FollowUpStatus, Profiles, Pets  } = require('../db')
+const {FollowUp, FollowUpStatus, Profiles, Pets } = require('../db')
 // const {Adoptions, Requests, Shelter} = require('../db')
-
 
  async function getFollowUpsFromShelter (req, res) {
     let {shelterId} = req.params;
@@ -9,19 +8,9 @@ const {FollowUp, FollowUpStatus, Profiles, Pets  } = require('../db')
         const allFollowUps = await FollowUp.findAll({
             where: {
                 shelterId : shelterId
-            }
-        },
-        {
-            include: [{
-                model: FollowUpStatus, 
-                attributes: ['followUpStatus'],
-            
-
-
-
-            }]
-            
-          });
+            },
+            include: [FollowUpStatus, Profiles, Pets], 
+        });
         res.status(200).json(allFollowUps);
         
     } catch (error) {

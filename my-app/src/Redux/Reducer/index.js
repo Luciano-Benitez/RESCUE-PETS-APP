@@ -40,7 +40,8 @@ import {
   SEARCH_PET_BY_NAME,
   DELETE_PET,
   DELETE_ANSWERFORM,
-  POST_REQUEST_TRANSIT
+  POST_REQUEST_TRANSIT,
+  CHECK_FORM
 } from "../Actions/types";
 
 const initialState = {
@@ -77,7 +78,8 @@ const initialState = {
   petStatus: [],
   allAges: [],
   allGenres: [],
-  formstatus : []
+  formstatus : [],
+  checkForm : []
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -389,6 +391,12 @@ export default function rooReducer(state = initialState, { type, payload }) {
             return {
               ...state,
               formbyshelter : temp
+            }
+          
+          case CHECK_FORM:
+            return{
+              ...state,
+              checkForm : payload
             }  
         default:
           return state;

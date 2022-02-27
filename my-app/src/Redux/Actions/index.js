@@ -53,9 +53,10 @@ import {
     POST_REQUEST_TRANSIT,
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
-    CHECK_FORM
-    
-} from './types.js'
+    CHECK_FORM,
+    GET_PROFILE
+    } from './types.js'
+import { async } from '@firebase/util';
 
 
 export const getPets = () => {
@@ -608,6 +609,14 @@ export const checkForm = (shelterid) => {
 
 }
 
+
+export const getProfile = (profileId) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/profiles/${profileId}`)
+        return dispatch({type:GET_PROFILE, payload: json.data})
+    }
+}
+
 export const StartRestorePassword =  (email) => {
     return async (dispatch) => {
 
@@ -644,4 +653,5 @@ export const resetPassword = (token, password) =>{
         }
     };
 }
+
 

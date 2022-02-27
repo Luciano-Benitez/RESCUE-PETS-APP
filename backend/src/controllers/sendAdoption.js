@@ -6,7 +6,8 @@ exports.sendAdoption = async (req,res) => {
             let adoptionCreated = await Adoptions.create({
                 answers : answer,
                 formId : idform,
-                petId : idpet
+                petId : idpet,
+                profileId: profileId
             })
 
             return res.status(201).json(adoptionCreated)

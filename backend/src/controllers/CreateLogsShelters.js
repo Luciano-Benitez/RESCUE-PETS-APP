@@ -1,8 +1,9 @@
-const { Shelter, Users, Cities, Countries, Roles } = require("../db");
+const { Shelter, Users, Cities, Countries, Roles, States } = require("../db");
 const { Op } = require("sequelize");
 const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const { generateJWT } = require("../../helpers/jwt");
+var sequelize = require("sequelize");
 
 async function createShelter(req, res) {
 
@@ -54,10 +55,13 @@ async function createShelter(req, res) {
 
 
 const getAllShelters = async () => {
-  return await Shelter.findAll({
-    //  include:{ all: true, nested: true}
-      include:{
-          model: Cities
+  return await Shelter.findAll({  
+    include: {
+        model: Cities,
+        include: {
+            model: States,
+            include: Countries
+        }
       }
      });
   };

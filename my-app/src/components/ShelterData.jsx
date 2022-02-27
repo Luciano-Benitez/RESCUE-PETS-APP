@@ -25,11 +25,11 @@ const ShelterData = ({Data}) => {
                       (typeof Data["city"] != "undefined" || Data["city"] != null) ?
                           <h2>{Data["city"]["city"]}</h2> : <h1> Cargando datos</h1>
                     }
-                    {/* {
+                    {
                       (typeof Data["city"] != "undefined" || Data["city"] != null) ?
                       <h2>{Data["city"]["state"]["country"]["country"]}</h2> : <h1> Cargando datos</h1>
                       
-                    } */}
+                    }
                      <br />
                    </StyledCard>
                  {/* </Link> */}

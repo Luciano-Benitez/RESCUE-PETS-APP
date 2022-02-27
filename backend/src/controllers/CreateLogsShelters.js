@@ -55,17 +55,8 @@ async function createShelter(req, res) {
 
 const getAllShelters = async () => {
   return await Shelter.findAll({
-    include: [
-      {
-        model: Cities,
-        attributes: ["city"], //Nota.- Coordinar para el atributo necesario
-      },
-      {
-        model: Users,
-        attributes: ["email"], //Nota.- Coordinar para el atributo necesario
-      },
-    ],
-  });
-};
+     include:{ all: true, nested: true}
+     });
+  };
 
 module.exports = { createShelter, getAllShelters };

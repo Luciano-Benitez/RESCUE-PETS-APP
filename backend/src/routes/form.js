@@ -9,6 +9,7 @@ const {getFormQuestions} = require('../controllers/getFormQuestions.js')
 const { deleteAnswerAdoption } = require('../controllers/deleteAnswerAdoption.js')
 const { getFormByShelter } = require('../controllers/getFomByShelter.js')
 const { editForm } = require('../controllers/editForm.js')
+const { checkForm } = require('../controllers/chekForm.js')
 
 router.post('/createForm/', createForm)
 
@@ -28,4 +29,5 @@ router.get('/getFormByShelter/:shelterid', getFormByShelter)
 
 router.put('/editForm/:formid', editForm)
 
+router.get('/checkForm/:shelterid', checkForm)
 module.exports = router

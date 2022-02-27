@@ -12,6 +12,7 @@ export const AnswerFormView = () => {
     const cityandshelter = useSelector((state) => state.ShelterAndCityId)
     const detailform = useSelector((state) => state.individualform)
     const shelterid = cityandshelter.shelterId
+    const checkf = useSelector((state) => state.checkForm)
 
     useEffect(()=>{
         dispatch(getIndividualForm(shelterid,formtypeid,formid))
@@ -43,7 +44,7 @@ export const AnswerFormView = () => {
     <br></br><br></br><br></br><br></br><br></br><br></br>
     <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
     <button onClick={handleClick}>{"<"}volver</button>
-    <h1>{'formid: '+formid+'| petId: '+petId+'| ShelterId: '+shelterid}</h1>
+    <h1>{checkf.length ? checkf.filter(e => e.adoptionId === shelterid).length ? 'Aceptado': 'por revisar':'No carga'}</h1>
     {detailform ? detailform.map(e => (
         <div key={e.answer}>
             <h2>{e.question}</h2>

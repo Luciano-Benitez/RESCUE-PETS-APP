@@ -55,7 +55,10 @@ async function createShelter(req, res) {
 
 const getAllShelters = async () => {
   return await Shelter.findAll({
-     include:{ all: true, nested: true}
+    //  include:{ all: true, nested: true}
+      include:{
+          model: Cities
+      }
      });
   };
 

@@ -31,7 +31,7 @@ export const DashboardForms= () => {
         // }
     }, [])
 
-    let filterimages = pet.map(e => {return {id:e.id,image:e.image}})
+    let filterimages = typeof(pet) !== 'string'? pet.map(e => {return {id:e.id,image:e.image}}) : null
 
     const handleSubmitGetForm = (e) => {
         settypeform(e.target[e.target.value].attributes.name.nodeValue)

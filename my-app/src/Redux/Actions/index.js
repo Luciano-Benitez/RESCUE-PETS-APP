@@ -53,7 +53,8 @@ import {
     POST_REQUEST_TRANSIT,
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
-    CHECK_FORM
+    CHECK_FORM,
+    MODAL_DASHBOARD
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -609,3 +610,26 @@ export const checkForm = (shelterid) => {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const ModalDashboardOpen = (modal) => {
+    return {type: MODAL_DASHBOARD, payload: modal};
+};

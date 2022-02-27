@@ -32,7 +32,7 @@ const PetsInDashboard = () => {
     const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
     
     const petsFromShelter = useSelector( state => state.petsForDashboard )
-    console.log("petsFromShelter -------------->", petsFromShelter)
+    // console.log("petsFromShelter -------------->", petsFromShelter)
     
     const [data, setData] = useState('')
 
@@ -143,10 +143,8 @@ const PetsInDashboard = () => {
 
   return (
     <Center>
-      <Link to='/dashboard/CreatePets'>
-      <Button>Crear nueva Mascota</Button>
-      </Link>  
         <CenterChild>
+
       <form onSubmit={handleEditedFormSubmit}>
           <Table>
               <thead>
@@ -192,8 +190,12 @@ const PetsInDashboard = () => {
               </tbody>
           </Table>
       </form>
-          <Link to='/dashboard/pets/adopted'>
+      <Link to='/dashboard/pets/FollowUp'>
       <Button2>Dar seguimiento a Mascotas adoptadas</Button2>
+      </Link>  
+
+      <Link to='/dashboard/CreatePets'>
+      <Button>Crear nueva Mascota</Button>
       </Link>  
           </CenterChild>
     </Center>
@@ -212,15 +214,16 @@ display: grid;
 
 export const CenterChild = styled.div`
 position: relative;
-/* align-self: center; */
+align-self: center;
 justify-self: center;
 font-size: 10px;
 `
 
 export const Button = styled.button`
-position: absolute; 
-top: 32%;
-right: 16.5%;
+position: relative; 
+margin-top: 1.5%;
+/* bottom: 10%; */
+right: 0;
 /* align-self: center;
 justify-self: center; */
 font-size: 14px;

@@ -31,12 +31,12 @@ export const AnswerFormView = () => {
             shelterId:shelterid,
             petId:Number(petId),
             adoptionId:Number(formid)}))
-        dispatch(sendEmailAccepted({email:'julian01andres@gmail.com',type:Number(formtypeid)}))         
+        dispatch(sendEmailAccepted({email:'email@gmail.com',type:Number(formtypeid)}))         
     }
 
     const handleDeny = () => {
         alert('Petición denegada')
-        dispatch(sendEmailRejected({email:'julian01andres@gmail.com',type:Number(formtypeid)}))
+        dispatch(sendEmailRejected({email:'email@gmail.com',type:Number(formtypeid)}))
     }
 
     return (<>

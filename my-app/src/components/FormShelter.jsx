@@ -73,7 +73,6 @@ const FormShelter = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
     dispatch(
       startRegister(
         input.name,
@@ -101,7 +100,7 @@ const FormShelter = () => {
       role: "1",
       img: "",
     });
-    history("/login");
+    history("/reviewemail");
   };
 
   return (

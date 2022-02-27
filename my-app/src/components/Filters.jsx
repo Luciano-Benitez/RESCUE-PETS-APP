@@ -30,7 +30,7 @@ const Filters = ({idcity, cambiarEstado}) => {
 
 
 
-     const [link, setLink] = useState(`http://localhost:3001/pets/${idcity}`)
+     const [link, setLink] = useState(`http://localhost:3001/pets/${idcity?idcity:city}`)
 
      const [input, setInput] = useState({})
 
@@ -43,7 +43,7 @@ const Filters = ({idcity, cambiarEstado}) => {
      },[dispatch])
 
      useEffect(()=>{
-          setLink(`http://localhost:3001/pets/${idcity}`)
+          setLink(`http://localhost:3001/pets/${idcity?idcity:city}`)
      },[idcity])
 
      useEffect(()=>{

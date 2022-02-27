@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {postPets, getShelters, gettTemperaments,
-       getAllSpecies, getAllAges, getAllPetStatus, getGenres} from '../Redux/Actions/index';
+       getAllSpecies, getAllAges, getAllPetStatus, getGenres, ModalDashboardOpen } from '../Redux/Actions/index';
 
+       import { StyledModal  } from "../Styles/StyledModal";
+import { StyleButton } from "../Styles/StyledButtons.js";
 export function CreatePets() {
 
     const dispatch = useDispatch();
@@ -150,14 +152,24 @@ export function CreatePets() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(postPets(state));
+        dispatch(ModalDashboardOpen ("icos"))
         setState({name:'',sterilization:'',weight: '',description: '',image:'',speciesId:'',shelterId:'',
                 temperamentId:'',ageId:'',petStatusId:'',genreId:''})
+                
         alert('¡La mascota fue creada con exito!');
         // navigate('/dashboard/pets');
     };
 
+
+    function handleClickCencel(e){
+        e.preventDefault();
+        dispatch(ModalDashboardOpen ("icos"))
+        
+    
+      }
     return (
-        <div>
+        <StyledModal>
+           
             <form onSubmit={handleSubmit} >
             <label >Nombre:
                 <input type="text" name="name" value={state.name} onChange={handleChanges} />
@@ -237,9 +249,12 @@ export function CreatePets() {
                     onChange={uploadImage,  handleSelectImg}/>
                     {loading ? (<h3>Cargando Imagenes... </h3>) : (<img src={image} style={{width:'300px'}} />)}
             </>
-            <button type="submit">¡Crear Mascota!</button>
+            <button type="submit">¡Crear Mascota!</button>   <button onClick={(event)=>handleClickCencel(event)} >Cancelar</button>
             </form>
-        </div>
+
+           
+            </StyledModal>
+            
     )
 };
 

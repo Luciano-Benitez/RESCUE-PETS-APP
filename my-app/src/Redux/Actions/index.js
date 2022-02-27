@@ -54,8 +54,12 @@ import {
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
     CHECK_FORM,
+
+    MODAL_DASHBOARD
+
     GET_PROFILE,
-    GET_FOLLOW_UPS_STATUSES
+    GET_FOLLOW_UPS_STATUSES,
+
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -611,6 +615,29 @@ export const checkForm = (shelterid) => {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const ModalDashboardOpen = (modal) => {
+    return {type: MODAL_DASHBOARD, payload: modal};
+};
+
 export const getProfile = (profileId) => {
     return async function(dispatch){
         let json = await axios(`http://localhost:3001/profiles/${profileId}`)
@@ -669,3 +696,4 @@ export const findOrCreateProfileUser = (payload) => {
         return body;
     };
 };
+

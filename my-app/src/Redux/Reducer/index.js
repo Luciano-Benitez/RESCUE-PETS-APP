@@ -22,9 +22,11 @@ import {
   GET_PETS_BY_SHELTER,
   GET_FORMTYPES,
   GET_PETS_FOR_DASHBOARD,
-
+  GET_FORM_BY_SHELTER,
+  authLogout,
+  GET_DETAIL_SHELTER,
   GET_PETS_SIMILAR,
-
+  GET_ALL_QUESTIONS,
   GET_INDIVIDUAL_FORM,
   POST_PETS,
   GET_SHELTERS,
@@ -38,7 +40,9 @@ import {
   SEARCH_PET_BY_NAME,
   DELETE_PET,
   DELETE_ANSWERFORM,
-  POST_REQUEST_TRANSIT
+  POST_REQUEST_TRANSIT,
+  GET_FOLLOW_UPS_FROM_SHELTER,
+  CHECK_FORM
 } from "../Actions/types";
 
 const initialState = {
@@ -65,16 +69,20 @@ const initialState = {
   petsByShelter: [],
   formtypes: [],
   petsForDashboard: [],
-
+  formbyshelter : [],
+  shelterProfile: {},
   pets_similar: [],
-
+  allQuestions: [],
   individualform: [],
   formAdoption:[],
   allspecies: [],
   petStatus: [],
   allAges: [],
   allGenres: [],
-  formstatus : []
+  formstatus : [],
+  followUps : [],
+  checkForm : []
+
 };
 
 export default function rooReducer(state = initialState, { type, payload }) {
@@ -263,8 +271,28 @@ export default function rooReducer(state = initialState, { type, payload }) {
         return {
           ...state,
           formtypes : payload
-
         }  
+      
+      case authLogout: 
+      return {
+        ...state,
+        checking : false,
+        id: null,
+        email: null,
+        formtypes: [],
+       petsForDashboard: []
+       ,ShelterAndCityId : [],
+       shelterProfile: {}
+      }
+
+      case GET_DETAIL_SHELTER:
+        
+        return{
+          ...state,
+          shelterProfile: payload
+        }
+
+          
         case GET_FORM_ADOPTION:
           return {
             ...state,
@@ -351,6 +379,36 @@ export default function rooReducer(state = initialState, { type, payload }) {
               ...state,
               forms : state.forms
             }
+
+          case GET_ALL_QUESTIONS:
+            return {
+              ...state,
+              allQuestions : payload
+            }
+            
+          case GET_FORM_BY_SHELTER:
+            let temp = ''
+            if(typeof(payload) !== 'string'){
+              temp = payload
+            }
+            return {
+              ...state,
+              formbyshelter : temp
+            }
+
+            case GET_FOLLOW_UPS_FROM_SHELTER:
+              return {
+                ...state,
+                followUps : payload
+              }
+
+          
+          case CHECK_FORM:
+            return{
+              ...state,
+              checkForm : payload
+            }  
+
         default:
           return state;
       }

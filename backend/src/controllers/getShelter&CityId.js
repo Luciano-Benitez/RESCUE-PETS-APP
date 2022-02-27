@@ -20,7 +20,7 @@ async function getShelterAndCityId (req, res) {
         
     } catch (error) {
         console.log(error);
-        res.json("Did not found information");
+        res.json("No se encontro la informacion");
     }   
 };
 

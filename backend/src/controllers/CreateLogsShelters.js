@@ -1,13 +1,14 @@
-const { Shelter, Users, Cities, Countries, Roles } = require("../db");
+const { Shelter, Users, Cities, Countries, Roles, States } = require("../db");
 const { Op } = require("sequelize");
 const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const { generateJWT } = require("../../helpers/jwt");
+var sequelize = require("sequelize");
 
 async function createShelter(req, res) {
 
     try {
-        const { name, phoneNumber, description, address, email, password ,cityId,  role } = req.body;
+        const { name, phoneNumber, description, address, email, password ,cityId,  role, img } = req.body;
       
 
         const errors= validationResult(req)
@@ -33,7 +34,7 @@ async function createShelter(req, res) {
          const token = await generateJWT(User.id, User.email)
 
         const createShelter = await Shelter.create({
-            name, address, phoneNumber, description, userId : User.id , cityId
+            name, address, phoneNumber, description, userId : User.id , cityId, img
         });
        
         res.status(201).send({
@@ -54,18 +55,15 @@ async function createShelter(req, res) {
 
 
 const getAllShelters = async () => {
-  return await Shelter.findAll({
-    include: [
-      {
+  return await Shelter.findAll({  
+    include: {
         model: Cities,
-        attributes: ["city"], //Nota.- Coordinar para el atributo necesario
-      },
-      {
-        model: Users,
-        attributes: ["email"], //Nota.- Coordinar para el atributo necesario
-      },
-    ],
-  });
-};
+        include: {
+            model: States,
+            include: Countries
+        }
+      }
+     });
+  };
 
 module.exports = { createShelter, getAllShelters };

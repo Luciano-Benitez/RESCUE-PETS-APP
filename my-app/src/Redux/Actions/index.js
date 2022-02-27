@@ -1,6 +1,10 @@
-import axios from "axios";
+import axios from 'axios'
+import Swal from 'sweetalert2';
+import { getAuth, signInWithPopup, signOut } from 'firebase/auth'
+import { googleAuthProvider } from '../../firebase/firebase-Config'
+import { fetchConToken, fetchSinToken } from '../../helpers/fetch.js';
+import {cloudynary} from '../../helpers/cloudinary.js'
 import store from '../Store/index';
-import {fetchConToken, fetchSinToken} from "../../helpers/fetch.js";
 import {
     GET_COUNTRIES,
     GET_STATES,
@@ -26,9 +30,12 @@ import {
     GET_PETS_BY_SHELTER,
     GET_FORMTYPES,
     GET_PETS_FOR_DASHBOARD,
-
+    authLogout,
+    GET_DETAIL_SHELTER,
+    UPDATE_SHELTER,
+    POST_CREATE_FORM,
     GET_PETS_SIMILAR,
-    
+    GET_ALL_QUESTIONS,
     DELETE_ANSWERFORM,
     GET_INDIVIDUAL_FORM,
     GET_SHELTERS,
@@ -43,9 +50,12 @@ import {
     SEARCH_PET_BY_NAME,
     DELETE_PET,
     EDIT_PET,
-    POST_REQUEST_TRANSIT
+    POST_REQUEST_TRANSIT,
+    GET_FORM_BY_SHELTER,
+    GET_FOLLOW_UPS_FROM_SHELTER,
+    CHECK_FORM
     } from './types.js'
-
+import { async } from '@firebase/util';
 
 
 export const getPets = () => {
@@ -181,7 +191,7 @@ export const startLogin = (email, password) => {
     };
 };
 
-export const startRegister = (name, phoneNumber, description, address, email, password, cityId, role) => {
+export const startRegister = (name, phoneNumber, description, address, email, password, cityId, role, img) => {
     return async (dispatch) => {
         const resp = await fetchSinToken("createShelter", {
             name,
@@ -191,7 +201,8 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
             email,
             password,
             cityId,
-            role
+            role,
+            img
         }, "POST");
         const body = await resp.json();
         if (body.ok) {
@@ -204,23 +215,6 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
     };
 };
 
-export const startChecking = () => {
-    return async (dispatch) => {
-        const resp = await fetchConToken("renew");
-        const body = await resp.json();
-        if (body.ok) {
-            localStorage.setItem("token", body.token);
-            localStorage.setItem("token-init-date", new Date().getTime());
-            dispatch(login({id: body.id, email: body.email}));
-        } else {
-            dispatch(checkingFinish());
-        }
-    };
-};
-
-const checkingFinish = () => ({type: authCheckingFinish});
-
-export const login = (user) => ({type: authLogin, payload: user});
 
 export const getTemperaments = () => {
     return {type: GET_TEMPERAMENTS, payload: null};
@@ -310,10 +304,6 @@ export const searchPetByName = (payload) => {
     return {type: SEARCH_PET_BY_NAME, payload: payload};
 };
 
-
-
-
-
 export const getIndividualForm = (shelterid,formtypeid,formid) => {
     return async function (dispatch){
         try{
@@ -345,12 +335,47 @@ export const sendAdoption=(payload)=>{
     } 
     }
 
+
+
+export const startChecking = ( ) =>{
+    return async(dispatch) =>{
+       
+        const resp= await fetchConToken('renew')
+        const body = await resp.json()
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime())
+            dispatch(login({id: body.id, email: body.email}))
+        }
+        else{
+            dispatch(checkingFinish())
+        }
+    }
+}
+
+const checkingFinish = () => ({type: authCheckingFinish})
+
+export const startGoogleLogin = () => {
+    return (dispatch) => {
+      const auth = getAuth()
+      signInWithPopup(auth, googleAuthProvider)
+        .then(({ user }) => {
+          dispatch(login())
+        })
+    }
+  }
+
+export const login= (user) =>({
+    type: authLogin,
+    payload: user
+})
+
 export function postPets(payload) {
     return async function(dispatch){
         const post = await axios.post('http://localhost:3001/pets', payload);
         return post;
     }   
-};
+}
 
 export const gettTemperaments = ()=> {
     return async function(dispatch){
@@ -404,6 +429,121 @@ export const getGenres = ()=> {
     }
 }
 
+
+
+export const deleteAnswerForm = (formid,type) => {
+    return async function(dispatch){
+        await axios.delete(`http://localhost:3001/deleteAnswerForm/${type}?formid=${formid}`)
+        return dispatch({type: DELETE_ANSWERFORM})
+    }
+}
+
+export const postRequestTransit = (payload) => {
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/sendRequest`, payload);
+        return response;
+    };
+};
+
+export const getAllQuestions = () => {
+    return async function (dispatch){
+        let json = await axios('http://localhost:3001/getAllQuestions')
+        return dispatch({type: GET_ALL_QUESTIONS,payload: json.data})
+    }
+}
+
+export const startLogout= () =>{
+    
+    return async(dispatch)=>{
+        localStorage.clear()
+        const auth = getAuth()
+        await signOut(auth)
+        dispatch(logout())
+    }
+}
+
+export const getShelterById= (id) =>{
+    return async(dispatch) =>{
+        const ShelterDetail =  await fetchConToken( `Shelter/${id}`)
+        const body = await ShelterDetail.json()
+        if(body.ok){
+            dispatch({type: GET_DETAIL_SHELTER, payload: {name: body.name, address: body.address, phoneNumber: body.phoneNumber, description: body.description}})
+        }      
+    }
+      
+}
+
+export const shelterStartUpdate = ( shelter ) => {
+    return async(dispatch) => {
+        console.log('shelter',shelter)
+        try {
+            const resp = await fetchConToken(`Shelter/${shelter.id}`, shelter, 'PUT' );
+            const body = await resp.json();
+
+            if ( body.ok ) {
+                dispatch( getShelterById( shelter.id ) );
+                Swal.fire('Genial', 'Informacion actualizada', 'success')
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+export const passwordUpdate = (data) => {
+    return async(dispatch) => {
+        console.log('data',data)
+        try {
+            const resp = await fetchConToken(`changepassword`, data, 'PUT' );
+            const body = await resp.json();
+
+            if ( body.ok ) {
+                Swal.fire('Genial', 'Contraseña Actualizada, por favor inicie sesion nuevamente', 'success')
+                dispatch( logout() );
+                
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+
+const logout = () => ({type: authLogout})
+
+
+export const postCreateForm = (form) => {
+    return async function(_dispatch){
+        let json = await axios.post('http://localhost:3001/createForm',form)
+        return json
+    }
+}
+
+
+export const getFormByShelter = (shelterid,formtypeid) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/getFormByShelter/${shelterid}?formtypeid=${formtypeid}`)
+        return dispatch({type:GET_FORM_BY_SHELTER, payload:json.data})
+    }
+}
+
+export const editForm = (formid,formtypeid,questions) => {
+    return async function(dispatch){
+        let json = await axios.put(`http://localhost:3001/editForm/${formid}?formtypeid=${formtypeid}`,questions)
+        return json
+    }
+}
+
 export const deletePet = (petId) => {
     return async function (dispatch) {
         const deletePet= await axios.delete(`http://localhost:3001/pets/${petId}`);
@@ -422,17 +562,50 @@ export const editPet = (petId, payload) => {
     };
 }
 
-export const deleteAnswerForm = (formid,type) => {
-    return async function(dispatch){
-        await axios.delete(`http://localhost:3001/deleteAnswerForm/${type}?formid=${formid}`)
-        return dispatch({type: DELETE_ANSWERFORM})
-    }
+export const uploadImageCloud = (formData) => {
+    return async (dispatch) => {
+        const resp = await cloudynary(formData);
+        const body = await resp.data.secure_url
+        return body
+    };
+    
 }
 
-export const postRequestTransit = (payload) => {
+
+export const addFollowUp = (payload) => {
     return async function (dispatch) {
-        let response = await axios.post(`http://localhost:3001/sendRequest`, payload);
+        let response = await axios.post(`http://localhost:3001/addFollowUp`, payload);
         return response;
     };
 };
 
+
+
+export const getFollowUpsFromShelter = (shelterId) => {
+    return async function (dispatch) {
+        const followUps= await axios.get(`http://localhost:3001/getFollowUps/${shelterId}`);
+        return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps });
+    };
+}
+
+export const sendEmailAccepted = (payload) => {
+    return async function(dispatch){
+        let json = await axios.post('http://localhost:3001/nodemailer/sendEmailAccepted',payload)
+        return json
+    }
+}
+
+export const sendEmailRejected = (payload) => {
+    return async function(dispatch){
+        let json = await axios.post('http://localhost:3001/nodemailer/sendEmailRejected',payload)
+        return json
+    }
+}
+
+export const checkForm = (shelterid) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/checkForm/${shelterid}`)
+        return dispatch({type:CHECK_FORM, payload:json.data})
+    }
+
+}

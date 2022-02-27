@@ -63,21 +63,22 @@ const FormTransit = ({ id }) => {
 
   async function handleClick(event) {
     event.preventDefault();
-    let prueba = await dispatch(findOrCreateProfileUser(profileData))
-    console.log(prueba)
+    let profile = await dispatch(findOrCreateProfileUser(profileData))
+    
+    let payload = {
+      idform: form[0].id,
+      answer: input,
+      profileId: profile.foundProfile ? profile.foundProfile.id : profile.createProfile.id
+    };
 
-    // let payload = {
-    //   idform: form[0].id,
-    //   answer: input,
-    // };
-    // dispatch(postRequestTransit(payload));
-    // Swal.fire(
-    //   "Genial!",
-    //   "Registro realizado correctamente. Si has sido seleccionado pronto nos comunicaremos contigo",
-    //   "sucess"
-    // );
-    // setInput([]);
-    // history(`/shelters/${form[0].shelterId}`);
+    dispatch(postRequestTransit(payload));
+    Swal.fire(
+      "Genial!",
+      "Registro realizado correctamente. Si has sido seleccionado pronto nos comunicaremos contigo",
+      "sucess"
+    );
+    setInput([]);
+    history(`/shelters/${form[0].shelterId}`);
   }
 
   return (

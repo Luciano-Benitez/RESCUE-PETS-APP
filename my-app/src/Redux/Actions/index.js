@@ -51,7 +51,8 @@ import {
     DELETE_PET,
     EDIT_PET,
     POST_REQUEST_TRANSIT,
-    GET_FORM_BY_SHELTER
+    GET_FORM_BY_SHELTER,
+    GET_FOLLOW_UPS_FROM_SHELTER
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -576,3 +577,11 @@ export const addFollowUp = (payload) => {
         return response;
     };
 };
+
+
+export const getFollowUpsFromShelter = (shelterId) => {
+    return async function (dispatch) {
+        const followUps= await axios.get(`http://localhost:3001/getFollowUps/${shelterId}`);
+        return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps });
+    };
+}

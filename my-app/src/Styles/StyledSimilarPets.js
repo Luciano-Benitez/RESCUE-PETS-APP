@@ -26,13 +26,16 @@ export const StyledCard = styled.div`
   &:hover {
   top: -2px;
   background-color:${allColors.colors[3]};
-  color: #ffffff;
+  color: red;
   text-decoration: none;
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   -ms-transform: scale(1.1);
   -o-transform: scale(1.1);
   transform: scale(0.89);
+  h1{
+    color: white;
+  }
  
 
 }

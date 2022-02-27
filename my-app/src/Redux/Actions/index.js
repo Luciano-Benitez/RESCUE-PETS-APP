@@ -52,7 +52,8 @@ import {
     EDIT_PET,
     POST_REQUEST_TRANSIT,
     GET_FORM_BY_SHELTER,
-    GET_FOLLOW_UPS_FROM_SHELTER
+    GET_FOLLOW_UPS_FROM_SHELTER,
+    CHECK_FORM
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -579,9 +580,31 @@ export const addFollowUp = (payload) => {
 };
 
 
+
 export const getFollowUpsFromShelter = (shelterId) => {
     return async function (dispatch) {
         const followUps= await axios.get(`http://localhost:3001/getFollowUps/${shelterId}`);
         return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps });
     };
+
+export const sendEmailAccepted = (payload) => {
+    return async function(dispatch){
+        let json = await axios.post('http://localhost:3001/nodemailer/sendEmailAccepted',payload)
+        return json
+    }
+}
+
+export const sendEmailRejected = (payload) => {
+    return async function(dispatch){
+        let json = await axios.post('http://localhost:3001/nodemailer/sendEmailRejected',payload)
+        return json
+    }
+}
+
+export const checkForm = (shelterid) => {
+    return async function(dispatch){
+        let json = await axios(`http://localhost:3001/checkForm/${shelterid}`)
+        return dispatch({type:CHECK_FORM, payload:json.data})
+    }
+
 }

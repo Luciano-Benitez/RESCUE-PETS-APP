@@ -576,3 +576,17 @@ export const addFollowUp = (payload) => {
         return response;
     };
 };
+
+export const sendEmailAccepted = (payload) => {
+    return async function(dispatch){
+        let json = await axios.post('http://localhost:3001/nodemailer/sendEmailAccepted',payload)
+        return json
+    }
+}
+
+export const sendEmailRejected = (payload) => {
+    return async function(dispatch){
+        let json = await axios.post('http://localhost:3001/nodemailer/sendEmailRejected',payload)
+        return json
+    }
+}

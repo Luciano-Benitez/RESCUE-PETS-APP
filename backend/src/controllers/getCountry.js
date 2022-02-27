@@ -11,7 +11,8 @@ const countries = require('../utils/countries.json')
         Countries.findOrCreate({
             where: {
                 id : `${element.id}`,
-                country: element.name
+                country: element.name,
+                flag: element.flag
             }
         })
     });

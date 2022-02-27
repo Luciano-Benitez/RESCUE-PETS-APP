@@ -4,11 +4,12 @@ import {
     StyledCard,
     StyledCardContainer,
     ImgCard,
+    ImgCardFlag
   } from "../Styles/StyledCards.js";
 
 
 const ShelterData = ({Data}) => {
- 
+
   return (
     <div>
         {
@@ -28,7 +29,12 @@ const ShelterData = ({Data}) => {
                     {
                       (typeof Data["city"] != "undefined" || Data["city"] != null) ?
                       <h2>{Data["city"]["state"]["country"]["country"]}</h2> : <h1> Cargando datos</h1>
-                      
+                     
+                    }
+                    {
+                      (typeof Data["city"] != "undefined" || Data["city"] != null) ?
+                      // <h2>{Data["city"]["state"]["country"]["flag"]}</h2> : <h1> Cargando datos</h1>
+                      <ImgCardFlag src={Data["city"]["state"]["country"]["flag"]}/> : <h1> Cargando datos</h1>
                     }
                      <br />
                    </StyledCard>

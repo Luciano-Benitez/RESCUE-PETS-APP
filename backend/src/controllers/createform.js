@@ -31,7 +31,7 @@ exports.createForm = async (req,res) => {
                     f.addQuestions(q)
                 })
             }
-            return res.status(201).json(f)    
+            return res.status(201).send(f)    
         }else{
             return res.status(400).send('wrong data')
         }

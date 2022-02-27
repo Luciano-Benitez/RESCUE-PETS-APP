@@ -8,6 +8,7 @@ import PreFooter from "./PreFooter";
 import {Fragment, useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {getPets} from "../Redux/Actions";
+import Navbar from "./Navbar";
 export function Home() {
 
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export function Home() {
 
 
     return (<Fragment>
+        <Navbar/>
         <Header></Header>
       
         

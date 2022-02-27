@@ -66,3 +66,66 @@ exports.revalidateToken= async(req, res= response) =>{
         token
     })
 }
+
+exports.changePassword = async(req, res= response) =>{
+
+    const {email, oldPassword, newPassword}= req.body
+
+
+    try {
+        
+        let User= await Users.findOne({
+            where:{
+                email: email
+            }
+        })
+       
+        if(!User){
+            return res.status(400).json({
+                ok: false,
+                msg: 'User or Password is invalid'
+            })
+        }
+
+        
+        const validPassword= bcrypt.compareSync(oldPassword,User.password)
+
+        if(!validPassword){
+            return res.status(400).json({
+                ok: false,
+                msg: 'User or Password is invalid'
+            })
+        }
+
+        const salt = bcrypt.genSaltSync()
+
+        const hash = bcrypt.hashSync(newPassword, salt)
+
+
+     await Users.update({
+        password: hash,
+    }, {
+        where: {
+            email: email,
+        }
+    });
+
+      User= await Users.findOne({
+        where:{
+            email: email
+        }
+    })
+
+     res.json({
+        ok: true,
+        User
+     })
+
+        
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: 'Error connecting to the database'
+        })
+    }
+}

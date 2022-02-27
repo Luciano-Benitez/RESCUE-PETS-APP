@@ -43,7 +43,7 @@ export const DivContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
-    input {
+    .inputForm {
     width: 100%;
     height: 50px;
     background: #ddf4ff !important;
@@ -122,6 +122,10 @@ select{
       label {
         flex-basis: 7rem;
         margin-left: 1rem;
+      }
+      .file{
+        display: flex;
+        flex-direction: column;
       }
     }
     .campo input:not([type="radio"]),

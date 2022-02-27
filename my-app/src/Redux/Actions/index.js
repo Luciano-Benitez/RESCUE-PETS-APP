@@ -54,7 +54,8 @@ import {
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
     CHECK_FORM,
-    GET_PROFILE
+    GET_PROFILE,
+    GET_FOLLOW_UPS_STATUSES
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -654,6 +655,13 @@ export const resetPassword = (token, password) =>{
     };
 }
 
+export const getFollowUpStatuses = () => {
+    return async function (dispatch) {
+        const followUpStatuses= await axios.get(`http://localhost:3001/followUpStatuses`);
+        return dispatch({ type: GET_FOLLOW_UPS_STATUSES, payload: followUpStatuses.data });
+    };
+}
+
 export const findOrCreateProfileUser = (payload) => {
     return async function (dispatch) {
         let response = await axios.post(`http://localhost:3001/ProfileUser`, payload);
@@ -661,4 +669,3 @@ export const findOrCreateProfileUser = (payload) => {
         return body;
     };
 };
-

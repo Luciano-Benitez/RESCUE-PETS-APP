@@ -22,6 +22,7 @@ const questions = require('./questions')
 const nodemailer = require('./nodemailer') 
 const FollowUp = require('./FollowUp') 
 const Profile = require('./Profile')
+const FollowUpStatus = require('./FollowUpStatus')
 
 router.use('/',pets)
 router.use('/',form)
@@ -46,5 +47,6 @@ router.use('/',questions)
 router.use('/',nodemailer)
 router.use('/',FollowUp)
 router.use('/',Profile)
+router.use('/',FollowUpStatus)
 
 module.exports = router;

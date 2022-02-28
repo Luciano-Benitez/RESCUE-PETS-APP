@@ -33,6 +33,8 @@ const Details = () => {
   id2 = id2.replace("/details/", "");
 
   useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+
     if (pets && Datos) {
       dispatch(getPetsSimilar(Datos, pets));
     }
@@ -45,10 +47,18 @@ const Details = () => {
   }, [dispatch]);
 
   
+  const handleClick2 = (e) => {
+   
+    dispatch(getPetId(id));
+    dispatch(getPetsSimilar(Datos, pets));
+    
+    
+   
+    };
 
   return (
     <Fragment>
-      <StyledDetails>
+      <StyledDetails onPointerEnter={(e) => handleClick2(e) } >
         {" "}
         {Datos.length ? (
           <>

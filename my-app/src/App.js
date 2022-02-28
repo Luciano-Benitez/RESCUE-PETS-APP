@@ -73,12 +73,13 @@ function App() {
 
 
 
-<Route path="/details/:id" element={
-          <PublicRoute>
-            <Navbar/>
-            <Details />
-          </PublicRoute>
-        } />
+
+
+
+            <Route exact path="/details/:id" 
+            element={ <Details/>  }>
+          
+        </Route>
 
 <Route path="/forgotpassword" element={
           <PublicRoute>

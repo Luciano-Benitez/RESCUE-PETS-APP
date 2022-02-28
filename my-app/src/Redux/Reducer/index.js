@@ -43,7 +43,7 @@ import {
   POST_REQUEST_TRANSIT,
   GET_FOLLOW_UPS_FROM_SHELTER,
   CHECK_FORM,
-
+  PIC_PRIMER,
   MODAL_DASHBOARD,
   GET_PROFILE,
   GET_FOLLOW_UPS_STATUSES
@@ -89,7 +89,7 @@ const initialState = {
   checkForm : [],
 
   modaldashboard:"icos",
-
+ 
   profileForSend : [],
   followUpStatuses: []
 
@@ -122,6 +122,11 @@ export default function rooReducer(state = initialState, { type, payload }) {
         petOne: payload,
       };
 
+      case PIC_PRIMER:
+      return {
+        ...state,
+        pic_one: payload,
+      };
     case GET_CITIES:
       return {
         ...state,

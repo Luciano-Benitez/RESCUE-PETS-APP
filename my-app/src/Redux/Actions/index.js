@@ -59,6 +59,9 @@ import {
 
     GET_PROFILE,
     GET_FOLLOW_UPS_STATUSES,
+    GET_COUNT_SHELTER,
+    GET_COUNT_ADOPTED2,
+    GET_COUNT_ADOPTED3
 
     } from './types.js'
 import { async } from '@firebase/util';
@@ -711,4 +714,34 @@ export const editFollowUp = (followUpId, payload) => {
         // console.log(editPet)
         // return editPet
     };
+}
+
+export const getCountShelter = () => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/countshelter`)
+        return dispatch({
+            type: GET_COUNT_SHELTER,
+            payload: json.data
+        })
+    }
+}
+
+export const getCountAdopted2 = () => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/petAdopted2`)
+        return dispatch({
+            type: GET_COUNT_ADOPTED2,
+            payload: json.data
+        })
+    }
+}
+
+export const getCountAdopted3 = () => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/petAdopted3`)
+        return dispatch({
+            type: GET_COUNT_ADOPTED3,
+            payload: json.data
+        })
+    }
 }

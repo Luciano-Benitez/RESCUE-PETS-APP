@@ -3,10 +3,6 @@ const {DataTypes}=require('sequelize');
 module.exports = (sequelize) => {
 
   sequelize.define('users', {
-     user: {
-      type: DataTypes.STRING,
-      allowNull:false
-  },
      email:{
          type:DataTypes.STRING,
          allowNull:false
@@ -14,6 +10,12 @@ module.exports = (sequelize) => {
      password:{
          type: DataTypes.STRING,
          allowNull:false
-     }
-  });
+     },
+     isVerified:{
+        type: DataTypes.BOOLEAN,
+        allowNull:false
+    }
+  },{
+    timestamps: false,
+});
 };

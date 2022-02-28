@@ -112,6 +112,7 @@ const FormTransit = ({ id }) => {
     );
     setInput([]);
     history(`/shelters/${form[0].shelterId}`);
+    
   }
 
   return (

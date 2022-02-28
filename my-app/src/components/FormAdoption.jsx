@@ -107,7 +107,7 @@ const FormAdoption = ({ petId, Datos }) => {
       "Registro realizado correctamente. Si has sido seleccionado pronto nos comunicaremos contigo",
       "sucess"
     );
-    setInput([]);
+    setInput([])
 
   }
 

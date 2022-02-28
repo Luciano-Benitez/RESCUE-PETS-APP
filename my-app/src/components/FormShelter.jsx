@@ -102,7 +102,6 @@ const FormShelter = () => {
         input.img
       )
     );
-    Swal.fire("Genial!", "Registro realizado correctamente", "sucess");
     setInput({
       name: "",
       email: "",

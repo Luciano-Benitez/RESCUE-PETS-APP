@@ -212,7 +212,13 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
         }, "POST");
         const body = await resp.json();
         if (!body.ok) {
-            alert(body.msg);
+            Swal.fire('Genial', 'Informacion actualizada', 'success')
+        }
+
+        else {
+
+            Swal.fire('Error', 'Hubo un error en el registro, intentelo nuevamente', 'error')
+            
         }
     };
 };

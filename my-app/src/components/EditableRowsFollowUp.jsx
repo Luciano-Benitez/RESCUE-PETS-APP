@@ -22,7 +22,7 @@ const EditableRowsFollowUp = ({data, editFormData, handleEditFormChange, handleC
         <td>
             <input
             type="date"
-            required="required"
+            // required="required"
             placeholder='Capture fecha...'
             name='followUpDate1'
             value={editFormData.followUpDate1}
@@ -32,7 +32,7 @@ const EditableRowsFollowUp = ({data, editFormData, handleEditFormChange, handleC
         <td>
             <input
             type="date"
-            required="required"
+            // required="required"
             placeholder='Capture fecha...'
             name='followUpDate2'
             value={editFormData.followUpDate2}
@@ -42,7 +42,7 @@ const EditableRowsFollowUp = ({data, editFormData, handleEditFormChange, handleC
         <td>
             <input
             type="date"
-            required="required"
+            // required="required"
             placeholder='Capture fecha...'
             name='followUpDate3'
             value={editFormData.followUpDate3}

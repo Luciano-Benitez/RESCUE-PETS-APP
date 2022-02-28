@@ -697,3 +697,18 @@ export const findOrCreateProfileUser = (payload) => {
     };
 };
 
+export const deleteFollowUp = (followUpId) => {
+    return async function (dispatch) {
+        const deletefollowUp = await axios.delete(`http://localhost:3001/deleteFollowUp/${followUpId}`);
+
+    };
+}
+
+export const editFollowUp = (followUpId, payload) => {
+    return async function (dispatch) {
+        const editFollowUp = await axios.put(`http://localhost:3001/editFollowUp/${followUpId}`, payload);
+        // return dispatch({ type: EDIT_PET, payload:editPet });
+        // console.log(editPet)
+        // return editPet
+    };
+}

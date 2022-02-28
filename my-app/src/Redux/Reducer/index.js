@@ -43,7 +43,11 @@ import {
   POST_REQUEST_TRANSIT,
   GET_FOLLOW_UPS_FROM_SHELTER,
   CHECK_FORM,
-  GET_PROFILE
+
+  MODAL_DASHBOARD,
+  GET_PROFILE,
+  GET_FOLLOW_UPS_STATUSES
+
 } from "../Actions/types";
 
 const initialState = {
@@ -83,7 +87,12 @@ const initialState = {
   formstatus : [],
   followUps : [],
   checkForm : [],
-  profileForSend : []
+
+  modaldashboard:"icos",
+
+  profileForSend : [],
+  followUpStatuses: []
+
 
 };
 
@@ -255,6 +264,11 @@ export default function rooReducer(state = initialState, { type, payload }) {
         petsByShelter: payload,
       };
     
+      case MODAL_DASHBOARD:
+        return {
+          ...state,
+          modaldashboard: payload
+        }
 
      
       case GET_PETS_FOR_DASHBOARD:
@@ -416,6 +430,11 @@ export default function rooReducer(state = initialState, { type, payload }) {
             return{
               ...state,
               profileForSend : payload
+            }
+          case GET_FOLLOW_UPS_STATUSES:
+            return{
+              ...state,
+              followUpStatuses : payload
             }
         default:
           return state;

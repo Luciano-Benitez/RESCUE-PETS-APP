@@ -2,7 +2,7 @@ const {Requests} = require('../db.js')//Requiero  model adoption para hacerle po
 exports.sendRequest = async (req,res) => {
     const {idform,answer, profileId} = req.body
     try{
-        if(idform && answer){
+        if(idform && answer && profileId){
             let requestCreated = await Requests.create({
                 answers : answer,
                 formId : idform,

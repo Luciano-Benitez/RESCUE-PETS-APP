@@ -26,6 +26,13 @@ body {
 
 }
 
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+ 
+    cursor: pointer;
+    font-size: 10px;
+}
 
 div {
     margin: 0;

@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux'
 import { useEffect, useState, Fragment } from 'react'
-import { getFollowUpsFromShelter } from '../Redux/Actions'
+import { getFollowUpsFromShelter, getFollowUpStatuses, editFollowUp, deleteFollowUp } from '../Redux/Actions'
+import EditableRowsFollowUp from './EditableRowsFollowUp'
+import ReadOnlyRowsFollowUp from './ReadOnlyRowsFollowUp'
 
 const FollowUP = () => {
 
@@ -16,11 +18,16 @@ const FollowUP = () => {
 
   useEffect(() => {
     dispatch(getFollowUpsFromShelter(shelterId))
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getFollowUpStatuses())
   }, [])
   
 
   const allFollowUps = useSelector(state => state.followUps)
   // console.log("allFollowUps---------------->", allFollowUps)
+  const allFollowUpStatuses = useSelector(state => state.followUpStatuses)
 
   const [data, setData] = useState('')
 
@@ -37,15 +44,6 @@ const FollowUP = () => {
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
-    // const fieldName = event.target.getAttribute('name')
-    // const fieldValue = event.target.value
-
-    // const newFormData = {... editFormData}
-    // newFormData[fieldName] = fieldValue;
-    // console.log("flag event",event)
-    // console.log(event.target)
-    // console.log(event.target.name)
-    // console.log(event.target.value)
     seteditFormData({
       ...editFormData,
       [event.target.name]: event.target.value
@@ -53,31 +51,26 @@ const FollowUP = () => {
 
     const [editFollowUpId, setEditFollowUpId] = useState('')
 
+    const handleEditClick = (event, data) => {
+      event.preventDefault();
+      setEditFollowUpId(data.id)
+      const formValues = {
+        followUpStatusId: data.followUpStatusId,
+        followUpDate1: data.followUpDate1,
+        followUpDate2: data.followUpDate2,
+        followUpDate3: data.followUpDate3,
+      }
+      seteditFormData(formValues)
+      
+    }
+
+
     const handleEditedFormSubmit = (event) => {
       event.preventDefault();
-      // dispatch(editPet(editPetId, editFormData))
-
-      // dispatch(getPetsForDashboard(route))
+      dispatch(editFollowUp(editFollowUpId, editFormData))
       dispatch(getFollowUpsFromShelter(shelterId))
       setEditFollowUpId(null);
-      // const editedPetInfo = {
-      //   id: editPetId,
-      //   name: editFormData.name,
-      //   sterilization: editFormData.sterilization,
-      //   weight: editFormData.weight,
-      //   description: editFormData.description,
-      //   image: editFormData.image,
-      //   speciesId: editFormData.speciesId,
-      //   temperament: editFormData.temperament,
-      //   age: editFormData.age,
-      //   petStatus: editFormData.petStatus,
-      //   genreId: editFormData.genreId
-      // }
-      // const newData = [...data];
-      // const index = data.findIndex((pet) => pet.id === editPetId)
-      // newData[index] = editedPetInfo
-      // setData(newData);
-      // seteditPetId(null);
+
     }
 
     const handleCancelClick = (event) => {
@@ -85,23 +78,16 @@ const FollowUP = () => {
       setEditFollowUpId(null);
     }
 
-    const handleDeleteClick = (event, petId) => {
+    const handleDeleteClick = (event, followUpId) => {
       event.preventDefault();
-      // dispatch(deletePet(petId))
-
-      // dispatch(getPetsForDashboard(route))
+      dispatch(deleteFollowUp(followUpId))
       dispatch(getFollowUpsFromShelter(shelterId))
-      // const newData = [...data];
-      // const index = data.findIndex((pet) => pet.id === petId)
-      // newData.splice(index, 1)
-      // setData(newData)
     }
 
   return (
     <Center>
         <CenterChild>
-        {/* <form onSubmit={handleEditedFormSubmit}> */}
-        <form>
+        <form onSubmit={handleEditedFormSubmit}>
           <Table>
               <thead>
               <tr>
@@ -109,6 +95,8 @@ const FollowUP = () => {
                   <th>Nombre de la Mascota</th>
                   <th>Nombre del Adoptante</th>
                   <th>E-mail del Adoptante</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
                   <th>Fecha de seguimiento 1</th>
                   <th>Fecha de seguimiento 2</th>
                   <th>Fecha de seguimiento 3</th>
@@ -116,22 +104,19 @@ const FollowUP = () => {
               </tr>
               </thead>
               <tbody>
-              {/* {
+              {
                 data.length? data.map(data => 
                   <Fragment>
-                    {editPetId === data.id ? (
-                      <EditableRows
-                        allSpecies={allSpecies}
-                        allTemperaments={allTemperaments}
-                        allPetStatus={allPetStatus}
-                        allAges={allAges}
-                        allGenres={allGenres}
+                    {editFollowUpId === data.id ? (
+                      <EditableRowsFollowUp
+                        data={data}
+                        allFollowUpStatuses={allFollowUpStatuses}
                         editFormData={editFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
                         />
                         ) : (
-                          <ReadOnlyRows
+                          <ReadOnlyRowsFollowUp
                           data={data}
                           handleEditClick={handleEditClick}
                           handleDeleteClick={handleDeleteClick}
@@ -139,7 +124,7 @@ const FollowUP = () => {
                           )}
                     </Fragment>
                   ) : <tr ><td>Loading</td></tr>
-                } */}
+                }
               </tbody>
           </Table>
       </form>

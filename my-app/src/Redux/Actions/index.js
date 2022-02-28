@@ -54,7 +54,12 @@ import {
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
     CHECK_FORM,
-    GET_PROFILE
+
+    MODAL_DASHBOARD,
+
+    GET_PROFILE,
+    GET_FOLLOW_UPS_STATUSES,
+
     } from './types.js'
 import { async } from '@firebase/util';
 
@@ -207,7 +212,13 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
         }, "POST");
         const body = await resp.json();
         if (!body.ok) {
-            alert(body.msg);
+            Swal.fire('Genial', 'Informacion actualizada', 'success')
+        }
+
+        else {
+
+            Swal.fire('Error', 'Hubo un error en el registro, intentelo nuevamente', 'error')
+            
         }
     };
 };
@@ -610,6 +621,29 @@ export const checkForm = (shelterid) => {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const ModalDashboardOpen = (modal) => {
+    return {type: MODAL_DASHBOARD, payload: modal};
+};
+
 export const getProfile = (profileId) => {
     return async function(dispatch){
         let json = await axios(`http://localhost:3001/profiles/${profileId}`)
@@ -654,4 +688,33 @@ export const resetPassword = (token, password) =>{
     };
 }
 
+export const getFollowUpStatuses = () => {
+    return async function (dispatch) {
+        const followUpStatuses= await axios.get(`http://localhost:3001/followUpStatuses`);
+        return dispatch({ type: GET_FOLLOW_UPS_STATUSES, payload: followUpStatuses.data });
+    };
+}
 
+export const findOrCreateProfileUser = (payload) => {
+    return async function (dispatch) {
+        let response = await axios.post(`http://localhost:3001/ProfileUser`, payload);
+        let body = await response.data
+        return body;
+    };
+};
+
+export const deleteFollowUp = (followUpId) => {
+    return async function (dispatch) {
+        const deletefollowUp = await axios.delete(`http://localhost:3001/deleteFollowUp/${followUpId}`);
+
+    };
+}
+
+export const editFollowUp = (followUpId, payload) => {
+    return async function (dispatch) {
+        const editFollowUp = await axios.put(`http://localhost:3001/editFollowUp/${followUpId}`, payload);
+        // return dispatch({ type: EDIT_PET, payload:editPet });
+        // console.log(editPet)
+        // return editPet
+    };
+}

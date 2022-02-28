@@ -40,7 +40,6 @@ const ShelterDetail = () => {
   }, [cityId, input, dispatch]);
 
   const pets = useSelector((state) => state.petsfilter)
-  
   return (
     <StyledDiv>
       <ShelterDetailNav id={id}  />

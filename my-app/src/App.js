@@ -49,7 +49,11 @@ function App() {
         } />
          <Route path="/Shelters" element={<Shelters/>}/>
 
-         <Route path="/dashboard/CreatePets" element={<CreatePets/>}/>
+        
+         <Route path="/dashboard/CreatePets" element={
+         <CreatePets/>}/>
+       
+
 
         <Route path="/login" element={
           <PublicRoute>
@@ -67,10 +71,7 @@ function App() {
           </PublicRoute>
         } />
 
-<Route path='/details/:id'  element={
-  <PublicRoute>
-            <Details  />
-          </PublicRoute>} />
+
 
 <Route path="/details/:id" element={
           <PublicRoute>

@@ -7,7 +7,8 @@ exports.setCountries =  () => {
             await Countries.findOrCreate({
                 where: {
                     id : element.id,
-                    country : element.name
+                    country : element.name,
+                    flag: element.flag
                 }
             })
         });

@@ -33,17 +33,23 @@ margin-top: 1em;
   height: 40px;
   overflow: hidden; 
 cursor: pointer;
-  
+text-decoration: none;
+
+a{
+  color:${allColors.colors[8]};
+}
+
   &:hover {
   top: 1px;
-  background-color:${allColors.colors[8]};
-  color: #ffffff;
-
-
-
+  background-color:${allColors.colors[3]};
+  color: white;
+  text-decoration: none;
   border-radius: 7px;
-  box-shadow: 0 0 7px #b8b9ba;
+  box-shadow: 0 0 7px gray;
 
+  a{
+    color: white;
+  }
 }
 
   h1 {

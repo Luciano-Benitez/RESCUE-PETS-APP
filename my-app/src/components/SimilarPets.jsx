@@ -48,10 +48,11 @@ export function SimilarPets() {
   if (pets) {
     return (
       <Fragment>
+        
         {/* <StyledInfo ><h1>Más recomendaciones para ti </h1></StyledInfo  > */}
-        <StyledCardContainer>
+        <StyledCardContainer  onLoadStart={(e) => handleClick2(e)}>
         {Datos.length ? ( pets.map((e) => (
-            <Link to={`/details/${e.id}`} onPointerMove={(e) => handleClick2(e)} onChange={(e) => handleClick2(e) } key={e.id} onClick= {(e) => {handleClick(e); handleClick2(e)}} key={e.id}>
+            <Link to={`/details/${e.id}`}  onChange={(e) => handleClick2(e) } key={e.id} onClick= {(e) => {handleClick(e); handleClick2(e)}} key={e.id}>
               <StyledCard key={e.id}>
                 {" "}
                 <h1>{e.name} </h1>

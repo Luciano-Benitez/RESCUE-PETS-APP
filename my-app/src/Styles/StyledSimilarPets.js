@@ -4,7 +4,7 @@ import allColors from "../variables/Colors";
 export const StyledCard = styled.div`
 
   height: 210px ;
-  width: 175px;
+  width: 195px;
   background-color: ${allColors.colors[3]};
   border-radius: 4px;
   padding-top: 1em;
@@ -53,7 +53,7 @@ export const StyledCardContainer = styled.div`
   text-align: center;
   align-self: start;
   margin: 0px;
-  padding: 7px;
+  padding: 18px;
   
  
 

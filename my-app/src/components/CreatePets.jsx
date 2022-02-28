@@ -5,7 +5,9 @@ import { useEffect } from "react";
 import {postPets, getShelters, gettTemperaments,
        getAllSpecies, getAllAges, getAllPetStatus, getGenres, ModalDashboardOpen } from '../Redux/Actions/index';
 
-       import { StyledModal  } from "../Styles/StyledModal";
+      
+       import {DivContainer} from "../Styles/StyledCreatePets";
+
 import { StyleButton } from "../Styles/StyledButtons.js";
 export function CreatePets() {
 
@@ -168,92 +170,91 @@ export function CreatePets() {
     
       }
     return (
-        <StyledModal>
+        
            
-            <form onSubmit={handleSubmit} >
-            <label >Nombre:
-                <input type="text" name="name" value={state.name} onChange={handleChanges} />
-            </label>
-
-            <label >Esterilizado/a:
+           <DivContainer>
+            <form onSubmit={handleSubmit} ><br/><br/>
+         
+                <input type="text" placeholder="Nombre de mascota" name="name" value={state.name} onChange={handleChanges} />
+         
+                <br/>   <br/>
+           
                 <select onChange={handleSelectBoolean} >
-                    <option disabled selected>-- Seleccione --</option>
+                    <option disabled selected>¿Esterilizado/a?</option>
                     <option name='true' value={true}>Si</option>
                     <option name='false' value={false}>No</option>
-                </select>
-            </label>
-
-            <label >Peso:
-                <input type="text" name="weight" value={state.weight} onChange={handleChanges} />
-            </label>
-
-            <label >Descripcion:
-                <input type="text" name="description" value={state.description} onChange={handleChanges} />
-            </label>
-
-            <label >Especie:
+                  </select>
+          
+                  <br/><br/>
+          
+                <input type="text" placeholder="Escriba el  Peso" name="weight" value={state.weight} onChange={handleChanges} />
+           
+                <br/><br/>
+         
+                <input type="text" placeholder="Escriba Descripción" name="description" value={state.description} onChange={handleChanges} />
+           
+                <br/><br/>
+            
                 <select onChange={handleSelectSpecies} >
-                <option disabled selected>-- Seleccione --</option>
+                <option disabled selected>-- Seleccione Especie --</option>
                 {Allspecies?.map((e) => (
                 <option value={e.id} key={e.id }>{e.specie}</option>
               ))}
                 </select>
-            </label>
+                <br/><br/>
 
-            <label >Refugio:
             <select onChange={handleSelectShelter} >
-                <option disabled selected>-- Seleccione --</option>
+                <option disabled selected>-- Seleccione Refugio --</option>
                 {Shelters?.map((e) => (
                 <option value={e.id} key={e.id}>{e.name }</option>
               ))}
             </select>
-            </label>
+            <br/><br/>
 
-            <label >Temperamento:
+        
             <select onChange={handleSelectTemperament} >
-                <option disabled selected>-- Seleccione --</option>
+                <option disabled selected>-- Seleccione Temperamento --</option>
                 {ttemperaments?.map((e) => (
                 <option value={e.id} key={e.id}>{e.temperament }</option>
               ))}
             </select>
-            </label>
-
-            <label >Edad:
+            
+            <br/><br/>
             <select onChange={handleSelectAge} >
-                <option disabled selected>-- Seleccione --</option>
+                <option disabled selected>-- Seleccione Edad --</option>
                 {AllAges?.map((e) => (
                 <option value={e.id} key={e.id}>{e.age}</option>
               ))}
             </select>
-            </label>
-
-            <label >Estado:
+           
+            <br/><br/>
+           
             <select onChange={handleSelectState} >
-                <option disabled selected>-- Seleccione --</option>
+                <option disabled selected>-- Seleccione Estado --</option>
                 {Status?.map((e) => (
                 <option value={e.id} key={e.id}>{e.status}</option>
               ))}
             </select>
-            </label>
-            
-            <label >Genero:
+            <br/>
+            <br/>
+      
             <select onChange={handleSelectGenres} >
-                <option disabled selected>-- Seleccione --</option>
+                <option disabled selected>-- Seleccione Genero--</option>
                 {Genres?.map((e) => (
                 <option value={e.id} key={e.id}>{e.genre}</option>
               ))}
             </select>
-            </label>
-            <>
-            <input type='file' name='file' value={state.image} placeholder='Inserte Imagen'
+           
+            <> <br/> <br/>
+            <input  className="custom-file-upload" type='file' name='file' value={state.image} placeholder='Inserte Imagen'
                     onChange={uploadImage,  handleSelectImg}/>
                     {loading ? (<h3>Cargando Imagenes... </h3>) : (<img src={image} style={{width:'300px'}} />)}
             </>
-            <button type="submit">¡Crear Mascota!</button>   <button onClick={(event)=>handleClickCencel(event)} >Cancelar</button>
+            <br/> <br/>< StyleButton  type="submit">¡Crear Mascota!</StyleButton >   <StyleButton  onClick={(event)=>handleClickCencel(event)} >Cancelar</StyleButton >
             </form>
 
-           
-            </StyledModal>
+            </DivContainer>
+         
             
     )
 };

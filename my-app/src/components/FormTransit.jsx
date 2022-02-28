@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFormAdoption, postRequestTransit, findOrCreateProfileUser } from "../Redux/Actions/index";
+import {
+  getFormAdoption,
+  postRequestTransit,
+  findOrCreateProfileUser,
+} from "../Redux/Actions/index";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { validateForm } from "../helpers/validation";
+import TerminosyCondiciones from "./TerminosyCondiciones";
 
 //estilos
 import { DivContainer } from "../Styles/StyledFormTransit";
@@ -22,17 +28,42 @@ const FormTransit = ({ id }) => {
     roleId: "3",
   });
 
+  const [errors, setErrors] = useState({});
+
+  const [Modal, cambiarEstadoModal] = useState(false);
+
   useEffect(() => {
     if (form.length === 0) {
       dispatch(getFormAdoption(id, 2));
     }
   }, []);
 
-  function handleChangeProfile(event){
+  function handleChangeProfile(event) {
     setProfileData({
       ...profileData,
       [event.target.name]: event.target.value,
     });
+
+    setErrors(
+      validateForm({
+        ...profileData,
+        [event.target.name]: event.target.value,
+      })
+    );
+  }
+
+  function handleChek(e){
+    if(e.target.checked) {
+      setErrors({
+          ...errors,
+          check : e.target.value
+      })
+  } else{
+    setErrors({
+      ...errors,
+      check : !e.target.value
+  })
+  }
   }
 
   function handleChangeQuestions(event) {
@@ -63,12 +94,14 @@ const FormTransit = ({ id }) => {
 
   async function handleClick(event) {
     event.preventDefault();
-    let profile = await dispatch(findOrCreateProfileUser(profileData))
-    
+    let profile = await dispatch(findOrCreateProfileUser(profileData));
+
     let payload = {
       idform: form[0].id,
       answer: input,
-      profileId: profile.foundProfile ? profile.foundProfile.id : profile.createProfile.id
+      profileId: profile.foundProfile
+        ? profile.foundProfile.id
+        : profile.createProfile.id,
     };
 
     dispatch(postRequestTransit(payload));
@@ -86,7 +119,6 @@ const FormTransit = ({ id }) => {
       <h1>FORMULARIO DE TRÁNSITO</h1>
       <p>Estas a un paso de cambiar una vida</p>
       <form className="formulario">
-
         <div>
           <label>Nombre obligatorio</label>
           <input
@@ -112,7 +144,7 @@ const FormTransit = ({ id }) => {
         <div>
           <label>Whastapp</label>
           <input
-            type="text"
+            type="tel"
             className="inputForm"
             value={profileData.phoneNumber}
             name="phoneNumber"
@@ -135,7 +167,7 @@ const FormTransit = ({ id }) => {
         <div>
           <label>Email</label>
           <input
-            type="text"
+            type="email"
             className="inputForm"
             value={profileData.email}
             name="email"
@@ -156,7 +188,41 @@ const FormTransit = ({ id }) => {
               />
             </div>
           ))}
-        <button onClick={handleClick}>Enviar Formulario</button>
+          <hr />
+          <div>
+            <label>Ver <span onClick={()=>cambiarEstadoModal(true)}>términos y condiciones</span></label>
+            <span>
+            <input onChange={(e)=>handleChek(e)} type="checkbox" value={true} name="Acepto" /> 
+            Acepto los términos y condiciones
+          </span>
+          </div>
+          {Modal && <TerminosyCondiciones cambiarEstado={cambiarEstadoModal}/>}
+          <hr />
+        <button
+          type="submit"
+          onClick={handleClick}
+          disabled={
+            !profileData.email ||
+            errors.name ||
+            errors.lastName ||
+            errors.phoneNumber ||
+            errors.address ||
+            errors.email ||
+            !errors.check
+              ? true
+              : false
+          }
+        >
+          Enviar Formulario
+        </button>
+        <hr />
+        <div className="errors">
+          {errors.name && <p>{errors.name}</p>}
+          {errors.lastName && <p>{errors.lastName}</p>}
+          {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
+          {errors.address && <p>{errors.address}</p>}
+          {errors.email && <p>{errors.email}</p>}
+        </div>
       </form>
     </DivContainer>
   );

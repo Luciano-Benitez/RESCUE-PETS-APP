@@ -65,12 +65,14 @@ import {
 
     } from './types.js'
 import { async } from '@firebase/util';
+import { APIGATEWAY_URL } from '../../utils/constant';
+
 
 
 export const getPets = () => {
     return async function (dispatch) {
         try {
-            let json = await axios(`http://localhost:3001/pets`);
+            let json = await axios(`${APIGATEWAY_URL}/pets`);
             let size = json.data.length / 2;
             let NewPets = function (myArray, Size) {
                 var results = [];
@@ -92,7 +94,8 @@ export const getPets = () => {
 
 export const getCountries = () => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/country`);
+      
+        let json = await axios(`${APIGATEWAY_URL}/country`);
         return dispatch({ type: GET_COUNTRIES, payload: json.data });
     };
 };
@@ -101,14 +104,14 @@ export const getCountries = () => {
 
 export const getStates = (id) => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/states?countryId=${id}`);
+        let json = await axios(`${APIGATEWAY_URL}/states?countryId=${id}`);
         return dispatch({ type: GET_STATES, payload: json.data });
     };
 };
 
 export const getcities = (id) => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/cities?stateId=${id}`);
+        let json = await axios(`${APIGATEWAY_URL}/cities?stateId=${id}`);
         return dispatch({ type: GET_CITIES, payload: json.data });
     };
 };
@@ -148,7 +151,7 @@ export const getPetsSimilar = (idShelter, datafilters) => {
 export const getPetId = (id) => {
     return async function (dispatch) {
         try {
-            const Details = await axios("http://localhost:3001/petDetail/" + id);
+            const Details = await axios("${APIGATEWAY_URL}/petDetail/" + id);
             dispatch({ type: GET_PET_ID, payload: Details.data });
         } catch (error) {
             console.log(error);
@@ -159,7 +162,7 @@ export const getPetId = (id) => {
 export const getPetByShelter = (id) => {
     return async function (dispatch) {
         try {
-            const Details = await axios(`http://localhost:3001/petDetail?shelterId=${id}`);
+            const Details = await axios(`${APIGATEWAY_URL}/petDetail?shelterId=${id}`);
             dispatch({ type: GET_PETS_BY_SHELTER, payload: Details.data });
         } catch (error) {
             console.log(error);
@@ -169,7 +172,7 @@ export const getPetByShelter = (id) => {
 
 export const postShelter = (payload) => {
     return async function (dispatch) {
-        let response = await axios.post(`http://localhost:3001/createShelter`, payload);
+        let response = await axios.post(`${APIGATEWAY_URL}/createShelter`, payload);
         return response;
     };
 };
@@ -245,7 +248,7 @@ export const getStatus = () => {
 
 export const getSearchShelters = (name) => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/searchShelter?name=` + name);
+        let json = await axios(`${APIGATEWAY_URL}/searchShelter?name=` + name);
         return dispatch({ type: GET_SEARCH_SHELTERS, payload: json.data });
     };
 };
@@ -260,14 +263,14 @@ export const getFilterShelters = () => {
 
 export const getForms = (userid, formtypeid) => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/forms/${userid}?formtypeid=` + formtypeid);
+        let json = await axios(`${APIGATEWAY_URL}/forms/${userid}?formtypeid=` + formtypeid);
         return dispatch({ type: GET_FORMS, payload: json.data });
     };
 };
 
 export const getIdFromShelterAndCity = (userId) => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/sheltercityid/${userId}`);
+        let json = await axios(`${APIGATEWAY_URL}/sheltercityid/${userId}`);
         return dispatch({ type: GET_ID_FROM_SHELTER_AND_CITY, payload: json.data });
     };
 };
@@ -275,7 +278,7 @@ export const getIdFromShelterAndCity = (userId) => {
 export const getShelterDetail = (id) => {
     return async function (dispatch) {
 
-        let json = await axios(`http://localhost:3001/shelters/${id}`);
+        let json = await axios(`${APIGATEWAY_URL}/shelters/${id}`);
         return dispatch({ type: GET_SHELTER_DETAIL, payload: json.data });
     };
 };
@@ -284,7 +287,7 @@ export const getShelterDetail = (id) => {
 
 export const getShelters = () => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/shelters`)
+        let json = await axios(`${APIGATEWAY_URL}/shelters`)
         return dispatch({
             type: GET_SHELTERS,
             payload: json.data
@@ -295,7 +298,7 @@ export const getShelters = () => {
 
 export const getFormtypes = () => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/formtypes`);
+        let json = await axios(`${APIGATEWAY_URL}/formtypes`);
         return dispatch({ type: GET_FORMTYPES, payload: json.data });
     };
 };
@@ -318,7 +321,7 @@ export const searchPetByName = (payload) => {
 export const getIndividualForm = (shelterid, formtypeid, formid) => {
     return async function (dispatch) {
         try {
-            let json = await axios(`http://localhost:3001/formquestions/${shelterid}?formtypeid=${formtypeid}`)
+            let json = await axios(`${APIGATEWAY_URL}/formquestions/${shelterid}?formtypeid=${formtypeid}`)
             return dispatch({
                 type: GET_INDIVIDUAL_FORM, payload: { data: json.data, formid: formid }
             }
@@ -331,7 +334,7 @@ export const getIndividualForm = (shelterid, formtypeid, formid) => {
 export const getFormAdoption = (id, formtypeId) => {
     return async function (dispatch) {
         try {
-            const Adoption = await axios(`http://localhost:3001/formquestions/${id}?formtypeid=${formtypeId}`);
+            const Adoption = await axios(`${APIGATEWAY_URL}/formquestions/${id}?formtypeid=${formtypeId}`);
             dispatch({ type: GET_FORM_ADOPTION, payload: Adoption.data });
         } catch (error) {
             console.log(error);
@@ -342,7 +345,7 @@ export const getFormAdoption = (id, formtypeId) => {
 
 export const sendAdoption = (payload) => {
     return async function (dispatch) {
-        let response = await axios.post(`http://localhost:3001/sendAdoption`, payload)
+        let response = await axios.post(`${APIGATEWAY_URL}/sendAdoption`, payload)
         return response
     }
 }
@@ -351,15 +354,17 @@ export const sendAdoption = (payload) => {
 
 export const startChecking = () => {
     return async (dispatch) => {
-
         const resp = await fetchConToken('renew')
         const body = await resp.json()
+        
         if (body.ok) {
+            console.log('Entro aqui')
             localStorage.setItem('token', body.token)
             localStorage.setItem('token-init-date', new Date().getTime())
             dispatch(login({ id: body.id, email: body.email }))
         }
         else {
+            
             dispatch(checkingFinish())
         }
     }
@@ -384,14 +389,14 @@ export const login = (user) => ({
 
 export function postPets(payload) {
     return async function (dispatch) {
-        const post = await axios.post('http://localhost:3001/pets', payload);
+        const post = await axios.post('${APIGATEWAY_URL}/pets', payload);
         return post;
     }
 }
 
 export const gettTemperaments = () => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/temperaments`)
+        let json = await axios(`${APIGATEWAY_URL}/temperaments`)
         return dispatch({
             type: GETT_TEMPERAMENTS,
             payload: json.data
@@ -401,7 +406,7 @@ export const gettTemperaments = () => {
 
 export const getAllSpecies = () => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/species`)
+        let json = await axios(`${APIGATEWAY_URL}/species`)
         return dispatch({
             type: GET_ALL_SPECIES,
             payload: json.data
@@ -412,7 +417,7 @@ export const getAllSpecies = () => {
 
 export const getAllPetStatus = () => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/petstatus`)
+        let json = await axios(`${APIGATEWAY_URL}/petstatus`)
         return dispatch({
             type: GET_ALL_PET_STATUS,
             payload: json.data
@@ -422,7 +427,7 @@ export const getAllPetStatus = () => {
 
 export const getAllAges = () => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/ages`)
+        let json = await axios(`${APIGATEWAY_URL}/ages`)
         return dispatch({
             type: GET_ALL_AGES,
             payload: json.data
@@ -433,7 +438,7 @@ export const getAllAges = () => {
 
 export const getGenres = () => {
     return async function (dispatch) {
-        let json = await axios(`http://localhost:3001/genres`)
+        let json = await axios(`${APIGATEWAY_URL}/genres`)
         return dispatch({
             type: GET_GENRES,
             payload: json.data
@@ -445,21 +450,21 @@ export const getGenres = () => {
 
 export const deleteAnswerForm = (formid, type) => {
     return async function (dispatch) {
-        await axios.delete(`http://localhost:3001/deleteAnswerForm/${type}?formid=${formid}`)
+        await axios.delete(`${APIGATEWAY_URL}/deleteAnswerForm/${type}?formid=${formid}`)
         return dispatch({ type: DELETE_ANSWERFORM })
     }
 }
 
 export const postRequestTransit = (payload) => {
     return async function (dispatch) {
-        let response = await axios.post(`http://localhost:3001/sendRequest`, payload);
+        let response = await axios.post(`${APIGATEWAY_URL}/sendRequest`, payload);
         return response;
     };
 };
 
 export const getAllQuestions = () => {
     return async function (dispatch) {
-        let json = await axios('http://localhost:3001/getAllQuestions')
+        let json = await axios('${APIGATEWAY_URL}/getAllQuestions')
         return dispatch({ type: GET_ALL_QUESTIONS, payload: json.data })
     }
 }
@@ -536,7 +541,7 @@ const logout = () => ({ type: authLogout })
 
 export const postCreateForm = (form) => {
     return async function (_dispatch) {
-        let json = await axios.post('http://localhost:3001/createForm', form)
+        let json = await axios.post('${APIGATEWAY_URL}/createForm', form)
         return json
     }
 }
@@ -544,21 +549,21 @@ export const postCreateForm = (form) => {
 
 export const getFormByShelter = (shelterid,formtypeid) => {
     return async function(dispatch){
-        let json = await axios(`http://localhost:3001/getFormByShelter/${shelterid}?formtypeid=${formtypeid}`)
+        let json = await axios(`${APIGATEWAY_URL}/getFormByShelter/${shelterid}?formtypeid=${formtypeid}`)
         return dispatch({type:GET_FORM_BY_SHELTER, payload:json.data})
     }
 }
 
 export const editForm = (formid,formtypeid,questions) => {
     return async function(dispatch){
-        let json = await axios.put(`http://localhost:3001/editForm/${formid}?formtypeid=${formtypeid}`,questions)
+        let json = await axios.put(`${APIGATEWAY_URL}/editForm/${formid}?formtypeid=${formtypeid}`,questions)
         return json
     }
 }
 
 export const deletePet = (petId) => {
     return async function (dispatch) {
-        const deletePet = await axios.delete(`http://localhost:3001/pets/${petId}`);
+        const deletePet = await axios.delete(`${APIGATEWAY_URL}/pets/${petId}`);
         return dispatch({ type: DELETE_PET, payload: deletePet });
         // console.log(deletePet)
         // return deletePet
@@ -567,7 +572,7 @@ export const deletePet = (petId) => {
 
 export const editPet = (petId, payload) => {
     return async function (dispatch) {
-        const editPet = await axios.put(`http://localhost:3001/pets/${petId}`, payload);
+        const editPet = await axios.put(`${APIGATEWAY_URL}/pets/${petId}`, payload);
         // return dispatch({ type: EDIT_PET, payload:editPet });
         // console.log(editPet)
         // return editPet
@@ -587,7 +592,7 @@ export const uploadImageCloud = (formData) => {
 
 export const addFollowUp = (payload) => {
     return async function (dispatch) {
-        let response = await axios.post(`http://localhost:3001/addFollowUp`, payload);
+        let response = await axios.post(`${APIGATEWAY_URL}/addFollowUp`, payload);
         return response;
     };
 };
@@ -596,28 +601,28 @@ export const addFollowUp = (payload) => {
 
 export const getFollowUpsFromShelter = (shelterId) => {
     return async function (dispatch) {
-        const followUps= await axios.get(`http://localhost:3001/getFollowUps/${shelterId}`);
+        const followUps= await axios.get(`${APIGATEWAY_URL}/getFollowUps/${shelterId}`);
         return dispatch({ type: GET_FOLLOW_UPS_FROM_SHELTER, payload:followUps.data });
     };
 }
 
 export const sendEmailAccepted = (payload) => {
     return async function(dispatch){
-        let json = await axios.post('http://localhost:3001/nodemailer/sendEmailAccepted',payload)
+        let json = await axios.post('${APIGATEWAY_URL}/nodemailer/sendEmailAccepted',payload)
         return json
     }
 }
 
 export const sendEmailRejected = (payload) => {
     return async function(dispatch){
-        let json = await axios.post('http://localhost:3001/nodemailer/sendEmailRejected',payload)
+        let json = await axios.post('${APIGATEWAY_URL}/nodemailer/sendEmailRejected',payload)
         return json
     }
 }
 
 export const checkForm = (shelterid) => {
     return async function(dispatch){
-        let json = await axios(`http://localhost:3001/checkForm/${shelterid}`)
+        let json = await axios(`${APIGATEWAY_URL}/checkForm/${shelterid}`)
         return dispatch({type:CHECK_FORM, payload:json.data})
     }
 
@@ -649,7 +654,7 @@ export const ModalDashboardOpen = (modal) => {
 
 export const getProfile = (profileId) => {
     return async function(dispatch){
-        let json = await axios(`http://localhost:3001/profiles/${profileId}`)
+        let json = await axios(`${APIGATEWAY_URL}/profiles/${profileId}`)
         return dispatch({type:GET_PROFILE, payload: json.data})
     }
 }
@@ -693,14 +698,14 @@ export const resetPassword = (token, password) =>{
 
 export const getFollowUpStatuses = () => {
     return async function (dispatch) {
-        const followUpStatuses= await axios.get(`http://localhost:3001/followUpStatuses`);
+        const followUpStatuses= await axios.get(`${APIGATEWAY_URL}/followUpStatuses`);
         return dispatch({ type: GET_FOLLOW_UPS_STATUSES, payload: followUpStatuses.data });
     };
 }
 
 export const findOrCreateProfileUser = (payload) => {
     return async function (dispatch) {
-        let response = await axios.post(`http://localhost:3001/ProfileUser`, payload);
+        let response = await axios.post(`${APIGATEWAY_URL}/ProfileUser`, payload);
         let body = await response.data
         return body;
     };
@@ -708,14 +713,14 @@ export const findOrCreateProfileUser = (payload) => {
 
 export const deleteFollowUp = (followUpId) => {
     return async function (dispatch) {
-        const deletefollowUp = await axios.delete(`http://localhost:3001/deleteFollowUp/${followUpId}`);
+        const deletefollowUp = await axios.delete(`${APIGATEWAY_URL}/deleteFollowUp/${followUpId}`);
 
     };
 }
 
 export const editFollowUp = (followUpId, payload) => {
     return async function (dispatch) {
-        const editFollowUp = await axios.put(`http://localhost:3001/editFollowUp/${followUpId}`, payload);
+        const editFollowUp = await axios.put(`${APIGATEWAY_URL}/editFollowUp/${followUpId}`, payload);
         // return dispatch({ type: EDIT_PET, payload:editPet });
         // console.log(editPet)
         // return editPet

@@ -74,7 +74,7 @@ export const DashboardForms= () => {
                         typeof(formtypes) === 'string'? (<option>{formtypes}</option>): <option>Cargando...</option>}
                     </select>
                 
-                {typeform === 'Adopción' ? (<table>
+                {typeform === 'Adopción' && forms.length && forms[0].form.formtypeId === 1? (<table>
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -85,7 +85,7 @@ export const DashboardForms= () => {
                             </tr>
                         </thead>
                         <tbody>
-                        {typeof(forms) !== 'string' && forms[0].form.formtypeId === 1 ? forms.map(element => (
+                        {typeof(forms) !== 'string'? forms.map(element => (
                             <tr key={element.id}>
                                 <td>{element.id}</td>
                                 <td><Link to={`view/${element.id}/${formtypes[0].id}/${element.petId}`}><button>Ver Formulario</button></Link></td>
@@ -103,7 +103,7 @@ export const DashboardForms= () => {
                         </tbody>
                 </table>):
                 
-                typeform === 'Tránsito'&& forms[0].form.formtypeId === 2 ?(<table>
+                typeform === 'Tránsito' && forms.length && forms[0].form.formtypeId === 2?(<table>
                     <thead>
                         <tr>
                             <th>Id</th>

@@ -4,23 +4,64 @@ import Img from "../Icos/homeim1.svg"
 
 export const DivContainer = styled.div`
   //position: relative;
-  top: 30rem;
-  width: 100%;
-  min-height: 84vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 13rem;
-  background-image: url(${Img});
-  background-repeat: no-repeat;
-  background-size: cover;
-  border:0px;
-  background-position: 20px;
-  padding-left: 5%;
   
+  text-align: center;
+  margin: 2px;
+
+  position: fixed; 
+  z-index: 100; 
+  top: 14%;
+  left: 30%;
+  width: 40%; 
+  height:84%; 
+  overflow: none; 
+  background-color: rgb(255, 255, 255); 
+  border: 2px;
+  border-radius: 1em;
+  opacity: 98%;
+  text-transform: capitalize;
+  border-radius: 6.5px;
+  box-shadow: 0 0 15px gray;
+  padding: 9px;
   h2{
   color: ${allColors.colors[8]};
 }
+
+input {
+  width: 60%;
+    height: 22px;
+    background: #ddf4ff !important;
+    color: gray !important;
+    padding-left: 5px !important;
+    margin-left: 10px !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-color:${allColors.colors[3]} !important;
+    border-width: 3px !important;
+    border-radius: 5px !important;
+    cursor: text;
+
+}
+
+select{
+  width: 60%;
+    height: 22px;
+    background: #ddf4ff !important;
+    color: gray !important;
+    padding-left: 5px !important;
+    margin-left: 10px !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-color: ${allColors.colors[3]}  !important;
+    border-width: 3px !important;
+    border-radius: 5px !important;
+    
+  
+    cursor: pointer;
+}
+
 
   .text-center {
     text-align: center;
@@ -44,23 +85,7 @@ export const DivContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
-    .inputForm {
-    width: 100%;
-    height: 50px;
-    background: #ddf4ff !important;
-    color: gray !important;
-    padding-left: 5px !important;
-    margin-left: 10px !important;
-    border-top: 0px !important;
-    border-left: 0px !important;
-    border-right: 0px !important;
-    border-color:${allColors.colors[8]} !important;
-    border-width: 3px !important;
-    border-radius: 5px !important;
-    cursor: pointer;
-
-}
-
+    
 
 textarea{
   width: 100%;
@@ -78,21 +103,6 @@ textarea{
     cursor: pointer;
 }
 
-select{
-  width: 100%;
-    height: 50px;
-    background: #ddf4ff !important;
-    color: gray !important;
-    padding-left: 5px !important;
-    margin-left: 10px !important;
-    border-top: 0px !important;
-    border-left: 0px !important;
-    border-right: 0px !important;
-    border-color: ${allColors.colors[8]}  !important;
-    border-width: 3px !important;
-    border-radius: 5px !important;
-    cursor: pointer;
-}
 
     
     .campo {
@@ -153,7 +163,7 @@ export const StyledButton = styled.input`
   transition: background-color 0.3s ease-out;
   text-align: center;
   border: none;
-  width: 80%;
+  width: 70%;
   margin-top: 2rem;
 
 :hover {

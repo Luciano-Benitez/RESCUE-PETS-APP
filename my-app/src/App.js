@@ -71,11 +71,7 @@ function App() {
           </PublicRoute>
         } />
 
-<Route path='/details/:id'  element={
-  <PublicRoute>
-       <Navbar/>
-            <Details  />
-          </PublicRoute>} />
+
 
 <Route path="/details/:id" element={
           <PublicRoute>

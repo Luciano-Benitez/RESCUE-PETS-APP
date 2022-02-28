@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux'
 import { useEffect, useState, Fragment } from 'react'
-import { getFollowUpsFromShelter } from '../Redux/Actions'
+import { getFollowUpsFromShelter, getFollowUpStatuses } from '../Redux/Actions'
+import EditableRowsFollowUp from './EditableRowsFollowUp'
+import ReadOnlyRowsFollowUp from './ReadOnlyRowsFollowUp'
 
 const FollowUP = () => {
 
@@ -16,11 +18,13 @@ const FollowUP = () => {
 
   useEffect(() => {
     dispatch(getFollowUpsFromShelter(shelterId))
+    dispatch(getFollowUpStatuses())
   }, [])
   
 
   const allFollowUps = useSelector(state => state.followUps)
   // console.log("allFollowUps---------------->", allFollowUps)
+  const allFollowUpStatuses = useSelector(state => state.followUpStatuses)
 
   const [data, setData] = useState('')
 
@@ -52,6 +56,25 @@ const FollowUP = () => {
     })}
 
     const [editFollowUpId, setEditFollowUpId] = useState('')
+
+    const handleEditClick = (event, data) => {
+      event.preventDefault();
+      setEditFollowUpId(data.id)
+      const formValues = {
+        followUpStatusId: data.followUpStatusId,
+        followUpDate1: data.followUpDate1,
+        followUpDate2: data.followUpDate2,
+        followUpDate3: data.followUpDate3,
+      }
+      seteditFormData(formValues)
+      
+    }
+
+
+
+
+
+
 
     const handleEditedFormSubmit = (event) => {
       event.preventDefault();
@@ -109,6 +132,8 @@ const FollowUP = () => {
                   <th>Nombre de la Mascota</th>
                   <th>Nombre del Adoptante</th>
                   <th>E-mail del Adoptante</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
                   <th>Fecha de seguimiento 1</th>
                   <th>Fecha de seguimiento 2</th>
                   <th>Fecha de seguimiento 3</th>
@@ -116,22 +141,19 @@ const FollowUP = () => {
               </tr>
               </thead>
               <tbody>
-              {/* {
+              {
                 data.length? data.map(data => 
                   <Fragment>
-                    {editPetId === data.id ? (
-                      <EditableRows
-                        allSpecies={allSpecies}
-                        allTemperaments={allTemperaments}
-                        allPetStatus={allPetStatus}
-                        allAges={allAges}
-                        allGenres={allGenres}
+                    {editFollowUpId === data.id ? (
+                      <EditableRowsFollowUp
+                        data={data}
+                        allFollowUpStatuses={allFollowUpStatuses}
                         editFormData={editFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
                         />
                         ) : (
-                          <ReadOnlyRows
+                          <ReadOnlyRowsFollowUp
                           data={data}
                           handleEditClick={handleEditClick}
                           handleDeleteClick={handleDeleteClick}
@@ -139,7 +161,7 @@ const FollowUP = () => {
                           )}
                     </Fragment>
                   ) : <tr ><td>Loading</td></tr>
-                } */}
+                }
               </tbody>
           </Table>
       </form>

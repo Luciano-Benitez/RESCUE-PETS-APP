@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux'
 import { useEffect, useState, Fragment } from 'react'
-import { getFollowUpsFromShelter, getFollowUpStatuses } from '../Redux/Actions'
+import { getFollowUpsFromShelter, getFollowUpStatuses, editFollowUp, deleteFollowUp } from '../Redux/Actions'
 import EditableRowsFollowUp from './EditableRowsFollowUp'
 import ReadOnlyRowsFollowUp from './ReadOnlyRowsFollowUp'
 
@@ -18,6 +18,9 @@ const FollowUP = () => {
 
   useEffect(() => {
     dispatch(getFollowUpsFromShelter(shelterId))
+  }, [dispatch])
+
+  useEffect(() => {
     dispatch(getFollowUpStatuses())
   }, [])
   
@@ -41,15 +44,6 @@ const FollowUP = () => {
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
-    // const fieldName = event.target.getAttribute('name')
-    // const fieldValue = event.target.value
-
-    // const newFormData = {... editFormData}
-    // newFormData[fieldName] = fieldValue;
-    // console.log("flag event",event)
-    // console.log(event.target)
-    // console.log(event.target.name)
-    // console.log(event.target.value)
     seteditFormData({
       ...editFormData,
       [event.target.name]: event.target.value
@@ -71,36 +65,12 @@ const FollowUP = () => {
     }
 
 
-
-
-
-
-
     const handleEditedFormSubmit = (event) => {
       event.preventDefault();
-      // dispatch(editPet(editPetId, editFormData))
-
-      // dispatch(getPetsForDashboard(route))
+      dispatch(editFollowUp(editFollowUpId, editFormData))
       dispatch(getFollowUpsFromShelter(shelterId))
       setEditFollowUpId(null);
-      // const editedPetInfo = {
-      //   id: editPetId,
-      //   name: editFormData.name,
-      //   sterilization: editFormData.sterilization,
-      //   weight: editFormData.weight,
-      //   description: editFormData.description,
-      //   image: editFormData.image,
-      //   speciesId: editFormData.speciesId,
-      //   temperament: editFormData.temperament,
-      //   age: editFormData.age,
-      //   petStatus: editFormData.petStatus,
-      //   genreId: editFormData.genreId
-      // }
-      // const newData = [...data];
-      // const index = data.findIndex((pet) => pet.id === editPetId)
-      // newData[index] = editedPetInfo
-      // setData(newData);
-      // seteditPetId(null);
+
     }
 
     const handleCancelClick = (event) => {
@@ -108,23 +78,16 @@ const FollowUP = () => {
       setEditFollowUpId(null);
     }
 
-    const handleDeleteClick = (event, petId) => {
+    const handleDeleteClick = (event, followUpId) => {
       event.preventDefault();
-      // dispatch(deletePet(petId))
-
-      // dispatch(getPetsForDashboard(route))
+      dispatch(deleteFollowUp(followUpId))
       dispatch(getFollowUpsFromShelter(shelterId))
-      // const newData = [...data];
-      // const index = data.findIndex((pet) => pet.id === petId)
-      // newData.splice(index, 1)
-      // setData(newData)
     }
 
   return (
     <Center>
         <CenterChild>
-        {/* <form onSubmit={handleEditedFormSubmit}> */}
-        <form>
+        <form onSubmit={handleEditedFormSubmit}>
           <Table>
               <thead>
               <tr>

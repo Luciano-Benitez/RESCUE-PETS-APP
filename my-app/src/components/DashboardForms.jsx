@@ -74,7 +74,7 @@ export const DashboardForms= () => {
                         typeof(formtypes) === 'string'? (<option>{formtypes}</option>): <option>Cargando...</option>}
                     </select>
                 
-                {typeform === 'Adopción' ? (<table>
+                {typeform === 'Adopción' && forms.length && forms[0].form.formtypeId === 1? (<table>
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -96,14 +96,14 @@ export const DashboardForms= () => {
                                     }
                                 }): <h1>No lo obtiene</h1>}
                                 </td>
-                                <td>{check.length ? check.filter(e => e.adoptionId === element.id).length ? 'Aceptado': 'por revisar':'No carga'}</td>
+                                <td>{check ? check.filter(e => e.adoptionId === element.id).length ? 'Aceptado': 'por revisar':'No carga'}</td>
                                 <td><button onClick={() => handleDeleteAdoption(element.id)}>✘</button></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                         </tbody>
                 </table>):
                 
-                typeform === 'Tránsito' ?(<table>
+                typeform === 'Tránsito' && forms.length && forms[0].form.formtypeId === 2?(<table>
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -113,11 +113,11 @@ export const DashboardForms= () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {typeof(forms) !== 'string'? forms.map(element => (
+                        {typeof(forms) !== 'string' ? forms.map(element => (
                             <tr key={element.id}>
                                 <td>{element.id}</td>
                                 <td><Link to={`view/${element.id}/${formtypes[1].id}/${1}`}><button>Ver Formulario</button></Link></td>
-                                <td>{check.length ? check.filter(e => e.requestId === element.id).length ? 'Aceptado': 'por revisar':'No carga'}</td>
+                                <td>{check? check.filter(e => e.requestId === element.id).length ? 'Aceptado': 'por revisar':'No carga'}</td>
                                 <td><button onClick={() => handleDeleteRequest(element.id)}>✘</button></td>
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}

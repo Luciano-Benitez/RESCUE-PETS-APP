@@ -69,7 +69,7 @@ const Filters = ({idcity, cambiarEstado}) => {
                     [e.target.name]: e.target.value
                }})
           }
-          // setLink(`http://localhost:3001/pets/${idcity}`)
+       
           }
 
      

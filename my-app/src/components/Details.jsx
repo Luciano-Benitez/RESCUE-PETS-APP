@@ -51,12 +51,9 @@ const Details = () => {
 
   
   const handleClick2 = (e) => {
-   
     dispatch(getPetId(id));
     dispatch(getPetsSimilar(Datos, pets));
     
-    
-   
     };
 
   return (

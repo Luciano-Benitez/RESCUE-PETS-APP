@@ -14,8 +14,10 @@ import { useParams } from "react-router";
 import SimilarPets from "./SimilarPets.jsx";
 import FormAdoption from "./FormAdoption.jsx";
 
-import { getPetsSimilar } from "../Redux/Actions/index.js";
+import Pics from "./Pics";
 
+import { getPetsSimilar } from "../Redux/Actions/index.js";
+import Navbar from "./Navbar";
 import Espe from "../Icos/espe.png";
 import House from "../Icos/house.png";
 import Edad from "../Icos/edad.png";
@@ -26,6 +28,7 @@ import Peso from "../Icos/star.png";
 const Details = () => {
   const dispatch = useDispatch();
 
+  
   const pets = useSelector((state) => state.petsfilter);
   const Datos = useSelector((state) => state.petOne);
   let { id } = useParams();
@@ -58,6 +61,7 @@ const Details = () => {
 
   return (
     <Fragment>
+       <Navbar/>
       <StyledDetails onPointerEnter={(e) => handleClick2(e) } >
         {" "}
         {Datos.length ? (
@@ -66,6 +70,7 @@ const Details = () => {
               <Cuadro>
                 <Imgag src={Datos[0].image} />
               </Cuadro>
+              <Pics imagenes={Datos[0].image}></Pics>
             </StyledDetailsLeft>
             <StyledDetailsRight>
               <h3> {Datos[0].name}</h3>

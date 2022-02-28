@@ -71,6 +71,10 @@ export const DivContainer = styled.div`
         background-color: ${allColors.colors[2]};
         cursor: pointer;
       }
+
+      :disabled{
+      opacity: 40%;
+      }
     }
 
     div {
@@ -83,6 +87,11 @@ export const DivContainer = styled.div`
         padding-bottom: 1rem;
         font-size: 1.5rem;
         text-align: center;
+      }
+    }
+    .errors{
+      p{
+        color: red;
       }
     }
   }

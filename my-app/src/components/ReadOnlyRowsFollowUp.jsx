@@ -8,7 +8,10 @@ const ReadOnlyRowsFollowUp = ({data, handleEditClick, handleDeleteClick}) => {
             <td>{data.followUpStatus.followUpStatus}</td>
             {/* {data.sterilization? <td>True</td> : <td>False</td> } */}
             <td>{data.pet.name}</td>
-            <td>`${data.profile.name} ${data.profile.name}`</td>
+            <td>{data.profile.name} {data.profile.lastName}</td>
+            <td>{data.user.email}</td>
+            <td>{data.profile.address}</td>
+            <td>{data.profile.phoneNumber}</td>
             <td>{data.followUpDate1}</td>
             <td>{data.followUpDate2}</td>
             <td>{data.followUpDate3}</td>

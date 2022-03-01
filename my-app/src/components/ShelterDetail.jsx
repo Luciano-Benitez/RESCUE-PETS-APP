@@ -10,7 +10,6 @@ import FormTransit from "./FormTransit.jsx";
 
 // estilos
 import { StyledDiv } from "../Styles/StyledShelterDetails";
-import { APIGATEWAY_URL } from "../utils/constant.js";
 
 const ShelterDetail = () => {
 
@@ -22,7 +21,7 @@ const ShelterDetail = () => {
   const [input, setInput] = useState({})
  
 
-  const link = `${APIGATEWAY_URL}/pets/${cityId}?shelterId=${id}`
+  const link = `http://localhost:3001/pets/${cityId}?shelterId=${id}`
 
   useEffect(() => {
     dispatch(getShelterDetail(id))

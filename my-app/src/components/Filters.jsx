@@ -6,6 +6,7 @@ import {getcities, getCountries, getFilterShelters, getPetsFilter, getSpecies, g
 import { Container,SelectStyle } from '../Styles/StyledFilters'
 import {StyleButton, StyleButtonMini, StyleButtonUbicacion} from '../Styles/StyledButtons'
 import {IoNavigateCircle} from "react-icons/io5";
+import { APIGATEWAY_URL } from '../utils/constant'
 
 const Filters = ({idcity, cambiarEstado}) => {
      const dispatch = useDispatch()
@@ -30,7 +31,7 @@ const Filters = ({idcity, cambiarEstado}) => {
 
 
 
-     const [link, setLink] = useState(`http://localhost:3001/pets/${idcity?idcity:city}`)
+     const [link, setLink] = useState(`${APIGATEWAY_URL}/pets/${idcity?idcity:city}`)
 
      const [input, setInput] = useState({})
 
@@ -43,7 +44,7 @@ const Filters = ({idcity, cambiarEstado}) => {
      },[dispatch])
 
      useEffect(()=>{
-          setLink(`http://localhost:3001/pets/${idcity?idcity:city}`)
+          setLink(`${APIGATEWAY_URL}/pets/${idcity?idcity:city}`)
      },[idcity])
 
      useEffect(()=>{
@@ -71,7 +72,7 @@ const Filters = ({idcity, cambiarEstado}) => {
                     [e.target.name]: e.target.value
                }})
           }
-          // setLink(`http://localhost:3001/pets/${idcity}`)
+          // setLink(`${APIGATEWAY_URL}/pets/${idcity}`)
           }
 
      const handleSubmitCountry = (event) => {
@@ -99,14 +100,14 @@ const Filters = ({idcity, cambiarEstado}) => {
           setLink(query)
           console.log(query)
           dispatch(getPetsFilter(query))
-          // setLink(`http://localhost:3001/pets/${city}`)
+          // setLink(`${APIGATEWAY_URL}/pets/${city}`)
      }
      const handleAge = (event) => {
           const query = `${link}?ageId=${event.target.value}&`
           setLink(query)
           console.log(query)
           dispatch(getPetsFilter(query))
-          // setLink(`http://localhost:3001/pets/${city}`)
+          // setLink(`${APIGATEWAY_URL}/pets/${city}`)
      }
      console.log(input)
      return (

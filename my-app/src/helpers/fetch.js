@@ -1,7 +1,8 @@
+import { APIGATEWAY_URL } from "../utils/constant"
 
 
 const fetchSinToken = (endpoint, data, method='GET') =>{
-    const url = `http://localhost:3001/${endpoint}`
+    const url = `${APIGATEWAY_URL}/${endpoint}`
 
     if( method==='GET'){
         return fetch(url)
@@ -19,7 +20,7 @@ const fetchSinToken = (endpoint, data, method='GET') =>{
 }
 
 const fetchConToken = (endpoint, data, method='GET') =>{
-    const url = `http://localhost:3001/${endpoint}`
+    const url = `${APIGATEWAY_URL}/${endpoint}`
 
     const token = localStorage.getItem('token') || ''
 

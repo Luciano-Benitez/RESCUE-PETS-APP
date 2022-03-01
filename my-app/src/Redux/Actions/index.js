@@ -54,7 +54,7 @@ import {
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
     CHECK_FORM,
-
+   
     MODAL_DASHBOARD,
 
     GET_PROFILE,
@@ -96,6 +96,8 @@ export const getCountries = () => {
         return dispatch({ type: GET_COUNTRIES, payload: json.data });
     };
 };
+
+
 
 export const getStates = (id) => {
     return async function (dispatch) {
@@ -215,7 +217,11 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
         }, "POST");
         const body = await resp.json();
         if (!body.ok) {
-            alert(body.msg);
+            Swal.fire('Genial', 'Registro realizado correctamente', 'success')
+        }
+
+        else{
+            Swal.fire('Error', 'Algo salio mal, por favor intentelo nuevamente', 'error')
         }
     };
 };

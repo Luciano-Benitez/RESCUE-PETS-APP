@@ -2,17 +2,16 @@ import styled from "styled-components";
 import allColors from "../variables/Colors";
 
 export const DivContainer = styled.div`
-  //position: relative;
-  top: 15rem;
-  width: 100%;
-
-  min-height: auto;
+  
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  color: ${allColors.colors[8]};
   align-items: center;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-  background-position: 80% 75%;
+  justify-content: space-around;
+  margin-top: 5px;
+  padding :13px;
+ 
+ 
   h1 {
     color: ${allColors.colors[8]};
     margin-top: 0;
@@ -38,7 +37,7 @@ export const DivContainer = styled.div`
     border-color:${allColors.colors[8]} !important;
     border-width: 3px !important;
     border-radius: 5px !important;
-    cursor: pointer;
+    cursor: text;
     }
 
     textarea {
@@ -70,6 +69,14 @@ export const DivContainer = styled.div`
       :hover {
         background-color: ${allColors.colors[2]};
         cursor: pointer;
+        
+      :disabled {
+  cursor: not-allowed;
+}
+      }
+
+      :disabled{
+      opacity: 40%;
       }
     }
 
@@ -85,6 +92,11 @@ export const DivContainer = styled.div`
         text-align: center;
       }
     }
+    .errors{
+      p{
+        color: red;
+      }
+    }
   }
 `;
 
@@ -96,13 +108,87 @@ export const StyledButton = styled.input`
   font-weight: 900;
   padding: 1rem;
   transition: background-color 0.3s ease-out;
-  text-align: center;
+  text-align: left;
   border: none;
   width: 80%;
   margin-top: 2rem;
+
 
   :hover {
     background-color: ${allColors.colors[2]};
     cursor: pointer;
   }
+`;
+
+export const Left = styled.div`
+  
+  width: 50%;
+  border-radius: 9px;
+ margin:0;
+ background-color: ${allColors.colors[8]};
+
+  border-radius: 12px;
+ border-radius: 12px;
+ color: white;
+  h1 {
+    color: ${allColors.colors[2]};
+   
+  }
+ 
+`;
+
+
+export const Centro = styled.div`
+  
+  width: 100%;
+  border-radius: 9px;
+ margin:0;
+ text-align: center;
+font-size: 13px;
+  border-radius: 12px;
+ border-radius: 12px;
+ color: ${allColors.colors[8]};
+  h1 {
+    color: ${allColors.colors[2]};
+   
+  }
+ 
+`;
+
+
+export const Right = styled.div`
+background-color: white;
+
+  width: 50%;
+  padding: 18px;
+  margin:19px;
+  
+  h2 {
+    color: ${allColors.colors[8]};
+    font-size: 18px !important;
+  }
+  span {
+    color: ${allColors.colors[2]};
+    font-size: 13px !important;
+    
+  }
+
+  h1 {
+    color: ${allColors.colors[2]};
+    font-size: 15px !important;
+    text-align: center;
+   
+  }
+  h3 {
+    text-align: center;
+    color: ${allColors.colors[3]};
+    font-size: 33px !important;
+  }
+
+  p{
+font-size : 15px;
+
+
+  }
+  
 `;

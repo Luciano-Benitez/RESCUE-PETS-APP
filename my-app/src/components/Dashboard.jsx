@@ -33,9 +33,9 @@ export const Dashboard = () => {
             <Container>
               <Left>
                 <img src={LogoRefugio} className="icos20"/> 
-              <LeftMini>   <Link to='/dashboard/pets'>Take me to see Pets in Dashboard</Link> </LeftMini> 
-              <LeftMini>  <Link to='/dashboard/forms'>Go to Answers Forms</Link></LeftMini> 
-              <LeftMini>  <Link to='/dashboard/createForm'>Go to create Forms</Link></LeftMini> 
+                <Link to='/dashboard/pets'> <LeftMini>   Take me to see Pets in Dashboard</LeftMini> </Link> 
+                <Link to='/dashboard/forms'><LeftMini> Go to Answers Forms</LeftMini> </Link>
+                <Link to='/dashboard/createForm'><LeftMini>  Go to create Forms</LeftMini> </Link>
                 </Left> 
          
                 { modaldashboard ==="CreatePets" ? <CreatePets></CreatePets> :""  }

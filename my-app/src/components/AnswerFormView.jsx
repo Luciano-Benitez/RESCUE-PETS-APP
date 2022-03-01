@@ -18,11 +18,11 @@ export const AnswerFormView = () => {
     useEffect(()=>{
         dispatch(getIndividualForm(shelterid,formtypeid,formid))
         // dispatch(getProfile())
-        console.log(detailform)
+        console.log(detailform[0])
     },[])
 
     useEffect(()=>{
-        dispatch(getProfile(2))
+        if(detailform.length){dispatch(getProfile(detailform[0]))}
     },[dispatch,detailform])
 
     const handleClick = ()=>{
@@ -38,6 +38,7 @@ export const AnswerFormView = () => {
             petId:Number(formtypeid) === 1 ? Number(petId) : null,
             adoptionId:Number(formtypeid) === 1 ? Number(formid) : null,
             requestId:Number(formtypeid) === 2 ? Number(formid) : null,
+            userId : profile.userId
         }))
             
         dispatch(sendEmailAccepted({email:profile.user.email,type:Number(formtypeid)}))         
@@ -54,8 +55,8 @@ export const AnswerFormView = () => {
     
     <button onClick={handleClick}>{"<"}volver</button>
     
-    <h1>{checkf.length ? checkf.filter(e => e.adoptionId === shelterid).length ? 'Aceptado': 'por revisar':'No carga'}</h1>
-    
+    <h1>{checkf ? checkf.filter(e => e.adoptionId === shelterid).length ? 'Aceptado': 'por revisar':'No carga'}</h1>
+    <h1>{profile ? profile.userId : 'no'}</h1>
     {detailform.length ? detailform[1].map(e => (
         <div key={e.answer}>
             <h2>{e.question}</h2>

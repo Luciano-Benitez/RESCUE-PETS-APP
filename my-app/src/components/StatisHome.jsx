@@ -10,7 +10,7 @@ const StatisHome = () => {
 const dispatch = useDispatch();
 
 var auxDatos=[];
-
+// Importamos todos los estados
 const countShelters = useSelector(state => state.countShelters)
 const countAdopted2 = useSelector(state => state.countAdopted2)
 const countAdopted3 = useSelector(state => state.countAdopted3)

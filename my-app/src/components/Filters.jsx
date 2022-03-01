@@ -8,7 +8,6 @@ import {StyleButton, StyleButtonMini, StyleButtonUbicacion} from '../Styles/Styl
 import {IoNavigateCircle} from "react-icons/io5";
 import { APIGATEWAY_URL } from '../utils/constant'
 
-
 const Filters = ({idcity, cambiarEstado}) => {
      const dispatch = useDispatch()
 
@@ -36,6 +35,10 @@ const Filters = ({idcity, cambiarEstado}) => {
 
      const [input, setInput] = useState({})
 
+
+
+
+
      useEffect(()=>{
           dispatch(getCountries())
      },[dispatch])
@@ -61,7 +64,7 @@ const Filters = ({idcity, cambiarEstado}) => {
           if(isNaN(Number(e.target.value))){
                let temp = input
                delete temp[e.target.name]
-              
+               console.log(temp)
                setInput((input) => {return{...input}})
           }else{
                setInput( (input) => { return {
@@ -69,11 +72,44 @@ const Filters = ({idcity, cambiarEstado}) => {
                     [e.target.name]: e.target.value
                }})
           }
-       
+          // setLink(`${APIGATEWAY_URL}/pets/${idcity}`)
           }
 
-     
-    
+     const handleSubmitCountry = (event) => {
+          dispatch(getStates(event.target.value))
+     }
+
+     const handleSubmitState = (event) => {
+          dispatch(getcities(event.target.value))
+     }
+
+     const handleSubmitCities = (event) => {
+          console.log(event.target.value)
+          dispatch(getPetsFilter(event.target.value))
+
+     }
+
+     const handleStatus = (event) => {
+          const query = `${link}?petStatusId=${event.target.value}&`
+          setLink(query)
+          console.log(query)
+          dispatch(getPetsFilter(query))
+     }
+     const handleTemperament = (event) => {
+          const query = `${link}?temperamentId=${event.target.value}&`
+          setLink(query)
+          console.log(query)
+          dispatch(getPetsFilter(query))
+          // setLink(`${APIGATEWAY_URL}/pets/${city}`)
+     }
+     const handleAge = (event) => {
+          const query = `${link}?ageId=${event.target.value}&`
+          setLink(query)
+          console.log(query)
+          dispatch(getPetsFilter(query))
+          // setLink(`${APIGATEWAY_URL}/pets/${city}`)
+     }
+     console.log(input)
      return (
      <Container>
         <StyleButtonUbicacion onClick={()=>cambiarEstado(true)}>  <IoNavigateCircle/>

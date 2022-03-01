@@ -1,7 +1,6 @@
 import { APIGATEWAY_URL } from "../utils/constant"
 
 
-
 const fetchSinToken = (endpoint, data, method='GET') =>{
     const url = `${APIGATEWAY_URL}/${endpoint}`
 
@@ -30,8 +29,7 @@ const fetchConToken = (endpoint, data, method='GET') =>{
             method,
             headers:{
                 'x-token': token
-            },
-          
+            }
         })
     }
 
@@ -42,7 +40,6 @@ const fetchConToken = (endpoint, data, method='GET') =>{
                 'Content-type': 'application/json',
                 'x-token': token
             },
-        
             body: JSON.stringify(data)
         })
     }

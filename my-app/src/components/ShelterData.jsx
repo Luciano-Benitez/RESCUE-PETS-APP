@@ -6,7 +6,6 @@ import {
     ImgCard,
     ImgCardFlag
   } from "../Styles/StyledCards.js";
-import StatisHome from './StatisHome.jsx';
 
 
 const ShelterData = ({Data}) => {
@@ -40,7 +39,6 @@ const ShelterData = ({Data}) => {
                      <br />
                    </StyledCard>
                  {/* </Link> */}
-               
                </Fragment>
            
            ) : typeof Data === "string" ? (

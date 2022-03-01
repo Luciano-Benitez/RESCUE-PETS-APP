@@ -55,6 +55,7 @@ position: relative;
   background-color: #63ac44;
 padding: 12px 20px 2px 20px;
 bottom: 12px;
+
   
 
 }
@@ -68,6 +69,14 @@ bottom: 12px;
     align-items: center;
 text-align: center;
 margin-left: 20PX;
+}
+
+.icos50 {
+    width: 50%;
+    align-items: center;
+text-align: center;
+margin-left: 20PX;
+border-radius: 12px;
 }
 
 .icos40 {

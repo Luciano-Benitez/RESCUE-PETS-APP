@@ -1,44 +1,51 @@
 import React, { Fragment } from 'react'
 import { Link } from "react-router-dom";
 import {
-    StyledCard,
-    StyledCardContainer,
-    ImgCard,
+    
+  ImgCard,
     ImgCardFlag
   } from "../Styles/StyledCards.js";
+
+  import { StyleButton, StyleButtonMini } from "../Styles/StyledButtons";
+  import { PrimerLeft,PrimerRight , DivContenedor } from "../Styles/StyledShelterDetails";
+
 import StatisHome from './StatisHome.jsx';
+
 
 
 const ShelterData = ({Data}) => {
 
   return (
-    <div>
-        {
-           <StyledCardContainer key={Math.random(5)}> 
+    
+           <DivContenedor key={Math.random(5)}> <PrimerLeft>
+          
             {
             typeof Data !== "string" ? (    
-               <Fragment>
+               <Fragment> 
                  {/* <Link to={`/details/${p.id}`}> */}
-                   <StyledCard>
+                 
                      <h1>{Data.name}</h1>
-                     {/* <ImgCard src={p.image} /> */}
+                     
                      <h3>{Data.description}</h3>
+                   
                     {
                       (typeof Data["city"] != "undefined" || Data["city"] != null) ?
                           <h2>{Data["city"]["city"]}</h2> : <h1> Cargando datos</h1>
+                       
                     }
                     {
                       (typeof Data["city"] != "undefined" || Data["city"] != null) ?
                       <h2>{Data["city"]["state"]["country"]["country"]}</h2> : <h1> Cargando datos</h1>
                      
                     }
+                    
                     {
-                      (typeof Data["city"] != "undefined" || Data["city"] != null) ?
+                      (typeof Data["city"] != "undefined" || Data["city"] != null) ? 
                       // <h2>{Data["city"]["state"]["country"]["flag"]}</h2> : <h1> Cargando datos</h1>
-                      <ImgCardFlag src={Data["city"]["state"]["country"]["flag"]}/> : <h1> Cargando datos</h1>
+                     <ImgCardFlag src={Data["city"]["state"]["country"]["flag"]}/> : <h1> Cargando datos</h1>
                     }
                      <br />
-                   </StyledCard>
+                     <StyleButtonMini>Donate</StyleButtonMini> 
                  {/* </Link> */}
                
                </Fragment>
@@ -49,9 +56,14 @@ const ShelterData = ({Data}) => {
              <h1> Cargando datos</h1>
            )
            }
-            </StyledCardContainer>
-        }
-    </div>
+            </PrimerLeft>
+            
+            <PrimerRight>
+            <ImgCard src={Data.img} className="icos50" /> 
+
+            </PrimerRight>
+            </DivContenedor>
+       
   )
 }
 

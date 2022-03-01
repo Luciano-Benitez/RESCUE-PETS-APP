@@ -4,6 +4,7 @@ import {getSpecies, getAges, getTemperaments, getGenres, searchPetByName} from '
 
 // estilos
 import { DivInputs, FormStyle } from "../Styles/StyledShelterDetails";
+import { StyleButtonMini} from "../Styles/StyledButtons";
 
 function FiltersInShelterDetails({input, setInput, pets}) {
  
@@ -69,62 +70,61 @@ function FiltersInShelterDetails({input, setInput, pets}) {
       <FormStyle>
         <h3>Refina tu búsqueda</h3>
 
-        <DivInputs>
-          <label>Busca por Mascota: </label>
+      
+        
           <input
             onChange={handleChange}
             value={name}
             name="name"
             type="text"
             placeholder="Nombre"
-          />
-          <button onClick={(e) => handlefind(e)}>Buscar</button>
-        </DivInputs>
+          />  <br></br>
+          <StyleButtonMini onClick={(e) => handlefind(e)}>Buscar</StyleButtonMini>
+     
 
-        <DivInputs>
-          <label>Expecie: </label>
+          <br></br>
+       
           <select name='speciesId' onChange={(e)=>handleSelect(e)}>
             <option disabled selected>
-              -- Seleccione --
+              -- Seleccione Expecie--
             </option>
             <option value={"Especies"} >Todos</option>
             {species?.map(s =>(
                          <option key={s.id} value={s.id}>{s.specie}</option>
                     ))}
           </select>
-        </DivInputs>
+       
 
-        <DivInputs>
-          <label>Género: </label>
+          <br></br>  <br></br>
+      
           <select name='genreId' onChange={(e)=>handleSelect(e)}>
             <option disabled selected>
-              -- Seleccione --
+              -- Seleccione Género--
             </option>
             <option value={"Generos"} >Todos</option>
             {genres?.map(s =>(
                          <option key={s.id} value={s.id}>{s.genre}</option>
                     ))}
           </select>
-        </DivInputs>
-
-        <DivInputs>
-          <label>Rango de Edad: </label>
+        
+          <br></br>  <br></br>
+       
           <select name='ageId' onChange={(e)=>handleSelect(e)}>
             <option disabled selected>
-              -- Seleccione --
+              -- Seleccione Rango de Edad--
             </option>
             <option value={"Edad"} >Todos</option>
             {ages?.map(element => (
                          <option key={element.id} value={element.id} >{element.age}</option>
                     ))}
           </select>
-        </DivInputs>
+        
 
-        <DivInputs>
-          <label>Temperamento: </label>
+          <br></br>  <br></br>
+          
           <select name='temperamentId' onChange={(e)=>handleSelect(e)}>
             <option disabled selected>
-              -- Seleccione --
+              -- Seleccione Temperamento--
             </option>
             <option value={"Temperamento"} >Todos</option>
             {temperaments?.map(element => (
@@ -132,8 +132,8 @@ function FiltersInShelterDetails({input, setInput, pets}) {
                     )) 
                     }
           </select>
-        </DivInputs>
-        <button onClick={(e)=>handleReset(e)}>Resetear</button>
+      <br></br>
+        <StyleButtonMini onClick={(e)=>handleReset(e)}>Resetear</StyleButtonMini>
       </FormStyle>
     </div>
   );

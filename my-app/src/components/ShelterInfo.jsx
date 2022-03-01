@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import ShelterData from "./ShelterData";
 
 // estilos
-import { DivContenedor } from "../Styles/StyledShelterDetails";
+import { DivContenedor2, Left, Right ,StyledCard } from "../Styles/StyledShelterDetails";
 import {
-  StyledCard,
+  
   StyledCardContainer,
   ImgCard,
 } from "../Styles/StyledCards.js";
-import { StyleButton, StyleButtonMini } from "../Styles/StyledButtons";
+
 import "../Styles/Styles.css";
 
 const ShelterInfo = ({ Data, pets, input, setInput }) => {
@@ -84,16 +84,20 @@ const ShelterInfo = ({ Data, pets, input, setInput }) => {
   };
  
   return (
-    <div>
-      <h1>Hola, soy la info del refugio</h1>
-      <ShelterData Data={Data}/>
-      <div>
-        <StyleButtonMini>Donate</StyleButtonMini>
-      </div>
-      <DivContenedor>
-        <FiltersInShelterDetails input={input} setInput={setInput}/>
+    
+    <Fragment>
+      
+    <ShelterData Data={Data}/>
+     
+      <DivContenedor2>
+        
+        <Left>
 
-        <div>
+        <FiltersInShelterDetails input={input} setInput={setInput}/>
+        
+        </Left>
+
+        <Right><br></br> <br></br> 
           <StyledCardContainer key={Math.random(5)}>
             {typeof pets !== "string" ? (
               currentItems?.map((p) => (
@@ -115,7 +119,13 @@ const ShelterInfo = ({ Data, pets, input, setInput }) => {
             ) : (
               <h1> Cargando datos</h1>
             )}
-            <div>
+            
+            {/* <button onClick={handleLoadMore} className="loadmore">
+                        Load More
+                        </button> */}
+                        
+          </StyledCardContainer>
+          <div className="page"><br></br><center>
               <ul className="pageNumbers">
                 <li>
                   <button
@@ -140,14 +150,11 @@ const ShelterInfo = ({ Data, pets, input, setInput }) => {
                   </button>
                 </li>
               </ul>
-            </div>
-            {/* <button onClick={handleLoadMore} className="loadmore">
-                        Load More
-                        </button> */}
-          </StyledCardContainer>
-        </div>
-      </DivContenedor>
-    </div>
+          </center>  </div>
+
+          </Right>
+      </DivContenedor2>
+      </Fragment>
   );
 };
 

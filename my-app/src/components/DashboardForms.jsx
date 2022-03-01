@@ -6,9 +6,6 @@ import {checkForm, deleteAnswerForm, getForms, getFormtypes, getPetsForDashboard
 import { Link, useNavigate } from 'react-router-dom'
 
 import { StyledDashboardForms } from '../Styles/StyledDashboardForms'
-import { APIGATEWAY_URL } from '../utils/constant'
-
-
 
 export const DashboardForms= () => {
     const dispatch = useDispatch()
@@ -19,7 +16,7 @@ export const DashboardForms= () => {
     const formtypes = useSelector((state) => state.formtypes)
     const pet = useSelector( state => state.petsForDashboard )
     const routeInfo = useSelector(state => state.ShelterAndCityId)
-    const route = `${APIGATEWAY_URL}/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
+    const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
     const check = useSelector((state) => state.checkForm)
     const [typeform, settypeform] = useState()
 

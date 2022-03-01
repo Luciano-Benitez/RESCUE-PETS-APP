@@ -28,7 +28,7 @@ export default function DashboardIcos() {
              <button   onClick={     (event)=>handleClick(event, "CreatePets")} className='but'> <img src={New}></img><br/>Nueva Mascota</button>
               <Link to='/dashboard/pets/FollowUp'><button  className='but'> <img src={Imglist}></img><br/>Seguimiento a Mascota</button></Link>
               <Link to='/dashboard/forms'><button  className='but'> <img src={Edad}></img><br/>Preguntas</button></Link>
-              <Link to='/dashboard/createForm'>  <button  className='but'> <img src={Ok}></img><br/>New Form</button></Link>
+              <Link to='/dashboard/createForm'>  <button  className='but'> <img src={Ok}></img><br/>Nuevo Formulario</button></Link>
 
               </Fragment>
   )

@@ -151,7 +151,7 @@ export const getPetsSimilar = (idShelter, datafilters) => {
 export const getPetId = (id) => {
     return async function (dispatch) {
         try {
-            const Details = await axios("${APIGATEWAY_URL}/petDetail/" + id);
+            const Details = await axios(`${APIGATEWAY_URL}/petDetail/` + id);
             dispatch({ type: GET_PET_ID, payload: Details.data });
         } catch (error) {
             console.log(error);
@@ -468,7 +468,7 @@ export const postRequestTransit = (payload) => {
 
 export const getAllQuestions = () => {
     return async function (dispatch) {
-        let json = await axios('${APIGATEWAY_URL}/getAllQuestions')
+        let json = await axios(`${APIGATEWAY_URL}/getAllQuestions`)
         return dispatch({ type: GET_ALL_QUESTIONS, payload: json.data })
     }
 }
@@ -545,7 +545,7 @@ const logout = () => ({ type: authLogout })
 
 export const postCreateForm = (form) => {
     return async function (_dispatch) {
-        let json = await axios.post('${APIGATEWAY_URL}/createForm', form)
+        let json = await axios.post(`${APIGATEWAY_URL}/createForm`, form)
         return json
     }
 }
@@ -612,14 +612,14 @@ export const getFollowUpsFromShelter = (shelterId) => {
 
 export const sendEmailAccepted = (payload) => {
     return async function(dispatch){
-        let json = await axios.post('${APIGATEWAY_URL}/nodemailer/sendEmailAccepted',payload)
+        let json = await axios.post(`${APIGATEWAY_URL}/nodemailer/sendEmailAccepted`,payload)
         return json
     }
 }
 
 export const sendEmailRejected = (payload) => {
     return async function(dispatch){
-        let json = await axios.post('${APIGATEWAY_URL}/nodemailer/sendEmailRejected',payload)
+        let json = await axios.post(`${APIGATEWAY_URL}/nodemailer/sendEmailRejected`,payload)
         return json
     }
 }

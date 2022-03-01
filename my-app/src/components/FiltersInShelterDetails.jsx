@@ -33,7 +33,7 @@ function FiltersInShelterDetails({input, setInput, pets}) {
     dispatch(getGenres());
    }
       
-  }, [species, temperaments, ages]);
+  }, [species, temperaments, ages, genres]);
 
 
   const handleChange = (e) => {

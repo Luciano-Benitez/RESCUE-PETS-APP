@@ -86,7 +86,7 @@ export function CreatePets() {
         petStatusId: '',
         genreId:'',
     });
-    console.log('Estado Local: ', state)
+    
 
     const handleChanges = (e) => {
         setState({
@@ -160,6 +160,7 @@ export function CreatePets() {
                 
         alert('¡La mascota fue creada con exito!');
         // navigate('/dashboard/pets');
+        
     };
 
 

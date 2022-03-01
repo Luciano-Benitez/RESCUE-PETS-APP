@@ -391,8 +391,9 @@ export const login = (user) => ({
 })
 
 export function postPets(payload) {
-    return async function (dispatch) {
-        const post = await axios.post('${APIGATEWAY_URL}/pets', payload);
+    console.log("console desde accion  ",payload)
+    return async function () {
+        const post = await axios.post(`${APIGATEWAY_URL}/pets`, payload);
         return post;
     }
 }

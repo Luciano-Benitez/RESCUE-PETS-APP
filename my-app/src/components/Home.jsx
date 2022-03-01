@@ -59,12 +59,12 @@ export function Home() {
         <Navbar/>
         <Header></Header>
       
-         <StatisHome />
+         
         <Filters idcity={idcity} cambiarEstado={cambiarEstadoModal}/>
         {estadoModal == true ? (<Modal modal={true} setidcity={setidcity} estado={estadoModal} cambiarEstado={cambiarEstadoModal}/>) : ""}
            
             <Cards  pets={pets}></Cards>
-          
+            <StatisHome />
             <PreFooter/>
            
 

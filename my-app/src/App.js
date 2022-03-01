@@ -110,11 +110,11 @@ function App() {
         } />
 
 <Route path="/shelters/:id/*" element={
-          <PublicRoute>
+          <>
             <Navbar/>
             <ShelterDetail />
 
-          </PublicRoute>
+          </>
         } />
 
 

@@ -10,7 +10,7 @@ const { getAllPetsinDB } = require("../controllers/getAllPetsinDB.js");
 const { deletePet } = require("../controllers/deletePet");
 const { editPet } = require("../controllers/editPets");
 const { getAllPetAdopted } = require("../controllers/getAllPetsAdopted.js");
-
+const {Shelter, Pets} = require('../db.js') 
 
 router.get("/pets/:idCity", getPets);
 
@@ -60,9 +60,6 @@ router.get("/petDetail", async (req, res) => {
  
   router.get("/petAdopted/:id", getAllPetAdopted)
 
-
-  //A partir de aqui estan las rutas para el Statistics Home
-  
   router.get('/countshelter', async (req,res)=>{
     const {count, rows} = await Shelter.findAndCountAll();
     if (count){

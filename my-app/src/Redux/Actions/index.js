@@ -54,15 +54,19 @@ import {
     GET_FORM_BY_SHELTER,
     GET_FOLLOW_UPS_FROM_SHELTER,
     CHECK_FORM,
-
+   
     MODAL_DASHBOARD,
 
     GET_PROFILE,
     GET_FOLLOW_UPS_STATUSES,
+    GET_COUNT_SHELTER,
+    GET_COUNT_ADOPTED2,
+    GET_COUNT_ADOPTED3
 
     } from './types.js'
 import { async } from '@firebase/util';
 import { APIGATEWAY_URL } from '../../utils/constant';
+
 
 
 export const getPets = () => {
@@ -90,10 +94,13 @@ export const getPets = () => {
 
 export const getCountries = () => {
     return async function (dispatch) {
+      
         let json = await axios(`${APIGATEWAY_URL}/country`);
         return dispatch({ type: GET_COUNTRIES, payload: json.data });
     };
 };
+
+
 
 export const getStates = (id) => {
     return async function (dispatch) {
@@ -213,14 +220,15 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
         }, "POST");
         const body = await resp.json();
         if (!body.ok) {
+            Swal.fire('Genial', 'Registro realizado correctamente', 'success')
+        }
+
+        else{
+            Swal.fire('Error', 'Algo salio mal, por favor intentelo nuevamente', 'error')
+
             Swal.fire('Genial', 'Informacion actualizada', 'success')
         }
 
-        else {
-
-            Swal.fire('Error', 'Hubo un error en el registro, intentelo nuevamente', 'error')
-            
-        }
     };
 };
 
@@ -349,15 +357,17 @@ export const sendAdoption = (payload) => {
 
 export const startChecking = () => {
     return async (dispatch) => {
-
         const resp = await fetchConToken('renew')
         const body = await resp.json()
+        
         if (body.ok) {
+            console.log('Entro aqui')
             localStorage.setItem('token', body.token)
             localStorage.setItem('token-init-date', new Date().getTime())
             dispatch(login({ id: body.id, email: body.email }))
         }
         else {
+            
             dispatch(checkingFinish())
         }
     }
@@ -718,4 +728,34 @@ export const editFollowUp = (followUpId, payload) => {
         // console.log(editPet)
         // return editPet
     };
+}
+
+export const getCountShelter = () => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/countshelter`)
+        return dispatch({
+            type: GET_COUNT_SHELTER,
+            payload: json.data
+        })
+    }
+}
+
+export const getCountAdopted2 = () => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/petAdopted2`)
+        return dispatch({
+            type: GET_COUNT_ADOPTED2,
+            payload: json.data
+        })
+    }
+}
+
+export const getCountAdopted3 = () => {
+    return async function (dispatch) {
+        let json = await axios(`http://localhost:3001/petAdopted3`)
+        return dispatch({
+            type: GET_COUNT_ADOPTED3,
+            payload: json.data
+        })
+    }
 }

@@ -246,7 +246,7 @@ export function CreatePets() {
             </select>
            
             <> <br/> <br/>
-            <input  className="custom-file-upload" type='file' name='file' value={state.image} placeholder='Inserte Imagen'
+            <input  className="custom-file-upload" type='file' multiple="multiple" name='file' value={state.image} placeholder='Inserte Imagen'
                     onChange={uploadImage,  handleSelectImg}/>
                     {loading ? (<h3>Cargando Imagenes... </h3>) : (<img src={image} style={{width:'300px'}} />)}
             </>

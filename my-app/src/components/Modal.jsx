@@ -16,6 +16,8 @@ import { APIGATEWAY_URL } from "../utils/constant.js";
   
   const Modal = ({setidcity, estado, cambiarEstado}) => {
 
+  
+
     const [params, setParams] = useState(`${APIGATEWAY_URL}/pets/`)
 
     const allCountries = useSelector((state) => state.countries);

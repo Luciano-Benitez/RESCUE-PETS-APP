@@ -34,7 +34,7 @@ const PetsInDashboard = () => {
 
 
     const routeInfo = useSelector(state => state.ShelterAndCityId)
-    const route = `http://localhost:3001/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
+    const route = `${APIGATEWAY_URL}/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
     
     const petsFromShelter = useSelector( state => state.petsForDashboard )
     // console.log("petsFromShelter -------------->", petsFromShelter)

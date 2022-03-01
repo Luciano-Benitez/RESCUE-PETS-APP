@@ -60,6 +60,9 @@ router.get("/petDetail", async (req, res) => {
  
   router.get("/petAdopted/:id", getAllPetAdopted)
 
+
+  //A partir de aqui estan las rutas para el Statistics Home
+  
   router.get('/countshelter', async (req,res)=>{
     const {count, rows} = await Shelter.findAndCountAll();
     if (count){

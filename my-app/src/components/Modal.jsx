@@ -12,13 +12,10 @@ import {
     getcities,
     getPetsFilter
   } from "../Redux/Actions/index.js";
-import { APIGATEWAY_URL } from "../utils/constant.js";
   
   const Modal = ({setidcity, estado, cambiarEstado}) => {
 
-  
-
-    const [params, setParams] = useState(`${APIGATEWAY_URL}/pets/`)
+    const [params, setParams] = useState(`http://localhost:3001/pets/`)
 
     const allCountries = useSelector((state) => state.countries);
     const statesXcountry = useSelector((state) => state.states);

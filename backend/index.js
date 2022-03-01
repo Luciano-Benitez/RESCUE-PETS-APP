@@ -17,7 +17,7 @@ const { followUpStatus } = require("./helpers/followUpStatus");
 conn.sync({ force: false }).then(() => {
 
   
-  server.listen(process.env.PORT || 4000, async() => {
+  server.listen(3001, async() => {
     await setTemperaments()
     await setRoles()
     await setSpecies()
@@ -33,6 +33,6 @@ conn.sync({ force: false }).then(() => {
 
 
 
-    console.log(`Listen in ${process.env.PORT}`); // eslint-disable-line no-console
+    console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });

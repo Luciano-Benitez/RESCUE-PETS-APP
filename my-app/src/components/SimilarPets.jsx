@@ -50,7 +50,7 @@ export function SimilarPets() {
       <Fragment>
         
         {/* <StyledInfo ><h1>Más recomendaciones para ti </h1></StyledInfo  > */}
-        <StyledCardContainer  onLoadStart={(e) => handleClick2(e)}>
+        <StyledCardContainer  onPointerEnter={(e) => handleClick2(e)}>
         {Datos.length ? ( pets.map((e) => (
             <Link to={`/details/${e.id}`}  onChange={(e) => handleClick2(e) } key={e.id} onClick= {(e) => {handleClick(e); handleClick2(e)}} key={e.id}>
               <StyledCard key={e.id}>

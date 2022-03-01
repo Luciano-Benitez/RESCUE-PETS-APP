@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {addFollowUp, getIndividualForm, getProfile, sendEmailAccepted, sendEmailRejected} from "../Redux/Actions/index"
+import { StyledDashboardForms } from '../Styles/StyledDashboardForms'
 
 export const AnswerFormView = () => {
     const dispatch = useDispatch()
@@ -35,9 +36,9 @@ export const AnswerFormView = () => {
             followUpStatusId:1,
             profileId:Number(detailform[0]),
             shelterId:shelterid,
-            petId:Number(formtypeid) === 1 ? Number(petId) : null,
-            adoptionId:Number(formtypeid) === 1 ? Number(formid) : null,
-            requestId:Number(formtypeid) === 2 ? Number(formid) : null,
+            petId:Number(formtypeid) === 2 ? Number(petId) : null,
+            adoptionId:Number(formtypeid) === 2 ? Number(formid) : null,
+            requestId:Number(formtypeid) === 1 ? Number(formid) : null,
             userId : profile.userId
         }))
             
@@ -49,14 +50,10 @@ export const AnswerFormView = () => {
         dispatch(sendEmailRejected({email:profile.user.email,type:Number(formtypeid)}))
     }
 
-    return (<>
-    <br></br><br></br><br></br><br></br><br></br><br></br>
-    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+    return (<StyledDashboardForms>
     
     <button onClick={handleClick}>{"<"}volver</button>
     
-   
-    <h1>{profile ? profile.userId : 'no'}</h1>
     {detailform.length ? detailform[1].map(e => (
         <div key={e.answer}>
             <h2>{e.question}</h2>
@@ -66,6 +63,6 @@ export const AnswerFormView = () => {
     )): <h1>Loading..</h1>}
     <button onClick={handleAllow}>Aceptar ✔</button>
     <button onClick={handleDeny}>Denegar ✘</button>
-    </>
+    </StyledDashboardForms>
     )
 }

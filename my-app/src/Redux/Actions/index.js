@@ -544,7 +544,7 @@ const logout = () => ({ type: authLogout })
 
 
 export const postCreateForm = (form) => {
-    return async function (_dispatch) {
+    return async function (dispatch) {
         let json = await axios.post(`${APIGATEWAY_URL}/createForm`, form)
         return json
     }

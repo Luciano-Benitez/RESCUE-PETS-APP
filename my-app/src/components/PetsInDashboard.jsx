@@ -168,7 +168,7 @@ const PetsInDashboard = () => {
               </thead>
               <tbody>
               {
-                data.length? data.map(data => 
+                typeof(data) !== "string" && data.length? data.map(data => 
                   <Fragment>
                     {editPetId === data.id ? (
                       <EditableRows

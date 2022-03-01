@@ -107,7 +107,7 @@ const FollowUP = () => {
               </thead>
               <tbody>
               {
-                data.length? data.map(data => 
+                typeof(data) !== "string" && data.length? data.map(data => 
                   <Fragment>
                     {editFollowUpId === data.id ? (
                       <EditableRowsFollowUp

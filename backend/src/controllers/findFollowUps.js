@@ -17,7 +17,7 @@ const {sendEmailReminder} = require('../controllers/sendEmailReminder')
             pet: foundFollowUp.pet.name,
             phoneNumber: foundFollowUp.profile.phoneNumber
         }
-
+        
         const date1 = foundFollowUp.followUpDate1
         const date2 = foundFollowUp.followUpDate2
         const date3 = foundFollowUp.followUpDate3
@@ -34,11 +34,11 @@ const {sendEmailReminder} = require('../controllers/sendEmailReminder')
         else res.status(200).json('No hay fechas registradas');
 
         // res.status(200).json(date3);
-
+        
     } catch (error) {
         console.log(error);
         res.json(error);
     }   
 };
 
-module.exports = {findFollowUp} 
+module.exports = {findFollowUp}

@@ -74,9 +74,9 @@ font-size : 15px;
 
 export const Cuadro = styled.div`
  width: 100%;
- height:525px;
+ height:400px;
  overflow: hidden;
- border-radius: 12px;
+ border-radius: 19px;
 
 `
 

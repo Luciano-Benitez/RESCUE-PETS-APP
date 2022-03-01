@@ -15,6 +15,8 @@ const FollowUP = () => {
   console.log("shelterId------------>",shelterId)
 
   const dispatch = useDispatch();
+  const allFollowUpStatuses = useSelector(state => state.followUpStatuses)
+  const allFollowUps = useSelector(state => state.followUps)
 
   useEffect(() => {
     dispatch(getFollowUpsFromShelter(shelterId))
@@ -25,9 +27,7 @@ const FollowUP = () => {
   }, [])
   
 
-  const allFollowUps = useSelector(state => state.followUps)
   // console.log("allFollowUps---------------->", allFollowUps)
-  const allFollowUpStatuses = useSelector(state => state.followUpStatuses)
 
   const [data, setData] = useState('')
 
@@ -47,6 +47,7 @@ const FollowUP = () => {
     seteditFormData({
       ...editFormData,
       [event.target.name]: event.target.value
+      
     })}
 
     const [editFollowUpId, setEditFollowUpId] = useState('')
@@ -62,13 +63,14 @@ const FollowUP = () => {
       }
       seteditFormData(formValues)
       
+      
     }
 
 
-    const handleEditedFormSubmit = (event) => {
+    const handleEditedFormSubmit =  async (event) => {
       event.preventDefault();
-      dispatch(editFollowUp(editFollowUpId, editFormData))
-      dispatch(getFollowUpsFromShelter(shelterId))
+     await dispatch(editFollowUp(editFollowUpId, editFormData))
+      await dispatch(getFollowUpsFromShelter(shelterId))
       setEditFollowUpId(null);
 
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getFormAdoption,
@@ -9,9 +9,10 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { validateForm } from "../helpers/validation";
 import TerminosyCondiciones from "./TerminosyCondiciones";
-
+import Img from "../Icos/homeim5.svg"
 //estilos
-import { DivContainer } from "../Styles/StyledFormTransit";
+import { Centro, DivContainer, Left, Right } from "../Styles/StyledFormTransit";
+
 
 const FormAdoption = ({ petId, Datos }) => {
   const dispatch = useDispatch();
@@ -112,65 +113,74 @@ const FormAdoption = ({ petId, Datos }) => {
   }
 
   return (
+    <Fragment>
+      <Centro><br></br><h1>Formulario de Adopción</h1>
+    <p>Estas a un paso de cambiar una vida</p>
     <DivContainer>
-      <h1>FORMULARIO DE ADOPCIÓN</h1>
-      <p>Estas a un paso de cambiar una vida</p>
+   
+      <Left>
+     
       <form className="formulario">
-        <div>
-          <label>Nombre obligatorio</label>
+     
+      <br/>  <br/> <br/>
           <input
             type="text"
             className="inputForm"
             value={profileData.name}
             name="name"
             onChange={(e) => handleChangeProfile(e)}
+            placeholder="Nombre obligatorio"
           />
-        </div>
+       
 
-        <div>
-          <label>Apellido</label>
+        <br/>
+        
           <input
             type="text"
             className="inputForm"
             value={profileData.lastName}
             name="lastName"
             onChange={(e) => handleChangeProfile(e)}
+            placeholder="Apellido"
+           
           />
-        </div>
+       
 
-        <div>
-          <label>Whastapp</label>
+       <br/>
+         
           <input
             type="tel"
             className="inputForm"
             value={profileData.phoneNumber}
             name="phoneNumber"
+            placeholder="Whastapp"
             onChange={(e) => handleChangeProfile(e)}
           />
-        </div>
+        
 
-        <div>
-          <label>Dirección</label>
-          <span>dirección, ciudad, provincia/estado</span>
+     <br/>
+          
           <input
+           placeholder="Dirección (Dirección, ciudad, provincia/estado)"
             type="text"
             className="inputForm"
             value={profileData.address}
             name="address"
+            
             onChange={(e) => handleChangeProfile(e)}
           />
-        </div>
+       
 
-        <div>
-          <label>Email</label>
+       <br/>
           <input
+          placeholder="Email"
             type="email"
             className="inputForm"
             value={profileData.email}
             name="email"
             onChange={(e) => handleChangeProfile(e)}
           />
-        </div>
+       
 
         {form[0] &&
           form[0].questions.map((e) => (
@@ -186,13 +196,13 @@ const FormAdoption = ({ petId, Datos }) => {
             </div>
           ))}
           <hr />
-          <div>
+       
             <label>Ver <span onClick={()=>cambiarEstadoModal(true)}>términos y condiciones</span></label>
             <span>
             <input onChange={(e)=>handleChek(e)} type="checkbox" value={true} name="Acepto" /> 
             Acepto los términos y condiciones
           </span>
-          </div>
+          
           {Modal && <TerminosyCondiciones cambiarEstado={cambiarEstadoModal}/>}
           <hr />
         <button
@@ -221,7 +231,14 @@ const FormAdoption = ({ petId, Datos }) => {
           {errors.email && <p>{errors.email}</p>}
         </div>
       </form>
-    </DivContainer>
+      </Left>
+      <Right>
+
+<img src={Img} className="icos40"></img>
+      </Right>
+      </DivContainer> <br/> <br/> </Centro>
+    
+      </Fragment>
   );
 };
 

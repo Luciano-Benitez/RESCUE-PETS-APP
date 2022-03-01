@@ -37,10 +37,10 @@ export const DashboardCreateForm = () => {
     let questionexistingform = existingform.length ? existingform[0].questions.map(e => e.id) : []
     
     const handleSubmitChange = (e) => {
-           if(e.target[e.target.value].attributes.name.nodeValue === formtypes[0].typeName){
+           if(e.target[e.target.value].attributes.name.nodeValue === formtypes[1].typeName){
                 settype(e.target.value)
                 
-            }if(e.target[e.target.value].attributes.name.nodeValue === formtypes[1].typeName){
+            }if(e.target[e.target.value].attributes.name.nodeValue === formtypes[0].typeName){
                 settype(e.target.value)
             }
             dispatch(getFormByShelter(shelterid.shelterId,Number(type)))        

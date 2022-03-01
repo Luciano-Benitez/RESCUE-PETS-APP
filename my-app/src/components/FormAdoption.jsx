@@ -34,7 +34,7 @@ const FormAdoption = ({ petId, Datos }) => {
   useEffect(() => {
     if (form.length === 0 && Datos[0]) {
       let idShelter = Datos[0].shelterId;
-      dispatch(getFormAdoption(idShelter, 1));
+      dispatch(getFormAdoption(idShelter, 2));
     }
   }, [Datos]);
 

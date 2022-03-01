@@ -5,8 +5,13 @@ import {
   ImgCard,
     ImgCardFlag
   } from "../Styles/StyledCards.js";
+
   import { StyleButton, StyleButtonMini } from "../Styles/StyledButtons";
   import { PrimerLeft,PrimerRight , DivContenedor } from "../Styles/StyledShelterDetails";
+
+import StatisHome from './StatisHome.jsx';
+
+
 
 const ShelterData = ({Data}) => {
 
@@ -42,6 +47,7 @@ const ShelterData = ({Data}) => {
                      <br />
                      <StyleButtonMini>Donate</StyleButtonMini> 
                  {/* </Link> */}
+               
                </Fragment>
            
            ) : typeof Data === "string" ? (

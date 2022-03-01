@@ -43,13 +43,10 @@ import {
   POST_REQUEST_TRANSIT,
   GET_FOLLOW_UPS_FROM_SHELTER,
   CHECK_FORM,
-  PIC_PRIMER,
+
   MODAL_DASHBOARD,
   GET_PROFILE,
-  GET_FOLLOW_UPS_STATUSES,
-  GET_COUNT_SHELTER,
-  GET_COUNT_ADOPTED2,
-  GET_COUNT_ADOPTED3
+  GET_FOLLOW_UPS_STATUSES
 
 } from "../Actions/types";
 
@@ -92,12 +89,9 @@ const initialState = {
   checkForm : [],
 
   modaldashboard:"icos",
- 
+
   profileForSend : [],
-  followUpStatuses: [],
-  countShelters:{},
-  countAdopted2:{},
-  countAdopted3:{}
+  followUpStatuses: []
 
 
 };
@@ -128,11 +122,6 @@ export default function rooReducer(state = initialState, { type, payload }) {
         petOne: payload,
       };
 
-      case PIC_PRIMER:
-      return {
-        ...state,
-        pic_one: payload,
-      };
     case GET_CITIES:
       return {
         ...state,
@@ -447,26 +436,6 @@ export default function rooReducer(state = initialState, { type, payload }) {
               ...state,
               followUpStatuses : payload
             }
-
-          case GET_COUNT_SHELTER:
-            return{
-              ...state,
-              countShelters:payload
-            }  
-        
-          case GET_COUNT_ADOPTED2:
-            return{
-              ...state,
-              countAdopted2:payload
-            } 
-
-          case GET_COUNT_ADOPTED3:
-            return{
-              ...state,
-              countAdopted3:payload
-            }   
-
-
         default:
           return state;
       }

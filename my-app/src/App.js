@@ -73,13 +73,12 @@ function App() {
 
 
 
-
-
-
-            <Route exact path="/details/:id" 
-            element={ <Details/>  }>
-          
-        </Route>
+<Route path="/details/:id" element={
+          <PublicRoute>
+            <Navbar/>
+            <Details />
+          </PublicRoute>
+        } />
 
 <Route path="/forgotpassword" element={
           <PublicRoute>

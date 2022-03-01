@@ -9,11 +9,7 @@ let transporter = nodemailer.createTransport({
     auth: {
         user: EMAIL,
         pass: EMAIL_PASS
-    },
-    tls: {
-        // do not fail on invalid certs
-        rejectUnauthorized: false
-    },
+    }
 })
 
 module.exports= {transporter}

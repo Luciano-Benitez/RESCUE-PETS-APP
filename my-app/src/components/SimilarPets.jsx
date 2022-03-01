@@ -23,36 +23,27 @@ export function SimilarPets() {
   useEffect(() => {
   
       dispatch(getPetsSimilar(Datos, petsfilter));
-     
+    
   }, [dispatch]);
 
 
   const handleClick = (e) => {
-    window.scrollTo(0, 0)
-    dispatch(getPetId(id));
   dispatch(getPetsSimilar(Datos, petsfilter));
- 
   };
-  
   
 
   const handleClick2 = (e) => {
-   
     dispatch(getPetId(id));
     dispatch(getPetsSimilar(Datos, petsfilter));
-    
-    
-   
     };
     
   if (pets) {
     return (
       <Fragment>
-        
         {/* <StyledInfo ><h1>Más recomendaciones para ti </h1></StyledInfo  > */}
-        <StyledCardContainer  onLoadStart={(e) => handleClick2(e)}>
+        <StyledCardContainer>
         {Datos.length ? ( pets.map((e) => (
-            <Link to={`/details/${e.id}`}  onChange={(e) => handleClick2(e) } key={e.id} onClick= {(e) => {handleClick(e); handleClick2(e)}} key={e.id}>
+            <Link to={`/details/${e.id}`} onPointerMove={(e) => handleClick2(e)} onChange={(e) => handleClick2(e)} key={e.id} onClick= {(e) => handleClick(e)} key={e.id}>
               <StyledCard key={e.id}>
                 {" "}
                 <h1>{e.name} </h1>

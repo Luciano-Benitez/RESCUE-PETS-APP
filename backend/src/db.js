@@ -2,18 +2,30 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST,  DATABASE_URL } = process.env;
+const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DATABASE_URL, NODE_ENV } =
+  process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  // dialectOptions: {
-  //   ssl: {
-  //     require: true,
-  //     rejectUnauthorized: false
-  //   }
-  // },
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+let sequelize;
+if (NODE_ENV === "local") {
+  sequelize = new Sequelize(
+    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+    {
+      logging: false, // set to console.log to see the raw SQL queries
+      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+    }
+  );
+} else {
+  sequelize = new Sequelize(`${DATABASE_URL}`, {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  });
+}
 
 const basename = path.basename(__filename);
 
@@ -150,23 +162,8 @@ FollowUp.belongsTo(Shelter);
 Pets.hasOne(FollowUp);
 FollowUp.belongsTo(Pets);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Profiles.hasMany(Adoptions)
-Profiles.hasMany(Requests)
+Profiles.hasMany(Adoptions);
+Profiles.hasMany(Requests);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -225,7 +225,10 @@ export const startRegister = (name, phoneNumber, description, address, email, pa
 
         else{
             Swal.fire('Error', 'Algo salio mal, por favor intentelo nuevamente', 'error')
+
+            Swal.fire('Genial', 'Informacion actualizada', 'success')
         }
+
     };
 };
 

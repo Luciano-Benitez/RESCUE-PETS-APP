@@ -7,6 +7,11 @@ import EditableRows from './EditableRows';
 import { Link } from 'react-router-dom';
 
 
+/// Enlace con el backend ------ https://rescuet-pet-backend.herokuapp.com
+
+import { APIGATEWAY_URL } from '../utils/constant';
+
+
 
 const PetsInDashboard = () => {
 

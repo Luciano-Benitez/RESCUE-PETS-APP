@@ -55,7 +55,7 @@ export const AnswerFormView = () => {
     
     <button onClick={handleClick}>{"<"}volver</button>
     
-    <h1>{checkf ? checkf.filter(e => e.adoptionId === shelterid).length ? 'Aceptado': 'por revisar':'No carga'}</h1>
+   
     <h1>{profile ? profile.userId : 'no'}</h1>
     {detailform.length ? detailform[1].map(e => (
         <div key={e.answer}>

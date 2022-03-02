@@ -25,8 +25,18 @@ export const DashboardForms= () => {
 
     useEffect(() => {
         dispatch(getFormtypes(routeInfo.shelterId))
+<<<<<<< HEAD
         dispatch(checkForm(routeInfo.shelterId))
         if(routeInfo)dispatch(getPetsForDashboard(route))
+=======
+        // if(iduser)dispatch(getForms(iduser,1))
+        dispatch(checkForm(routeInfo.shelterId))
+        if(routeInfo)dispatch(getPetsForDashboard(route))
+        // if(typeof(forms) !== 'string'){
+        //     if(forms[0].form.formtypeId === 1) settypeform('Adopción')
+        //     else settypeform('Trnánsito')
+        // }
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
     }, [])
 
     let filterimages = typeof(pet) !== 'string'? pet.map(e => {return {id:e.id,image:e.image}}) : null
@@ -42,17 +52,29 @@ export const DashboardForms= () => {
 
     const handleDeleteAdoption = (e) => {
         dispatch(deleteAnswerForm(Number(e),'adoption'))
+<<<<<<< HEAD
         dispatch(getForms(iduser,2))
+=======
+        dispatch(getForms(iduser,1))
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
     }
 
     const handleDeleteRequest = (e) => {
         dispatch(deleteAnswerForm(Number(e),'request'))
+<<<<<<< HEAD
         dispatch(getForms(iduser,1))
+=======
+        dispatch(getForms(iduser,2))
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
     }
 
     useEffect(() => {
         if(forms.length && typeof(forms) !== 'string' && !typeform){
+<<<<<<< HEAD
             let temp = forms[0].form.formtypeId === 2 ? formtypes[0].typeName : forms[0].form.formtypeId === 1 ? formtypes[1].typeName : 'otro'
+=======
+            let temp = forms[0].form.formtypeId === 1 ? formtypes[0].typeName : forms[0].form.formtypeId === 2 ? formtypes[1].typeName : 'otro'
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
             settypeform(temp)
         }
     },[typeform])
@@ -72,7 +94,11 @@ export const DashboardForms= () => {
                         typeof(formtypes) === 'string'? (<option>{formtypes}</option>): <option>Cargando...</option>}
                     </select>
                 
+<<<<<<< HEAD
                 {typeof(formtypes) !== 'string' && formtypes.length && formtypes[1].typeName === typeform && forms.length && forms[0].form.formtypeId === 2? (<table>
+=======
+                {typeform === 'Adopción' && forms.length && forms[0].form.formtypeId === 1? (<table>
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -86,7 +112,11 @@ export const DashboardForms= () => {
                         {typeof(forms) !== 'string'? forms.map(element => (
                             <tr key={element.id}>
                                 <td>{element.id}</td>
+<<<<<<< HEAD
                                 <td><Link to={`view/${element.id}/${formtypes[1].id}/${element.petId}`}><button>Ver Formulario</button></Link></td>
+=======
+                                <td><Link to={`view/${element.id}/${formtypes[0].id}/${element.petId}`}><button>Ver Formulario</button></Link></td>
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
                                 <td>
                                 {filterimages ? filterimages.map(e => {
                                     if(e.id === Number(element.petId))
@@ -95,13 +125,21 @@ export const DashboardForms= () => {
                                 }): <h1>No lo obtiene</h1>}
                                 </td>
                                 <td>{check ? check.filter(e => e.adoptionId === element.id).length ? 'Aceptado': 'por revisar':'No carga'}</td>
+<<<<<<< HEAD
                                 <td><button onClick={() => handleDeleteRequest(element.id)}>✘</button></td>
+=======
+                                <td><button onClick={() => handleDeleteAdoption(element.id)}>✘</button></td>
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
                             </tr>
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                         </tbody>
                 </table>):
                 
+<<<<<<< HEAD
                 typeof(formtypes) !== 'string' && formtypes.length && formtypes[0].typeName === typeform && forms.length && forms[0].form.formtypeId === 1?(<table>
+=======
+                typeform === 'Tránsito' && forms.length && forms[0].form.formtypeId === 2?(<table>
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -114,6 +152,7 @@ export const DashboardForms= () => {
                         {typeof(forms) !== 'string' ? forms.map(element => (
                             <tr key={element.id}>
                                 <td>{element.id}</td>
+<<<<<<< HEAD
                                 <td><Link to={`view/${element.id}/${formtypes[0].id}/${1}`}><button>Ver Formulario</button></Link></td>
                                 <td>{check? check.filter(e => e.requestId === element.id).length ? 'Aceptado': 'por revisar':'No carga'}</td>
                                 <td><button onClick={() => handleDeleteAdoption(element.id)}>✘</button></td>
@@ -121,6 +160,15 @@ export const DashboardForms= () => {
                         )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
                     </tbody>
             </table>):(<h1>No hay datos para mostrar</h1>)}
+=======
+                                <td><Link to={`view/${element.id}/${formtypes[1].id}/${1}`}><button>Ver Formulario</button></Link></td>
+                                <td>{check? check.filter(e => e.requestId === element.id).length ? 'Aceptado': 'por revisar':'No carga'}</td>
+                                <td><button onClick={() => handleDeleteRequest(element.id)}>✘</button></td>
+                            </tr>
+                        )):typeof(forms) === 'string' ? (<td>{forms}</td>): (<h1>Cargando...</h1>)}
+                    </tbody>
+            </table>):(<h1>Error</h1>)}
+>>>>>>> 0ffc52e03d60d7ae3f8b38f881cd1d4dca29fdd9
                 
             </StyledDashboardForms>
     )

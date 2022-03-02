@@ -21,7 +21,8 @@ export const DashboardForms= () => {
     const routeInfo = useSelector(state => state.ShelterAndCityId)
     const route = `${APIGATEWAY_URL}/pets/${routeInfo.cityId}?shelterId=${routeInfo.shelterId}`
     const check = useSelector((state) => state.checkForm)
-    const [typeform, settypeform] = useState()
+    let alreadyData = typeof(forms) !== 'string' && forms.length? forms[0].form.formtypeId : null
+    const [typeform, settypeform] = useState(forms.length && typeof(forms) !== 'string' && formtypes.length? formtypes.find(e => e.id === alreadyData).typeName : null)
 
     useEffect(() => {
         dispatch(getFormtypes(routeInfo.shelterId))
@@ -29,6 +30,7 @@ export const DashboardForms= () => {
         if(routeInfo)dispatch(getPetsForDashboard(route))
     }, [])
 
+    
     let filterimages = typeof(pet) !== 'string'? pet.map(e => {return {id:e.id,image:e.image}}) : null
 
     const handleSubmitGetForm = (e) => {
